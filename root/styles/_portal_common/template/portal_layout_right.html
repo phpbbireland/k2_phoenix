@@ -1,0 +1,41 @@
+<!-- IDTAG START portal_layout_left 24 March 2011 -->
+
+<!-- BEGIN right_block_files -->
+	<div id="<!-- IF S_ARRANGE -->BLOCK_<!-- ENDIF -->{right_block_files.RIGHT_BLOCK_ID}">
+		<div class="forabg sgp-corners" style="margin-bottom:10px;">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<div class="block_header <!-- IF S_ARRANGE -->handle<!-- ENDIF -->">
+					<li class="header" style="list-style-type: none; padding-bottom: 0px;"><dl><dd style="padding-bottom: 0px;">
+					<div class="block_title" style="text-align:{S_CONTENT_FLOW_BEGIN};">{right_block_files.RIGHT_BLOCK_TITLE}</div>
+					<span class="showhide" style="text-align:{S_CONTENT_FLOW_BEGIN};" id="_{right_block_files.RIGHT_BLOCK_ID}"><!-- IF not S_ARRANGE -->{right_block_files.RIGHT_BLOCK_IMG}<!-- ENDIF --></span>
+					<!-- IF S_ARRANGE && S_IS_PORTAL -->
+						<span class="showhide"><a href="javascript:ShowHide('{right_block_files.RIGHT_BLOCK_ID}','_{right_block_files.RIGHT_BLOCK_ID}','BLOCK_{right_block_files.RIGHT_BLOCK_ID}');">{HIDE_IMG}</a></span>
+					<!-- ENDIF -->
+					</dd></dl></li>
+				</div>
+
+				<div class="box sgp-corners-inside" id="<!-- IF not S_ARRANGE -->BLOCK_<!-- ENDIF -->{right_block_files.RIGHT_BLOCK_ID}">
+					<!-- IF right_block_files.RIGHT_BLOCK_SCROLL -->
+						<!-- IF not S_ARRANGE --><!-- DO NOT EDIT THE NEXT LINE UNLESS YOU KNOW WHAT YOU ARE DOING -->
+							<div class="scroll_outer" id="{right_block_files.RIGHT_BLOCK_ID}_outer" onmouseover="do_speed(this, event)" onmousemove="do_speed(this, event)" onmouseout="set_defaults(this, event)"><div class="scroll_inner" id="{right_block_files.RIGHT_BLOCK_ID}_inner">{right_block_files.RIGHT_BLOCKS}</div></div>
+						<!-- ELSE -->
+							{L_SCROLLING_BLOCKS_DISABLED}
+						<!-- ENDIF -->
+					<!-- ELSE -->
+						{right_block_files.RIGHT_BLOCKS}
+					<!-- ENDIF -->
+				</div>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+		<script type="text/javascript">
+		<!--
+			if(GetCookie('BLOCK_{right_block_files.RIGHT_BLOCK_ID}') == '2')
+			{
+				ShowHide('{right_block_files.RIGHT_BLOCK_ID}','_{right_block_files.RIGHT_BLOCK_ID}','BLOCK_{right_block_files.RIGHT_BLOCK_ID}');
+			}
+		//-->
+		</script>
+	</div>
+<!-- END right_block_files -->
+
+<!-- IDTAG ENDS portal_layout_left -->

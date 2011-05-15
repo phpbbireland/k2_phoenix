@@ -1,0 +1,12 @@
+/*
+	iefixes.css
+
+	This file is required to fix IE bugs... 
+	Michaelo phpbbireland.com 02 April 2008
+*/
+
+/* highslide 02 April 2008 */
+.highslide img	{ max-width:350px; } 
+
+/* in search 10 February 2008 */
+input.full	{ width: 99%; }

@@ -1,0 +1,191 @@
+<script type="text/javascript">
+// <![CDATA[
+var myMenu;
+function init_sdmenus()
+{
+    myMenu = new SDMenu("my_menu");
+    myMenu.init();
+}
+
+/**
+* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+*/
+var onload_functions = new Array();
+var onunload_functions = new Array();
+
+window.onload = function()
+{
+    for (i = 0; i <= onload_functions.length; i++)
+    {
+        eval(onload_functions[i]);
+    }
+}
+
+window.onunload = function()
+{
+    for (i = 0; i <= onunload_functions.length; i++)
+    {
+        eval(onunload_functions[i]);
+    }
+}
+
+onload_functions.push('init_sdmenus()');
+onload_functions.push('init_scrollers()');
+// ]]>
+</script>
+
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+<script type="text/javascript" src="{ROOT_PATH}js/sdmenu.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/scroller.js"></script>
+
+<!-- IF S_IS_PORTAL and S_ARRANGE -->
+<script type="text/javascript" src="{ROOT_PATH}js/prototype.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/scriptaculous.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/builder.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/effects.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/dragdrop.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/controls.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/slider.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/unittest.js"></script>
+<!-- ENDIF -->
+
+<script type="text/javascript" src="{ROOT_PATH}js/mytooltip.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}mp3/ufo.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/portal.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>
+
+<!-- Style Sheet Switcher v1.1- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com) -->
+<script type="text/javascript" src="{ROOT_PATH}js/styleswitch.js"></script>
+
+<script type="text/javascript" src="{ROOT_PATH}js/highslide/highslide-full.packed.js"></script>
+<link rel="stylesheet" type="text/css" href="{ROOT_PATH}js/highslide/highslide.css" />
+
+<script type="text/javascript">
+	hs.graphicsDir = '{ROOT_PATH}js/highslide/graphics/';
+	hs.align = 'center';
+	hs.transitions = ['expand', 'crossfade'];
+	hs.outlineType = 'glossy-dark';
+	hs.wrapperClassName = 'dark';
+	hs.fadeInOut = true;
+	//hs.dimmingOpacity = 0.75;
+
+	// Add the controlbar
+	if (hs.addSlideshow) hs.addSlideshow({
+		//slideshowGroup: 'group1',
+		interval: 5000,
+		repeat: false,
+		useControls: true,
+		fixedControls: 'fit',
+		overlayOptions: {
+			opacity: .6,
+			position: 'bottom center',
+			hideOnMouseOut: true
+		}
+	});
+</script>
+
+<link rel="stylesheet" href="{T_STYLESHEET_PORTAL_COMMON}" type="text/css" />
+<link rel="stylesheet" href="{T_STYLESHEET_PORTAL_OVERLOAD}" type="text/css" />
+
+<script type="text/javascript">
+//<![CDATA[
+var debug = 0;
+
+if (/MSIE (\d+\.\d+);/.test(navigator.userAgent))
+{
+	var ieversion=new Number(RegExp.$1)
+
+	if(debug)
+		document.write("IE " + ieversion)
+
+	document.write('<link rel="stylesheet" href="{T_THEME_PATH}/fix_ie.css" type="text/css" />');
+}
+else
+if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent))
+{
+	var ffversion=new Number(RegExp.$1)
+
+	if(debug)
+		document.write("Firefox " + ffversion);
+
+	document.write('<link rel="stylesheet" href="{T_THEME_PATH}/fix_ff.css" type="text/css" >');
+
+	if(ffversion > 3)
+		document.write('<style type="text/css">.showhide { float: right; margin-top: 0px; margin-right: 0px; }</style>');
+	else
+		document.write('<style type="text/css">.showhide { float: right; margin-top: -15px; margin-right: -1px; }</style>');
+
+}
+else
+if (/Opera[\/\s](\d+\.\d+)/.test(navigator.userAgent))
+{
+	var oprversion=new Number(RegExp.$1)
+
+	if(debug)
+		document.write("Opera " + oprversion)
+
+	document.write('<link rel="stylesheet" href="{T_THEME_PATH}/fix_opera.css" type="text/css" >');
+}
+else
+if (/Safari[\/\s](\d+\.\d+)/.test(navigator.userAgent))
+{
+	var oprversion=new Number(RegExp.$1)
+
+	if(debug)
+		document.write("Safari " + oprversion);
+
+	document.write('<link rel="stylesheet" href="{T_THEME_PATH}/fix_mac.css" type="text/css" >');
+}
+else
+if(debug)
+	document.write("Unknown browser!");
+//]]>
+</script>
+<!-- agent script end -->
+
+<script type="text/javascript" src="{ROOT_PATH}js/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript">
+	jQuery.noConflict();
+	jQuery(document).ready(function(){
+		// hides the quick reply box as soon as the DOM is ready - (a little sooner than page load)
+		jQuery('.fastreply').hide();
+		// toggles the quick reply box on clicking the quick reply button
+		jQuery('a.fast-reply').click(function() {
+		jQuery('.fastreply').toggle(400);
+		return false;
+		});
+	});
+
+	jQuery.noConflict();
+	jQuery(document).ready(function(){
+		// toggles the quick reply button from button_topic_qreply.gif to button_topic_qreply_no.gif
+			jQuery(".qreply-icon").toggle(function () {
+			jQuery(this).css({'background' : 'url("{T_IMAGESET_LANG_PATH}/button_topic_qreply_no.gif") 0 0 no-repeat'});
+			}, function () {var cssObj = {'background' : 'url("{T_IMAGESET_LANG_PATH}/button_topic_qreply.gif") 0 0 no-repeat'}
+			jQuery(this).css(cssObj);
+		});
+	});
+
+	jQuery.noConflict();
+	jQuery(document).ready(function(){
+		// hides the quick reply box as soon as the DOM is ready - (a little sooner than page load)
+		jQuery('.fastreply').hide();
+		// toggles the quick reply box on clicking the quick reply button
+		jQuery('a.fast-reply-png').click(function() {
+		jQuery('.fastreply').toggle(400);
+		return false;
+		});
+	});
+
+	jQuery.noConflict();
+	jQuery(document).ready(function(){
+		// toggles the quick reply button from button_topic_qreply.gif to button_topic_qreply_no.gif
+			jQuery(".qreply-icon-png").toggle(function () {
+			jQuery(this).css({'background' : 'url("{T_IMAGESET_LANG_PATH}/button_topic_qreply_no.png") 0 0 no-repeat'});
+			}, function () {var cssObj = {'background' : 'url("{T_IMAGESET_LANG_PATH}/button_topic_qreply.png") 0 0 no-repeat'}
+			jQuery(this).css(cssObj);
+		});
+	});
+</script>

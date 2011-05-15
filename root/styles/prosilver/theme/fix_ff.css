@@ -1,0 +1,9 @@
+/* Fix Firefox - Last Updated: 06 October 2008 Mike */
+.showhide img { float: left; margin-top: -14px; margin-right: 1px; }
+.handle { float: right; cursor: move; }
+.show_in_ie { display:none; }
+
+.top_gap {clear:both; padding-top: 0px;}
+.bottom_gap {margin-top: 2px;}
+.left_blocks_col_show {margin-bottom: 0px; margin-top: 3px;}
+.right_blocks_col_show {margin-bottom: 0px; margin-top: 3px;}

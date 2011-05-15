@@ -1,0 +1,40 @@
+/*
+	iefixes.css
+
+	This file is required to fix IE bugs... 
+	Michaelo phpbbireland.com 02 April 2008
+*/
+
+/* highslide 02 April 2008 */
+.highslide img	{ max-width:350px; }
+
+/* in search 10 February 2008 */
+input.full	{ width: 99%; }
+
+/* block part fix 26 April 2008 */
+
+
+span.corners-top-news {
+	background-image: url("./images/corners_left_news.gif");
+}
+
+span.corners-top-news span {
+	background-image: url("./images/corners_right_news.gif");
+}
+
+span.corners-bottom-news {
+	background-image: url("./images/corners_left_news.gif");
+}
+
+span.corners-bottom-news span {
+	background-image: url("./images/corners_right_news.gif");
+}
+
+.showhide {
+	float: right; margin-top: -14px; margin-right: 9px;
+}
+
+/* Menu icons not sizing correctly IE bug*/
+div.sdmenu span {
+   padding:1px;
+}

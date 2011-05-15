@@ -1,0 +1,20 @@
+Updates:
+
+STARGATE definition, and config.php:
+Removed all portal definitions from config.php...
+
+STARGATE is now defined in common.php and dependant on: $config['portal_enabled']
+To disable the cache debug information you can modify: @define('DEBUG_QUERIES', false);
+
+Enabling/Disabling the portal:
+You can now enable/disable the portal via APC board settings...
+
+
+Displaying blocks on different pages:
+
+1) You can now display bock and all pages except Staff Members page (would;d require additional and complex alterations).
+2) Page are classified: portal, Index and other... Other pages normally display both sets of blocks but can  be disable individually with individual edits... May add to ACP later...
+
+Block and Menus:
+Removed the alt variable that was used to store image alt data... not needed...
+

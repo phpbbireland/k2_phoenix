@@ -1,0 +1,23 @@
+<!-- IDTAG starts block_the_team.html copyright phpbbireland.com 2007 -->
+<div class="block_data;" style="padding:0px;margin:0px;">
+	<!-- BEGIN loop -->
+
+		<!-- IF loop.S_CHANGE -->
+		<div><span style="position: relative; float:left; width:100%; padding-bottom:1px; <!-- IF loop.FIRST > 0 -->padding-top:1px;<!-- ENDIF -->"></span></div>
+		<div><span style="position: relative; float:left; width:100%;"><b>{loop.GROUP_NAME}</b></span></div>
+		<div style="clear:both; padding-bottom: 2px;"><hr /></div>
+		<!-- ENDIF -->
+		<div style="clear:both;">
+			<span style="float:left;"><img src="{loop.GROUP_IMG_PATH}{loop.GROUP_IMG}.png" width="16" height="16" alt="{loop.GROUP_IMG}.png" /></span>
+			<strong>{loop.USERNAME_FULL}</strong>
+			<span class="flags">{loop.COUNTRY_FLAG_IMG}</span>
+		</div>
+	<!-- BEGINELSE -->
+	<div style="text-align:center">{L_NO_TEAMS}</div>
+	<!-- END loop -->
+	<!-- IF L_TEAM_MAX_COUNT != '' --><div class="block_data"style="text-align:center" title="{L_TEAM_MAX_COUNT_}"><hr />{L_TEAM_MAX_COUNT}</div><!-- ENDIF -->
+	<br />
+</div>
+<!-- IF DEBUG_QUERIES --><div class="block_data">{THE_TEAM_DEBUG}</div><!-- ENDIF -->
+
+<!-- IDTAG ends block_the_team.html -->

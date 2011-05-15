@@ -1,0 +1,36 @@
+	<!-- SGP Cloud Captacha Mod Starts -->
+	<tr>
+		<td class="row1" colspan="2" align="center">
+			<h3>{L_CLOUD_CAPTCHA_PASSWORD}</h3>
+			<p>{CLOUD_CAPTCHA_EXPLAINS}</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="row1" colspan="2" align="center">
+			<!-- SWFObject embed by Geoff Stearns geoff@deconcept.com http://blog.deconcept.com/swfobject/ -->
+			<script type="text/javascript" src="{ROOT_PATH}js/swfobject.js"></script>
+			<div id="captcha_cloud">
+				<p style="display:none;">{CC_CUMULUS}</p>
+			</div>
+		<script type="text/javascript">
+			var rnumber = Math.floor(Math.random()*9999999);
+			var so = new SWFObject("{T_THEME_PATH}/images/cloud/tagcloud.swf?r="+rnumber, "tagcloudflash", 200, 200, "9", "272829");
+			so.addParam("wmode", "transparent");
+			so.addParam("allowScriptAccess", "always");
+			so.addVariable("tcolor", '0x000000');
+			so.addVariable("tcolor2", '0x000000');
+			so.addVariable("hicolor", '0x000000');
+			so.addVariable("tspeed", 150);
+			so.addVariable("distr", "true");
+			so.addVariable("mode", "both");
+			so.addVariable({CC_FLASHTAG});
+			so.write("captcha_cloud");
+		</script>
+		</td>
+	</tr>
+	<tr>
+		<td class="row1">{L_CLOUD_CAPTCHA_PASS}</td>
+		<td class="row1"><input type="magic" tabindex="5" name="magic" id="magic" size="25" value="{MAGIC}" class="inputbox autowidth" title="{L_CLOUD_CAPTCHA_PASS}" /></td>
+	</tr>
+	<!-- SGP Cloud Captacha Mod Ends -->
+

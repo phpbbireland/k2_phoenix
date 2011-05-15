@@ -1,0 +1,17 @@
+<fieldset>
+	<legend>{L_SGP_QR_SETTINGS}</legend>
+	<dl>
+		<dt><label for="k_quick_reply">{L_SGP_QR}:</label><br /><span>{L_SGP_QR_EXPLAIN}</span></dt>
+		<dd>
+			<label><input type="radio" class="radio" id="k_quick_reply" name="k_quick_reply" value="1" <!-- IF S_K_QUICK_REPLY --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="k_quick_reply" value="0" <!-- IF not S_K_QUICK_REPLY --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label for="k_smilies_show">{L_K_SMILIES_SHOW}:</label><br /><span>{L_K_SMILIES_SHOW_EXPLAIN}</span></dt>
+		<dd>
+			<label><input type="radio" class="radio" id="k_smilies_show" name="k_smilies_show" value="1" <!-- IF S_K_SMILIES_SHOW --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="k_smilies_show" value="0" <!-- IF not S_K_SMILIES_SHOW --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+		</dd>
+	</dl>
+</fieldset>

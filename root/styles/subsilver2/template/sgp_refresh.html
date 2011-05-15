@@ -1,0 +1,104 @@
+<!-- INCLUDE overall_header.html -->
+
+<div class="block_bg" style="font face=courier; width:80%; margin-left:10%;">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+		<div class="block_header" style="text-align:center;">{L_SGP_REFRESH_ALL}</div>
+		<div class="hr"><hr /><br /></div>
+		<div style="margin-left:25%; margin-top:10px; margin-bottom:10px;">
+		<!-- IF not S_IS_BOT and S_USER_LOGGED_IN -->
+			<!-- IF S_IS_ADMIN -->
+				<div class="box" style="text-align:center; margin-right:25%;">{L_REFRESHING_TEMPLATES}</div>
+				<!-- BEGIN template_row -->
+					<!-- IF not template_row.S_SGPRA_TEMPLATE -->
+						<div class="bg1" style="margin-right:25%;">{template_row.SGPRA_TEMPLATE_ERROR}</div>
+					<!-- ENDIF -->
+					<!-- IF not template_row.S_SGPRA_TEMPLATE_DATA -->
+						<div class="bg1" style="margin-right:25%;">{template_row.SGPRA_TEMPLATE_DATA_ERROR}</div>
+					<!-- ENDIF -->
+					<!-- IF template_row.S_SGPRA_TEMPLATE -->
+						<div class="bg3" style="margin-right:25%;">{template_row.SGRA_TEMPLATE_REFRESHED}</div>
+					<!-- ENDIF -->
+				<!-- END template_row -->
+				<div class="bg3" style="margin-right:25%;"><br /></div>
+
+				<div class="box" style="text-align:center; margin-right:25%;">{L_REFRESHING_THEMES}</div>
+				<!-- BEGIN theme_row -->
+					<!-- IF not theme_row.S_SGPRA_THEME -->
+						<div class="bg1" style="margin-right:25%;">{theme_row.SGPRA_THEME_ERROR}</div>
+					<!-- ENDIF -->
+					<!-- IF not theme_row.S_SGPRA_THEME_TABLE -->
+						<div class="bg1" style="margin-right:25%;">{theme_row.SGPRA_THEME_TABLE_ERROR}</div>
+					<!-- ENDIF -->
+					<!-- IF theme_row.S_SGPRA_THEME -->
+						<div class="bg3" style="margin-right:25%;">{theme_row.SGRA_THEME_REFRESHED}</div>
+					<!-- ENDIF -->
+				<!-- END theme_row -->
+				<div class="bg3" style="margin-right:25%;"><br /></div>
+
+				<div class="box" style="text-align:center; margin-right:25%;">{L_REFRESHING_IMAGESETS}</div>
+				<div class="bg3" style="margin-right:25%;"> : {L_DISABLED} - Use refresh in ACP for time being...</div>
+				<!--  disabled for the time being -->
+				<!-- BEGIN imageset_row -->
+					<!-- IF not imageset_row.S_SGPRA_IMAGESET -->
+						<div class="bg1" style="margin-right:25%;">{imageset_row.SGPRA_IMAGESET_ERROR}</div>
+					<!-- ENDIF -->
+					<!-- IF not imageset_row.S_SGPRA_IMAGESET_DATA -->
+						<div class="bg1" style="margin-right:25%;">{imageset_row.SGPRA_IMAGESET_DATA_ERROR}</div>
+					<!-- ENDIF -->
+					<!-- IF not imageset_row.S_SGPRA_IMAGESET_LANG -->
+						<div class="bg1" style="margin-right:25%;">{imageset_row.SGPRA_IMAGESET_LANG_ERROR}</div>
+					<!-- ENDIF -->
+					<!-- IF imageset_row.S_SGPRA_IMAGESET -->
+						<div class="bg3" style="margin-right:25%;">{imageset_row.SGRA_IMAGESET_REFRESHED}</div>
+					<!-- ENDIF -->
+				<!-- END imageset_row -->
+				<!-- now continue -->
+				<div class="bg3" style="margin-right:25%;"><br /></div>
+
+				<div class="box" style="text-align:center; margin-right:25%;">{L_PURGING_CACHE}</div>
+				<!-- IF S_PURGE_CACHE -->
+					<div class="bg3" style="margin-right:25%;">{L_CACHE_PURGED}</div>
+				<!-- ENDIF -->
+				<div class="bg3" style="margin-right:25%;"><br /></div>
+
+				<div class="box" style="text-align:center; margin-right:25%;">{L_DELETING_RSSCACHE}</div>
+				<!-- IF S_RSS_CACHE -->
+					<div class="bg3" style="margin-right:25%;">{L_CACHE_DIR_CLEANED}</div>
+				<!-- ENDIF -->
+				<div class="bg3" style="margin-right:25%;"><br /></div>
+				<br />
+			</div>
+			<span class="corners-bottom"><span></span></span>
+
+			<span class="corners-top"><span></span></span>
+			<br />
+			<div class="hr"><hr /></div>
+			<div class="box" style="text-align:center;">
+				<!-- IF S_NO_EXEPTIONS -->
+					<p>{L_SGPRA_NO_ERRORS}</p>
+				<!-- ENDIF -->
+				<!-- IF not S_NO_EXEPTIONS -->
+					<p>{L_SGPRA_EXEPTIONS}</p>
+				<!-- ENDIF -->
+			</div>
+			<br />
+			<div class="hr"><hr /></div>
+
+			<span class="corners-bottom"><span></span></span>
+			<!-- ENDIF -->
+
+			<!-- IF not S_IS_ADMIN -->
+				<div class="box" style="margin-right:25%;">{L_SGPRA_NO_ADMIN}</div>
+			</div>
+			<span class="corners-bottom"><span></span></span>
+			<!-- ENDIF -->
+		<!-- ELSE -->
+			<div class="box" style="margin-right:25%;">{L_SGPRA_NO_ADMIN}<br />{S_LOGININFO}</div>
+		</div>
+		<span class="corners-bottom"><span></span></span>
+		<!-- ENDIF -->
+	</div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->
