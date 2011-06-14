@@ -1,7 +1,8 @@
 <!-- INCLUDE overall_header.html -->
 
 <!-- Start: Edit #1 : Small mod to show all available icon images in images/forum_images directory, copyright 2007 phpbbireland.com Mike -->
-<script>
+<script type="text/javascript">
+// <![CDATA[
 function set_image(data)
 {
 	document.getElementById('menu_icon').value=data;
@@ -14,11 +15,13 @@ function display_pip(myForm)
     var pip = myForm.menu_icon;
     document.getElementById("pip").innerHTML = " <img align='absmiddle' src='./../images/block_images/menu/" + pip.value + "' />"
 }
+// ]]>
 </script>
 <!-- END: Edit #1 -->
 
 
-<script>
+<script type="text/javascript">
+// <![CDATA[
 // Update groups with each selection... not very elegant but it works Mike //
 function set_ids(data, view)
 {
@@ -38,6 +41,7 @@ function set_ids(data, view)
 
     document.getElementById(view).value = mydata + data;
 }
+// ]]>
 </script>
 
 
@@ -51,19 +55,19 @@ function set_ids(data, view)
 <!-- ENDIF -->
 
 <form id="acp_menus" method="post" action="{U_ACTION}">
-<!-- IF S_OPTIONS  == "head" || S_OPTIONS == "nav" || S_OPTIONS == "sub" || S_OPTIONS == "foot" || S_OPTIONS == "link" || S_OPTIONS == "all" || S_OPTIONS == "unalloc" -->
+<!-- IF S_OPTIONS  == 'head' || S_OPTIONS == 'nav' || S_OPTIONS == 'sub' || S_OPTIONS == 'foot' || S_OPTIONS == 'link' || S_OPTIONS == 'all' || S_OPTIONS == 'unalloc' -->
 <table cellspacing="1" border="0">
 	<thead>
 		<tr>
 			<th colspan="11">
 			<div align="center"><font color="#FFFF33"><b>
-			<!-- IF S_OPTIONS == "head" -->{L_HEADER_MENU}<!-- ENDIF -->
-			<!-- IF S_OPTIONS == "nav" -->{L_NAV_MENU}<!-- ENDIF -->
-			<!-- IF S_OPTIONS == "sub" -->{L_SUB_MENU}<!-- ENDIF -->
-			<!-- IF S_OPTIONS == "foot" -->{L_FOOT_MENU}<!-- ENDIF -->
-			<!-- IF S_OPTIONS == "link" -->{L_LINKS_MENU}<!-- ENDIF -->
-			<!-- IF S_OPTIONS == "all" -->{L_ALL_MENUS}<!-- ENDIF -->
-			<!-- IF S_OPTIONS == "misc" -->{L_MISC}<!-- ENDIF -->
+			<!-- IF S_OPTIONS == 'head' -->{L_HEADER_MENU}<!-- ENDIF -->
+			<!-- IF S_OPTIONS == 'nav' -->{L_NAV_MENU}<!-- ENDIF -->
+			<!-- IF S_OPTIONS == 'sub' -->{L_SUB_MENU}<!-- ENDIF -->
+			<!-- IF S_OPTIONS == 'foot' -->{L_FOOT_MENU}<!-- ENDIF -->
+			<!-- IF S_OPTIONS == 'link' -->{L_LINKS_MENU}<!-- ENDIF -->
+			<!-- IF S_OPTIONS == 'all' -->{L_ALL_MENUS}<!-- ENDIF -->
+			<!-- IF S_OPTIONS == 'misc' -->{L_MISC}<!-- ENDIF -->
 			</b></font></div>
 			</th>
 		</tr>
@@ -198,7 +202,7 @@ function set_ids(data, view)
 	<hr />
 	<dl>
 		<dt><label for="view_groups">{L_MENU_VIEW_GROUPS}:</label><br /><span>{L_MENU_VIEW_GROUPS_EXPLAIN}</span></dt>
-		<dd><br /><input class="post" size="26" maxlength="100" id="view_groups" name="view_groups" value="{S_VIEW_GROUPS}" type="text">*</dd>
+		<dd><br /><input class="post" size="26" maxlength="100" id="view_groups" name="view_groups" value="{S_VIEW_GROUPS}" type="text" />*</dd>
 	</dl>
 	<dl>
 		<dt><label for="view_by">{L_MENU_VIEW_BY}:</label><br /><span>{L_MENU_VIEW_BY_EXPLAIN}</span></dt>
@@ -313,7 +317,7 @@ function set_ids(data, view)
 	<hr />
 	<dl>
 		<dt><label for="view_groups">{L_MENU_VIEW_GROUPS}:</label><br /><span>{L_MENU_VIEW_GROUPS_EXPLAIN}</span></dt>
-		<dd><br /><input class="post" size="26" maxlength="100" id="view_groups" name="view_groups" value="{S_VIEW_GROUPS}" type="text">#</dd>
+		<dd><br /><input class="post" size="26" maxlength="100" id="view_groups" name="view_groups" value="{S_VIEW_GROUPS}" type="text" /></dd>
 	</dl>
 	<dl>
 		<dt><label for="view_by">{L_MENU_VIEW_BY}:</label><br /><span>{L_MENU_VIEW_BY_EXPLAIN}</span></dt>

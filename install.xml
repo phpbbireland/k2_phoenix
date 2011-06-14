@@ -27,7 +27,7 @@
 		</author>
 	</author-group>
 
-	<mod-version>1.0.0b</mod-version>
+	<mod-version>1.0.0d</mod-version>
 
 	<installation>
 		<level>intermediate</level>
@@ -36,6 +36,20 @@
 	</installation>
 
 	<history>
+		<entry>
+			<date>2011-05-31</date>
+			<rev-version>1.0.0d</rev-version>
+			<changelog lang="en">
+				<change>Mod validation updates</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2011-05-16</date>
+			<rev-version>1.0.0c</rev-version>
+			<changelog lang="en">
+				<change>Testing simple styles.</change>
+			</changelog>
+		</entry>
 		<entry>
 			<date>2011-04-18</date>
 			<rev-version>1.0.0b</rev-version>
@@ -377,72 +391,6 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 	$imgs = '';
 
 	return($rand_image);
-}
-
-
-/**
-* Get user avatar Note! To avoid conflict copied and renamed for portal
-*
-* @param string $avatar Users assigned avatar name
-* @param int $avatar_type Type of avatar
-* @param string $avatar_width Width of users avatar
-* @param string $avatar_height Height of users avatar
-* @param string $alt Optional language string for alt tag within image, can be a language key or text
-*
-* @return string Avatar image (if avatars are enabled in ACP and a member has not selected an avatar).
-*/
-
-function sgp_get_user_avatar($avatar, $avatar_type, $avatar_width = '80', $avatar_height = '80', $alt = 'USER_AVATAR')
-{
-	if (!STARGATE)
-	{
-		return;
-	}
-
-	global $user, $config, $phpbb_root_path, $phpEx;
-
-	// 18 August 2010 //
-	// if avatars are disabled in acp return //
-	if (!$config['allow_avatar'])
-	{
-		return;
-	}
-
-	if (empty($avatar) || !$avatar_type)
-	{
-		$poster_avatar = get_random_image($phpbb_root_path . 'images/avatars/no_avitar', false, '');
-
-		// do we wish to resize? 28 January 2010 should not require else...? will look later //
-		if ($avatar_width || $avatar_height)
-		{
-			if (strpos($poster_avatar, '/>"'))
-			{
-				$poster_avatar = str_replace('/>"', '" height="' . $avatar_height . '" width="' . $avatar_width . '" />', $poster_avatar);
-			}
-			elseif (strpos($poster_avatar, '/>'))
-			{
-				$poster_avatar = str_replace('/>', ' height="' . $avatar_height . '" width="' . $avatar_width . '" />', $poster_avatar);
-			}
-		}
-
-		return($poster_avatar);
-	}
-
-	$avatar_img = '';
-
-	switch ($avatar_type)
-	{
-		case AVATAR_UPLOAD:
-			$avatar_img = $phpbb_root_path . "download/file.$phpEx?avatar=";
-		break;
-
-		case AVATAR_GALLERY:
-			$avatar_img = $phpbb_root_path . $config['avatar_gallery_path'] . '/';
-		break;
-	}
-
-	$avatar_img .= $avatar;
-	return '<img src="' . (str_replace(' ', '%20', $avatar_img)) . '" width="' . $avatar_width . '" height="' . $avatar_height . '" alt="' . ((!empty($user->lang[$alt])) ? $user->lang[$alt] : $alt) . '" />';
 }
 
 /* Stargate functions ends */
@@ -1058,10 +1006,16 @@ define('K_PAGES_TABLE',				$table_prefix . 'k_pages');</action>
 </open>
 
 <open src="includes/functions.php">
+
+<edit>
+<find><![CDATA[	global $db, $config, $template, $SID, $_SID, $user, $auth, $phpEx, $phpbb_root_path;]]></find>
+<action type="after-add"><![CDATA[	
+	include($phpbb_root_path . 'includes/sgp_functions.' . $phpEx);]]></action>
+</edit>
+
 <edit>
 <find><![CDATA[		'SITE_DESCRIPTION'				=> $config['site_desc'],]]></find>
 <action type="after-add"><![CDATA[		'STARGATE_VERSION'				=> (isset($config['portal_version'])) ? $config['portal_version'] : '0.0.0',]]></action>
-
 </edit>
 
 <edit>
@@ -1225,6 +1179,7 @@ if (!function_exists('bbcode_strip'))
 		}
 		else
 		{
+			include($phpbb_root_path . 'includes/sgp_functions.' . $phpEx);
 			return (sgp_get_user_avatar ($avatar, $avatar_type, $avatar_width, $avatar_height, $alt = 'USER_AVATAR', false));
 		}
 	}]]></action>
@@ -1328,7 +1283,8 @@ if (!function_exists('bbcode_strip'))
 		{
 			trigger_error("template->_tpl_load_file(): File {$this->template->files[$handle]} does not exist or is empty", E_USER_ERROR);
 		}]]></find>
-        <action type="replace-with"><![CDATA[		// Try and open template for read
+        <action type="replace-with"><![CDATA[
+		
 		if (!file_exists($this->template->files[$handle]))
 		{
 			// Stargate Common files Mod. http://stargate-portal.com/forum/viewtopic.php?p=3438#p3438

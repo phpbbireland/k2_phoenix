@@ -4,7 +4,7 @@
 * @author michaelo phpbbireland@gmail.com - http://www.phpbbireland.com
 *
 * @package sgp
-* @version 3.2.0
+* @version 1.0.0d
 * @copyright (c) 2005-2011 Michael O'Toole (phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -43,12 +43,20 @@ include($phpbb_root_path . 'portal/sql_data.' . $phpEx);
 
 $versions = array(
 
-	// Version 0.0.1
-	'0.0.1' => array(
-		// Add notice use portal removal tool for version prior to 1.0.0
+	// Version 1.0.0 (1.0.0a)
+	'1.0.0' => array(
 	),
-	// Version 2.0.0
-	'2.0.0'	=> array(
+
+	// Version 1.0.0b
+	'1.0.0b' => array(
+	),
+
+	// Version 1.0.0c
+	'1.0.0c' => array(
+	),
+
+	// Version 1.0.0d
+	'1.0.0d'	=> array(
 
 		'permission_add' => array(
 			array('a_k_portal', 1),
@@ -74,7 +82,6 @@ $versions = array(
 			array('user_center_blocks', '2'),
 			array('user_right_blocks', '2'),
 		),
-
 
 		'table_add' => array(
 

@@ -245,7 +245,6 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 
 	// Parse the message
 	$message = censor_text($row['post_text']);
-	//$message = acronym_pass($message);
 
 	// Second parse bbcode here
 	if ($row['bbcode_bitfield'])

@@ -48,7 +48,7 @@ $lang = array_merge($lang, array(
 	'TITLE_EXPLAIN_EXPAND'	=> 'Fields marked with * cannot be empty.<br />Legend: NDX = Index or sort order, Icon = Menu Icon (each menu item can have a different icon), Alt = Alternative text, Link = Link to whatever... <br />Menu icons are located in images/block_images/menu directory.',
 	'TITLE_ICON_EXPLAIN'	=> 'Manage Icons',
 
-	'ACP_MENUS' 		=> 'Menus',
+	'ACP_MENUS' 			=> 'Menus',
 
 	'MENUS_HEADER_ADMIN'	=> 'Menu Management',
 	'MENUS_ADD_HEADER'		=> 'Add a menu item:',

@@ -5,7 +5,7 @@
   <header>
     <license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
 
-    <title lang="en">Subsilver2 update for Stargate Portal (aka Kiss Portal) 2.0.0</title>
+    <title lang="en">Subsilver2 update for Kiss Engne (aka Kiss Portal) 1.0.3c</title>
 
 	<description lang="en">Style update (subsilver2) Stargate Portal Mod</description>
 
@@ -19,7 +19,7 @@
 			<email>o2l@eircom.net</email>
 		</author>
     </author-group>
-    <mod-version>2.0.0</mod-version>
+    <mod-version>1.0.3d</mod-version>
     <installation>
       <level>intermediate</level>
       <time>2503</time>
@@ -133,13 +133,13 @@
 <find><![CDATA[						<!-- IF S_DISPLAY_PM --> &nbsp;<a href="{U_PRIVATEMSGS}"><img src="{T_THEME_PATH}/images/icon_mini_message.gif" width="12" height="13" alt="*" /> {PRIVATE_MESSAGE_INFO}<!-- IF PRIVATE_MESSAGE_INFO_UNREAD -->, {PRIVATE_MESSAGE_INFO_UNREAD}<!-- ENDIF --></a><!-- ENDIF -->]]></find>
 <action type="replace-with"><![CDATA[						<!-- IF STARGATE --><!-- IF S_ARRANGE -->
 							<span style="display:inline" id="_OFF">
-							&nbsp; <a href="{U_PORTAL}" class="arrange_off" onclick="ShowHide('_ON'); ShowHide('_OFF'); " title="{L_ARRANGE_OFF}"> <img src="{T_THEME_PATH}/images/icon_arrange_off.gif" height="13" width="13"> {L_ARRANGE_OFF}</a>
+							&nbsp; <a href="{U_PORTAL}" class="arrange_off" onclick="ShowHide('_ON'); ShowHide('_OFF'); " title="{L_ARRANGE_OFF}"> <img src="{T_THEME_PATH}/images/icon_arrange_off.gif" height="13" width="13" alt="{L_ARRANGE_OFF}" /> {L_ARRANGE_OFF}</a>
 							&nbsp; <a href="javascript:chooseStyle('none', 60)" checked="checked"><img src="{T_THEME_PATH}/images/wide.gif" width="14" height="14" alt="{L_WIDE}" title="{L_WIDE}" /></a> {L_WIDE}
 							<a href="javascript:chooseStyle('fixed', 60)"><img src="{T_THEME_PATH}/images/narrow.gif" width="11" height="14" alt="{L_NARROW}" title="{L_NARROW}" /></a> {L_NARROW}
 							</span>
 						<!-- ELSE -->
 							<span style="display: inline" id="_ON">
-							&nbsp; <a href="{U_PORTAL_ARRANGE}" class="arrange_on"  onclick="ShowHide('_OFF'); ShowHide('_ON'); " title="{L_ARRANGE_ON}"> <img src="{T_THEME_PATH}/images/icon_arrange_on.gif" height="13" width="13"> {L_ARRANGE_ON}</a>
+							&nbsp; <a href="{U_PORTAL_ARRANGE}" class="arrange_on"  onclick="ShowHide('_OFF'); ShowHide('_ON'); " title="{L_ARRANGE_ON}"><img src="{T_THEME_PATH}/images/icon_arrange_on.gif" height="13" width="13" alt="{L_ARRANGE_ON}" /> {L_ARRANGE_ON}</a>
 							</span>
 						<!-- ENDIF --><!-- ENDIF -->
 						<!-- IF S_DISPLAY_PM --> &nbsp;<a href="{U_PRIVATEMSGS}"><img src="{T_THEME_PATH}/images/icon_mini_message.gif" width="12" height="13" alt="*" /> {PRIVATE_MESSAGE_INFO}<!-- IF PRIVATE_MESSAGE_INFO_UNREAD -->, {PRIVATE_MESSAGE_INFO_UNREAD}<!-- ENDIF --></a><!-- ENDIF -->]]></action>
@@ -229,7 +229,6 @@
 </open>
 
 <open src="styles/subsilver2/template/viewtopic_body.html">
-
 <edit>
 <find><![CDATA[			<!-- IF postrow.RANK_TITLE -->]]></find>
 <action type="replace-with"><![CDATA[			<!-- IF postrow.RANK_TITLE and not postrow.RANK_IMG -->]]></action>
@@ -286,7 +285,6 @@
 ]]></action>
 <comment lang="en"></comment>
 </edit>
-
 </open>
 
 <open src="styles/subsilver2/imageset/imageset.cfg">
@@ -307,21 +305,9 @@ img_news_unread_locked_mine	= news_unread_locked_mine.gif*17*17
 </open>
 
 <diy-instructions lang="en-gb">
-
-Point your browser to: your_site/portal/ and follow the onscreen instructions...
-Note! If you browse to root (index) at this point you will receive a template error... Ignore it and browse to: your_site/portal/
-
 Go to ACP...
 PERMISSIONS > Admin roles > Full Admin.... Click Portal Tab, set all options to yes...
 Set others as desired...
-
-Portal Default Mods
-For additional mods visit: http://www.stargate-portal.com/forum/web_pages.php?mode=mods (Available end of April 2009)
-
-When you have completed all modifications (code, styles and mods):
-Refresh all styles Templates/Themes/Imagesets + Purge cache.
-Delete or rename the portal directory (we recommend you change portal folders name until you have everything working).
-
 </diy-instructions>
 </action-group>
 </mod>

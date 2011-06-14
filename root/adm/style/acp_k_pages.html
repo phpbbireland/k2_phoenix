@@ -1,28 +1,14 @@
 <!-- INCLUDE overall_header.html -->
 <a name="maincontent"></a>
 
-<script language="javascript" type="text/javascript">
+<script type="text/javascript">
+// <![CDATA[
 // Not very elegant but it works Mike //
 function set_ids(list_index, tag_id)
 {
-	//alert('Click Submit to add this file...' + list_index);
-	/*
-	var mydata;
-	mydata = document.getElementById(tag_id).value;
-
-	if (list_index == '0')
-	{
-		mydata = '';
-		list_index = '';
-	}
-	else if(mydata)
-	{
-		mydata = mydata + ',';
-	}
-	*/
-
     document.getElementById(tag_id).value = list_index;
 }
+// ]]>
 </script>
 
 
@@ -49,10 +35,9 @@ function set_ids(list_index, tag_id)
 
 	<legend>{S_PAGE_NAME}</legend>
 	<dl>
-		<!--<dt><label for="page_name">{L_PAGE_NAME}:</label><br /><span>{L_PAGE_NAME_EXPLAIN}</span></dt>-->
 		<dd>
 		<!-- BEGIN phpbbpages -->
-		<input class="post" size="40" maxlength="100" name="page_name" value="{phpbbpages.S_PAGE_NAME}" type="text">
+		<input class="post" size="40" maxlength="100" name="page_name" value="{phpbbpages.S_PAGE_NAME}" type="text" />
 		<a href="{U_DELETE}{phpbbpages.S_PAGE_ID}"><img src="images/icon_delete.gif" border="0" title="{L_DELETE_FROM_LIST}" alt="{L_DELETE}"></a>
 		<!-- END phpbbpages -->
 		</dd>

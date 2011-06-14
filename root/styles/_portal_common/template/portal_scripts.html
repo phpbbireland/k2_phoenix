@@ -52,7 +52,6 @@ onload_functions.push('init_scrollers()');
 <!-- ENDIF -->
 
 <script type="text/javascript" src="{ROOT_PATH}js/mytooltip.js"></script>
-<script type="text/javascript" src="{ROOT_PATH}mp3/ufo.js"></script>
 <script type="text/javascript" src="{ROOT_PATH}js/portal.js"></script>
 <script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>
 
@@ -63,6 +62,7 @@ onload_functions.push('init_scrollers()');
 <link rel="stylesheet" type="text/css" href="{ROOT_PATH}js/highslide/highslide.css" />
 
 <script type="text/javascript">
+// <![CDATA[
 	hs.graphicsDir = '{ROOT_PATH}js/highslide/graphics/';
 	hs.align = 'center';
 	hs.transitions = ['expand', 'crossfade'];
@@ -84,6 +84,7 @@ onload_functions.push('init_scrollers()');
 			hideOnMouseOut: true
 		}
 	});
+// ]]>
 </script>
 
 <link rel="stylesheet" href="{T_STYLESHEET_PORTAL_COMMON}" type="text/css" />
@@ -147,6 +148,7 @@ if(debug)
 
 <script type="text/javascript" src="{ROOT_PATH}js/jquery/1.4.4/jquery.min.js"></script>
 <script type="text/javascript">
+// <![CDATA[
 	jQuery.noConflict();
 	jQuery(document).ready(function(){
 		// hides the quick reply box as soon as the DOM is ready - (a little sooner than page load)
@@ -188,4 +190,5 @@ if(debug)
 			jQuery(this).css(cssObj);
 		});
 	});
+//]]>
 </script>

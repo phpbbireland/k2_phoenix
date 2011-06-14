@@ -1,14 +1,10 @@
 <!-- IDTAG rules starts -->
 <!-- INCLUDE overall_header.html -->
-<div class="block_bg">
-	<div class="forabg sgp-corners">
-		<li class="header" style="list-style-type: none; padding-bottom: 0px;">
-			<dl>
-				<dd style="padding-bottom: 0px;">
-					<div class="block_title" style="text-align:left;">{L_BASIC_RULES_HEADER} &nbsp; (<!-- BEGIN basic_rules -->{L_UPDATED} {basic_rules.TO_DAY}<!-- END basic_rules -->)</div>
-				</dd>
-			</dl>
-		</li>
+
+<!-- INCLUDE blocks/blocks_header_left.html -->
+	{L_BASIC_RULES_HEADER} &nbsp; (<!-- BEGIN basic_rules -->{L_UPDATED} {basic_rules.TO_DAY}<!-- END basic_rules -->)
+<!-- INCLUDE blocks/blocks_header_right.html -->
+
 		<div class="box">
 			<span class="rules">
 				<!-- BEGIN basic_rules -->
@@ -16,8 +12,7 @@
 				<!-- END basic_rules -->
 			</span>
 		</div>
-		<span class="corners-bottom"><span></span></span>
-	</div>
-</div>
+
+<!-- INCLUDE blocks/blocks_footer.html -->
 <!-- INCLUDE overall_footer.html -->
 <!-- IDTAG rules ends -->

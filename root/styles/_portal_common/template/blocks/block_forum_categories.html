@@ -1,5 +1,6 @@
 <!-- IF S_TOTAL_CATS -->
 <script type="text/javascript">
+// <![CDATA[
 function expMenu(id)
 {
 	var element = null;
@@ -39,24 +40,23 @@ function expMenu(id)
 		return 1;
 	}
 }
+// ]]>
 </script>
 
 
 <!-- IDTAG starts block_forum_categories.html starts -->
 <div class="block_data">
 	<!-- BEGIN iforumrow -->
-	<span class="showhide2">
-		<a href="javascript:ShowHide('B_{iforumrow.UNIQUE}');"><img src="{iforumrow.FORUM_IMAGE_SRC}" title="Click to expand..." class="smallimage" alt="" /></a>
-		<br />
-	</span>
 		<!-- IF iforumrow.S_IS_CAT -->
-		<div style="text-align:center; margin-top: -8px; margin-bottom:16px; margin-right: 1px; ">
-			<strong><a href="{iforumrow.U_VIEWFORUM}" title="{iforumrow.CAT_FORUM_COUNT} {L_FORUMS} &bull; {iforumrow.FORUM_TOPICS} {L_TOPICS} &bull;  {iforumrow.FORUM_POSTS} {L_POSTS}" >{iforumrow.FORUM_NAME}</a></strong>
+		<div class="bg1a sgp-corners" style="text-align:center; padding-bottom:12px; margin-bottom:4px;">
+			<span class="showhide2"><a href="javascript:ShowHide('B_{iforumrow.UNIQUE}');"><img src="{iforumrow.FORUM_IMAGE_SRC}" title="{CLICK_TO_EXPAND}..." class="smallimage" alt="" /></a></span>
+			<span style="margin-left: -12px;"><strong><a href="{iforumrow.U_VIEWFORUM}" title="{iforumrow.CAT_FORUM_COUNT} {L_FORUMS} &bull; {iforumrow.FORUM_TOPICS} {L_TOPICS} &bull;  {iforumrow.FORUM_POSTS} {L_POSTS}" >{iforumrow.FORUM_NAME}</a></strong></span>
 		</div>
-		<div class="smallimage_hide" style="display:none;" id="B_{iforumrow.UNIQUE}">
+		<div class="smallimage_hide bg2a sgp-corners" style="display:none; margin-top:-10px;" id="B_{iforumrow.UNIQUE}">
 			<div class="centre" style="text-align:center; <!-- IF iforumrow.FORUM_DESC --> padding-top: 6px; padding-bottom: 3px; <!-- ELSE --> padding-top: 1px; padding-bottom: 1px;<!-- ENDIF -->">{iforumrow.FORUM_DESC}</div>
 			<div style="text-align:center; padding-top:3px;"><span class="gensmall">{L_TOPICS}: <strong>{iforumrow.FORUM_TOPICS}</strong> - {L_POSTS}: <strong>{iforumrow.FORUM_POSTS}</strong></span></div>
-			<div style="text-align:center;"><span class="gensmall">Number of Forums: <strong>{iforumrow.CAT_FORUM_COUNT}</strong></span></div>
+			<div style="text-align:center;"><span class="gensmall">{NUMBER_OF_FORUMS}: <strong>{iforumrow.CAT_FORUM_COUNT}</strong></span></div>
+			<div>&nbsp;</div>
 		</div>
 		<!-- IF iforumrow.S_CAT_COUNT < S_TOTAL_CATS or iforumrow.S_CAT_COUNT > 1 && iforumrow.S_CAT_COUNT < S_TOTAL_CATS --><!-- ELSE --><!-- ENDIF -->
 
@@ -79,5 +79,5 @@ function expMenu(id)
 <!-- IDTAG ends block_forum_categories.html ends -->
 
 <!-- ELSE -->
-<div class="block_data">Not processed for this page</div>
+<div class="block_data">{NOT_PROCESSED_FOR_PAGE}</div>
 <!-- ENDIF -->

@@ -5,7 +5,7 @@
 * @www.stargate-portal.com
 *
 * @package Kiss Portal Engine
-* @version $Id:$ 2.0.0 (beta)
+* @version $Id:$ 1.0.0d (beta)
 *
 * @note: Do not remove this copyright. Just append yours if you have modified it,
 *        this is part of the Stargate Portal copyright agreement...
@@ -395,6 +395,8 @@ $lang = array_merge($lang, array(
 	'YOUTUBE'				=> 'Youtube',
 	'YOUTUBE_PAGE'			=> 'Youtube Page',
 
+	'ALL_COMMON'	=> 'All common vars are now available to all block code',
+	'THEME_INFO'	=> 'Theme Information',
 ));
 //- stargate aka Kiss portal engine lang definitions -//
 

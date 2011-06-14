@@ -63,12 +63,7 @@ class acp_k_blocks
 
 		$template->assign_vars(array(
 			'U_BACK'			=> $this->u_action,
-			'U_EDIT2'			=> "{$phpbb_admin_path}index.$phpEx{$SID}&amp;i=k_blocks&amp;mode=edit&amp;block=",
-			'U_UP'				=> "{$phpbb_admin_path}index.$phpEx{$SID}&amp;i=k_blocks&amp;mode=up&amp;block=",
-			'U_DOWN'			=> "{$phpbb_admin_path}index.$phpEx{$SID}&amp;i=k_blocks&amp;mode=down&amp;block=",
-			'U_DELETE'			=> "{$phpbb_admin_path}index.$phpEx{$SID}&amp;i=k_blocks&amp;mode=delete&amp;block=",
-			'U_SET_VARS'		=> "{$phpbb_admin_path}index.$phpEx{$SID}&amp;i=k_vars&amp;mode=config&amp;block=",
-			'U_MANAGE_PAGES'	=> "{$phpbb_admin_path}index.$phpEx{$SID}&amp;i=k_pages&mode=manage"
+			'U_MANAGE_PAGES'	=> append_sid("{$phpbb_admin_path}index.$phpEx" , "i=k_pages&mode=manage"),
 		));
 
 		// Set up general vars
@@ -221,9 +216,6 @@ class acp_k_blocks
 						return;
 					}
 
-					//$id				= request_var('m_id']; // auto assigned
-					//$ndx				= request_var('ndx'];  // we calculate this
-
 					$title				= utf8_normalize_nfc(request_var('title', '', true));
 					$position			= request_var('position', '');
 					$active 			= request_var('active', 1);
@@ -312,7 +304,6 @@ class acp_k_blocks
 					// get all groups and fill array //
 					get_all_groups();
 					get_all_pages(0);
-					//get_all_minimods();
 					get_all_vars_files($block);
 
 					//Get all installed blocks//
@@ -330,13 +321,13 @@ class acp_k_blocks
 						}
 					}
 
-					$dirslist = '';
+					$dirslist = '... '; // use ... for empty //
 
 					$dirs = dir($phpbb_root_path . 'styles/_portal_common/template/blocks');
 
 					while ($file = $dirs->read())
 					{
-						if (!stripos($file, ".bak"))
+						if ($file != '.' && $file != '..' && !stripos($file, ".bak"))
 						{
 							$dirslist .= "$file ";
 						}
@@ -355,7 +346,7 @@ class acp_k_blocks
 						}
 					}
 
-					$dirslist = '.. ';
+					$dirslist = '... '; // use ... for empty //
 
 					$dirs = dir($phpbb_root_path . 'images/block_images/block');
 
@@ -379,7 +370,7 @@ class acp_k_blocks
 							$template->assign_block_vars('img_file_name', array('S_BLOCK_FILE_I' => $dirslist[$i]));
 						}
 					}
-					$dirslist='';
+					$dirslist = '';
 
 					$template->assign_var('S_OPTIONS', strtoupper($mode));
 				}
@@ -520,13 +511,13 @@ class acp_k_blocks
 
 				// get all available html files, note.. we search the admin styles folder //
 
-				$dirslist = '.. ';
+				$dirslist = '... '; // use ... for empty //
 
 				$dirs = dir($phpbb_root_path . 'styles/_portal_common/template/blocks');
 
 				while ($file = $dirs->read())
 				{
-					if (!stripos($file, ".bak"))
+					if ($file != '.' && $file != '..' && !stripos($file, ".bak"))
 					{
 						$dirslist .= "$file ";
 					}
@@ -546,7 +537,7 @@ class acp_k_blocks
 
 				// get all available block images //
 
-				$dirslist = '.. ';
+				$dirslist = ' ';
 
 				$dirs = dir($phpbb_root_path . 'images/block_images/block');
 
@@ -569,7 +560,7 @@ class acp_k_blocks
 						$template->assign_block_vars('img_file_name', array('S_BLOCK_FILE_I' => $dirslist[$i]));
 					}
 				}
-				$dirslist='';
+				$dirslist = '';
 
 				$template->assign_var('S_OPTIONS', 'ADD'); // not a language var //
 
@@ -614,7 +605,6 @@ class acp_k_blocks
 				// get all groups and fill array //
 				get_all_pages($block);
 				get_all_groups();
-				//get_all_minimods();
 				get_all_vars_files($block);
 
 				$db->sql_freeresult($result);
@@ -817,10 +807,14 @@ class acp_k_blocks
 						'S_HAS_VARS'		=> $row['has_vars'],
 						'S_MINIMOD_BASED'	=> $row['minimod_based'],
 						'S_MOD_BLOCK_ID'	=> $row['mod_block_id'],
+						'S_BLOCK_CACHE_TIME'=> $row['block_cache_time'],
+						'S_BLOCK'			=> ($row['id'] == $block) ? $block : '.....',
 
-						'S_BLOCK_CACHE_TIME'	=> $row['block_cache_time'],
-
-						'S_BLOCK'			=> ($row['id'] == $block) ? $block : '.....'
+						'U_EDIT2'			=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_blocks&amp;mode=edit&amp;block=" . $row['id']),
+						'U_UP'				=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_blocks&amp;mode=up&amp;block=" . $row['id']),
+						'U_DOWN'			=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_blocks&amp;mode=down&amp;block=" . $row['id']),
+						'U_DELETE'			=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_blocks&amp;mode=delete&amp;block=" . $row['id']),
+						'U_SET_VARS'		=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_vars&amp;mode=config&amp;block=" . $row['id']),
 						));
 					}
 
@@ -875,64 +869,6 @@ function get_current_position($my_id)
 	return(-1);
 }
 
-/*
-function get_module_id($block)
-{
-echo '> '; echo $block;
-
-	if ($block == '')
-		return;
-
-	global $db;
-
-	$sql = "SELECT mod_id FROM " . K_MODULES_TABLE . " WHERE mod_block_id = '$block' ";
-	if ( $result = $db->sql_query($sql) )
-	{
-		$row = $db->sql_fetchrow($result);
-		return($row['mod_block_id']);
-	}
-	return(-1);
-}
-*/
-
-function resync_ndx_on_delete($id)
-{
-	// outstanding... we need to resync ndx on delete and add ... might also add a swap to make things faster...
-	// should not be required...
-}
-
-/*
-function get_all_groups()
-{
-	global $db, $template, $user;
-
-	// Get us all the groups
-	$sql = 'SELECT group_id, group_name
-		FROM ' . GROUPS_TABLE . '
-		ORDER BY group_id ASC, group_name';
-	$result = $db->sql_query($sql);
-
-	// backward compatability, set up group zero //
-	$template->assign_block_vars('groups', array(
-		'GROUP_NAME'	=> $user->lang['NONE'],
-		'GROUP_ID'		=> 0,
-		)
-	);
-
-	while ($row = $db->sql_fetchrow($result))
-	{
-		$group_id = $row['group_id'];
-		$group_name = $row['group_name'];
-
-		$template->assign_block_vars('groups', array(
-			'GROUP_NAME'	=> $group_name,
-			'GROUP_ID'		=> $group_id,
-			)
-		);
-	}
-	$db->sql_freeresult($result);
-}
-*/
 
 /**
 * Takes the $id of a given block
@@ -1010,38 +946,11 @@ function which_group($id)
 	}
 }
 
-
-/*
-function get_all_minimods()
-{
-	global $db, $template, $user;
-
-	// Get all minimods for selection
-	$sql = 'SELECT mod_id, mod_name
-		FROM ' . K_MODULES_TABLE . '
-		ORDER BY mod_id ASC';
-	$result = $db->sql_query($sql);
-
-	while ($row = $db->sql_fetchrow($result))
-	{
-		$mod_id = $row['mod_id'];
-		$mod_name = $row['mod_name'];
-
-		$template->assign_block_vars('minimods', array(
-			'MINIMOD_NAME'	=> $mod_name,
-			'MINIMOD_ID'	=> $mod_id,
-			)
-		);
-	}
-	$db->sql_freeresult($result);
-}
-*/
-
 function get_all_vars_files($block)
 {
 	global $template, $user, $phpbb_admin_path;
 
-	$dirslist = '.. ';
+	$dirslist = '... '; // use ... for empty //
 
 	$dirs = dir($phpbb_admin_path . '/style/k_block_vars');
 
@@ -1077,7 +986,7 @@ function delete_this_block_cached_file($thisfile)
 
 	$thisfile .= '.php';
 
-	$dirslist='';
+	$dirslist = '';
 
 	$dirs = dir($phpbb_root_path . 'cache');
 
@@ -1097,7 +1006,7 @@ function delete_all_block_cached_files()
 {
 	global $cache, $phpbb_root_path, $user;
 
-	$dirslist='';
+	$dirslist = '';
 
 	$dirs = dir($phpbb_root_path . 'cache');
 

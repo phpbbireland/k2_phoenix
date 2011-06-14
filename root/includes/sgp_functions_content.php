@@ -25,45 +25,6 @@ if (!defined('IN_PHPBB'))
 
 
 /**
-* acronym code by: Frold phpbb.com ref:
-* http://www.phpbb.com/community/viewtopic.php?p=3243523#p3243523
-*/
-/*
-if (!function_exists('acronym_pass'))
-{
-	function acronym_pass($text)
-	{
-		global $k_config;
-
-		if (!$k_config['allow_acronyms'])
-		{
-			return $text;
-		}
-
-		$acronym_cache = new acronym_cache();
-		static $acronyms;
-		global $cache;
-
-		if (!isset($acronyms) || !is_array($acronyms))
-		{
-			$acronyms = $acronym_cache->obtain_acronym_list();
-		}
-
-		if (sizeof($acronyms))
-		{
-			$acronyms_match = $acronyms['match'];
-			$acronyms_repl = $acronyms['replace'];
-			// should be modified to include '/' as it will replace 'forum' in www.mysite/forum/index.php when it shouldn't //
-			$text =  substr(preg_replace('#(\>(((?>([^><]+|(?R)))*)\<))#se', "preg_replace(\$acronyms_match, \$acronyms_repl, '\\0')", '>' . $text . '<'), 1, -1);
-			$text = sgp_local_acronyms($text);
-			return str_replace('\\"', '"', $text);
-		}
-		return $text;
-	}
-}
-*/
-
-/**
 * Class for grabbing/handling acronym cached entries, extends acm_file or acm_db depending on the setup
 * @package acm
 */

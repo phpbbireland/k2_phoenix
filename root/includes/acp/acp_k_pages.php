@@ -219,11 +219,11 @@ function get_all_available_files()
 
 	$dirs = dir($phpbb_root_path);
 
-	$dirslist = ".. ";
+	$dirslist = '... '; // use ... for empty //
 
 	while ($file = $dirs->read())
 	{
-		if (stripos($file, ".php") && !stripos($file, ".bak") && !in_array($file, $arr, true))
+		if ($file != '.' && $file != '..' && stripos($file, ".php") && !stripos($file, ".bak") && !in_array($file, $arr, true))
 		{
 			// array of filename we don't process... store in databse and add code to facilitate add/edit/delete later //
 			$illegal_files = array("common.php", "report.php", "feed.php", "cron.php", "config.php", "csv.php", "style.php", "sgp_refresh.php", "sgp_ajax.php", "sgpical.php", "rss.php");

@@ -29,8 +29,6 @@ class acp_k_config
 		global $db, $user, $auth, $template, $cache;
 		global $config, $SID, $phpbb_root_path, $phpbb_admin_path, $phpEx;
 
-		//$message ='';
-
 		$user->add_lang('acp/k_config');
 		$this->tpl_name = 'acp_k_config';
 		$this->page_title = 'ACP_K_PORTAL_CONFIG';
@@ -54,15 +52,12 @@ class acp_k_config
 			trigger_error($user->lang['FORM_INVALID']);
 		}
 
-
-
 		$blocks_width 	= $config['blocks_width'];
 		$blocks_enabled = $config['blocks_enabled'];
 		$portal_version	= $config['portal_version'];
 		$portal_build	= $config['portal_build'];
 
 		$template->assign_vars(array(
-			//'L_PORTAL_MESSAGE'				=> $message,
 			'S_BLOCKS_WIDTH'				=> $blocks_width,
 			'S_BLOCKS_ENABLED'				=> $blocks_enabled,
 			'S_PORTAL_VERSION'				=> $portal_version,
@@ -99,9 +94,12 @@ class acp_k_config
 
 				$template->assign_var('S_OPT', 'save');
 
-				meta_refresh(2, "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_config&amp;mode=config");
+				//meta_refresh(2, "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_config&amp;mode=config");
+
+				$url = $this->u_action . "&amp;i=k_config&amp;action=config";
+				meta_refresh(0, $url);
+
 				return;
-				break;
 			}
 			case 'default':
 			break;

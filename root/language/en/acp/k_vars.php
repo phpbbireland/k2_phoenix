@@ -125,7 +125,7 @@ $lang = array_merge($lang, array(
 	'K_FOOTER_IMAGES_ALLOW_EXPLAIN' 	=> 'Turn on/off link images in the portal footer...',
 
 	'K_SMILIES_SHOW' 				=> 'Show Smilies on Quick Reply',
-	'K_SMILIES_SHOW_EXPLAIN' 		=> 'Some mods may require you don\'t display Smilies on Quick Reply',
+	'K_SMILIES_SHOW_EXPLAIN' 		=> 'Some mods may require you don’t display Smilies on Quick Reply',
 
 	'SHOW_BLOCKS_ON_INDEX_PORTAL' 	=> 'Blocks display options.',
 	'SHOW_BLOCKS_ON_INDEX_L' 		=> 'Display the left blocks on the index page',
@@ -187,7 +187,7 @@ $lang = array_merge($lang, array(
 	'K_TEAMS_DISPLAY_THIS_MANY'					=> 'Number of team members to display',
 	'K_TEAMS_DISPLAY_THIS_MANY_EXPLAIN'			=> 'You can limit the number per team (0 for no limit).',
 	'EXCLUDE'									=> 'Exclude forums for search',
-	'EXCLUDE_EXPLAIN'							=> 'The ID\'s of the forums to exclude from search (comma separated).',
+	'EXCLUDE_EXPLAIN'							=> 'The ID’s of the forums to exclude from search (comma separated).',
 
 	'K_BLOCK_CACHE_TIME_FAST'			=> 'Short cache time',
 	'K_BLOCK_CACHE_TIME_FAST_EXPLAIN'	=> 'Used for recent topics etc...',
@@ -403,7 +403,7 @@ $lang = array_merge($lang, array(
 
 
 	'CLOUD_MAX_TAGS'			=> 'Max tags',
-	'CLOUD_MAX_TAGS_EXPLAIN'	=> 'Set Max tags so you don\'t clutter the block.',
+	'CLOUD_MAX_TAGS_EXPLAIN'	=> 'Set Max tags so you don’t clutter the block.',
 	'CLOUD_MOVIE'				=> 'Cloud Movie',
 	'CLOUD_MOVIE_EXPLAIN'		=> 'Each cloud can have its own movie.',
 	'CLOUD_WIDTH'				=> 'Cloud width',

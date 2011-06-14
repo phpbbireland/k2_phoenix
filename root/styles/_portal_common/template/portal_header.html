@@ -1,5 +1,6 @@
 <!-- IF STARGATE -->
 	<script type="text/javascript">
+	// <![CDATA[
 	function expMenu(id)
 	{
 		var element = null;
@@ -39,6 +40,7 @@
 			return 1;
 		}
 	}
+	// ]]>
 	</script>
 
 	<div>
@@ -62,20 +64,20 @@
 
 <!-- ENDIF -->
 
-<div id="header"><!-- PUT HEADER BLOCKS HERE --></div>
-<div id="container">
-  <div id="row">
+<div id="_header_"><!-- PUT HEADER BLOCKS HERE --></div>
+<div id="_container_">
+  <div id="_row_">
 		<!-- IF S_SHOW_LEFT_BLOCKS -->
 		<div style="width:{BLOCK_WIDTH}; padding-right:15px;" id="left">
 			<script type="text/javascript">
-				//<!--
+				// <![CDATA[
 				if(GetCookie('left_blocks_col_hide') == '2')
 				{
 					ShowHide('left');
 					ShowHide('left_blocks_col_hide');
 					ShowHide('left_blocks_col_show');
 				}
-				//-->
+				// ]]>
 			</script>
 			<!-- INCLUDE portal_layout_left.html -->
 		</div>

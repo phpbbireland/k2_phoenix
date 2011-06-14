@@ -16,13 +16,11 @@
 			<div class="inner"><span class="corners-top"><span></span></span>
 
 				<div class="block_header <!-- IF S_ARRANGE -->handle<!-- ENDIF -->">
-					<li class="header" style="list-style-type: none;"><dl><dd>
 					<div class="block_title" style="text-align:{S_CONTENT_FLOW_BEGIN};">{center_block_files.CENTER_BLOCK_TITLE}&nbsp;</div>
 					<span class="showhide" style="text-align:{S_CONTENT_FLOW_BEGIN};" id="_{center_block_files.CENTER_BLOCK_ID}"><!-- IF not S_ARRANGE -->{center_block_files.CENTER_BLOCK_IMG}<!-- ENDIF --></span>
 					<!-- IF S_ARRANGE && S_IS_PORTAL -->
 						<span class="showhide"><a href="javascript:ShowHide('{center_block_files.CENTER_BLOCK_ID}','_{center_block_files.CENTER_BLOCK_ID}','BLOCK_{center_block_files.CENTER_BLOCK_ID}');">{HIDE_IMG}</a></span>
 					<!-- ENDIF -->
-					</dd></dl></li>
 				</div>
 
 				<div class="box sgp-corners-inside" id="<!-- IF not S_ARRANGE -->BLOCK_<!-- ENDIF -->{center_block_files.CENTER_BLOCK_ID}">
@@ -39,12 +37,12 @@
 			<span class="corners-bottom"><span></span></span></div>
 		</div>
 		<script type="text/javascript">
-		<!--
+		// <![CDATA[
 			if(GetCookie('BLOCK_{center_block_files.CENTER_BLOCK_ID}') == '2')
 			{
 				ShowHide('{center_block_files.CENTER_BLOCK_ID}','_{center_block_files.CENTER_BLOCK_ID}','BLOCK_{center_block_files.CENTER_BLOCK_ID}');
 			}
-		//-->
+		// ]]>
 		</script>
 	</div>
 <!-- END center_block_files -->

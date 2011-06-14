@@ -1,4 +1,5 @@
-<script>
+<script type="text/javascript">
+// <![CDATA[
 function set_ids(data)
 {
 	var mydata;
@@ -11,24 +12,13 @@ function clear_me(data)
 	mydata = document.getElementById(data).value;
     document.getElementById(data).value = '';
 }
+// ]]>
 </script>
 
 
 <fieldset>
 	<dl>
 		<dt><label>{L_RESERVED}</label></dt>
-		<!--
-		<dd>
-			<label>
-				<select name="reserved_words" id="reserved_words" class="post" onchange="set_ids(this.options[this.selectedIndex].value);">
-				<!-- BEGIN reserved_words -->
-				<option value="{reserved_words.RESERVED_WORDS}" <!-- IF reserved_words.RESERVED_WORDS == S_THIS_WORD -->selected <!-- ENDIF -->>{reserved_words.RESERVED_WORDS} </option>
-				<!-- END reserved_words -->
-				</select>
-			</label>
-		</dd>
-		-->
-
 		<!-- BEGIN reserved_words -->
 		<dd>
 			<input type="text" maxlength="30" size="29" id="{reserved_words.RESERVED_WORDS}" name="{reserved_words.RESERVED_WORDS}" value="{reserved_words.RESERVED_WORDS}" class="post" />

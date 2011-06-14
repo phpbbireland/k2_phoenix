@@ -7,8 +7,8 @@
 <h1>{L_TITLE}</h1>
 <p>{L_TITLE_EXPLAIN}</p>
 
-<script language="javascript" type="text/javascript">
-<!--
+<script type="text/javascript">
+// <![CDATA[
 function switchMarks(status)
 {
 	for( var i=0; i < document.acp_k_words.length; i++ )
@@ -35,7 +35,7 @@ function confirmUpdate()
 {
 	return( confirm("{L_PLEASE_CONFIRM_UPDATE}") );
 }
-// -->
+// ]]>
 </script>
 
 
@@ -60,7 +60,7 @@ function confirmUpdate()
 		<td class="row3" align="center" valign="middle"><span class="genmed">{wordrow.NAME}</span></td>
 		<td class="row3" align="center" valign="middle"><span class="genmed">{wordrow.VALUE}</span></td>
 		<td class="row3" align="center" valign="middle"><span class="genmed">{wordrow.TABLE}</span></td>
-		<td class="row3" align="center" valign="middle"><input type="checkbox" name="id_list[]" value="{wordrow.ID}"></td>
+		<td class="row3" align="center" valign="middle"><input type="checkbox" name="id_list[]" value="{wordrow.ID}" /></td>
 	</tr>
 	<!-- END wordrow -->
 
@@ -75,11 +75,6 @@ function confirmUpdate()
 				<input type="button" name="unmark_all" value="{L_UNMARK_ALL}" class="button1" onClick="switchMarks(false);" />  &nbsp;
 				<input type="submit" name="delete" value="{L_DELETE_MARKED}" class="button2" onClick="return confirmOperation();" /> &nbsp;
 			</span>
-			<!--
-			<span style="width: 50%; float:right; text-align:right;">
-				<input type="submit" name="update" value="{L_SAVE_CURRENT}" class="button2" onClick="return confirmUpdate();" /> &nbsp;
-			</span>
-			-->
 		</dl>
 </fieldset>
 
@@ -99,7 +94,7 @@ function confirmUpdate()
 	</tr>
 </table>
 
-
+{S_FORM_TOKEN}
 </form>
 <fieldset>
 	<legend>{L_REPORT}</legend>

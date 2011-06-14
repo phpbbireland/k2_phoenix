@@ -10,7 +10,7 @@
 * @note: Do not remove this copyright. Just append yours if you have modified it,
 *        this is part of the Stargate Portal copyright agreement...
 *
-* @version $Id: block_search.php 297 2008-12-30 18:40:30Z JohnnyTheOne $
+* @version $Id: block_search.php 298 2008-12-30 18:40:30Z JohnnyTheOne $
 * Updated:
 *
 */
@@ -23,14 +23,6 @@ if (!defined('IN_PHPBB'))
 {
 	exit;
 }
-
-/*
-$grp = strtoupper(sgp_get_group_name($user->data['group_id']));
-if ($grp == 'BOTS' || $grp == 'GUESTS')
-{
-	return;
-}
-*/
 
 $user->add_lang('portal/kiss_search');
 $user->add_lang('search');
@@ -55,9 +47,8 @@ $phpEx = substr(strrchr(__FILE__, '.'), 1);
 $template->assign_vars(array(
 	"L_SEARCH_ADV" 		=> $user->lang['SEARCH_ADV'],
 	"L_SEARCH_OPTION" 	=> (!empty($portal_config['search_option_text'])) ? $portal_config['search_option_text'] : $board_config ['sitename'],
-	'U_SEARCH'			=> append_sid("{$phpbb_root_path}search.$phpEx", 'keywords=' . urlencode($keywords))
-	)
-);
+	'U_SEARCH'			=> append_sid("{$phpbb_root_path}search.$phpEx", 'keywords=' . urlencode($keywords)),
+));
 
 $template->assign_vars(array(
 	'S_USER_LOGGED_IN'	=> ($user->data['user_id'] != ANONYMOUS) ? true : false,

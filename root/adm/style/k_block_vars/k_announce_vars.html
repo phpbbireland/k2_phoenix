@@ -2,17 +2,16 @@
 	<legend>{L_ANNOUNCE_SETTINGS}</legend>
 	<dl>
 		<dt><label for="k_announce_to_display">{L_K_ANNOUNCE_TO_DISPLAY}:</label><br /><span>{L_K_ANNOUNCE_TO_DISPLAY_EXPLAIN}</span></dt>
-		<dd><label><input class="post" size="3" maxlength="2" name="k_announce_to_display" value="{S_K_ANNOUNCE_TO_DISPLAY}" type="text"></label></dd>
+		<dd><label><input class="post" size="3" maxlength="2" name="k_announce_to_display" value="{S_K_ANNOUNCE_TO_DISPLAY}" type="text" /></label></dd>
 	</dl>
 	<dl>
 		<dt><label for="k_announce_item_max_length">{L_K_ANNOUNCE_ITEM_MAX_LENGTH}:</label><br /><span>{L_K_ANNOUNCE_ITEM_MAX_LENGTH_EXPLAIN}</span></dt>
-		<dd><label><input class="post" size="5" maxlength="4" name="k_announce_item_max_length" value="{S_K_ANNOUNCE_ITEM_MAX_LENGTH}" type="text"></label></dd>
+		<dd><label><input class="post" size="5" maxlength="4" name="k_announce_item_max_length" value="{S_K_ANNOUNCE_ITEM_MAX_LENGTH}" type="text" /></label></dd>
 	</dl>
 	<dl>
 	<dt><label for="k_announce_type">{L_K_ANNOUNCE_TYPE}:</label><br /><span>{L_K_ANNOUNCE_TYPE_EXPLAIN}</span></dt>
 	<dd>
 		<label><input type="radio" class="radio" id="k_announce_type" name="k_announce_type" value="0" <!-- IF S_K_ANNOUNCE_TYPE == 0 --> checked="checked"<!-- ELSE --><!-- ENDIF --> /> {L_BOTH}</label>
-		<!--<label><input type="radio" class="radio" id="k_announce_type" name="k_announce_type" value="1" <!-- IF S_K_ANNOUNCE_TYPE == 1 --> checked="checked"<!-- ELSE --><!-- ENDIF --> /> {L_ILLEGAL}</label>-->
 		<label><input type="radio" class="radio" id="k_announce_type" name="k_announce_type" value="2" <!-- IF S_K_ANNOUNCE_TYPE == 2 --> checked="checked"<!-- ELSE --><!-- ENDIF --> /> {L_LOCAL_ANNOUNCE}</label>
 		<label><input type="radio" class="radio" id="k_announce_type" name="k_announce_type" value="3" <!-- IF S_K_ANNOUNCE_TYPE == 3 --> checked="checked"<!-- ELSE --><!-- ENDIF --> /> {L_GLOBAL_ANNOUNCE}</label>
 	</dd>

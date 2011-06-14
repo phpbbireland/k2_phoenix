@@ -96,15 +96,8 @@ else
 }
 
 // Process block positions for members //
-if($row['username'] != 'Anonymous')
+if($row['username'] != ANONYMOUS)
 {
-	/*
-		$sql = 'UPDATE ' . USERS_TABLE . '
-			SET user_left_blocks = ' . "''" . ', user_center_blocks = ' . "''" . ', user_right_blocks = ' . "''" . '
-			WHERE user_id = ' . $user->data['user_id'];
-		$db->sql_query($sql);
-	*/
-
 	if (isset($_COOKIE[$config['cookie_name'] . '_sgp_left']) || isset($_COOKIE[$config['cookie_name'] . '_sgp_center']) || isset($_COOKIE[$config['cookie_name'] . '_sgp_right']) && $use_block_cookies)
 	{
 		$left = request_var($config['cookie_name'] . '_sgp_left', '', false, true);
@@ -154,8 +147,8 @@ if($row['username'] != 'Anonymous')
 		$sql = 'SELECT *
 			FROM ' . K_BLOCKS_TABLE . '
 			WHERE active = 1
-				AND (view_by != 0 OR view_all = 1)
-				AND (view_pages != 0)
+				AND (view_by <> 0 OR view_all = 1)
+				AND (view_pages <> 0)
 				ORDER BY ndx ASC';
 	}
 	else
@@ -163,7 +156,7 @@ if($row['username'] != 'Anonymous')
 		$sql = 'SELECT *
 			FROM ' . K_BLOCKS_TABLE . '
 			WHERE active = 1
-				AND (view_pages != 0)
+				AND (view_pages <> 0)
 				AND ' . $db->sql_in_set('id', $LCR) . '
 			ORDER BY find_in_set(id,' . '\'' . $all . '\')';
 	}
@@ -173,8 +166,8 @@ else
 	$sql = 'SELECT *
 		FROM ' . K_BLOCKS_TABLE . '
 		WHERE active = 1
-				AND (view_by != 0 OR view_all = 1)
-				AND (view_pages != 0)
+				AND (view_by <> 0 OR view_all = 1)
+				AND (view_pages <> 0)
 				ORDER BY ndx ASC';
 }
 
@@ -421,7 +414,7 @@ if (isset($center_block_ary) && $show_center)
 
 $template->assign_vars(array(
 	'AVATAR'			=> sgp_get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], $user->data['user_avatar_width'], $user->data['user_avatar_height']),
-	'BLOCK_WIDTH'	   => $blocks_width . 'px',
+	'BLOCK_WIDTH'		=> $blocks_width . 'px',
 
 	'PORTAL_ACTIVE'		=> $config['portal_enabled'],
 	'PORTAL_BUILD'		=> $config['portal_build'],

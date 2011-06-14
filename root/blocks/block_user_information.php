@@ -35,7 +35,7 @@ foreach ($k_blocks as $blk)
 {
 	if ($blk['html_file_name'] == 'block_user_information.html')
 	{
-		$block_cache_time = $blk['block_cache_time']; 
+		$block_cache_time = $blk['block_cache_time'];
 	}
 }
 $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k_block_cache_time_default']);
@@ -43,11 +43,11 @@ $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k
 sgp_get_user_rank($user->data['user_rank'], (($user->data['user_id'] == ANONYMOUS) ? false : $user->data['user_posts']), $rank_title, $rank_img, $rank_img_src);
 
 // First we try the default code but if no image we use the sgp code //
-$avatar_img = ($user->data['user_avatar']) ? sgp_get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], $user->data['user_avatar_width'], $user->data['user_avatar_height'], 'USER_AVATAR', true) : '';
+//$avatar_img = ($user->data['user_avatar']) ? sgp_get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], $user->data['user_avatar_width'], $user->data['user_avatar_height'], 'USER_AVATAR', true) : '';
 
 $template->assign_vars(array(
-	'AVATAR'				=> ($avatar_img) ? $avatar_img : sgp_get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type']),
-	'WELCOME_SITE'			=> sprintf($user->lang['WELCOME_SITE'], $config['sitename']),	
+	'AVATAR'				=> sgp_get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], $user->data['user_avatar_width'], $user->data['user_avatar_height'], 'USER_AVATAR', true),
+	'WELCOME_SITE'			=> sprintf($user->lang['WELCOME_SITE'], $config['sitename']),
 	'USR_RANK_TITLE'		=> $rank_title,
 	'USR_RANK_IMG'			=> $rank_img,
 

@@ -3,7 +3,7 @@
 	</div><!-- close middle -->
 
 		<!-- IF S_SHOW_RIGHT_BLOCKS -->
-		<div valign="top" style="width:{BLOCK_WIDTH}; padding-left:15px;" id="right">
+		<div style="width:{BLOCK_WIDTH}; padding-left:15px;" id="right">
 			<script type="text/javascript">
 				//<!--
 				if(GetCookie('right_blocks_col_hide') == '2')
@@ -29,6 +29,7 @@
 	-->
 	<!-- IF S_IS_PORTAL and S_ARRANGE -->
 	<script type="text/javascript">
+	// <![CDATA[
 		var _left;
 		var _right;
 		var _center;
@@ -39,7 +40,6 @@
 
 		SetCookie('{COOKIE_NAME}_sgp_block_cache', '0');
 
-		 // <![CDATA[
 		Sortable.create("left",
 			{tag:'div',dropOnEmpty:true,handle:'handle',containment:["left","center","right"],constraint:false,
 			onChange:
@@ -79,7 +79,7 @@
 					SetCookie('{COOKIE_NAME}_sgp_right', $_right);
 				}
 			});
-		 // ]]>
+	// ]]>
 	</script>
 		<!-- DO NOT DELETE THIS CODE -->
 		<div style="display:none;">
@@ -91,16 +91,20 @@
 
 	<!-- IF S_IS_PORTAL and not S_ARRANGE -->
 	<script type="text/javascript">
+	// <![CDATA[
 		SetCookie('{COOKIE_NAME}_sgp_block_cache', '300');
+	 // ]]>
 	</script>
 	<!-- ENDIF -->
 
 	<!-- IF S_CLEAR_CACHE -->
 	<script type="text/javascript">
+	// <![CDATA[
 		SetCookie('{COOKIE_NAME}_sgp_block_cache', '0');
 		SetCookie('{COOKIE_NAME}_sgp_left', '', 0);
 		SetCookie('{COOKIE_NAME}_sgp_center', '', 0);
 		SetCookie('{COOKIE_NAME}_sgp_right', '', 0);
+	 // ]]>
 	</script>
 	<!-- ENDIF -->
 

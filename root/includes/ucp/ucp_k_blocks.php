@@ -215,7 +215,7 @@ function get_default_block_layout($id)
 	$sql = 'SELECT id, position, html_file_name, view_pages, view_all
 		FROM ' . K_BLOCKS_TABLE . '
 		WHERE active = 1
-			AND (view_pages != 0)';
+			AND (view_pages <> 0)';
 
 	if ($result = $db->sql_query($sql))
 	{

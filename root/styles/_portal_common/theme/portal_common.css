@@ -173,67 +173,58 @@ min-height:40px;
 
 /*	round corners code
  ---------------------------------------------------------------------- */
+ /* If you need this code copy it to one of your style css files 
+
 .sgp-corners {
--moz-border-radius: 7px;
--webkit-border-radius: 7px;
--khtml-border-radius: 7px;
--webkit-border-radius: 7px;
-border-radius: 7px;
+ -moz-border-radius: 7px;
+ -webkit-border-radius: 7px;
+ -khtml-border-radius: 7px;
+ -webkit-border-radius: 7px;
+ border-radius: 7px;
 }
 .sgp_corners_tl {
--webkit-border-top-left-radius: 6px;
--moz-border-radius-topleft: 6px;
-border-top-left-radius: 6px;
+ -webkit-border-top-left-radius: 6px;
+ -moz-border-radius-topleft: 6px;
+ border-top-left-radius: 6px;
 }
 .sgp_corners_tr {
--webkit-border-top-right-radius: 6px;
--moz-border-radius-topright: 6px;
-border-top-right-radius: 6px;
+ -webkit-border-top-right-radius: 6px;
+ -moz-border-radius-topright: 6px;
+ border-top-right-radius: 6px;
 }
 .sgp_corners_bl {
--webkit-border-bottom-left-radius: 6px;
--moz-border-radius-bottomleft: 6px;
-border-bottom-left-radius: 6px;
+ -webkit-border-bottom-left-radius: 6px;
+ -moz-border-radius-bottomleft: 6px;
+ border-bottom-left-radius: 6px;
 }
 .sgp_corners_br {
--webkit-border-bottom-right-radius: 6px;
--moz-border-radius-bottomright: 6px;
-border-bottom-right-radius: 6px;
+ -webkit-border-bottom-right-radius: 6px;
+ -moz-border-radius-bottomright: 6px;
+ border-bottom-right-radius: 6px;
 }
 
 .sgp-corners-top {
--webkit-border-top-left-radius: 6px;
--webkit-border-top-right-radius: 6px;
--moz-border-radius-topleft: 6px;
--moz-border-radius-topright: 6px;
-border-top-left-radius: 6px;
-border-top-right-radius: 6px;
+ -webkit-border-top-left-radius: 6px;
+ -webkit-border-top-right-radius: 6px;
+ -moz-border-radius-topleft: 6px;
+ -moz-border-radius-topright: 6px;
+ border-top-left-radius: 6px;
+ border-top-right-radius: 6px;
 }
-
-.sgp-corners-inside {
-/*border-radius: 6px;*/
-}
+*/
 
 .sgp-corners-2 {
--moz-border-radius: 3px;
--webkit-border-radius: 3px;
--khtml-border-radius: 3px;
--webkit-border-radius: 3px;
-border-radius: 3px;
-border: solid 1px #000; 
-padding:4px; 
-padding-bottom: 0px; 
-padding-top: 0px; 
-background-color: #fff; 
-/*font-size:1em;*/
-/*font-family: Monaco, "Andale Mono","Courier New", Courier, mono;*/
+ -moz-border-radius: 3px;
+ -webkit-border-radius: 3px;
+ -khtml-border-radius: 3px;
+ -webkit-border-radius: 3px;
+ border-radius: 3px;
+ border: solid 1px #000; 
+ padding:4px; 
+ padding-bottom: 0px; 
+ padding-top: 0px; 
+ background-color: #fff; 
 }
-
-/*.panel {background-color: #660000;}*/
-
-
-
-
 
 /*	sdMenu Stu
  -------------------------------------- */
@@ -291,26 +282,26 @@ color: #2E5B82;
 /*	scroll Stu
  -------------------------------------- */
 div.scroll_outer {
-z-index: 1;
-position: relative;
-overflow: hidden;
+ z-index: 1;
+ position: relative;
+ overflow: hidden;
 }
 div.scroll_inner {
-position: absolute;
-z-index: 2;
-	height:auto;
-	width:100%;
+ position: absolute;
+ z-index: 2;
+ height:auto;
+ width:100%;
 }
 
 /*	Johnnytheone Header Menus
  -------------------------------------- */
 
 #menuwrapper {
-border-bottom: 1px solid #B4C6DB;
-width: 100%;
-margin-top: 2px;
-background-image: url('./images/cellpic_nav.gif');
-background-repeat: repeat-x;
+ border-bottom: 1px solid #B4C6DB;
+ width: 100%;
+ margin-top: 2px;
+ background-image: url('./images/cellpic_nav.gif');
+ background-repeat: repeat-x;
 }
 
 /* Set the width of the menu elements at second level. Leaving first level flexible. */
@@ -421,9 +412,13 @@ clear:both;
  width:100%;
 }
 .block_title {
- font-weight: bold;
- font-size:1em;
+
+ color: #FFFFFF;
+ font-family: Arial,Helvetica,sans-serif;
+ font-size: 1em;
+ line-height: 1em;
  text-transform: uppercase;
+ font-weight: bold;
 }
 .block_data {
  padding:0px;
@@ -530,7 +525,7 @@ dl.codebox {width: auto; max-width: 800px;}
 /***
 New layout, no tables
 */
-#header, #footer {
+#_header_, #_footer_ {
     display: block;
     width: 100%;
     margin: auto;
@@ -538,20 +533,46 @@ New layout, no tables
 	margin-bottom:5px;
 }
 
-#container {
+#_container_ {
   width: 100%;
   margin: auto;
   padding:0;
   display: table;
 }
 
-#row  {
+#_row_  {
     display: table-row;
 }
 
 #left, #right, #center  {
 	display: table-cell;
 	vertical-align:top;
+}
+
+
+.tcontainer {
+	width: 100%;
+	margin: auto;
+	padding:0;
+	display: table;
+}
+.trow {
+	display: table-row;
+}
+.tleft  {
+	display: table-cell;
+	vertical-align:top;
+	text-align:left;
+}
+.tcenter  {
+	display: table-cell;
+	vertical-align:top;
+	text-align:center;
+}
+.tright  {
+	display: table-cell;
+	vertical-align:top;
+	text-align: right;
 }
 
 /* classes for K2 mods here */

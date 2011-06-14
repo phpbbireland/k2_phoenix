@@ -513,62 +513,6 @@ if (!function_exists('process_for_vars'))
 // Stargate Random Banner mod //
 global $k_config, $template, $phpbb_root_path, $user;
 
-/*
-if ($k_config['rand_banner'] != 0)
-{
-	$image = get_random_image($phpbb_root_path . 'images/rand_banner', true);
-	$template->assign_vars(array(
-		'RAND_BANNER' => $image,
-		'RAND_BANNER_POSITION' => $k_config['rand_banner'],
-	));
-}
-
-if ($k_config['rand_header'] == 1)
-{
-	global $user, $template, $config, $k_config;
-
-	// get an image but don't parse it...
-	// we now use the styles own folder...
-
-	// as this file may be called for one or more functions the $user->theme['theme_path'] may not be visible so hide errors //
-	@$path = $phpbb_root_path . 'styles/' . $user->theme['theme_path'] . '/theme/images/headers';
-
- 	$image = get_random_image($path, false, 'header_', true);
-
-	$template->assign_vars(array(
-		'RAND_HEADER_IMG' => $image,
-		'RAND_HEADER_OPT' => $k_config['rand_header'],
-	));
-}
-*/
-
-/*
-if (!function_exists('sgp_delete_cookies'))
-{
-	function sgp_delete_cookies()
-	{
-		global $user, $phpbb_root_path, $phpEx;
-
-		if (confirm_box(true))
-		{
-			$user->set_cookie('sgp_right', '', 1);
-			$user->set_cookie('sgp_center', '', 1);
-			$user->set_cookie('sgp_left', '', 1);
-			$user->set_cookie('sgp_block_cache', '0', 1);
-			$user->set_cookie('sgp_style_colour', '', 1);
-		}
-		else
-		{
-			confirm_box(false, 'DELETE_SGP_COOKIES_CONFIRM', '');
-		}
-
-		meta_refresh(3, append_sid("{$phpbb_root_path}portal.$phpEx"));
-
-		$message = $user->lang['SGP_COOKIES_DELETED'] . '<br /><br />' . sprintf($user->lang['RETURN_PORTAL'], '<a href="' . append_sid("{$phpbb_root_path}portalx.$phpEx") . '">', '</a>');
-		trigger_error($message);
-	}
-}
-*/
 
 if (!function_exists('get_user_data'))
 {
@@ -603,21 +547,6 @@ if (!function_exists('get_user_data'))
 		}
 	}
 }
-
-/*
-if (!function_exists('make_link_img_name'))
-{
-	function make_link_img_name($img)
-	{
-		$find		=	array("/","?","+");
-		$replace	=	array("#", "@", "$");
-		$lnk = str_replace($find, $replace, $img);
-		return($lnk);
-	}
-}
-			'INFO'	=> make_link_img_name("www.my_site.com/folder/index.php?this_bit+0"),
-*/
-
 
 
 /**
@@ -1163,30 +1092,6 @@ if (!function_exists('get_page_id'))
 		}
 		return(0);
 
-/*
-		// Get all pages
-		$sql = 'SELECT page_id, page_name
-			FROM ' . K_PAGES_TABLE . '
-			ORDER BY page_id ASC, page_name';
-		$result = $db->sql_query($sql, 600);
-
-		while ($row = $db->sql_fetchrow($result))
-		{
-			$page_id[] = $row['page_id'];
-			$page_name[] = $row['page_name'];
-		}
-		$db->sql_freeresult($result);
-
-		for ($i = 0; $i < count($page_name); $i++)
-		{
-			if ($this_page_name == $page_name[$i])
-			{
-				return($page_id[$i]);
-			}
-		}
-		return(0);
-*/
-
 	}
 }
 
@@ -1355,6 +1260,75 @@ if (!function_exists('is_member'))
 		$db->sql_freeresult($result);
 
 		return $return;
+	}
+}
+
+
+/**
+* Get user avatar Note! To avoid conflict copied and renamed for portal
+*
+* @param string $avatar Users assigned avatar name
+* @param int $avatar_type Type of avatar
+* @param string $avatar_width Width of users avatar
+* @param string $avatar_height Height of users avatar
+* @param string $alt Optional language string for alt tag within image, can be a language key or text
+*
+* @return string Avatar image (if avatars are enabled in ACP and a member has not selected an avatar).
+*/
+
+if (!function_exists('sgp_get_user_avatar'))
+{
+	function sgp_get_user_avatar($avatar, $avatar_type, $avatar_width = '80', $avatar_height = '80', $alt = 'USER_AVATAR')
+	{
+		if (!STARGATE)
+		{
+			return;
+		}
+
+		global $user, $config, $phpbb_root_path, $phpEx;
+
+		// 18 August 2010 //
+		// if avatars are disabled in acp return //
+		if (!$config['allow_avatar'])
+		{
+			return;
+		}
+
+		if (empty($avatar) || !$avatar_type)
+		{
+			$poster_avatar = get_random_image($phpbb_root_path . 'images/avatars/no_avitar', false, '');
+
+			// do we wish to resize? 28 January 2010 should not require else...? will look later //
+			if ($avatar_width || $avatar_height)
+			{
+				if (strpos($poster_avatar, '/>"'))
+				{
+					$poster_avatar = str_replace('/>"', '" height="' . $avatar_height . '" width="' . $avatar_width . '" />', $poster_avatar);
+				}
+				elseif (strpos($poster_avatar, '/>'))
+				{
+					$poster_avatar = str_replace('/>', ' height="' . $avatar_height . '" width="' . $avatar_width . '" />', $poster_avatar);
+				}
+			}
+
+			return($poster_avatar);
+		}
+
+		$avatar_img = '';
+
+		switch ($avatar_type)
+		{
+			case AVATAR_UPLOAD:
+				$avatar_img = $phpbb_root_path . "download/file.$phpEx?avatar=";
+			break;
+
+			case AVATAR_GALLERY:
+				$avatar_img = $phpbb_root_path . $config['avatar_gallery_path'] . '/';
+			break;
+		}
+
+		$avatar_img .= $avatar;
+		return '<img src="' . (str_replace(' ', '%20', $avatar_img)) . '" width="' . $avatar_width . '" height="' . $avatar_height . '" alt="' . ((!empty($user->lang[$alt])) ? $user->lang[$alt] : $alt) . '" />';
 	}
 }
 

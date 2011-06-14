@@ -63,11 +63,7 @@ $lang = array_merge($lang, array(
 	'BLOCK_FNAME_H'		 	=> 'Filename (.html)',
 	'BLOCK_FNAME_I'			=> 'Icon',
 	'BLOCK_FNAME_I_EXPLAIN'	=> 'Please note, image filenames cannot contain spaces.',
-
 	'BLOCK_FNAME_I_BIG'	 	=> 'Block Mini image',
-
-	//'BLOCK_ICON_ALT_TEXT'	=> 'Image alt text',
-
 	'BLOCK_FNAME_IS_BIG'	=> 'Mini block images found',
 	'BLOCK_FNAME_P_BIG'		=> 'Block Filename.php',
 	'BLOCK_FNAME_H_BIG'	 	=> 'Block Filename.html',
@@ -105,12 +101,15 @@ $lang = array_merge($lang, array(
 	'BLOCK_EDITED'			=> ' Block Edited!',
 	'BLOCK_UPDATED'			=> ' Block Updated',
 	'BLOCK_DELETED'			=> ' Block deleted',
+
+	'BLOCK_CACHE_TIME_HEAD'		=> 'Block Cache Time',
+	'BLOCK_CACHE_TIME'			=> 'Set the block cache time.',
+	'BLOCK_CACHE_TIME_EXPLAIN'	=> 'Default cache time for blocks (600).',
+
 	'DO_NOT_EDIT'			=> ' (Do not edit this value)',
 
-
-
-	'BLOCK_SCROLL_BIG'		=> 'Allow Scrolling',
-	'BLOCK_SCROLL_BIG_EXPLAIN'		=> 'Yes, block (data) will scroll, No, block is static.',
+	'BLOCK_SCROLL_BIG'			=> 'Allow Scrolling',
+	'BLOCK_SCROLL_BIG_EXPLAIN'	=> 'Yes, block (data) will scroll, No, block is static.',
 
 	'PROCESS'				=> 'process',
 	'PORTAL_BLOCKS_ENABLED' => 'Portal blocks enabled',
@@ -126,8 +125,6 @@ $lang = array_merge($lang, array(
 	'BLOCK_VAR_FILE'			=> 'Select the config file used to display/edit variables',
 	'BLOCK_VAR_FILE_EXPLAIN'	=> '(located in adm/style/k_block_vars folder).',
 
-	'SAVING'	=> 'Saving Data...',
-
 	'MINIMOD_BASED'				=> 'Is this block based on a SGP minimod?',
 	'MINIMOD_BASED_EXPLAIN'		=> 'Select Yes, if Block is based on a portal minmod? (adjusted elsewhere)',
 	'MINIMOD_OPTIONS'			=> 'Which minimod is associated with this block?',
@@ -139,6 +136,7 @@ $lang = array_merge($lang, array(
 	'BBCODE'		=> 'BBcode',
 	'ALL_GROUPS'	=> 'All Groups',
 	'SAVED'			=> 'Data saved... purging cache for this table...!',
+	'SAVING'		=> 'Saving Data...',
 	'UNKNOWN_ERROR'	=> 'Error not processing saved data<br />',
 
 	'CONFIRM_OPERATION_BLOCKS'			=> 'Do you wish to delete this block?',
@@ -147,30 +145,26 @@ $lang = array_merge($lang, array(
 	'BLOCK_UPDATING'					=> 'Updating block positions, please wait...<br />',
 	'BLOCK_MOVE_ERROR'					=> 'Blocks require reindexing... <br />Press back and try again... If this condition persists, please try to manually correct the ndx values, and then try again. ',
 
-	'VIEW_PAGE'					=> 'Add page from available pages:',
-	'VIEW_PAGE2'				=> 'Available pages:',
-	'VIEW_PAGE_EXPLAIN'			=> 'Select from this list (reusable) to add, selecting <strong>None</strong> will empty the list.',
-	'VIEW_PAGE_EXPLAIN2'		=> 'Select the pages where this block will be visible.<br /><br /><strong>Notes:</strong><br />Blocks will only be visible on pages that support blocks.<br />We do not process blocks if the information they contain is already process by the page they are displayed on.',
+	'VIEW_PAGE'				=> 'Add page from available pages:',
+	'VIEW_PAGE2'			=> 'Available pages:',
+	'VIEW_PAGE_EXPLAIN'		=> 'Select from this list (reusable) to add, selecting <strong>None</strong> will empty the list.',
+	'VIEW_PAGE_EXPLAIN2'	=> 'Select the pages where this block will be visible.<br /><br /><strong>Notes:</strong><br />Blocks will only be visible on pages that support blocks.<br />We do not process blocks if the information they contain is already process by the page they are displayed on.',
 
-	'PAGE_ARRAY'				=> 'Array of page',
-	'PAGE_ARRAY_EXPLAIN'		=> 'List of all block where block is visible',
+	'PAGE_ARRAY'			=> 'Array of page',
+	'PAGE_ARRAY_EXPLAIN'	=> 'List of all block where block is visible',
 
-	'VIEW_PAGES'				=> 'Page IDâ€™s where the block will be displayed',
-	'VIEW_PAGES_EXPLAIN'		=> 'The list will be updated automatically.',
+	'VIEW_PAGES'			=> 'Page ID where the block will be displayed',
+	'VIEW_PAGES_EXPLAIN'	=> 'The list will be updated automatically.',
 
-	'PAGE_LEFT'			=> 'Page Left',
-	'PAGE_CENTRE'		=> 'Page Centre',
-	'PAGE_RIGHT'		=> 'Page right',
-	'LEFT_OF_CENTRE'	=> 'Left (centre 2x)',
-	'RIGHT_OF_CENTRE'	=> 'Right (centre 2x)',
-	'MOVE_DOWN'			=> 'Move Down',
-	'MOVE_UP'			=> 'Move Up',
-	'EDIT_BLOCK'		=> 'Edit block',
-	'DELETE_THIS_BLOCK'	=> 'Delete this block',
-
-	'BLOCK_CACHE_TIME_HEAD'		=> 'Block Cache Time',
-	'BLOCK_CACHE_TIME'			=> 'Set the block cache time.',
-	'BLOCK_CACHE_TIME_EXPLAIN'	=> 'Default cache time for blocks (600).',
+	'PAGE_LEFT'				=> 'Page Left',
+	'PAGE_CENTRE'			=> 'Page Centre',
+	'PAGE_RIGHT'			=> 'Page right',
+	'LEFT_OF_CENTRE'		=> 'Left (centre 2x)',
+	'RIGHT_OF_CENTRE'		=> 'Right (centre 2x)',
+	'MOVE_DOWN'				=> 'Move Down',
+	'MOVE_UP'				=> 'Move Up',
+	'EDIT_BLOCK'			=> 'Edit block',
+	'DELETE_THIS_BLOCK'		=> 'Delete this block',
 
 	'SET_VARIABLES_IN_MINI-MODULES'	=> 'Set variables in Mini-Modules',
 	'MANAGE_PAGES'					=> 'Manage pages',
@@ -180,7 +174,6 @@ $lang = array_merge($lang, array(
 // Message Settings
 $lang = array_merge($lang, array(
 	'ACP_MESSAGE_SETTINGS_EXPLAIN'	=> 'Here you can set all default settings for private messaging',
-
 ));
 
 ?>
