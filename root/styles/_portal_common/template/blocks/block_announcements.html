@@ -1,7 +1,7 @@
 <!-- IDTAG block_announcements.html 24 March 2011 copyright phpbbireland.com 2008 -->
 
 <div class="news">
-	<a id="bstart" name="top" accesskey="t"></a>
+	<a id="start" name="start" accesskey="t"></a>
 	<!-- IF S_ANNOUNCEMENTS_COUNT_RETURNED == 0 -->
 		<div class="genmed" style="text-align:center"><strong>{L_NO_ANNOUNCEMENTS}</strong></div>
 	<!-- ELSE -->
@@ -47,16 +47,15 @@
 							<!-- IF announce_row.S_DISPLAY_NOTICE --><div class="rules">{L_DOWNLOAD_NOTICE}</div><!-- ENDIF -->
 						</div>
 					</div>
-
 					<div class="news_footer" style="width:100%;">
 						<span class="news_poster" style="width:50%;"> {L_POSTED_BY}: {announce_row.U_POSTER}</span>
 						<span class="news_reply" style="width:50%;">
-							<a href="{announce_row.U_VIEW}"> {announce_row.U_VIEW_IMG}</a>
-							<a href="{announce_row.U_PRINT}"> {announce_row.U_PRINT_IMG}</a>
+							<a href="{announce_row.U_VIEW}"> <img src="{announce_row.VIEW_IMG}" alt="{L_VIEW_FULL_ARTICLE}" title="{L_VIEW_FULL_ARTICLE}" /></a>
+							<a href="{announce_row.U_PRINT}"> <img src="{announce_row.PRINT_IMG}" alt="{L_PRINT_IT}" title="{L_PRINT_IT}" /></a>
 							<!-- IF announce_row.ALLOW_POST -->
-								<a href="{announce_row.U_REPLY}"> {announce_row.U_REPLY_IMG}</a>
+								<a href="{announce_row.U_REPLY}"> <img src="{announce_row.REPLY_IMG}" alt="{L_POST_COMMENTS}" title="{L_POST_COMMENTS}" /></a>
 							<!-- ENDIF -->
-							<a href="#bstart" title="Top"><img src="{T_IMAGESET_PATH}/blocks/icon_back_top.png" width="14" height="14" alt="Top" /></a>
+							<a href="#bstart" title="Top"><img src="{T_IMAGESET_PATH}/portal/icon_back_top.png" width="14" height="14" alt="Top" /></a>
 						</span>
 					</div>
 					<br class="clear" />

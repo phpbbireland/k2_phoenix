@@ -5,11 +5,11 @@
 * @www.stargate-portal.com
 *
 * @package Kiss Portal Engine
-* @version $Id:$ 1.0.0d (beta)
+* @version $Id:$ 1.0.0f (beta)
 *
 * @note: Do not remove this copyright. Just append yours if you have modified it,
 *        this is part of the Stargate Portal copyright agreement...
-* @copyright (c) 2005 phpbireland
+* @copyright (c) 2005 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -40,7 +40,7 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 //
 // Some characters you may want to copy&paste:
-// ’ » “ ” …
+// â€™ Â» â€œ â€ â€¦
 //
 //- stargate aka kiss portal engine lang definitions -//
 $lang = array_merge($lang, array(
@@ -55,7 +55,6 @@ $lang = array_merge($lang, array(
 	'AUTHOR'				=> 'Author',
 	'AUTO_LOGIN'			=> 'Auto Login',
 
-	'BASIC_RULES' 			=> 'Basic Rules',
 	'BASIC_RULES'			=>	"While the administrators and moderators of this forum will attempt to remove or edit any generally objectionable material as quickly as possible, it is impossible to review every message. Therefore you acknowledge that all posts made to these forums express the views and opinions of the author and not the administrators, moderators or webmaster (except for posts by these people) and hence will not be held liable.<br /><br />
 	You agree not to post any abusive, obscene, vulgar, slanderous, hateful, threatening, sexually-oriented or any other material that may violate any applicable laws. Doing so may lead to you being immediately and permanently banned (and your service provider being informed). The IP address of all posts is recorded to aid in enforcing these conditions. You agree that the webmaster, administrator and moderators of this forum have the right to remove, edit, move or close any topic at any time should they see fit. As a user you agree to any information you have entered above being stored in a database. While this information will not be disclosed to any third party without your consent, the webmaster, administrator and moderators cannot be held responsible for any hacking attempt that may lead to the data being compromised.<br /><br />
 	This forum system uses cookies to store information on your local computer. These cookies do not contain any of the information you have entered above; they serve only to improve your viewing pleasure. The e-mail address is used for confirming your registration details and password or details of new passwords should you forget your current one. Your email address may also be used to send notification of post updates should you require notification.<br /><br />
@@ -68,6 +67,7 @@ $lang = array_merge($lang, array(
 	'BOOKMARK_OFF' 			=> 'Remove Bookmark',
 	'BOOKMARK_ON' 			=> 'Bookmark Post',
 	'BOOKMARKS'				=> 'Bookmarks',
+	'BOTTOM'				=> 'Bottom',
 
 	'BLOCK_BOT_TRACKER'			=> 'Kiss Portal Bot Tracker',
 	'BLOCK_CALENDAR'			=> 'Kiss Portal Calendar',
@@ -94,6 +94,7 @@ $lang = array_merge($lang, array(
 	'CATEGORY'				=> 'Category',
 	'CHAT_LINK'				=> 'Online Chat',
 	'CLICK_TO_ENLARGE'		=> 'Click to enlarge',
+	'CLOSE_VIDEO'			=> 'Close video',
 	'COLOR_DARK_RED' 		=> 'Dark Red',
 	'COLOR_RED' 			=> 'Red',
 	'COLOR_ORANGE' 			=> 'Orange',
@@ -125,7 +126,7 @@ $lang = array_merge($lang, array(
 	'DEV_VERSION'			=> 'Version (RC)',
 
 	'DISABLE_BBCODE'		=> 'Disable BBCode',
-	'DISABLE_MAGIC_URL'		=> 'Dont automatically parse URLs',
+	'DISABLE_MAGIC_URL'		=> 'Donâ€™t automatically parse URLs',
 	'DISABLE_SMILIES'		=> 'Disable smilies',
 	'DONT_HAVE_ACCOUNT' 	=> 'We are a free and open<br />community, all are welcome.<br />',
 
@@ -138,8 +139,8 @@ $lang = array_merge($lang, array(
 	'ERROR_PORTAL_CONFIG'			=> 'Error! Could not retrieve portal config data',
 	'ERROR_PORTAL_FORUMS'			=> 'Error! Could not query forums information',
 	'ERROR_PORTAL_HTTP'				=> 'Error! Could not retrieve HTTP Referrals data',
-	'ERROR_PORTAL_HTTP_DELETE'		=> 'Error! Couldn’t delete HTTP Referrals',
-	'ERROR_PORTAL_HTTP_QUERY'		=> 'Error! Couldn’t query HTTP Referrals',
+	'ERROR_PORTAL_HTTP_DELETE'		=> 'Error! Could not delete HTTP Referrals',
+	'ERROR_PORTAL_HTTP_QUERY'		=> 'Error! Could not query HTTP Referrals',
 	'ERROR_FORUM_INFO'				=> 'Error! Could not query forum info',
 	'ERROR_PORTAL_MENUS'			=> 'Error! Could not query portal menus information ',
 	'ERROR_PORTAL_MODULE'			=> 'Error! Could not query portal modules information: ',
@@ -176,9 +177,9 @@ $lang = array_merge($lang, array(
 	'FORUM_RULES'			=> 'Forum Rules',
 	'FULL_SEARCH'			=> 'Full Search: ',
 
-	'GOTO_BOTTOM_IMG' 		=> 'Goto Bottom',
+	'GOTO_BOTTOM_IMG' 		=> 'Go to Bottom',
 	'GOTO_DEV_SITE'			=> 'Go to Dev Site',
-	'GOTO_TOP_IMG' 			=> 'Goto Top',
+	'GOTO_TOP_IMG' 			=> 'Go to Top',
 
 	'HIDE'					=> 'Hide',
 	'HITS'					=> 'Hits',
@@ -190,6 +191,7 @@ $lang = array_merge($lang, array(
 	'INFO'					=> 'Info',
 	'INDEX_OF_FORUMS'		=> 'Index of forums',
 	'IN_HOUSE_DESIGNS'		=> 'In House Designs',
+	'INPROGRESS'			=> 'This page is under construction',
 	'IN_PROGRESS'			=> 'This page is under construction',
 	'IRC_TITLE'				=> 'Stargate Portal IRC Popup',
 
@@ -202,7 +204,7 @@ $lang = array_merge($lang, array(
 	'LINKS_FORUM'			=> 'Submit A Link',
 	'LINKS_FORUM_REQU'		=> 'Post your request here... approval required... you must create a forum for links upload!',
 	'LOG_ME_IN_SHORT'   	=> 'Remember Login',
-	'LOGOUT_REDIRECT_P'		=> 'Yoou have logged out... retirning to portal',
+	'LOGOUT_REDIRECT_P'		=> 'You have logged out... returning to portal',
 
 	'MAKE_PERMANENT'		=> 'If check, the style chosen will be set as your default style!',
 	'MEMBERS'				=> 'Members',
@@ -218,8 +220,6 @@ $lang = array_merge($lang, array(
 	'MP3_PLAYER'			=> 'SGP MP3 Player',
 
 	'NAME'					=> 'Name',
-	'NARROW'				=> 'Fixed',
-	'NARROW2'				=> 'Style Width (70~90%)',
 	'NEWS_BREAKING'			=> 'Breaking News... ',
 	'NEWS_FLASH_GLOBAL'		=> 'Global News Flash... ',
 	'NEWS_FLASH_LOCAL'		=> 'Local News Flash... ',
@@ -255,7 +255,7 @@ $lang = array_merge($lang, array(
 	'PLURAL'				=> 'S',
 	'POSTED_BY'				=> 'Posted by',
 	'POST_COMMENTS'			=> 'Post Comments',
-	'POSTERS_COMMENT'		=> '%1$s’s comments: %2$s.',
+	'POSTERS_COMMENT'		=> '%1$sâ€™s comments: %2$s.',
 	'PORTAL_DEVELOPMENT'	=> 'Portal Development',
 	'PHP_SUPPORT_SITES' 	=> 'php Support Sites',
 	'PORTAL'				=> 'Portal',
@@ -263,7 +263,7 @@ $lang = array_merge($lang, array(
 	'PROFILE_SMALL'			=> 'UCP',
 	'POST_BY_POSTER'		=> 'by',
 	'PORTED_BY'				=> 'Ported by',
-	'PORTAL_DEBUG_QUERIES'	=> '<div style="text-align:center; border: dotted 1px #FF0000; background-color:#E4DFD2; padding:5px;">Q = %d, C = %d, RT = %d</div>',
+	'PORTAL_DEBUG_QUERIES'	=> '<div style="text-align:center; border: dotted 1px #FF0000; background-color:#E4DFD2; padding:5px;">Q = %d, C = %d, T = %d</div>',
 	'PORTAL_DEBUG_RUNTOT'	=> 'Running: %d',
 	'POSTER'				=> 'Poster',
 	'POST_IMG'				=> 'Post',
@@ -296,6 +296,7 @@ $lang = array_merge($lang, array(
 	'UPLOAD_LINK'				=> 'Post Link',
 	'URL' 						=> 'URL',
 	'USED_BY'					=> '%d user%s, use%s this style',
+	'USERS_CURRENT_STYLE'		=> 'Your current style is',
 	'USER_COUNTRY_FLAG'			=> 'Country Flag',
 	'USER_COUNTRY_FLAG_EXPLAIN'	=> 'Full mod requires <strong>Location</strong> data above (Google Map).',
 	'USER_REAL_NAME'			=> 'Real Name',
@@ -310,8 +311,9 @@ $lang = array_merge($lang, array(
 	'RECENT_REPLY'				=> 'View latest reply...',
 	'REGISTRATION'       		=> '<b>Click here to Register</b>',
 	'RE-INDEXING BLOCKS'		=> 'Error! You need to re-index the blocks!',
-	'RETURN_INDEX'				=> '%sReturn to the portal page%s',
-	'RETURN_PORTAL'				=> '%sReturn to the portal page%s',
+	'REVERT'					=> 'Revert to default',
+	'RETURN_INDEX'				=> '%s Return to the portal page%s',
+	'RETURN_PORTAL'				=> '%s Return to the portal page%s',
 	'RSS_DISABLED'				=> 'Newsfeeds are currently disabled',
 
 	'SEARCH_OPTION'				=> 'Search Option',
@@ -320,17 +322,18 @@ $lang = array_merge($lang, array(
 	'SEARCH_NEW_SMALL'			=> 'New Posts!',
 	'SEARCH_SELF_SMALL'			=> 'Your Posts!',
 	'SEARCH_UNANSWERED_SMALL'	=> 'Unanswered Posts!',
-	'SCROLLING_BLOCKS_DISABLED' => 'Scrolling blocks are disabled when arranging blocks',
+	'SCROLLING_BLOCKS_DISABLED' => 'Scrolling blocks are disabled during the arrange blocks process',
 	'SELECT_STYLE_EXPLAINED'	=> '<br /><strong>Dropdown Legend</strong><br /><span class="green"><strong>Released</strong></span><br /><span class="orange"><strong>RC Style</strong></span><br /><span class="gray"><strong>Beta Style</strong></span><br /><span class="red"><strong>Alpha Style</strong></span><hr />',
-	'SGP_IN_DEVELOPMENT'		=> 'Stargate-Portal’s youtube web-pages (in development)',
+	'SGP_IN_DEVELOPMENT'		=> 'Stargate-Portalâ€™s youtube web-pages (in development)',
 	'SGP_IRC_POPUP'				=> 'Stargate Portal IRC Popup',
 	'SGP_REFRESH_ALL'			=> 'SGP Refresh All - version',
 	'SGP_TOOLS'					=> 'Stargate Tools',
 	'SGP_STYLE_ERROR_10'		=> 'The style option is not currently used in web pages... Please remove it from the address bar and press enter to continue...',
 	'SGP_SUPPORTING'			=> 'Stargate Portal &bull; Supporting Communities Worldwide',
 	'SHOW'						=> 'Show',
+	'SHOWHIDE'					=> 'Show / Hide',
 	'SHOW_ALL'					=> 'Show all announcements',
-	'SHOWHIDE_BABEL'			=> 'Show/Hide Babel Fish  translations',
+	'SHOWHIDE_BABEL'			=> 'Show/Hide Babel Fish translations',
 	'SHOWHIDE_GOOGLE'			=> 'Show/Hide Google translations',
 	'SHOWHIDE_LIVE'				=> 'Show/Hide Windows live  translations',
 	'SITE_LINK_TXT_EXPLAIN'		=> 'The HTML code below contain all the necessary code to link to <strong>%s</strong> please feel free to add it to your site.<br /><br />',
@@ -395,9 +398,48 @@ $lang = array_merge($lang, array(
 	'YOUTUBE'				=> 'Youtube',
 	'YOUTUBE_PAGE'			=> 'Youtube Page',
 
-	'ALL_COMMON'	=> 'All common vars are now available to all block code',
-	'THEME_INFO'	=> 'Theme Information',
+	'COMMENT'				=> 'Comment',
+	'VIDEO_WHO'				=> 'Artist',
+	'YOUTUBE_LINK_LIMIT'	=> 'Number of video to display (0 = no limit)',
+	'YOUTUBE_LIMIT'			=> 'limited to %d videos',
+	'AUTOPLAY_ON'			=> 'Autoplay is on...',
+	'AUTOPLAY_OFF'			=> 'Autoplay is off...',
+
+	'ALL_COMMON'			=> 'All common vars are now available to all block code',
+	'THEME_INFO'			=> 'Theme Information',
+
+
+	'NO_LANG_VALUE'				=> 'Missing language value',
+	'CLICK_TO_EXPAND'			=> 'Click to expand',
+	'NUMBER_OF_FORUMS'			=> 'Number of Forums',
+	'NOT_PROCESSED_FOR_PAGE'	=> 'Not processed for this page',
+	'MISSING_FILE_OR_FOLDER'	=> 'Missing file/folder: %s',
+
+	// No html tags in acronyms as these ate used to generate titles //
+	'ACRO_1'					=> 'Stargate Portal (aka Kiss Portal), the original phpBB3 portal &copy; Michael Oâ€™Toole 2005-2011',
+	'ACRO_2'					=> 'Kiss Portal Engine (Stargate Portal without frills)... &copy; Michael Oâ€™Toole 2011',
+	'ACRO_3'					=> 'Probably the best forum software ever...',
+
+	// Includes version info for debugging //
+	//'WELCOME_MESSAGE'			=> "Welcome back [you]...<br /><br /><strong>{SITENAME} </strong> is powered by <strong>phpBB</strong> {VERSION} and <strong> the Kiss Portal Engine </strong>{PORTAL_VERSION}."
+
+	// production, note {...} are process later //
+	'WELCOME_MESSAGE'			=> "Welcome back [you]...<br /><br /><strong>{SITENAME} </strong> is powered by <strong>phpBB</strong> and <strong> the Kiss Portal Engine </strong>.",
+	'EXAMPLE'					=> 'Example codde here',
+	'WELCOME_TO_MOD'			=> 'Welcome to',
+
+
+	'ICON_ANNOUNCEMENT_UNREAD'	=> 'Announcement unread',
+	'POST_NEWS_UNREAD'			=> 'News unread',
+	'POSTED_MINE'				=> 'Posted Mine',
 ));
 //- stargate aka Kiss portal engine lang definitions -//
 
+// optional style width
+$lang = array_merge($lang, array(
+	'WIDTH'					=> 'Width',
+	'ALT_WIDTH'				=> 'Alternate width',
+	'DEFAULT_WIDTH'			=> 'Default width',
+	'UCP_K_INFO_WIDTH_NO'	=> 'Please note, this option is not available in all styles...',
+));
 ?>

@@ -4,22 +4,22 @@
 // <![CDATA[
 function url_search()
 {
-	switch(document.search_block.search_engine.value)
+	switch(document.forms['search_block'].search_engine.value)
 	{
 		case 'advanced':
 						window.open('{U_SEARCH}', '_self', '');
 						return false;
 		case 'google':
-						window.open('http://www.google.com/search?q=' + document.search_block.keywords.value, '_google', '');
+						window.open('http://www.google.com/search?q=' + document.forms['search_block'].keywords.value, '_google', '');
 						return false;
 		case 'yahoo':
-						window.open('http://search.yahoo.com/search?p=' + document.search_block.keywords.value, '_yahoo', '');
+						window.open('http://search.yahoo.com/search?p=' + document.forms['search_block'].keywords.value, '_yahoo', '');
 						return false;
 		case 'altavista':
-						window.open('http://www.altavista.com/web/results?itag=ody&q=' + document.search_block.keywords.value + '&kgs=0&kls=0', '_altavista', '');
+						window.open('http://www.altavista.com/web/results?itag=ody&q=' + document.forms['search_block'].keywords.value + '&kgs=0&kls=0', '_altavista', '');
 						return false;
 		case 'lycos':
-						window.open('http://search.lycos.com/?query=' + document.search_block.keywords.value, '_lycos', '');
+						window.open('http://search.lycos.com/?query=' + document.forms['search_block'].keywords.value, '_lycos', '');
 						return false;
 
 		case 'site':	break;
@@ -30,14 +30,14 @@ function url_search()
 // ]]>
 </script>
 
-<form method="get" name="search_block" action="{U_SEARCH}" onsubmit="return url_search()">
+<form method="get" id="search_block" action="{U_SEARCH}" onsubmit="return url_search()">
 	<div class="block_data">
 		<div style="text-align:center;">
 			<input class="inputbox search" type="text" name="keywords" size="21" />{S_HIDDEN_FIELDS}
 		</div>
 		<div style="padding-top:5px; width:99%;"></div>
 		<div style="text-align:center;">
-			<select class="inputbox full" style="font-size:11px; padding:2px;" name="search_engine" >
+			<select class="inputbox full" style="font-size:11px; padding:2px;" name="search_engine">
                 <optgroup label="{SITE_NAME}">
 					<option value="site" style="font-size:11px;" >{SITE_NAME}</option>
 					<option value="site">{L_POSTS}</option>

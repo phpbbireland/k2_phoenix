@@ -2,7 +2,7 @@
 /**
 *
 * @package install
-* @version $Id: portal_install.php 323 2009-01-16 21:55:07Z Michealo $
+* @version $Id: portal_install.php 1.0.0h
 * @copyright (c) 2005 phpbBB Group
 * @copyright (c) 2005 phpbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License

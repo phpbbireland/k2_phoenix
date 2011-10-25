@@ -1,36 +1,7 @@
 <script type="text/javascript">
 // <![CDATA[
-var myMenu;
-function init_sdmenus()
-{
-    myMenu = new SDMenu("my_menu");
-    myMenu.init();
-}
-
-/**
-* New function for handling multiple calls to window.onload and window.unload by pentapenguin
-*/
-var onload_functions = new Array();
-var onunload_functions = new Array();
-
-window.onload = function()
-{
-    for (i = 0; i <= onload_functions.length; i++)
-    {
-        eval(onload_functions[i]);
-    }
-}
-
-window.onunload = function()
-{
-    for (i = 0; i <= onunload_functions.length; i++)
-    {
-        eval(onunload_functions[i]);
-    }
-}
-
-onload_functions.push('init_sdmenus()');
-onload_functions.push('init_scrollers()');
+	// initialise scroll blocks here //
+	onload_functions.push('init_scrollers()');
 // ]]>
 </script>
 
@@ -41,23 +12,20 @@ onload_functions.push('init_scrollers()');
 <script type="text/javascript" src="{ROOT_PATH}js/scroller.js"></script>
 
 <!-- IF S_IS_PORTAL and S_ARRANGE -->
-<script type="text/javascript" src="{ROOT_PATH}js/prototype.js"></script>
-<script type="text/javascript" src="{ROOT_PATH}js/scriptaculous.js"></script>
-<script type="text/javascript" src="{ROOT_PATH}js/builder.js"></script>
-<script type="text/javascript" src="{ROOT_PATH}js/effects.js"></script>
-<script type="text/javascript" src="{ROOT_PATH}js/dragdrop.js"></script>
-<script type="text/javascript" src="{ROOT_PATH}js/controls.js"></script>
-<script type="text/javascript" src="{ROOT_PATH}js/slider.js"></script>
-<script type="text/javascript" src="{ROOT_PATH}js/unittest.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/drag_n_drop/prototype.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/drag_n_drop/scriptaculous.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/drag_n_drop/builder.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/drag_n_drop/dragdrop.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/drag_n_drop/effects.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/drag_n_drop/controls.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/drag_n_drop/slider.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/drag_n_drop/unittest.js"></script>
 <!-- ENDIF -->
 
-<script type="text/javascript" src="{ROOT_PATH}js/mytooltip.js"></script>
 <script type="text/javascript" src="{ROOT_PATH}js/portal.js"></script>
 <script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>
 
-<!-- Style Sheet Switcher v1.1- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com) -->
-<script type="text/javascript" src="{ROOT_PATH}js/styleswitch.js"></script>
-
+<!-- IF S_HIGHSLIDE -->
 <script type="text/javascript" src="{ROOT_PATH}js/highslide/highslide-full.packed.js"></script>
 <link rel="stylesheet" type="text/css" href="{ROOT_PATH}js/highslide/highslide.css" />
 
@@ -86,67 +54,52 @@ onload_functions.push('init_scrollers()');
 	});
 // ]]>
 </script>
+<!-- ENDIF -->
 
 <link rel="stylesheet" href="{T_STYLESHEET_PORTAL_COMMON}" type="text/css" />
 <link rel="stylesheet" href="{T_STYLESHEET_PORTAL_OVERLOAD}" type="text/css" />
 
+<script type="text/javascript" src="{ROOT_PATH}js/jquery/jquery-1.6.2.min.js"></script>
+
 <script type="text/javascript">
 //<![CDATA[
-var debug = 0;
 
-if (/MSIE (\d+\.\d+);/.test(navigator.userAgent))
-{
-	var ieversion=new Number(RegExp.$1)
+	var $css_file_append = '';
 
-	if(debug)
-		document.write("IE " + ieversion)
+	if (/MSIE (\d+\.\d+);/.test(navigator.userAgent))
+	{
+		var ieversion=new Number(RegExp.$1)
+		$css_file_append = 'fix_ie.css';
+	}
+	else if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent))
+	{
+		var ffversion=new Number(RegExp.$1)
+		$css_file_append = 'fix_ff.css';
+	}
+	else if (/Opera[\/\s](\d+\.\d+)/.test(navigator.userAgent))
+	{
+		var oprversion=new Number(RegExp.$1)
+		$css_file_append = 'fix_opera.css';
+	}
+	else if (/Safari[\/\s](\d+\.\d+)/.test(navigator.userAgent))
+	{
+		var oprversion=new Number(RegExp.$1)
+		$css_file_append = 'fix_mac.css';
+	}
 
-	document.write('<link rel="stylesheet" href="{T_THEME_PATH}/fix_ie.css" type="text/css" />');
-}
-else
-if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent))
-{
-	var ffversion=new Number(RegExp.$1)
+	jQuery.noConflict();
+	jQuery(document).ready(function(){
+		jQuery('<link rel="stylesheet" href="{T_THEME_PATH}/' + $css_file_append + '" type="text/css" />').appendTo('head');
+	});
 
-	if(debug)
-		document.write("Firefox " + ffversion);
 
-	document.write('<link rel="stylesheet" href="{T_THEME_PATH}/fix_ff.css" type="text/css" >');
-
-	if(ffversion > 3)
-		document.write('<style type="text/css">.showhide { float: right; margin-top: 0px; margin-right: 0px; }</style>');
-	else
-		document.write('<style type="text/css">.showhide { float: right; margin-top: -15px; margin-right: -1px; }</style>');
-
-}
-else
-if (/Opera[\/\s](\d+\.\d+)/.test(navigator.userAgent))
-{
-	var oprversion=new Number(RegExp.$1)
-
-	if(debug)
-		document.write("Opera " + oprversion)
-
-	document.write('<link rel="stylesheet" href="{T_THEME_PATH}/fix_opera.css" type="text/css" >');
-}
-else
-if (/Safari[\/\s](\d+\.\d+)/.test(navigator.userAgent))
-{
-	var oprversion=new Number(RegExp.$1)
-
-	if(debug)
-		document.write("Safari " + oprversion);
-
-	document.write('<link rel="stylesheet" href="{T_THEME_PATH}/fix_mac.css" type="text/css" >');
-}
-else
-if(debug)
-	document.write("Unknown browser!");
 //]]>
 </script>
+
 <!-- agent script end -->
 
-<script type="text/javascript" src="{ROOT_PATH}js/jquery/1.4.4/jquery.min.js"></script>
+
+<!-- IF S_VIEWTOPIC -->
 <script type="text/javascript">
 // <![CDATA[
 	jQuery.noConflict();
@@ -169,26 +122,75 @@ if(debug)
 			jQuery(this).css(cssObj);
 		});
 	});
+//]]>
+</script>
+<!-- ENDIF -->
+
+<script type="text/javascript">
+// <![CDATA[
 
 	jQuery.noConflict();
-	jQuery(document).ready(function(){
-		// hides the quick reply box as soon as the DOM is ready - (a little sooner than page load)
-		jQuery('.fastreply').hide();
-		// toggles the quick reply box on clicking the quick reply button
-		jQuery('a.fast-reply-png').click(function() {
-		jQuery('.fastreply').toggle(400);
-		return false;
-		});
-	});
+	jQuery(document).ready(function($){
+	jQuery(".hidden_part").hide();
 
-	jQuery.noConflict();
-	jQuery(document).ready(function(){
-		// toggles the quick reply button from button_topic_qreply.gif to button_topic_qreply_no.gif
-			jQuery(".qreply-icon-png").toggle(function () {
-			jQuery(this).css({'background' : 'url("{T_IMAGESET_LANG_PATH}/button_topic_qreply_no.png") 0 0 no-repeat'});
-			}, function () {var cssObj = {'background' : 'url("{T_IMAGESET_LANG_PATH}/button_topic_qreply.png") 0 0 no-repeat'}
-			jQuery(this).css(cssObj);
+	jQuery(".bg1a").mousedown(function(){
+		//jQuery('#T'+this.id).fadeIn(900);
+		jQuery('#T'+this.id).delay(100).toggle(600);
+		}).mouseleave(function(){
+
+		// Option #1: To close expand on mouse out use //
+		//jQuery('#T'+this.id).delay(500).fadeOut(400);
+
+		// Option #2: Leave open on mouseout, close on click //
+		jQuery('#T'+this.id).delay(600);
 		});
 	});
 //]]>
 </script>
+
+
+
+<!-- IF RESIZE -->
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+var w = 100;
+x = Get_Cookie('stylewidth');
+if(x)
+{
+	w = x;
+}
+
+jQuery.noConflict();
+jQuery(document).ready(function(){
+	jQuery(function() {
+		jQuery("#slider").slider({
+			orientation: "horizontal",
+			range: "min",
+			max: 100,
+			value: 50,
+			slide: refreshWidth,
+			change: refreshWidth
+		});
+		jQuery("#page-width").css("width", w + '%');
+	});
+	function refreshWidth()
+	{
+		w = jQuery("#slider").slider("value");
+		pc = ((w/100) * 100);
+		w = pc;
+
+		jQuery("#page-width").css("width", w + '%');
+	}
+	jQuery("#slider").slider({
+	   stop: function(event) {
+		   Set_Cookie('stylewidth', w);
+		   jQuery("#slider").css("display", 'none');
+	   }
+	});
+
+});
+</script>
+<!-- ENDIF -->

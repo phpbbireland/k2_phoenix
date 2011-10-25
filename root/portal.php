@@ -46,6 +46,19 @@ $l_total_user_s = ($total_users == 0) ? 'TOTAL_USERS_ZERO' : 'TOTAL_USERS_OTHER'
 $l_total_post_s = ($total_posts == 0) ? 'TOTAL_POSTS_ZERO' : 'TOTAL_POSTS_OTHER';
 $l_total_topic_s = ($total_topics == 0) ? 'TOTAL_TOPICS_ZERO' : 'TOTAL_TOPICS_OTHER';
 
+
+// load wrapper or portal page //
+$page = request_var('page', '');
+
+if ($page)
+{
+	$wrapper = 'wrapper.html';
+}
+else
+{
+	$wrapper = 'portal.html';
+}
+
 // Do we want to arrange the blocks ? //
 $arrange = request_var('arrange', 0);
 
@@ -120,9 +133,11 @@ if ($config['load_birthdays'] && $config['allow_birthdays'])
 
 // Assign index specific vars
 $template->assign_vars(array(
-	'HIDE_IMG'		=> '<img src="./images/hide.png"  alt="hide" title="' . $user->lang['HIDE'] . '" height="13px" width="13px" />',
-	'MOVE_IMG'		=> '<img src="./images/move.png"  alt="move" title="' . $user->lang['MOVE'] . '" height="13px" width="13px" />',
-	'SHOW_IMG'		=> '<img src="./images/show.png"  alt="show" title="' . $user->lang['SHOW'] . '" height="13px" width="13px" />',
+	'HIDE_IMG'		=> '<img src="./images/hide.png"  alt="' . $user->lang['SHOWHIDE'] . '" title="' . $user->lang['SHOWHIDE'] . '" height="16" width="14" />',
+	'MOVE_IMG'		=> '<img src="./images/move.png"  alt="' . $user->lang['MOVE'] . '" title="' . $user->lang['MOVE'] . '" height="16" width="14" />',
+	'SHOW_IMG'		=> '<img src="./images/show.png"  alt="' . $user->lang['SHOW'] . '" title="' . $user->lang['SHOW'] . '" height="16" width="14" />',
+
+	'PAGE'			=> $page,
 
 	'TOTAL_POSTS'	=> sprintf($user->lang[$l_total_post_s], $total_posts),
 	'TOTAL_TOPICS'	=> sprintf($user->lang[$l_total_topic_s], $total_topics),
@@ -150,7 +165,7 @@ $template->assign_vars(array(
 page_header($user->lang['PORTAL']);
 
 $template->set_filenames(array(
-	'body' => 'portal.html',
+	'body' => $wrapper,
 ));
 
 page_footer();

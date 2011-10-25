@@ -1,83 +1,30 @@
-<!-- IF S_TOTAL_CATS -->
-<script type="text/javascript">
-// <![CDATA[
-function expMenu(id)
-{
-	var element = null;
-	if (document.getElementById)
-	{
-		element = document.getElementById(id);
-	}
-	else if (document.all)
-	{
-		element = document.all[id];
-	}
-	else if (document.layers)
-	{
-		element = document.layers[id];
-	}
-
-	if (!element)
-	{
-		// do nothing
-	}
-	else if (element.style)
-	{
-		if (element.style.display == "none")
-		{
-			element.style.display = "";
-			return 1;
-		}
-		else
-		{
-			element.style.display = "none";
-			return 2;
-		}
-	}
-	else
-	{
-		element.visibility = "show";
-		return 1;
-	}
-}
-// ]]>
-</script>
-
-
-<!-- IDTAG starts block_forum_categories.html starts -->
+<!-- IDTAG block_forum_categories.html starts updated 25 July 2011 -->
+<!-- to show only categories, remove the not in clasue below -->
 <div class="block_data">
-	<!-- BEGIN iforumrow -->
-		<!-- IF iforumrow.S_IS_CAT -->
-		<div class="bg1a sgp-corners" style="text-align:center; padding-bottom:12px; margin-bottom:4px;">
-			<span class="showhide2"><a href="javascript:ShowHide('B_{iforumrow.UNIQUE}');"><img src="{iforumrow.FORUM_IMAGE_SRC}" title="{CLICK_TO_EXPAND}..." class="smallimage" alt="" /></a></span>
-			<span style="margin-left: -12px;"><strong><a href="{iforumrow.U_VIEWFORUM}" title="{iforumrow.CAT_FORUM_COUNT} {L_FORUMS} &bull; {iforumrow.FORUM_TOPICS} {L_TOPICS} &bull;  {iforumrow.FORUM_POSTS} {L_POSTS}" >{iforumrow.FORUM_NAME}</a></strong></span>
-		</div>
-		<div class="smallimage_hide bg2a sgp-corners" style="display:none; margin-top:-10px;" id="B_{iforumrow.UNIQUE}">
-			<div class="centre" style="text-align:center; <!-- IF iforumrow.FORUM_DESC --> padding-top: 6px; padding-bottom: 3px; <!-- ELSE --> padding-top: 1px; padding-bottom: 1px;<!-- ENDIF -->">{iforumrow.FORUM_DESC}</div>
-			<div style="text-align:center; padding-top:3px;"><span class="gensmall">{L_TOPICS}: <strong>{iforumrow.FORUM_TOPICS}</strong> - {L_POSTS}: <strong>{iforumrow.FORUM_POSTS}</strong></span></div>
-			<div style="text-align:center;"><span class="gensmall">{NUMBER_OF_FORUMS}: <strong>{iforumrow.CAT_FORUM_COUNT}</strong></span></div>
-			<div>&nbsp;</div>
-		</div>
-		<!-- IF iforumrow.S_CAT_COUNT < S_TOTAL_CATS or iforumrow.S_CAT_COUNT > 1 && iforumrow.S_CAT_COUNT < S_TOTAL_CATS --><!-- ELSE --><!-- ENDIF -->
+	<!-- BEGIN forumrow -->
+		<!-- IF not forumrow.S_IS_CAT -->
+			<div class="bg1a sgp-corners" style="text-align:center; padding-bottom:12px; cursor:pointer; margin-bottom:4px;" id="T_{forumrow.FORUM_ID}" title="{L_CLICK_FOR_DETAILS}">
+				<span class="pimg cat_images">
+					<!-- IF forumrow.FORUM_IMAGE_SRC -->
+					<img src="{forumrow.FORUM_IMAGE_SRC}" title="{CLICK_TO_EXPAND}..." class="smallimage" alt="" />
+					<!-- ELSE -->
+					<img src="./images/forum_icons/default.png" title="{CLICK_TO_EXPAND}..." class="smallimage" alt="" />
+					<!-- ENDIF -->
+				</span>
+				<span style="margin-left: -12px;"><strong><a href="{forumrow.U_VIEWFORUM}"title="{forumrow.POSTS} {L_FORUMS} &bull; {forumrow.TOPICS} {L_TOPICS} &bull;  {forumrow.POSTS} {L_POSTS}">{forumrow.FORUM_NAME}<!-- IF forumrow.SUBFORUMS and forumrow.S_LIST_SUBFORUMS -->&deg;<!-- ENDIF --></a></strong></span>
 
-		<!-- ELSEIF iforumrow.S_IS_LINK -->
+				<div class="hidden_part" style="display:none; margin-top:10px; margin-bottom: 5px; clear:both;" id="TT_{forumrow.FORUM_ID}">
+					<div class="centre" style="text-align:left; <!-- IF forumrow.FORUM_DESC --> padding-top: 6px; padding-bottom: 3px; <!-- ELSE --> padding-top: 1px; padding-bottom: 1px;<!-- ENDIF -->"><strong>{forumrow.FORUM_DESC}</strong></div>
+					<div style="text-align:left; padding-top:3px;"><span class="gensmall">{L_TOPICS}: <strong>{forumrow.TOPICS}</strong> - {L_POSTS}: <strong>{forumrow.POSTS}</strong></span></div>
+					<!-- IF forumrow.SUBFORUMS and forumrow.S_LIST_SUBFORUMS -->
+						<div style="text-align:left; margin-top:15px; padding-bottom:5px;"><strong>{forumrow.L_SUBFORUM_STR}</strong></div>
+						<div>{forumrow.SUBFORUMS}</div>
+					<!-- ENDIF -->
+				</div>
 
-		<div style="text-align:center; margin-top: -8px; margin-bottom:16px; margin-right: 12px; ">
-			<strong><a href="{iforumrow.U_VIEWFORUM}">{iforumrow.FORUM_NAME}</a></strong>
-		</div>
-		<div class="smallimage_hide" style="display:none;" id="B_{iforumrow.UNIQUE}">
-			<div style="text-align:center;"><span class="gensmall">{iforumrow.FORUM_DESC}</span></div>
-			<!-- IF iforumrow.CLICKS -->
-			<div class="category2" style="text-align:center;"><span class="gensmall">{L_REDIRECTS}:&nbsp;<strong>{iforumrow.CLICKS}</strong></span></div>
-			<!-- ENDIF -->
-		</div>
-		<!-- IF iforumrow.S_CAT_COUNT < S_TOTAL_CATS or iforumrow.S_CAT_COUNT > 1 && iforumrow.S_CAT_COUNT < S_TOTAL_CATS --><br /><!-- ENDIF -->
+			</div>
 		<!-- ENDIF -->
-	<!-- END iforumrow -->
+	<!-- END forumrow -->
 </div>
 <!-- IF DEBUG_QUERIES --><div class="block_data">{FORUM_CATEGORIES_DEBUG}</div><!-- ENDIF -->
-<!-- IDTAG ends block_forum_categories.html ends -->
-
-<!-- ELSE -->
-<div class="block_data">{NOT_PROCESSED_FOR_PAGE}</div>
-<!-- ENDIF -->
+<!-- IDTAG block_forum_categories.html ends -->

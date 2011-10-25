@@ -5,7 +5,7 @@
   <header>
     <license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
 
-    <title lang="en">Subsilver2 update for Kiss Engne (aka Kiss Portal) 1.0.3c</title>
+    <title lang="en">Subsilver2 update for Kiss Engne (aka Kiss Portal) 1.0.0h</title>
 
 	<description lang="en">Style update (subsilver2) Stargate Portal Mod</description>
 
@@ -19,36 +19,12 @@
 			<email>o2l@eircom.net</email>
 		</author>
     </author-group>
-    <mod-version>1.0.3d</mod-version>
+    <mod-version>1.0.0h</mod-version>
     <installation>
       <level>intermediate</level>
       <time>2503</time>
-      <target-version>3.0.8</target-version>
+      <target-version>3.0.9</target-version>
     </installation>
-    <history>
-      <entry>
-        <date>2008-04-06</date>
-        <changelog lang="en">
-          <change>Updated to support common file sharing mod... </change>
-          <change>Removed pips images.</change>
-		  <change>Moved bbcode images to images folder.</change>
-          <change>Portal html files identical for subsilver and prosilver based styles.</change>
-          <change>Arrange blocks and move/hide 100% working all browsers.</change>
-          <change>portal.css file now loaded via functions.php.</change>
-          <change>Portal Poll and Newsfeeds mods installed automatically. </change>
-          <change>New 3.0.6/7 Quick Reply extras.</change>
-          <change>Post can be designated as Local News or Global News.</change>
-		  <change>Standardised for css fix files (Opera/Mac/IE)</change>
-		  <change>Removed the size css files, all work is carried out in the portal header file</change>
-		<change>Left and right layout files loaded via overall_header and overall_footer</change>
-		<change>New UMIL based instalation</change>
-		<change>AutoMod Supported</change>
-		<change>Removed Portal definitions form config.php</change>
-		<change>Portal can now be enabled/disabled via APC</change>
-		<change>Block visibility can be set to one or more groups...</change>
-        </changelog>
-      </entry>
-    </history>
     <meta name="generator" content="Phpbb.ModTeam.Tools (c#)" />
   </header>
 
@@ -56,23 +32,6 @@
 <copy>
       <file from="root/styles/subsilver2/*.*" to="styles/subsilver2/*.*" />
 </copy>
-
-<open src="styles/subsilver2/template/attachment.html">
-<edit>
-<find><![CDATA[		<!-- IF _file.S_THUMBNAIL -->
-			<a href="{_file.U_DOWNLOAD_LINK}"><img src="{_file.THUMB_IMAGE}" alt="{_file.DOWNLOAD_NAME}" /></a><br />
-			<span class="gensmall">{_file.DOWNLOAD_NAME} [ {_file.FILESIZE} {_file.SIZE_LANG} | {_file.L_DOWNLOAD_COUNT} ]</span>
-		<!-- ENDIF -->]]></find>
-<action type="replace-with"><![CDATA[		<!-- IF _file.S_THUMBNAIL -->
-		<div class="highslide-gallery">
-			<a href="{_file.U_DOWNLOAD_LINK}/{_file.DOWNLOAD_NAME}" class="highslide" onclick="return hs.expand(this)"><img src="{_file.THUMB_IMAGE}" alt="{_file.DOWNLOAD_NAME}" title="Click to enlarge" /></a>
-			<div class="highslide-caption">{_file.DOWNLOAD_NAME} ({_file.FILESIZE} {_file.SIZE_LANG})</div>
-		</div>
-		<div>{_file.DOWNLOAD_NAME} ({_file.FILESIZE} {_file.SIZE_LANG}) {_file.L_DOWNLOAD_COUNT}</div>
-		<!-- ENDIF -->]]></action>
-<comment lang="en">Line ~12</comment>
-</edit>
-</open>
 
 <open src="styles/subsilver2/template/breadcrumbs.html">
 <edit>
@@ -90,7 +49,8 @@
 </edit>
 
 <edit>
-<find><![CDATA[	<span class="copyright">Powered by <a href="http://www.phpbb.com/">phpBB</a> &copy; 2000, 2002, 2005, 2007 phpBB Group]]></find>
+<find><![CDATA[	<span class="copyright">Powered by <a href="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+]]></find>
 <action type="after-add"><![CDATA[		<!-- IF STARGATE --><br /><!-- INCLUDE portal_copyright.html --><!-- ENDIF -->]]></action>
 <comment lang="en"></comment>
 </edit>
@@ -132,14 +92,12 @@
 <edit>
 <find><![CDATA[						<!-- IF S_DISPLAY_PM --> &nbsp;<a href="{U_PRIVATEMSGS}"><img src="{T_THEME_PATH}/images/icon_mini_message.gif" width="12" height="13" alt="*" /> {PRIVATE_MESSAGE_INFO}<!-- IF PRIVATE_MESSAGE_INFO_UNREAD -->, {PRIVATE_MESSAGE_INFO_UNREAD}<!-- ENDIF --></a><!-- ENDIF -->]]></find>
 <action type="replace-with"><![CDATA[						<!-- IF STARGATE --><!-- IF S_ARRANGE -->
-							<span style="display:inline" id="_OFF">
-							&nbsp; <a href="{U_PORTAL}" class="arrange_off" onclick="ShowHide('_ON'); ShowHide('_OFF'); " title="{L_ARRANGE_OFF}"> <img src="{T_THEME_PATH}/images/icon_arrange_off.gif" height="13" width="13" alt="{L_ARRANGE_OFF}" /> {L_ARRANGE_OFF}</a>
-							&nbsp; <a href="javascript:chooseStyle('none', 60)" checked="checked"><img src="{T_THEME_PATH}/images/wide.gif" width="14" height="14" alt="{L_WIDE}" title="{L_WIDE}" /></a> {L_WIDE}
-							<a href="javascript:chooseStyle('fixed', 60)"><img src="{T_THEME_PATH}/images/narrow.gif" width="11" height="14" alt="{L_NARROW}" title="{L_NARROW}" /></a> {L_NARROW}
+							<span style="display:inline" id="OFF_">
+							&nbsp; <a href="{U_PORTAL}" class="arrange_off" onclick="ShowHide('ON_'); ShowHide('OFF_'); " title="{L_ARRANGE_OFF}"><img src="{T_PORTAL_THEME_PATH}/images/save_changes.png" height="13" width="13" alt="{L_ARRANGE_OFF}" /> {L_ARRANGE_OFF}</a>
 							</span>
 						<!-- ELSE -->
-							<span style="display: inline" id="_ON">
-							&nbsp; <a href="{U_PORTAL_ARRANGE}" class="arrange_on"  onclick="ShowHide('_OFF'); ShowHide('_ON'); " title="{L_ARRANGE_ON}"><img src="{T_THEME_PATH}/images/icon_arrange_on.gif" height="13" width="13" alt="{L_ARRANGE_ON}" /> {L_ARRANGE_ON}</a>
+							<span style="display: inline" id="ON_">
+							&nbsp; <a href="{U_PORTAL_ARRANGE}" class="arrange_on"  onclick="ShowHide('OFF_'); ShowHide('ON_'); " title="{L_ARRANGE_ON}"><img src="{T_PORTAL_THEME_PATH}/images/arrange.png" height="13" width="13" alt="{L_ARRANGE_ON}" /> {L_ARRANGE_ON}</a>
 							</span>
 						<!-- ENDIF --><!-- ENDIF -->
 						<!-- IF S_DISPLAY_PM --> &nbsp;<a href="{U_PRIVATEMSGS}"><img src="{T_THEME_PATH}/images/icon_mini_message.gif" width="12" height="13" alt="*" /> {PRIVATE_MESSAGE_INFO}<!-- IF PRIVATE_MESSAGE_INFO_UNREAD -->, {PRIVATE_MESSAGE_INFO_UNREAD}<!-- ENDIF --></a><!-- ENDIF -->]]></action>
@@ -159,7 +117,7 @@
 
 <open src="styles/subsilver2/template/posting_buttons.html">
 <edit>
-<find><![CDATA[		<script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>]]></find>
+<find><![CDATA[		<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></find>
 <action type="replace-with"><![CDATA[		<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>]]></action>
 <comment lang="en"></comment>
 </edit>
@@ -167,7 +125,7 @@
 
 <open src="styles/subsilver2/template/posting_smilies.html">
 <edit>
-<find><![CDATA[<script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>]]></find>
+<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></find>
 <action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>]]></action>
 <comment lang="en"></comment>
 </edit>
@@ -207,11 +165,11 @@
 <action type="replace-with"><![CDATA[			<!-- IF topicrow.S_FIRST_ROW or not topicrow.S_TOPIC_TYPE_SWITCH -->
          	<!-- IF topicrow.S_TOPIC_TYPE_SWITCH eq 1 -->
             <tr>
-            	<td class="class="row3" colspan="<!-- IF S_TOPIC_ICONS -->7<!-- ELSE -->6<!-- ENDIF -->"><b class="gensmall"><!-- IF topicrow.S_TOPIC_TYPE eq 4 or topicrow.S_TOPIC_TYPE eq 5 -->{L_ANNOUNCEMENTS_AND_NEWS}<!-- ELSE -->{L_ANNOUNCEMENTS}<!-- ENDIF --></b></td>
+            	<td class="row3" colspan="<!-- IF S_TOPIC_ICONS -->7<!-- ELSE -->6<!-- ENDIF -->"><b class="gensmall"><!-- IF topicrow.S_TOPIC_TYPE eq 4 or topicrow.S_TOPIC_TYPE eq 5 -->{L_ANNOUNCEMENTS_AND_NEWS}<!-- ELSE -->{L_ANNOUNCEMENTS}<!-- ENDIF --></b></td>
             </tr>
          	<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH eq 0 -->
             <tr>
-            	<td class="class="row3" colspan="<!-- IF S_TOPIC_ICONS -->7<!-- ELSE -->6<!-- ENDIF -->"><b class="gensmall">{L_TOPICS}</b></td>
+            	<td class="row3" colspan="<!-- IF S_TOPIC_ICONS -->7<!-- ELSE -->6<!-- ENDIF -->"><b class="gensmall">{L_TOPICS}</b></td>
             </tr>
         	<!-- ENDIF -->
 		<!-- ENDIF -->]]></action>

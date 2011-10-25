@@ -34,7 +34,7 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 //
 // Some characters you may want to copy&paste:
-// ’ » “ ” …
+// â€™ Â» â€œ â€ â€¦
 //
 //- stargate aka kiss portal engine lang definitions -//
 $lang = array_merge($lang, array(
@@ -43,20 +43,19 @@ $lang = array_merge($lang, array(
 	'CACHE_DIR_CLEANED'		=> '<br />&nbsp;&#187;&nbsp;cache directory cleaned up.',
 	'DISABSLE_USE'			=> '<br />&nbsp;&#187;&nbsp;Disabled, use refresh in ACP for time being...',
 	'DATABASE_TABLE'		=> ' database table!</b>',
-	'DELETING_RSSCACHE'		=> '<b>Deleting rsscache_*.dat files in cache directory:</b>',
 	'FAILED_UPDATE'			=> '<br /><b>Failed to update ',
-	'LOG_RSS_CACHE_CLEANED'	=> '<strong>Deleted cached versions of all rsscache_*.dat files</strong><br />» %s',
 	'NO_INFO_FOUND'			=> '<br /><b>No info found in ',
 	'PURGING_CACHE'			=> '<b>Purging cache:</b>',
 	'REFRESHED'				=> ' - <b>refreshed</b>',
 	'REFRESHING_TEMPLATES'	=> '<b>Refreshing styles templates:</b>',
 	'REFRESHING_THEMES'		=> '<b>Refreshing styles themes:</b>',
 	'REFRESHING_IMAGESETS'	=> '<b>Refreshing styles imagesets:</b>',
-	'SGP_REFRESH_ALL'		=> 'SGP Refresh ALL',
-	'SGPRA_EXEPTIONS'		=> '<strong><font color="#FF0000">!NOTE</font>:<br />SGP Refresh ALL completed with exceptions!</strong> (see above for info)<br />',
-	'SGPRA_LOG_IN'			=> '<strong>log in</strong></a> as an <font color="#FF0000"><strong>ADMINISTRATOR</strong></font> and <font color="#FF0000"><strong>refresh</strong></font> this page...</b><br /><br /><hr />',
-	'SGPRA_NO_ADMIN'		=> '<font color="#FF0000"><strong>You do not have permission to run SGP Refresh ALL!</strong></font>',
-	'SGPRA_NO_ERRORS'		=> '<br /><strong><font color="#00FF00">SGP Refresh ALL completed without any errors!...</font></strong><br />',
+	'SGP_REFRESH_ALL'		=> '<strong>Kiss Refresh All - version: 1.0.1</strong>',
+	'SGP_REFRESH_TITLE'		=> 'Refresh All (1.0.1)',
+	'SGPRA_EXEPTIONS'		=> '<strong><span class="red">!NOTE:</span><br />SGP Refresh ALL completed with exceptions!</strong> (see above for info)<br />',
+	'SGPRA_LOG_IN'			=> '<strong>log in</strong></a> as an <strong class="red">ADMINISTRATOR</strong> and <strong class="green">refresh</strong> this page...<br /><br /><hr />',
+	'SGPRA_NO_ADMIN'		=> '<strong class="red">You do not have permission to run SGP Refresh ALL!</strong>',
+	'SGPRA_NO_ERRORS'		=> '<br /><strong class="green">SGP Refresh ALL completed without any errors!...</strong><br />',
 ));
 
 ?>

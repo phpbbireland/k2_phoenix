@@ -52,6 +52,7 @@ $lang = array_merge($lang, array(
 	'FORUM'					=> 'Forum',
 	'KB'					=> 'Knowledge Base',
 	'LINKS'					=> 'Links',
+	'LINKS_MENU'			=> 'Links Menu',
 	'MEMBERS'				=> 'Members',
 	'PORTAL'				=> 'Portal',
 	'HOME'					=> 'Home',

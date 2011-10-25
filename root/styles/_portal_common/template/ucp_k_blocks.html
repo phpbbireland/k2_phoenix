@@ -12,13 +12,9 @@
 
 	<fieldset class="fields2">
 	<!-- IF SWITCH == 'arrange' -->
-		{L_ARRANGE_ICON}
-		<a href="{U_PORTAL_ARRANGE}">{LINK_IMG}{L_ARRANGE_NOW}</a>
-
-		<!--<a href="{U_PORTAL_ARRANGE}" class="arrange_on" style="float:left" title="{L_ARRANGE_ON}">{L_ARRANGE_ON}</a>-->
-
-
+		{L_ARRANGE_ICON} <a href="{U_PORTAL_ARRANGE}">{LINK_IMG}{L_ARRANGE_NOW}</a>
 	<!-- ENDIF -->
+
 	<!-- IF SWITCH == 'delete' -->
 		<legend>{L_UCP_K_INFO_DELETE}</legend>
 		<dl>
@@ -26,6 +22,7 @@
 			<dd><input type="checkbox" class="post" id="reset_blocks" name="reset_blocks" value="{CKECKBOX}" type="text"></dd>
 		</dl>
 	<!-- ENDIF -->
+
 	<!-- IF SWITCH == 'edit' -->
 		<legend>{L_UCP_K_INFO_EDIT}</legend>
 		<dl>
@@ -59,7 +56,12 @@
 	<!-- ENDIF -->
 
 	<!-- IF SWITCH == 'width' -->
-		<legend>{L_UCP_K_INFO_WIDTH}: {U_WIDE} {U_NARROW}</legend>
+		<div>
+			{L_UCP_K_INFO_WIDTH}:<br /><br />
+			{L_DEFAULT_WIDTH}: <a href="#" onclick="StyleSwitchCookie('mystyle', 'default', '{T_THEME_PATH}', 'alt', 'default');" title="Hide Blocks"> <img src="images/wide.gif" height="15" width="14" alt="" title="{L_DEFAULT_WIDTH}" /></a> &nbsp;
+			{L_ALT_WIDTH}: <a href="#" onclick="StyleSwitchCookie('mystyle', 'alt', '{T_THEME_PATH}', 'default', 'alt');" title="Show Blocks"> <img src="images/narrow.gif" height="15" width="11" alt="" title="{L_ALT_WIDTH}" /></a>
+			<br /><br />{L_UCP_K_INFO_WIDTH_NO}
+		</div>
 		<br /><br />
 	<!-- ENDIF -->
 	</fieldset>

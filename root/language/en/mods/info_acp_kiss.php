@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* acp [English]
+* acp Kiss Engine [English]
 *
 * @package language
 * @version $Id$
-* @copyright (c) 2005 phpBB Group
+* @copyright (c) 2005-2011 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -42,15 +42,18 @@ $lang = array_merge($lang, array(
 	'NO_MOVE_DOWN'			=> 'Can’t move down',
 	'NO_MOVE_UP'			=> 'Can’t move up',
 	'NO_RESYNC'				=> 'Resynchronise Disabled',
+
 // phpbbportal profile fields
 	'ACP_CAT_PORTAL'				=> 'Portal',
 	'ACP_CAT_PORTAL_TOOLS'			=> 'Portal Tools',
 	'ACP_CAT_CLOUD'					=> 'Cloud Tags',
 	'ACP_CAT_STATUS_CONFIG'			=> 'Config Status',
 	'ACP_K_WEBPAGES'				=> 'Portal Webpages',
+
 // Common
 	'ACP_K_UP'						=> 'Move Up',
 	'ACP_K_DOWN'					=> 'Move Down',
+
 // Blocks
 	'ACP_K_BLOCKS'					=> 'Blocks',
 	'ACP_K_BLOCKS_ADD'				=> 'Add a New Block',
@@ -61,6 +64,7 @@ $lang = array_merge($lang, array(
 	'ACP_K_PAGE_CERTRE_BLOCKS'		=> 'Manage Centre Blocks',
 	'ACP_K_PAGE_RIGHT_BLOCKS'		=> 'Manage Right Blocks',
 	'ACP_K_BLOCKS_REINDEX'			=> 'Reindex Blocks',
+
 // Menus
 	'ACP_K_MENUS'					=> 'Menus',
 	'ACP_K_MENU_HEADER'				=> 'Header Menus',
@@ -75,6 +79,7 @@ $lang = array_merge($lang, array(
 	'ACP_K_MENU_ICONS'				=> 'Manage Menu Icons',
 	'ACP_K_MENU_ALL'				=> 'View all Menu Items',
 	'ACP_K_MENU_UNALLOCATED'		=> 'View unallocated items',
+
 // Modules
 	'ACP_K_MODS_ADD'				=> 'Add a New Module',
 	'ACP_K_MODS_BLOCKS'				=> 'Block Modules',
@@ -89,6 +94,7 @@ $lang = array_merge($lang, array(
 	'ACP_K_MODS_DELETE'				=> 'Delete Module',
 	'ACP_K_CONFIG_WELCOME'			=> 'Manage Welcome Message',
 	'ACP_K_CONFIG_STYLES'			=> 'Manage Styles Mods',
+
 // Modules Web Pages
 	'ACP_K_WEB_PAGES_ADD'			=> 'Add a New Web Page',
 	'ACP_K_WEB_PAGES_ALL'			=> 'View all pages',
@@ -98,9 +104,11 @@ $lang = array_merge($lang, array(
 	'ACP_K_WEB_PAGES_HEAD'			=> 'Page Headers',
 	'ACP_K_WEB_PAGES_FOOT'			=> 'Page Footers',
 	'ACP_K_WEB_PAGES_PORTAL'		=> 'Manage Portal pages',
+
 // phpBB Pages
 	'ACP_K_PAGES_ADD'		=> 'Add page',
 	'ACP_K_PAGES_DELETE'	=> 'Delete page',
+
 // Modules Variables
 	'ACP_K_VARS'				=> 'Portal Variables',
 	'ACP_K_CONFIG'				=> 'Main Config',
@@ -117,6 +125,7 @@ $lang = array_merge($lang, array(
 	'ACP_K_TOOLS'				=> 'Additional Mods and Tools',
 	'ACP_MOD_VERSION_CHECK'		=> 'Mod Version Check',
 	'ACP_K_QUOTES'				=> 'Quotes',
+
 // Cloud
 	'ACP_K_CLOUD'				=> 'Cloud',
 	'ACP_K_CLOUD_EXPLAIN'		=> 'Here you can add, edit and delete tags',
@@ -127,12 +136,14 @@ $lang = array_merge($lang, array(
 	'ACP_K_CLOUD_EDIT'			=> 'Edit tag',
 	'ACP_K_CLOUD_BROWSE'		=> 'Browse tags',
 	'ACP_K_QUOTES_MANAGE'		=> 'Quotes',
+
 // youtube
 	'ACP_K_YOUTUBE'				=> 'SGP youtubes Mod',
 	'ACP_K_YOUTUBE_EXPLAIN'		=> 'Here you can manage your yourtube videos.',
 	'ACP_K_YOUTUBE_MANAGE'		=> 'Manage youtube videos',
 	'ACP_K_YOUTUBE_ADD'			=> 'Add a youtube video',
 	'ACP_K_YOUTUBE_BROWSE'		=> 'Browse youtube videos',
+
 // Quotes
 	'ACP_K_QUOTES_ADD'			=> 'Add quote',
 	'ACP_K_QUOTES_EDIT'			=> 'Edit quote',
@@ -145,8 +156,10 @@ $lang = array_merge($lang, array(
 	'LOAD_FROM_FILE'			=> 'Load quotes from the quote file?',
 	'FILE_TO_USE'				=> 'The name of the quote file to load',
 	'FILE_TO_USE_EXPLAIN'		=> 'The quote files should be located in root/store/ folder',
+
 // Resources
 	'ACP_K_RESOURCES'			=> 'Portal Resources',
+
 // Country Flag
 	'USER_COUNTRY_FLAG'			=> 'User Country Flag',
 
@@ -168,33 +181,30 @@ $lang = array_merge($lang, array(
 	'BBCODE_U_HELP'				=> 'Underline text: [u]text[/u]',
 	'BBCODE_W_HELP'				=> 'Insert URL: [url]http://url[/url] or [url=http://url]URL text[/url]',
 	'BBCODE_D_HELP'				=> 'Flash: [flash=width,height]http://url[/flash]',
+
 // Stargate aka Kiss Plugins module
-	'ACP_CAT_K_BLOCKS_MANAGE'		=> 'Portal Blocks',
-	'ACP_CAT_K_MENUS_MANAGE'		=> 'Portal Menus',
-
-	'ACP_CAT_K_MODULES_MANAGE'		=> 'Portal Mini Modules',
-	'ACP_CAT_K_TOOLS_MANAGE'		=> 'Portal Tools & other Mods',
-
-	'ACP_CAT_K_WEB_PAGES_MANAGE'	=> 'Portal Web Pages',
-
-	'ACP_CAT_PLUGINS'			=> 'Plugins',
-	'ACP_CAT_PLUGINS_EXPLAIN'	=> 'Stargate Portal Plug-ins Mod Manager',
-
-	'ACP_PLUGINS'				=> 'Plugins',
-	'ACP_PLUGIN_VARIABLES'		=> 'Configure Defaults',
-	'ACP_PLUGIN_CONFIG'			=> 'Configure Plugin Defaults',
-
-	'ACP_PLUGIN_MANAGE'			=> 'Manage Plugin',
-	'ACP_PLUGIN_ADD'			=> 'Add New Plugin',
-	'ACP_PLUGIN_EDIT'			=> 'Edit Plugin',
-	'ACP_PLUGIN_DELETE'			=> 'Delete Plugin',
-	'ACP_PLUGIN_UPDATE'			=> 'Update plugin',
-	'ACP_PLUGIN_UP'				=> 'Move Up',
-	'ACP_PLUGIN_DOWN'			=> 'Move Down',
-	'AVAILABLE_FORUM_IMAGE'		=> 'Available Images',
+	'ACP_CAT_K_BLOCKS_MANAGE'			=> 'Portal Blocks',
+	'ACP_CAT_K_MENUS_MANAGE'			=> 'Portal Menus',
+	'ACP_CAT_K_MODULES_MANAGE'			=> 'Portal Mini Modules',
+	'ACP_CAT_K_TOOLS_MANAGE'			=> 'Portal Tools & other Mods',
+	'ACP_CAT_K_WEB_PAGES_MANAGE'		=> 'Portal Web Pages',
+	'ACP_CAT_PLUGINS'					=> 'Plugins',
+	'ACP_CAT_PLUGINS_EXPLAIN'			=> 'Stargate Portal Plug-ins Mod Manager',
+	'ACP_PLUGINS'						=> 'Plugins',
+	'ACP_PLUGIN_VARIABLES'				=> 'Configure Defaults',
+	'ACP_PLUGIN_CONFIG'					=> 'Configure Plugin Defaults',
+	'ACP_PLUGIN_MANAGE'					=> 'Manage Plugin',
+	'ACP_PLUGIN_ADD'					=> 'Add New Plugin',
+	'ACP_PLUGIN_EDIT'					=> 'Edit Plugin',
+	'ACP_PLUGIN_DELETE'					=> 'Delete Plugin',
+	'ACP_PLUGIN_UPDATE'					=> 'Update plugin',
+	'ACP_PLUGIN_UP'						=> 'Move Up',
+	'ACP_PLUGIN_DOWN'					=> 'Move Down',
+	'AVAILABLE_FORUM_IMAGE'				=> 'Available Images',
 	'AVAILABLE_FORUM_IMAGE_EXPLAIN'		=> 'Display a list of available forum images (images/forum_icons/). Hover over an image to see the path/name...',
 	'SHOW_FORUM_IMAGES'					=> 'Show available forum images.',
-	'ENABLE_PORTAL'				=> 'Enable Portal',
+	'ENABLE_PORTAL'						=> 'Enable Portal',
+
 // phpbbportal profile fields
 // Mike
 	'MOD_IMAGES'	=> 'The image mod allows the admin to select images for editing where images are stored in the Admins current style.',
@@ -204,6 +214,7 @@ $lang = array_merge($lang, array(
 	'SMILIES'		=> 'Basic Smilies',
 	'SHOW_VARS'		=> 'Add this variable',
 	'VARIABLES'		=> 'Variables',
+
 // Errors
 	'ERROR_PORTAL_MODULE'			=> 'Error! Could not query portal modules information: ',
 	'ERROR_PORTAL_ANNOUNCE'			=> 'Error! Could not query announcements information',
@@ -213,16 +224,17 @@ $lang = array_merge($lang, array(
 	'ERROR_PORTAL_FORUMS'			=> 'Error! Could not query forums information',
 
 	'WARNINGIMG_DIR'				=> 'Check to see if you added the image directory!',
+
 // phpBB pages (k_pages)
 	'ACP_K_PAGES_MANAGE'	=> 'Manage phpBB pages',
 	'ADD_VARS'				=> 'Manage variables',
+
 // phpBB common to sgp //
 	'ACTION_CANCELLED'		=> 'Action Cancelled',
 	'ADDED'					=> 'Data added...',
 	'ADDING_MODULES'		=> 'Adding modules...',
 	'BLOCK_ADDED'			=> 'Block added',
 	'BLOCK_DELETED'			=> 'Block deleted',
-	'DATA_IS_BEING_SAVED'	=> 'Data is being saved...',
 	'DELETED'				=> 'Deleted... ',
 	'DELEING'				=> 'Deleting... ',
 	'FOUND'					=> '<strong>Found:</strong> ',
@@ -232,11 +244,10 @@ $lang = array_merge($lang, array(
 	'NONE'					=> 'none',
 	'NOT_ASSIGNED'			=> 'Not assigned',
 	'PROCESSING'			=> 'Processing...',
-	'SAVING_DATA'			=> 'Saving data please wait...',
-	'SAVED'					=> 'Data saved...',
-	'TOOLS'				=> 'Tools',
-	'TOOLS_1'			=> 'Tools moved to independant Porgram. Contact Site Admin for details',
-	'TOOLS_2'			=> 'Tools include: Block Builder, Style and CSS Builder',
+	'SAVED'					=> 'Database updated...',
+	'TOOLS'					=> 'Tools',
+	'TOOLS_1'				=> 'Tools moved to independant Porgram. Contact Site Admin for details',
+	'TOOLS_2'				=> 'Tools include: Block Builder, Style and CSS Builder',
 ));
 
 ?>

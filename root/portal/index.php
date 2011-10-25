@@ -4,7 +4,7 @@
 * @author michaelo phpbbireland@gmail.com - http://www.phpbbireland.com
 *
 * @package sgp
-* @version 1.0.0d
+* @version 1.0.0h
 * @copyright (c) 2005-2011 Michael O'Toole (phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -46,18 +46,27 @@ $versions = array(
 	// Version 1.0.0 (1.0.0a)
 	'1.0.0' => array(
 	),
-
 	// Version 1.0.0b
 	'1.0.0b' => array(
 	),
-
 	// Version 1.0.0c
 	'1.0.0c' => array(
 	),
-
 	// Version 1.0.0d
-	'1.0.0d'	=> array(
+	'1.0.0d' => array(
+	),
+	// Version 1.0.0e
+	'1.0.0e' => array(
+	),
+	// Version 1.0.0f
+	'1.0.0f' => array(
+	),
+	// Version 1.0.0h
+	'1.0.0h' => array(
+	),
 
+	// Version 1.0.0h
+	'1.0.0h'	=> array(
 		'permission_add' => array(
 			array('a_k_portal', 1),
 			array('a_k_tools', 1),
@@ -84,7 +93,6 @@ $versions = array(
 		),
 
 		'table_add' => array(
-
 			array('phpbb_k_blocks', array(
 					'COLUMNS' => array(
 						'id'				=> array('UINT', NULL, 'auto_increment'),
@@ -96,7 +104,6 @@ $versions = array(
 						'html_file_name'	=> array('VCHAR', ''),
 						'var_file_name'		=> array('VCHAR', 'none.gif'),
 						'img_file_name'		=> array('VCHAR', 'none.gif'),
-						'view_by'			=> array('UINT', '0'),
 						'view_all'			=> array('BOOL', '1'),
 						'view_groups'		=> array('VCHAR:100', ''),
 						'view_pages'		=> array('VCHAR:100', ''),
@@ -124,7 +131,6 @@ $versions = array(
 						'menu_icon'		=> array('VCHAR:30', 'none.gif'),
 						'append_sid'	=> array('BOOL', '1'),
 						'append_uid'	=> array('BOOL', '0'),
-						'view_by'		=> array('UINT', '0'),
 						'view_all'		=> array('BOOL', '1'),
 						'view_groups'	=> array('VCHAR:100', ''),
 						'soft_hr'		=> array('BOOL', '0'),

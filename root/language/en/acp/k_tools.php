@@ -1,13 +1,11 @@
 <?php
 /**
 *
-* @author Original Author Michael O'Toole@www.stargate-portal.com
+* @package Kiss Portal Engine (acp_k_tools) (English)
 *
-* @package {k_tools}
-* @version $Id:$ 3.2.0
-* @note: Do not remove this copyright. Just append yours if you have modified it,
-*        this is part of the Stargate Portal copyright agreement...
-* @copyright (c) 2005 phpbireland
+* @package language
+* @version $Id:$ 1.0.0h
+* @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -42,17 +40,14 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
+
+	'ALL_USERS_RESET'	=> 'Reset login attempts for all users',
+	'REPORT'			=> 'Resetting login attempt for all users...',
+	'REPORT_ONE'		=> 'Resetting login attempt for: %s',
 	'TITLE' 			=> 'Portal Tools',
 	'TITLE_EXPLAIN'		=> 'Miscellaneous portal tools.',
-
 	'TOOL_OPTIONS'		=> 'Available options',
-
 	'USER_RESET'		=> 'Reset login attempts for user (users name)',
-	'ALL_USERS_RESET'	=> 'Reset login attempts for all users',
-
-	'REPORT'			=> 'Resetting login attempt for all users....',
-	'REPORT_ONE'		=> 'Resetting login attempt for: %s',
-
 ));
 
 ?>

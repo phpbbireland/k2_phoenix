@@ -24,18 +24,15 @@ font-weight: bold;
 background-color: #006699;
 background-image: url('./images/cellpic3.gif');
 background-repeat:repeat-x;
-width:100%;
+width:auto;
 white-space: nowrap;
-padding:6px;
+padding:6px; 
+padding-right:0px;
 }
 .block_header a { color:#FFA34F; }
+.block_data { float:left; width:100%; }
 
-.block_data {
-float:left;
-width:100%; /* required to centre data */
-}
-
-.block_body {
+.block_body, .forabg {
 background-color: #F9F9F9;
 width:100%; /* IE :( */
 border-top: solid 1px #BBBBBB;
@@ -64,50 +61,11 @@ padding:5px;
 padding-top:8px;
 padding-bottom:8px;
 margin:0;
-margin-top:3px; /* set this to more for larger icons */
+
 margin-bottom:1px;
 overflow: hidden;
 width:auto;
-/*
-background-image: url('./images/background.gif');
-background-repeat:repeat;
-*/
 }
-/*
-.box_head{
-background-image: url('./images/box_head.png');
-width: 100%;
-margin: 0 auto;
-border: solid 1px #000000; 
-}
-.box_footer{
-background-image: url('./images/box_footer.png');
-width: 100%;
-margin: 0 auto;
-border: solid 1px #000000; 
-}
-*/
-
-.k_quick {
-width:70%;
-text-align:left;
-margin-bottom: 4px; 
-clear: both;
-background-color: #080809;
-border:1px solid; border-color: #000;
-}
-.k_block_header {
-color: #B00000;
-font-size: 1.1em;
-font-weight: bold;
-background-image: url('./images/cellpic1.gif');
-background-repeat:repeat-x;
-white-space: nowrap;
-border: solid 1px #000;
-border-bottom:none;
-padding: 4px;
-}
-
 
 /* round corners 
 -------------------------------------------------------------------------------------------------------------- */
@@ -166,31 +124,31 @@ position:relative; left: 5px; top: -20px;
 caption { 
 margin: 0; 
 padding: 0;
-background: url(images/blocks/2.png) top left repeat-x;
+background: url(images/portal/2.png) top left repeat-x;
 white-space: nowrap;
 height: 22px;
 text-align: left;
 }
 .cap-left {
-background: url(images/blocks/1.png) top left no-repeat;
+background: url(images/portal/1.png) top left no-repeat;
 padding-left: 25px;
 }
 .cap-left-wide {
-background: url(images/blocks/1w.png) top left no-repeat;
+background: url(images/portal/1w.png) top left no-repeat;
 padding-left: 72px;
 }
 .cap-right {
-background: url(images/blocks/3.png) top right no-repeat;
+background: url(images/portal/3.png) top right no-repeat;
 padding-top: 6px;
 height: 22px;
 }
 .cap-right-wide {
-background: url(images/blocks/3w.png) top right no-repeat;
+background: url(images/portal/3w.png) top right no-repeat;
 padding-top: 6px;
 height: 22px;
 }
 .cap-right-wide_no {
-background: url(images/blocks/cat_t_right_no.gif) top right no-repeat;
+background: url(images/portal/cat_t_right_no.gif) top right no-repeat;
 padding-top: 6px;
 height: 22px;
 }
@@ -389,19 +347,6 @@ input.full{ width: 99%; }
 
 /* Temp over-rides link for header Mike
 -----------------------------------------------------*/
-/*
-.hmenu { margin: 1px 1px; font-size: 1.1em; }
-.hmenu a:link, a:visited, a:active {text-decoration: none;}
-.hmenu a:hover {text-decoration: none; color: #B2B2B2;}
-a:hover { color: #B2B2B2; text-decoration: underline; }
-
-.body {
-background-color: #000000;
-background-image: url('./images/background.gif');
-background-repeat: repeat;
-background-attachment: fixed;
-}
-*/
 #container {width: 100%; background: #eee; margin: 0 auto; text-align: left; }
 
 

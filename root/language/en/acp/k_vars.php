@@ -1,16 +1,15 @@
 <?php
 /**
 *
-* acp_k_vars [English] (Additional variables used by portal)
+* @package Kiss Portal Engine (acp_k_vars) (English)
 *
 * @package language
-* @version $Id: k_vars.php 297 2008-12-30 18:40:30Z JohnnyTheOne $
-* @note: Do not remove this copyright. Just append yours if you have modified it,
-*        this is part of the Stargate Portal copyright agreement...
-* @copyright (c) 2005 phpbireland
+* @version $Id:$ 1.0.0h
+* @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
+
 
 /**
 * DO NOT CHANGE
@@ -292,7 +291,7 @@ $lang = array_merge($lang, array(
 	'TOPICSPERFORUM'			=> 'Number of topics per forum.',
 	'TOPICSPERFORUM_EXPLAIN'	=> 'Limit the number of topics returned for each forum.',
 	'SAVING'					=> 'Updating database...',
-	'SAVED'						=> 'Saving changes...',
+	'SAVED'						=> 'Saving changes... one moment',
 	'REQUIRED_DATA_MISSING'		=> 'Required data is missing...<br />',
 	'UNKNOWN_ERROR'				=> 'Error not processing saved data<br />',
 	'IRC_CHAT'					=> 'IRC Chat',

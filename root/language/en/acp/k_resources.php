@@ -1,13 +1,11 @@
 <?php
 /**
 *
-* @author Original Author Michael O'Toole@www.stargate-portal.com
+* @package Kiss Portal Engine (acp_k_resources) (English)
 *
-* @package {PACKAGENAME}
-* @version $Id:$ 3.2.0
-* @note: Do not remove this copyright. Just append yours if you have modified it,
-*        this is part of the Stargate Portal copyright agreement...
-* @copyright (c) 2005 phpbireland
+* @package language
+* @version $Id:$ 1.0.0h
+* @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -42,84 +40,63 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'TITLE' 		=> 'Portal Variables Manager',
-	'TITLE_EXPLAIN'	=> '
-	When you add or edit a web page, you can pass additional information in the form of variable data taken from the $config or $k_config tables.<br />
-	Before these variables can be accessed, you must first specify them using this form. The variable name will be replaced with the variable data automatically.<br />
-	Enter the variable name exactly as it appears in the database (normally lower case without spaces). If the variable does not exits it will be ignored....',
-	'TITLE_ADD'		=> 'Add Variable',
 
-	'ID'		=> 'ID',
-	'R'			=> 'Reserved',
-	'RESERVED'	=> 'Reserved',
-	'V'			=> 'Variable',
-	'VARIABLE'	=> 'A variable',
-	'TYPE'		=> 'Type',
-
-	'NEW'		=> 'New',
-	'NEW_WORD'	=> 'A new word',
-
-	'NEW_WORD_ADD'	=> 'Add leading $ for variable',
-	'SWITCH'		=> 'Switch types',
-
-	'SWITCH_V'	=> 'Variables',
-	'SWITCH_R'	=> 'Reserved',
-	'SWITCH_A'	=> 'Both',
-
-	'SAVE_CURRENT'	=> 'Save current',
-
-
-
-	'WORDS'						=> 'Reserved',
+	'ACP_K_RES_WORDS'			=> 'Resources',
+	'ACP_K_ADMIN_REFERRALS'		=> 'Manage Resource words',
+	'ADD_VARIABLE'				=> 'Add Variable',
+	'CONFIG'					=> 'config',
+	'DISABLE_MARKED'			=> 'Disable_marked',
+	'ENABLE_MARKED'				=> 'Enable marked',
+	'ID'						=> 'ID',
+	'K_CONFIG'					=> 'k_config',
+	'LINE'						=> ', line ',
+	'NA'						=> '...',
+	'NEW'						=> 'New',
+	'NEW_WORD'					=> 'A new word',
+	'NEW_WORD_ADD'				=> 'Add leading $ for variable',
+	'NO_ITEMS_MARKED'			=> 'No items marked.',
+	'OPTION'					=> 'Option',
+	'ORDER'						=> 'Order',
+	'PROCESS_REPORT'			=> 'Process report: %1$s',
+	'PLEASE_CONFIRM'			=> 'Please confirm.',
 	'PLEASE_CONFIRM_ADD'		=> 'Confirm add word?',
 	'PLEASE_CONFIRM_UPDATE'		=> 'Update words?',
 	'PLEASE_CONFIRM_DELETE'		=> 'Confirm delete?',
 
-	'RESERVED'					=> 'A reserved word',
-	'RESERVED_WORDS'			=> 'Reserved word',
-
-	'VAR'						=> 'Variable',
-
-	'ACP_K_RES_WORDS'			=> 'Resources',
-	'ACP_K_ADMIN_REFERRALS'		=> 'Manage Resource words',
-
-
-	'SELECT_FILTER'				=> 'Select filter',
-	'SELECT_SORT_METHOD'		=> 'Select sort method',
-
-	'ORDER'						=> 'Order',
-	'SORT_DESCENDING'			=> 'Descending',
-	'SORT_ASCENDING'			=> 'Ascending',
-	'SORT'						=> 'Sort',
-
-	'ENABLE_MARKED'				=> 'Enable marked',
-	'DISABLE_MARKED'			=> 'Disable_marked',
-
-
+	'R'								=> 'Reserved',
 	'REFERRALS_MANAGEMENT'			=> 'Referrals management.',
 	'REFERRALS_MANAGEMENT_EXPLAIN'	=> 'Here you can manage HTTP Referrals stored in your database.',
 
-	'NO_ITEMS_MARKED'				=> 'No items marked.',
-	'PLEASE_CONFIRM'				=> 'Please confirm.',
+	'REPORT'					=> 'Last process report',
+	'RESERVED'					=> 'Reserved',
+	'RESERVED_WORDS'			=> 'Reserved word',
+	'SAVE_CURRENT'				=> 'Save current',
+	'SELECT_FILTER'				=> 'Select filter',
+	'SELECT_SORT_METHOD'		=> 'Select sort method',
+	'SHOW_BOTH_TYPES'			=> 'Show both types',
+	'SORT'						=> 'Sort',
+	'SORT_ASCENDING'			=> 'Ascending',
+	'SORT_DESCENDING'			=> 'Descending',
+	'SWITCH'					=> 'Switch types',
+	'SWITCH_A'					=> 'Both',
+	'SWITCH_R'					=> 'Reserved',
+	'SWITCH_TO_WORDS'			=> 'Switch to words',
+	'SWITCH_TO_VARIABLES'		=> 'Switch to variables',
+	'SWITCH_V'					=> 'Variables',
+	'TABLE'						=> 'Table',
+	'TYPE'						=> 'Type',
+	'V'							=> 'Variable',
+	'VAR'						=> 'Variable',
+	'VARIABLE'					=> 'A variable',
+	'VAR_NAME'					=> 'Variable name',
+	'WORDS'						=> 'Reserved',
+	'UNKNOWN'					=> 'Unknown',
+	'VAR_NOT_FOUND'				=> '<strong>%s</strong> is not a valid config variable... Add action was aborted!',
+	'VAR_ADDED'					=> '<strong>%s</strong> added!',
 
-	'SWITCH_TO_WORDS'		=> 'Switch to words',
-	'SWITCH_TO_VARIABLES'	=> 'Switch to variables',
-	'SHOW_BOTH_TYPES'		=> 'Show both types',
-	'VAR_NAME'				=> 'Variable name',
-	'ADD_VARIABLE'			=> 'Add Variable',
-	'VAR'					=> 'Variable',
-	'TABLE'					=> 'Table',
-	'OPTION'				=> 'Option',
-	'REPORT'				=> 'Last process report',
-	'VAR_NOT_FOUND'			=> '<strong>%s</strong> is not a valid config variable... Add action was aborted!',
-	'VAR_ADDED'				=> '<strong>%s</strong> added!',
-
-	'UNKNOWN'	=> 'Unknown',
-	'K_CONFIG'	=> 'k_config',
-	'CONFIG'	=> 'config',
-	'PROCESS_REPORT'	=> 'Process report: %1$s',
-	'NA'				=> '...',
-
+	'TITLE' 		=> 'Portal Variables Manager',
+	'TITLE_EXPLAIN'	=> 'When you add or edit a web page, you can pass additional information in the form of variable data taken from the $config or $k_config tables.<br />Before these variables can be accessed, you must first specify them using this form. The variable name will be replaced with the variable data automatically.<br />Enter the variable name exactly as it appears in the database (normally lower case without spaces). If the variable does not exits it will be ignored....',
+	'TITLE_ADD'		=> 'Add Variable',
 ));
 
 ?>
