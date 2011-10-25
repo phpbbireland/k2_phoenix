@@ -13,9 +13,10 @@
 	All unnecessary code has been removed to produce a simplified version for your phpBB3 forum.
 	You can add blocks, menus and all the Stargate Portal Tools as you desire...
 
-	Many thanks to everyone who supported the portal and a special thanks to the development team: JohnnyTheOne, livewirestu, NeXur, HelterSkelter and Mitch...
+	Many thanks to everyone who supported the portal and a special thanks to the development team: JohnnyTheOne, livewirestu, NeXur, HelterSkelter, Mitch and Tyler...
 
-	Please note the change log does not include non public (development) releases... See site for more information.
+	To add additional functionality you can download highslide (free for non commercial use) here: 
+	http://www.phpbbireland.com/kiss2/viewtopic.php?p=208#p208
 	</author-notes>
 
 	<author-group>
@@ -27,15 +28,60 @@
 		</author>
 	</author-group>
 
-	<mod-version>1.0.0d</mod-version>
+	<mod-version>1.0.0h</mod-version>
 
 	<installation>
 		<level>intermediate</level>
 		<time>2003</time>
-		<target-version>3.0.8</target-version>
+		<target-version>3.0.9</target-version>
 	</installation>
 
 	<history>
+		<entry>
+			<date>2011-09-21</date>
+			<rev-version>1.0.0h</rev-version>
+			<changelog lang="en">
+				<change>Removed more HTML parsing from php files...</change>
+				<change>Improved some javascript code...</change>
+				<change>Replaced hardcoded vars from constants file...</change>
+				<change>Default logo now uses phpBB logo (in png format, located in the style logo folder)...</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2011-07-30</date>
+			<rev-version>1.0.0g</rev-version>
+			<changelog lang="en">
+				<change>Javascript Files (mod validation and updates):</change>
+				<change>Moved scripts into appropriate sub-directories...</change>
+				<change>Removed unnecessary scripts...</change>
+				<change>Updated remaining javascript files...</change>
+				<change>CSS/HTML updates:</change>
+				<change>Removed the change width (wide/fixed) icon, code and script...</change>
+				<change>This will be replaced with a styles mod later...</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2011-07-24</date>
+			<rev-version>1.0.0f</rev-version>
+			<changelog lang="en">
+				<change>Updated to phpBB 3.0.9</change>
+				<change>Mod validation updates:</change>
+				<change>Removed all phpBB core function duplication</change>
+				<change>Removed some more js files</change>
+				<change>Updated jQuery to latest version</change>
+				<change>Additional errors fixed.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2011-05-31</date>
+			<rev-version>1.0.0e</rev-version>
+			<changelog lang="en">
+				<change>Mod validation updates:</change>
+				<change>Removed highslide and lightbox (See notes)</change>
+				<change>Some code fixes.</change>
+				<change>Fixed all known XHTML errors.</change>
+			</changelog>
+		</entry>
 		<entry>
 			<date>2011-05-31</date>
 			<rev-version>1.0.0d</rev-version>
@@ -110,8 +156,10 @@
 	<open src="adm/style/acp_forums.html"><edit>
 
 <find><![CDATA[<!-- INCLUDE overall_header.html -->]]></find>
-<action type="after-add"><![CDATA[<!-- Start: Edit #1 : Small mod to show all available icon images in images/forum_images directory, copyright 2007 phpbbireland.com Mike -->
-<script>
+<action type="after-add"><![CDATA[
+<!-- Start: Edit #1 : Small mod to show all available icon images in images/forum_images directory, copyright 2007 phpbbireland.com Mike -->
+<script type="text/javascript">
+// <![CDATA[
 function set_image(data)
 {
 	var path = 'images/forum_icons/' + data;
@@ -121,8 +169,14 @@ function set_image(data)
 function ShowHide(id1, id2, id3)
 {
 	var onoff = expMenu(id1);
-	if (id2 != '') expMenu(id2);
-	if (id3 != '') SetCookie(id3, onoff, expire);
+	if (id2 != '') 
+	{
+		expMenu(id2);
+	}
+	if (id3 != '') 
+	{
+		SetCookie(id3, onoff, expire);
+	}
 }
 
 function expMenu(id)
@@ -164,11 +218,12 @@ function expMenu(id)
 		return 1;
 	}
 }
+// ]]&gt;
 </script>
 <!-- END: Edit #1 -->]]></action>
+</edit>
 
-	</edit><edit>
-
+<edit>
 <find><![CDATA[		<!-- IF FORUM_IMAGE_SRC -->
 			<dd><img src="{FORUM_IMAGE_SRC}" alt="{L_FORUM_IMAGE}" /></dd>
 		<!-- ENDIF -->
@@ -294,153 +349,29 @@ if (STARGATE)
 
 ]]></action>
 </edit>
+</open>
 
-<edit>
-<find><![CDATA[foreach ($cache->obtain_hooks() as $hook)
-{
-	@include($phpbb_root_path . 'includes/hooks/' . $hook . '.' . $phpEx);
-}]]></find>
-<action type="after-add"><![CDATA[
-/* Stargate functions start... copyright phpbbireland.com 2005-2010 */
-/*
-**	This function returns a random image preprocessed with html tags and an option link...
-**	The link is based on the image name... example www.phpbb.com.png
-**	or even: sourceforge.net+project+project_donations.php@group_id=156802.gif
-**  A token can be sent to filter images, for example all images containing menu_
-*/
-function get_random_image($dir_path, $add_link = false, $token = '', $raw = false)
-{
-	if (defined('IN_ADMIN') || (!STARGATE))
-	{
-		return;
-	}
-
-	// The $token can be used to filter image types...
-	// initialise vars
-	//$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
-
-	$lnk = '';
-	$rand_image = '';
-	$imglist = "";
-
-	mt_srand((double)microtime()*1000001);
-
-	$handle = @opendir($dir_path);
-
-	// 01 January 2009 Just return for now as this can cause an error report if uses is Admin as the path will be incorrect //
-	// quick report because people forget to add the image directory //
-
-	if (!$handle)
-	{
-		return;
-	}
-
-	if (!$token)
-	{
-		$token = '.';
-	}
-
-	while (($file = readdir($handle)) !== false)
-	{
-		if (strpos($file, ".gif") || strpos($file, ".jpg") || strpos($file, ".png") && strpos($file ,$token))
-		{
-			$imglist .= "$file ";
-		}
-	}
-	closedir($handle);
-
-	$imglist = explode(" ", $imglist);
-	$a = sizeof($imglist)-2;
-	$random = mt_rand(0, $a);
-	$image = $imglist[$random];
-
-	if (strpos($image, 'www') || strpos($image, 'http'))
-	{
-		$add_link = true;
-	}
-
-	if ($add_link)
-	{
-		if (strstr($image, 'gif'))
-		{
-			$lnk = explode(".gif", $image);
-		}
-		else if (strstr($image, 'png'))
-		{
-			$lnk = explode(".png", $image);
-		}
-		else if (strstr($image, 'jpg'))
-		{
-			$lnk = explode(".jpg", $image);
-		}
-
-		$lnk[0] = str_replace('+','/', $lnk[0]);
-		$lnk[0] = str_replace('@','?', $lnk[0]);
-
-		$rand_image = "<a href=\"http://$lnk[0]\"><img src=\"$dir_path/$image\" alt=\"$lnk[0]\" /></a>";
-	}
-	else if (!$raw)
-	{
-		$rand_image .= "<img src=\"$dir_path/$image\" alt=\"\" />";
-	}
-	else
-	{
-		$rand_image .= "$dir_path/$image";
-	}
-
-	$imgs = '';
-
-	return($rand_image);
-}
-
-/* Stargate functions ends */
-]]></action>
-
-	</edit></open>
-
-	<open src="mcp.php"><edit>
-
+<open src="mcp.php"><edit>
 <comment lang="en">Line ~117</comment>
 <find><![CDATA[		'make_global'	=> 'f_announce',]]></find>
 <action type="after-add"><![CDATA[		'make_news'		=> 'f_announce',
 		'make_news_global'	=> 'f_announce',]]></action>
-
 </edit>
-
 <edit>
 <find><![CDATA[		case 'make_global':]]></find>
 <action type="after-add"><![CDATA[		case 'make_news':
 	    case 'make_news_global':]]></action>
 </edit>
-
 <edit>
-<find><![CDATA[function mcp_sorting($mode, &$sort_days, &$sort_key, &$sort_dir, &$sort_by_sql, &$sort_order_sql, &$total, $forum_id = 0, $topic_id = 0, $where_sql = 'WHERE')
-{
-	global $db, $user, $auth, $template;
-
-	$sort_days = request_var('st', 0);
-	$min_time = ($sort_days) ? time() - ($sort_days * 86400) : 0;
-
-	switch ($mode)
-	{
-		case 'viewforum':
-			$type = 'topics';
-			$default_key = 't';
-			$default_dir = 'd';
-
-			$sql = 'SELECT COUNT(topic_id) AS total
-				FROM ' . TOPICS_TABLE . "
-				$where_sql forum_id = $forum_id
-					AND topic_type NOT IN (" . POST_ANNOUNCE . ', ' . POST_GLOBAL . ")]]></find>
+<find><![CDATA[					AND topic_type NOT IN (" . POST_ANNOUNCE . ', ' . POST_GLOBAL . ")]]></find>
 <inline-edit>
 <inline-find>. POST_GLOBAL .</inline-find>
 <inline-action type="after-add"><![CDATA[ ' , ' . POST_NEWS . ' , ' . POST_NEWS_GLOBAL . ]]></inline-action>
 </inline-edit>
+</edit>
+</open>
 
-	</edit></open>
-
-	<open src="posting.php"><edit><comment lang="en">News Posts</comment>
-
+<open src="posting.php"><edit><comment lang="en">News Posts</comment>
 <find>			case POST_ANNOUNCE:</find>
 <action type="after-add">
 
@@ -448,7 +379,6 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 			case POST_NEWS_GLOBAL:</action>
 </edit>
 </open>
-
 
 <open src="search.php">
 <edit>
@@ -557,7 +487,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 		);]]></find>
 <action type="replace-with"><![CDATA[			'S_TOPIC_TYPE_SWITCH'	=> ($s_type_switch == $s_type_switch_test) ? -1 : $s_type_switch_test,
 
-			'TOOLTIP'				=> (STARGATE && isset($row['message_tooltip'])) ? sgp_truncate_message(bbcode_strip(($row['message_tooltip'])), 500) : '',
+			'TOOLTIP'				=> (STARGATE && isset($row['message_tooltip'])) ? bbcode_strip($row['message_tooltip']) : '',
 			'TOPIC_ICON_IMG_GROUP'	=> (!empty($icons[$row['icon_id']])) ? $icons[$row['icon_id']]['group'] : '',
 			'S_POST_NEWS'			=> ($row['topic_type'] == POST_NEWS) ? true : false,
 			'S_POST_NEWS_GLOBAL'	=> ($row['topic_type'] == POST_NEWS_GLOBAL) ? true : false,
@@ -579,6 +509,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <find><![CDATA[			$location_url = append_sid("{$phpbb_root_path}index.$phpEx");
 		break;]]></find>
 <action type="after-add"><![CDATA[
+
 		case 'portal':
 			if (STARGATE)
 			{
@@ -696,14 +627,16 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <edit>
 <find><![CDATA[?>]]></find>
 <action type="before-add"><![CDATA[
-
+// disable portal during update or install process
+if(defined('IN_INSTALL'))
+{
+	define('STARGATE', false);
+}
 // Call portal contents functions 24 March 2010
 if (STARGATE)
 {
 	include($phpbb_root_path . 'includes/sgp_functions_content.' . $phpEx);
-}
-
-]]></action>
+}]]></action>
 
 </edit>
 </open>
@@ -985,23 +918,24 @@ define('POST_NEWS_GLOBAL', 5);</action>
 </edit>
 
 <edit>
-<find>// Additional tables</find>
+<find><![CDATA[// Additional tables]]></find>
 <action type="after-add">
-
+<![CDATA[
 // Stargate Portal (Kiss II) tables //
 define('WELCOME_MESSAGE', 1);
+define('UN_ALLOC__MENUS', 0);
 define('NAV_MENUS', 1);
 define('SUB_MENUS', 2);
 define('HEAD_MENUS', 3);
 define('FOOT_MENUS', 4);
+define('LINKS_MENUS', 5);
 
 define('K_MENUS_TABLE',				$table_prefix . 'k_menus');
 define('K_BLOCKS_TABLE',			$table_prefix . 'k_blocks');
 define('K_BLOCKS_CONFIG_TABLE',		$table_prefix . 'k_blocks_config');
 define('K_BLOCKS_CONFIG_VAR_TABLE',	$table_prefix . 'k_blocks_config_vars');
 define('K_RESOURCES_TABLE',			$table_prefix . 'k_resources');
-define('K_PAGES_TABLE',				$table_prefix . 'k_pages');</action>
-
+define('K_PAGES_TABLE',				$table_prefix . 'k_pages');]]></action>
 </edit>
 </open>
 
@@ -1026,6 +960,11 @@ define('K_PAGES_TABLE',				$table_prefix . 'k_pages');</action>
 	{
 		global $user, $queries, $cached_queries, $total_queries;
 
+		if(!function_exists('get_user_avatar'))
+		{
+			include($phpbb_root_path . 'includes/functions_display.'. $phpEx);
+		}
+
 		$cache_time = (isset($k_config['block_cache_time'])) ? $k_config['block_cache_time'] : '600';
 
 		$template->assign_vars(array(
@@ -1033,13 +972,13 @@ define('K_PAGES_TABLE',				$table_prefix . 'k_pages');</action>
 			'STARGATE_BUILD'		=> (isset($config['portal_build'])) ? $config['portal_build'] : '',
 			'STARGATE_VERSION'		=> (isset($config['portal_version'])) ? $config['portal_version'] : '',
 
-			'AVATAR_SMALL_IMG'		=> (STARGATE) ? sgp_get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], '35', '35') : '',
+			'AVATAR_SMALL_IMG'		=> (STARGATE) ? get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], '35', '35') : '',
 			'P_USERNAME'			=> (STARGATE) ? $user->data['username'] : '',
 			'P_USERNAME_FULL'		=> (STARGATE) ? get_username_string('full', $user->data['user_id'], $user->data['username'], $user->data['user_colour']) : '',
 
 			'T_THEME_PATH'			=> "{$web_path}styles/" . $user->theme['theme_path'] . '/theme',
 			'T_PORTAL_THEME_PATH'	=> "{$web_path}styles/_portal_common/theme",
-			'T_TEMPLATE_PATH'		=> "{$web_path}styles/" . $user->theme['template_path'] . '/template',
+			'T_SUPER_TEMPLATE_PATH'		=> "{$web_path}styles/" . $user->theme['template_path'] . '/template',
 			'T_SUPER_TEMPLATE_PATH'	=> (isset($user->theme['template_inherit_path']) && $user->theme['template_inherit_path']) ? "{$web_path}styles/" . $user->theme['template_inherit_path'] . '/template' : "{$web_path}styles/" . $user->theme['template_path'] . '/template',
 			'T_IMAGESET_PATH'		=> "{$web_path}styles/" . $user->theme['imageset_path'] . '/imageset',
 			'T_IMAGESET_LANG_PATH'	=> "{$web_path}styles/" . $user->theme['imageset_path'] . '/imageset/' . $user->data['user_lang'],
@@ -1053,7 +992,8 @@ define('K_PAGES_TABLE',				$table_prefix . 'k_pages');</action>
 
 		if (isset($_COOKIE[$cookie_name]))
 		{
-			$cookie_value = (int)$_COOKIE[$cookie_name];
+			//$cookie_value = (int)$_COOKIE[$cookie_name];
+			$cookie_value = request_var($cookie_name, 0, false, true);
 		}
 
 		$css = request_var('css', 0);
@@ -1106,9 +1046,10 @@ define('K_PAGES_TABLE',				$table_prefix . 'k_pages');</action>
 <edit>
 <find><![CDATA[?>]]></find>
 <action type="before-add"><![CDATA[/* From topic_text_hover mod by Rich McGirr copyright 2008 */
+/* strip bbcodes with otional truncate */
 if (!function_exists('bbcode_strip'))
 {
-	function bbcode_strip($text)
+	function bbcode_strip($text, $length = 0)
 	{
 		if (!STARGATE)
 		{
@@ -1129,10 +1070,110 @@ if (!function_exists('bbcode_strip'))
 				'`[\s]+`' // Multiple spaces
 			);
 		}
-		return preg_replace($RegEx, ' ', $text );
-	}
-}]]></action>
+		$message = preg_replace($RegEx, ' ', $text );
 
+		if($length > 1)
+		{
+			$message = sgp_truncate_message($length);
+		}
+		return($message);
+
+	}
+}
+
+/* Stargate functions start... copyright phpbbireland.com 2005-2010 */
+/*
+**	This function returns a random image preprocessed with html tags and an option link...
+**	The link is based on the image name... example www.phpbb.com.png
+**	or even: sourceforge.net+project+project_donations.php@group_id=156802.gif
+**  A token can be sent to filter images, for example all images containing menu_
+*/
+function get_random_image($dir_path, $add_link = false, $token = '', $raw = false)
+{
+	if (defined('IN_ADMIN') || (!STARGATE))
+	{
+		return;
+	}
+
+	// The $token can be used to filter image types...
+	// initialise vars
+	//$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
+
+	$lnk = '';
+	$rand_image = '';
+	$imglist = "";
+
+	mt_srand((double)microtime()*1000001);
+
+	$handle = @opendir($dir_path);
+
+	// 01 January 2009 Just return for now as this can cause an error report if uses is Admin as the path will be incorrect //
+	// quick report because people forget to add the image directory //
+
+	if (!$handle)
+	{
+		return;
+	}
+
+	if (!$token)
+	{
+		$token = '.';
+	}
+
+	while (($file = readdir($handle)) !== false)
+	{
+		if (strpos($file, ".gif") || strpos($file, ".jpg") || strpos($file, ".png") && strpos($file ,$token))
+		{
+			$imglist .= "$file ";
+		}
+	}
+	closedir($handle);
+
+	$imglist = explode(" ", $imglist);
+	$a = sizeof($imglist)-2;
+	$random = mt_rand(0, $a);
+	$image = $imglist[$random];
+
+	if (strpos($image, 'www') || strpos($image, 'http'))
+	{
+		$add_link = true;
+	}
+
+	if ($add_link)
+	{
+		if (strstr($image, 'gif'))
+		{
+			$lnk = explode(".gif", $image);
+		}
+		else if (strstr($image, 'png'))
+		{
+			$lnk = explode(".png", $image);
+		}
+		else if (strstr($image, 'jpg'))
+		{
+			$lnk = explode(".jpg", $image);
+		}
+
+		$lnk[0] = str_replace('+','/', $lnk[0]);
+		$lnk[0] = str_replace('@','?', $lnk[0]);
+
+		$rand_image = "<a href=\"http://$lnk[0]\"><img src=\"$dir_path/$image\" alt=\"$lnk[0]\" /></a>";
+	}
+	else if (!$raw)
+	{
+		$rand_image .= "<img src=\"$dir_path/$image\" alt=\"\" />";
+	}
+	else
+	{
+		$rand_image .= "$dir_path/$image";
+	}
+
+	$imgs = '';
+
+	return($rand_image);
+}
+
+/* Stargate functions ends */]]></action>
 </edit>
 </open>
 
@@ -1179,8 +1220,25 @@ if (!function_exists('bbcode_strip'))
 		}
 		else
 		{
-			include($phpbb_root_path . 'includes/sgp_functions.' . $phpEx);
-			return (sgp_get_user_avatar ($avatar, $avatar_type, $avatar_width, $avatar_height, $alt = 'USER_AVATAR', false));
+			if ($config['allow_avatar'] && (empty($avatar) || !$avatar_type))
+			{
+					$poster_avatar = get_random_image($phpbb_root_path . 'images/avatars/no_avitar', false, '');
+
+					// do we wish to resize? 28 January 2010 should not require else...? will look later //
+					if ($avatar_width || $avatar_height)
+					{
+						if (strpos($poster_avatar, '/>"'))
+						{
+							$poster_avatar = str_replace('/>"', '" height="' . $avatar_height . '" width="' . $avatar_width . '" />', $poster_avatar);
+						}
+						elseif (strpos($poster_avatar, '/>'))
+						{
+							$poster_avatar = str_replace('/>', ' height="' . $avatar_height . '" width="' . $avatar_width . '" />', $poster_avatar);
+						}
+					}
+
+					return($poster_avatar);
+			}
 		}
 	}]]></action>
 </edit>
@@ -1363,8 +1421,15 @@ if (!function_exists('bbcode_strip'))
 				{
 					$errors[] = $user->lang['FORUM_PASSWORD_OLD'];
 				}]]></find>
-<action type="after-add"><![CDATA[				// Start mod list forum_images Michaelo copyright 2007 phpbbireland.com //
+<action type="after-add"><![CDATA[
+// Start mod list forum_images Michaelo copyright 2007 phpbbireland.com //
 				$dirslist=' ';
+
+				if(!file_exists('./../images/forum_icons'))
+				{
+					trigger_error(sprintf($user->lang['MISSING_FILE_OR_FOLDER'], $file));
+				}
+
 				$dirs = dir('./../images/forum_icons');
 				while ($file = $dirs->read())
 				{
@@ -1385,18 +1450,23 @@ if (!function_exists('bbcode_strip'))
 					}
 				}
 				$dirslist='';
-				// End mod list forum_images Michaelo //]]></action>
-
+				// End mod list forum_images Michaelo //
+]]></action>
 </edit>
 <edit>
 <find><![CDATA[					'FORUM_IMAGE_SRC'			=> ($forum_data['forum_image']) ? $phpbb_root_path . $forum_data['forum_image'] : '',]]></find>
 <action type="after-add"><![CDATA[					'FORUM_IMAGE_SRC_PATH'		=> $phpbb_root_path . 'images/forum_icons/',
 					'FORUM_IMAGE_PATH'			=> 'images/forum_icons/',]]></action>
-
 </edit>
 </open>
 
+
 <open src="includes/acp/acp_styles.php">
+<edit>
+<find><![CDATA[		$user->add_lang('acp/styles');]]></find>
+<action type="after-add"><![CDATA[		$user->add_lang('acp/kiss_styles');]]></action>
+</edit>
+
 <edit>
 <find>'topic_moved', 'topic_read', 'topic_read_mine', 'topic_read_hot', 'topic_read_hot_mine', 'topic_read_locked', 'topic_read_locked_mine', 'topic_unread', 'topic_unread_mine', 'topic_unread_hot', 'topic_unread_hot_mine', 'topic_unread_locked', 'topic_unread_locked_mine', 'sticky_read', 'sticky_read_mine', 'sticky_read_locked', 'sticky_read_locked_mine', 'sticky_unread', 'sticky_unread_mine', 'sticky_unread_locked', 'sticky_unread_locked_mine', 'announce_read', 'announce_read_mine', 'announce_read_locked', 'announce_read_locked_mine', 'announce_unread', 'announce_unread_mine', 'announce_unread_locked', 'announce_unread_locked_mine', 'global_read', 'global_read_mine', 'global_read_locked', 'global_read_locked_mine', 'global_unread', 'global_unread_mine', 'global_unread_locked', 'global_unread_locked_mine', 'pm_read', 'pm_unread',</find>
 <inline-edit>
@@ -1453,18 +1523,10 @@ if (!function_exists('bbcode_strip'))
 
 <open src="styles/prosilver/template/memberlist_search.html">
 <edit>
-<find><![CDATA[<script type="text/javascript" src="{T_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
+<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
 <action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>]]></action>
 </edit>
 </open>
-
-<open src="styles/prosilver/template/simple_header.html">
-<edit>
-<find><![CDATA[<script type="text/javascript" src="{T_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
-<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>]]></action>
-</edit>
-</open>
-
 
 <open src="styles/prosilver/template/overall_footer.html">
 <edit>
@@ -1482,45 +1544,16 @@ if (!function_exists('bbcode_strip'))
 </edit>
 
 <edit>
-<find><![CDATA[	<div class="copyright">Powered by <a href="http://www.phpbb.com/">phpBB</a> &copy; 2000, 2002, 2005, 2007 phpBB Group
+<find><![CDATA[	<div class="copyright">Powered by <a href="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
 ]]></find>
 <action type="after-add"><![CDATA[		<!-- IF STARGATE --><!-- INCLUDE portal_copyright.html --><!-- ENDIF -->
 ]]></action>
 </edit>
 
 <edit>
-<find><![CDATA[<div>
-	<a id="bottom" name="bottom" accesskey="z"></a>
-	<!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
-</div>]]></find>
-<action type="after-add"><![CDATA[<!-- IF STARGATE--></div><!-- ENDIF -->]]></action>
-</edit>
-</open>
-
-
-<open src="styles/prosilver/template/attachment.html">
-<edit>
-<comment lang="en">Line ~7</comment>
-<find><![CDATA[		<!-- IF _file.S_THUMBNAIL -->
-		<dl class="thumbnail">
-			<dt><a href="{_file.U_DOWNLOAD_LINK}"><img src="{_file.THUMB_IMAGE}" alt="{_file.DOWNLOAD_NAME}" title="{_file.DOWNLOAD_NAME} ({_file.FILESIZE} {_file.SIZE_LANG}) {_file.L_DOWNLOAD_COUNT}" /></a></dt>
-			<!-- IF _file.COMMENT --><dd> {_file.COMMENT}</dd><!-- ENDIF -->
-		</dl>
-		<!-- ENDIF -->]]></find>
-<action type="replace-with"><![CDATA[		<!-- IF _file.S_THUMBNAIL -->
-		<div class="highslide-gallery">
-		<dl class="thumbnail">
-			<dt>
-				<a href="{_file.U_DOWNLOAD_LINK}/{_file.DOWNLOAD_NAME}" class="highslide" onclick="return hs.expand(this)"><img src="{_file.THUMB_IMAGE}" alt="{_file.DOWNLOAD_NAME}" title="{L_CLICK_TO_ENLARGE}" /></a>
-				<div class="highslide-caption">{_file.DOWNLOAD_NAME} ({_file.FILESIZE} {_file.SIZE_LANG})</div>
-			</dt>
-			<!-- IF _file.COMMENT --><dd> {_file.COMMENT}</dd><!-- ENDIF -->
-		</dl>
-		</div>
-		<dl class="file">
-			<dd>{_file.DOWNLOAD_NAME} ({_file.FILESIZE} {_file.SIZE_LANG}) {_file.L_DOWNLOAD_COUNT}</dd>
-		</dl>
-		<!-- ENDIF -->]]></action>
+<find><![CDATA[</body>
+</html>]]></find>
+<action type="before-add"><![CDATA[<!-- IF STARGATE--></div><!-- ENDIF -->]]></action>
 </edit>
 </open>
 
@@ -1534,8 +1567,8 @@ if (!function_exists('bbcode_strip'))
 
 <edit>
 <comment lang="en">Line ~88</comment>
-<find><![CDATA[<script type="text/javascript" src="{T_TEMPLATE_PATH}/styleswitcher.js"></script>
-<script type="text/javascript" src="{T_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
+<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/styleswitcher.js"></script>
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
 <action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/styleswitcher.js"></script>
 <script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>]]></action>
 </edit>
@@ -1580,14 +1613,12 @@ if (!function_exists('bbcode_strip'))
 <action type="after-add"><![CDATA[				<!-- IF STARGATE -->
 					<li class="rightside">
 						<!-- IF S_ARRANGE -->
-						<span style="display:inline;" id="_OFF">
-							<a href="javascript:chooseStyle('none', 60)" style="float:left" checked="checked"><img src="{T_PORTAL_THEME_PATH}/images/wide.png" width="15" height="15" alt=" {L_WIDE}" title="{L_WIDE}" /></a>
-							<a href="javascript:chooseStyle('fixed', 60)" style="float:left"><img src="{T_PORTAL_THEME_PATH}/images/narrow.png" width="15" height="15" alt=" {L_NARROW}" title="{L_NARROW}" /></a>
-							<a href="{U_PORTAL}" onclick="ShowHide('_ON'); ShowHide('_OFF');" style="float:left" title="{L_ARRANGE_OFF}"><img src="{T_PORTAL_THEME_PATH}/images/save_changes.png" width="15" height="15" alt=" {L_ARRANGE_OFF}" title="{L_ARRANGE_OFF}" /></a>
+						<span style="display:inline;" id="OFF_">
+							<a href="{U_PORTAL}" onclick="ShowHide('ON_'); ShowHide('OFF_');" style="float:left" title="{L_ARRANGE_OFF}"><img src="{T_PORTAL_THEME_PATH}/images/save_changes.png" width="15" height="15" alt=" {L_ARRANGE_OFF}" title="{L_ARRANGE_OFF}" /></a>
 						</span>
 						<!-- ELSE -->
-						<span style="display:inline;" id="_ON">
-							<a href="{U_PORTAL_ARRANGE}" onclick="ShowHide('_OFF'); ShowHide('_ON'); " style="float:left" title="{L_ARRANGE_ON}"><img src="{T_PORTAL_THEME_PATH}/images/arrange.png" width="15" height="15" alt=" {L_ARRANGE_ON}" title="{L_ARRANGE_ON}" /></a>
+						<span style="display:inline;" id="ON_">
+							<a href="{U_PORTAL_ARRANGE}" onclick="ShowHide('OFF_'); ShowHide('ON_'); " style="float:left" title="{L_ARRANGE_ON}"><img src="{T_PORTAL_THEME_PATH}/images/arrange.png" width="15" height="15" alt=" {L_ARRANGE_ON}" title="{L_ARRANGE_ON}" /></a>
 						</span>
 						<!-- ENDIF -->
 					</li>
@@ -1613,19 +1644,17 @@ if (!function_exists('bbcode_strip'))
 
 <open src="styles/prosilver/template/posting_buttons.html">
 <edit>
-<find><![CDATA[<script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>]]></find>
+<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></find>
 <action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>
 ]]></action>
-
 </edit>
 </open>
 
 <open src="styles/prosilver/template/posting_smilies.html">
 <edit>
-<find><![CDATA[<script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>]]></find>
+<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></find>
 <action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>
 ]]></action>
-
 </edit>
 </open>
 
@@ -1642,9 +1671,10 @@ if (!function_exists('bbcode_strip'))
 
 <open src="styles/prosilver/template/simple_header.html">
 <edit>
-<find><![CDATA[<script type="text/javascript" src="{T_TEMPLATE_PATH}/styleswitcher.js"></script>]]></find>
-<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/styleswitcher.js"></script>]]></action>
-
+<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/styleswitcher.js"></script>
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
+<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/styleswitcher.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>]]></action>
 </edit>
 </open>
 
@@ -1675,6 +1705,7 @@ if (!function_exists('bbcode_strip'))
 	<!-- INCLUDE quickreply_editor.html -->
 <!-- ENDIF -->]]></action>
 </edit>
+
 <edit>
 <comment lang="en">Line ~243</comment>
 <find><![CDATA[<!-- ENDIF -->
@@ -1690,6 +1721,7 @@ if (!function_exists('bbcode_strip'))
 		<!-- ENDIF -->
 	<!-- ENDIF -->]]></action>
 </edit>
+
 <edit>
 <comment lang="en">Line ~252</comment>
 <find><![CDATA[	<!-- IF PAGINATION or TOTAL_POSTS -->
@@ -1705,7 +1737,6 @@ if (!function_exists('bbcode_strip'))
 </edit>
 </open>
 
-
 <open src="styles/prosilver/imageset/imageset.cfg">
 <edit>
 <find>img_poll_left =
@@ -1714,7 +1745,6 @@ img_poll_right = </find>
 <action type="replace-with">img_poll_left = poll_left.gif*12*4
 img_poll_center = poll_center.gif*12*
 img_poll_right = poll_right.gif*12*4</action>
-
 </edit>
 
 <edit>
@@ -1727,11 +1757,8 @@ img_news_unread				= news_unread.gif*27*27
 img_news_unread_mine		= news_unread_mine.gif*27*27
 img_news_unread_locked		= news_unread_locked.gif*27*27
 img_news_unread_locked_mine	= news_unread_locked_mine.gif*27*27</action>
-
 </edit>
 </open>
-
-
 
 <open src="styles/prosilver/theme/common.css">
 <edit>
@@ -1770,8 +1797,6 @@ img_news_unread_locked_mine	= news_unread_locked_mine.gif*27*27</action>
 </open>
 
 
-
-
 <php-installer><![CDATA[portal/index.php]]></php-installer>
 <diy-instructions lang="en-gb">
 Point your browser to: your_site/portal/ and follow the onscreen instructions...
@@ -1785,7 +1810,7 @@ Refresh subsilver 2 Templates/Themes/Imagesets if you completed the subsilver 2 
 
 Purge the cache...
 
-Enable 'Create Thumbnail' to take advantage of highslide...
+Enable 'Create Thumbnail' to take advantage of highslide (assume you installed it)...
 Delete or rename the portal directory...
 </diy-instructions>
 </action-group>
