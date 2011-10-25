@@ -1,6 +1,5 @@
 <script type="text/javascript">
 // <![CDATA[
-// for SGP: Not very elegant but it works Mike //
 function set_ids(data, view)
 {
 	var mydata;
@@ -33,7 +32,7 @@ function set_ids(data, view)
 		<dd><label><br />
 			<select name="teams" id="team" class="post" onchange="set_ids(this.options[this.selectedIndex].value, 'k_teams');">{S_TEAMS}
 			<!-- BEGIN groups -->
-			<option value="{groups.GROUP_ID}">{groups.GROUP_ID} ({groups.GROUP_NAME})</option>
+				<option value="{groups.GROUP_ID}">{groups.GROUP_ID} ({groups.GROUP_NAME})</option>
 			<!-- END groups -->
 			</select>
 			</label>
@@ -45,6 +44,6 @@ function set_ids(data, view)
 	<legend>{L_THE_TEAM_SETTINGS_2}</legend>
 	<dl>
 		<dt><label for="k_teams_display_this_many">{L_K_TEAMS_DISPLAY_THIS_MANY}:</label><br /><span>{L_K_TEAMS_DISPLAY_THIS_MANY_EXPLAIN}</span></dt>
-		<dd><label><input class="post" size="3" maxlength="2" name="k_teams_display_this_many" value="{S_K_TEAMS_DISPLAY_THIS_MANY}" type="text" /></label></dd>
+		<dd><label><input class="post" size="3" maxlength="2" id="k_teams_display_this_many" name="k_teams_display_this_many" value="{S_K_TEAMS_DISPLAY_THIS_MANY}" type="text" /></label></dd>
 	</dl>
 </fieldset>
