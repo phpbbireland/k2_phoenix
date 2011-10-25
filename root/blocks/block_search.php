@@ -54,8 +54,8 @@ $template->assign_vars(array(
 	'S_USER_LOGGED_IN'	=> ($user->data['user_id'] != ANONYMOUS) ? true : false,
 	'SITE_NAME'         => $config['sitename'],
 	'U_INDEX'			=> append_sid("{$phpbb_root_path}index.$phpEx"),
-	'U_PORTAL'			=> append_sid("{$phpbb_root_path}index.$phpEx"),
-	'U_SEARCH_BOOKMARKS'=> append_sid("{$phpbb_root_path}ucp.$phpEx", '&amp;i=main&mode=bookmarks'),
+	'U_PORTAL'			=> append_sid("{$phpbb_root_path}portal.$phpEx"),
+	'U_SEARCH_BOOKMARKS'=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=main&mode=bookmarks'),
 	'SEARCH_DEBUG'		=> sprintf($user->lang['PORTAL_DEBUG_QUERIES'], ($queries) ? $queries : '0', ($cached_queries) ? $cached_queries : '0', ($total_queries) ? $total_queries : '0'),
 ));
 

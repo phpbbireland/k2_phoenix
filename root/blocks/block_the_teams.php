@@ -101,7 +101,7 @@ while ($row = $db->sql_fetchrow($result))
 		$team_count = $team_count + 1;
 	}
 
-	if($team_count < $team_max_count)
+	if($team_count < $team_max_count || $team_max_count == 0)
 	{
 		$template->assign_block_vars('loop', array(
 			'FIRST'				=> $i++,

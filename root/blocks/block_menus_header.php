@@ -51,14 +51,13 @@
 	$my_names = array();
 
 	$sql = "SELECT * FROM ". K_MENUS_TABLE . "
-		WHERE menu_type = " . NAV_MENUS . "
-		ORDER BY ndx ASC ";
+		WHERE menu_type = " . HEAD_MENUS . "
+		ORDER BY ndx ASC";
 
 	if (!$result = $db->sql_query($sql, $block_cache_time))
 	{
 		if (!$result = $db->sql_query($sql))
 		{
-			//trigger_error($user->lang['ERROR_PORTAL_MENUS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 			trigger_error($user->lang['ERROR_PORTAL_MENUS']);
 		}
 	}
@@ -78,7 +77,10 @@
 	$memberships = array();
 	$memberships = group_memberships(false, $user->data['user_id'], false);
 
-	for ($i = 0; $i < count($portal_menus); $i++)
+
+	$menu_count = count($portal_menus);
+
+	for ($i = 0; $i < $menu_count; $i++)
 	{
 		$u_id = ''; 														// initiate our var user u_id, if we need to pass user id
 		$isamp = '';														// initiate our var isamp, if we need to use it
@@ -149,7 +151,7 @@
 			switch($portal_menus[$i]['extern'])
 			{
 				case 1:
-					//$link_option = ' target="_blank"';
+					//$link_option = ' target="_blank"'; // not xhtml
 					$link_option = '';
 				break;
 
@@ -162,12 +164,13 @@
 				break;
 			}
 
-			$template->assign_block_vars('portal_menus_row', array(
+			$template->assign_block_vars('header_menus_row', array(
+				'ID'					=> $portal_menus[$i]['m_id'],
 				'EXTERN'				=> $link_option,
 				'PORTAL_MENU_HEAD_NAME'	=> ($is_sub_heading) ? $name : '',
 				'PORTAL_MENU_NAME' 		=> $name,
-				'PORTAL_MENU_ICON'		=> ($portal_menus[$i]['menu_icon']) ? '<img src="' . $phpbb_root_path . 'images/block_images/menu/' . $portal_menus[$i]['menu_icon'] . '" height="16" width="16" alt="" />' : '<img src="' . $phpbb_root_path . 'images/block_images/menu/spacer.gif" height="15px" width="15px" alt="" />',
 				'U_PORTAL_MENU_LINK' 	=> ($portal_menus[$i]['sub_heading']) ? '' : $link,
+				'PORTAL_MENU_ICON'		=> ($portal_menus[$i]['menu_icon']) ? '<img src="' . $phpbb_root_path . 'images/block_images/menu/' . $portal_menus[$i]['menu_icon'] . '" height="16" width="16" alt="" />' : '<img src="' . $phpbb_root_path . 'images/block_images/menu/spacer.gif" height="15px" width="15px" alt="" />',
 				'S_SOFT_HR'				=> $portal_menus[$i]['soft_hr'],
 				'S_SUB_HEADING' 		=> ($portal_menus[$i]['sub_heading']) ? true : false,
 			));

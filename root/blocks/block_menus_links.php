@@ -43,12 +43,6 @@
 	}
 	$block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k_block_cache_time_default']);
 
-	// menu_type 0 = Header Menu,
-	// menu type 1 = Main Nav blocks,
-	// menu type 2 = Sub Nav Block
-	// menu type 3 = Footer Menu Block
-	// menu type 4 = Links Menu Block
-
 	$j = 0;
 	$is_sub_heading = false;
 
@@ -57,12 +51,13 @@
 	$my_names = array();
 
 	$sql = "SELECT * FROM ". K_MENUS_TABLE . "
-		WHERE menu_type = 4 && view_by != 0
+		WHERE menu_type = " . FOOT_MENUS . "
 		ORDER BY ndx ASC";
 
 	if (!$result = $db->sql_query($sql, $block_cache_time))
 	{
-		trigger_error($user->lang['ERROR_PORTAL_SUB_MENU'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+		//trigger_error($user->lang['ERROR_PORTAL_SUB_MENU'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
+		trigger_error($user->lang['ERROR_PORTAL_SUB_MENU']);
 	}
 
 	$portal_link_menus = array();
@@ -73,12 +68,9 @@
 	}
 	$db->sql_freeresult($result);
 
-	// $group_name = which_group($user->data['group_id']);  // change to get_group_name - do we need this one anymore? see below...
-
-	//get_all_groups();
 
 	$memberships = array();
-	$memberships = sgp_group_memberships(false, $user->data['user_id'], false);
+	$memberships = group_memberships(false, $user->data['user_id'], false);
 
 	for ($i = 0; $i < count($portal_link_menus); $i++)
 	{
@@ -87,11 +79,9 @@
 
 		$name = (!empty($user->lang[$tmp_name])) ? $user->lang[$tmp_name] : $portal_link_menus[$i]['name'];   // get language equivalent //
 
-		$s_id = ''; 														// initiate our var session s_id, if we need to pass session id
 		$u_id = ''; 														// initiate our var user u_id, if we need to pass user id
 		$isamp = '';														// initiate our var isamp, if we need to use it
 
-		$menu_item_view_by = $portal_link_menus[$i]['view_by'];
 		$menu_view_groups = $portal_link_menus[$i]['view_groups'];
 		$menu_item_view_all = $portal_link_menus[$i]['view_all'];
 
@@ -105,18 +95,11 @@
 			{
 				foreach ($memberships as $member)
 				{
-					if ($menu_item_view_by == $member['group_id'] || $menu_item_view_all == 1)
+					for ($j = 0; $j < count($grps); $j++)
 					{
-						$process_menu_item = true;
-					}
-					else
-					{
-						for ($j = 0; $j < count($grps); $j++)
+						if ($grps[$j] == $member['group_id'])
 						{
-							if ($grps[$j] == $member['group_id'])
-							{
-								$process_menu_item = true;
-							}
+							$process_menu_item = true;
 						}
 					}
 				}
@@ -138,16 +121,6 @@
 			$isamp = '';
 		}
 
-		if ($portal_link_menus[$i]['append_sid'] == 1)							// do we need to pass user session id //
-		{
-			$s_id = '?sid=';
-			$s_id .= $user->session_id;
-		}
-		else
-		{
-			$s_id = '';
-		}
-
 		if ($process_menu_item && $portal_link_menus[$i]['sub_heading'])
 		{
 			$j++;
@@ -162,7 +135,7 @@
 			}
 			else
 			{
-				$link = ($portal_link_menus[$i]['link_to']) ? append_sid("{$phpbb_root_path}" . $portal_link_menus[$i]['link_to'] . $s_id . $u_id) : '';
+				$link = ($portal_link_menus[$i]['link_to']) ? append_sid("{$phpbb_root_path}" . $portal_link_menus[$i]['link_to'] . $u_id) : '';
 			}
 
 			$is_sub_heading = ($portal_link_menus[$i]['sub_heading']) ? true : false;

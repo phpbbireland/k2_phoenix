@@ -4,19 +4,14 @@
 * @package Stargate Portal
 * @author  Michael O'Toole - aka Michaelo
 * @begin   Sunday, 20th May, 2007
-* @copyright (c) 2005-2008 phpbbireland
+* @copyright (c) 2005-2011 phpbbireland
 * @home    http://www.phpbbireland.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 * @note: Do not remove this copyright. Just append yours if you have modified it,
 *        this is part of the Stargate Portal copyright agreement...
 *
 * @version $Id$
-*
-* Updated: 14th Oct 2008 NeXur / 6th September 2008 michaelo
-* Rem: 23 of the portal's queries take less that 0.00000s each
-* NeXur:
-*   Added X num Topics per Forum to show
-*   Changed SQL query to LEFT instead of INNER JOIN
+* 28 July 2011 06:23
 */
 
 /**
@@ -34,16 +29,8 @@ $auth->acl($user->data);
 
 $queries = $cached_queries = 0;
 
-// URL PARAMETERS
-@define('POST_TOPIC_URL', 't');
-@define('POST_CAT_URL', 'c');
-@define('POST_FORUM_URL', 'f');
-@define('POST_USERS_URL', 'u');
-@define('POST_POST_URL', 'p');
-@define('POST_GROUPS_URL', 'g');
-
 global $user, $forum_id, $phpbb_root_path, $phpEx, $SID, $config, $template, $k_config, $k_blocks, $db;
-//global $web_path;
+global $web_path;
 
 foreach ($k_blocks as $blk)
 {
@@ -55,15 +42,39 @@ foreach ($k_blocks as $blk)
 $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k_block_cache_time_default']);
 
 
+if(!defined('POST_TOPIC_URL'))
+{
+	define('POST_TOPIC_URL' , 't');
+}
+if(!defined('POST_CAT_URL'))
+{
+	define('POST_CAT_URL', 'c');
+}
+if(!defined('POST_FORUM_URL'))
+{
+	define('POST_FORUM_URL', 'f');
+}
+if(!defined('POST_USERS_URL'))
+{
+	define('POST_USERS_URL', 'u');
+}
+if(!defined('POST_POST_URL'))
+{
+	define('POST_POST_URL', 'p');
+}
+if(!defined('POST_GROUPS_URL'))
+{
+	define('POST_GROUPS_URL', 'g');
+}
+
 // set up variables used //
 $display_this_many = $k_config['k_recent_topics_to_display'];
 $forum_count = $row_count = 0;
 $except_forum_id = $k_config['k_recent_topics_search_exclude'];
-$forum_id_ary = '';
+$valid_forum_ids = array();
 $k_recent_search_days = $k_config['k_recent_search_days'];
 $k_post_types = $k_config['k_post_types'];
 $k_recent_topics_per_forum = $k_config['k_recent_topics_per_forum'];
-
 
 static $last_forum = 0;
 
@@ -81,44 +92,40 @@ if ($result = $db->sql_query($sql, $block_cache_time))
 }
 else
 {
-	trigger_error($user->lang['ERROR_PORTAL_RECENT_TOPICS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+	trigger_error('ERROR_PORTAL_NEWS');
 }
 $db->sql_freeresult($result);
 
 $style_row = ($scroll) ? 'scrollwide_' : 'staticwide_';
 
-// get all forums //
 $sql = "SELECT * FROM ". FORUMS_TABLE . " ORDER BY forum_id";
 if (!$result = $db->sql_query($sql, $block_cache_time))
 {
-	trigger_error($user->lang['ERROR_PORTAL_FORUMS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+	trigger_error($user->lang['ERROR_PORTAL_FORUMS']);
 }
 
-while( $row = $db->sql_fetchrow($result) )
+/* don't show these (set in ACP) */
+$except_forum_ids = explode(",", $except_forum_id);
+
+while ($row = $db->sql_fetchrow($result))
 {
-	$forum_data[] = $row;
-	$forum_count++;
+	if(!in_array($row['forum_id'], $except_forum_ids))
+	{
+		$forum_data[] = $row;
+		$forum_count++;
+	}
 }
 $db->sql_freeresult($result);
 
 for ($i = 0; $i < $forum_count; $i++)
 {
-	if (!$auth->acl_gets('f_list', 'f_read', $forum_data[$i]['forum_id']))
-	{
-		$except_forum_id .= "'" . $forum_data[$i]['forum_id'] . "'";
-		$except_forum_id .= ",";
-	}
-
 	if ($auth->acl_gets('f_list', 'f_read', $forum_data[$i]['forum_id']))
 	{
-		$forum_id_ary .= $forum_data[$i]['forum_id'];
-		$forum_id_ary .= ", ";
+		$valid_forum_ids[] = (int)$forum_data[$i]['forum_id'];
 	}
 }
-$except_forum_id = rtrim($except_forum_id,",");
 
-//($except_forum_id == '') ? $where_sql = "WHERE t.forum_id " : $where_sql = "WHERE t.forum_id NOT IN (" . $except_forum_id . ")";
-$where_sql = (($except_forum_id == '')) ? $where_sql = "WHERE t.forum_id " : $where_sql = "WHERE t.forum_id NOT IN (" . $except_forum_id . ")";
+$where_sql = 'WHERE ' . $db->sql_in_set('t.forum_id', $valid_forum_ids);
 
 if ($k_config['k_post_types'])
 {
@@ -126,14 +133,10 @@ if ($k_config['k_post_types'])
 }
 else
 {
-	$types_sql = "AND t.topic_type = 0";
+	$types_sql = "AND t.topic_type = " . FORUM_CAT;
 }
 
-
-if ($except_forum_id == '')
-{
-	$except_forum_id = '0';
-}
+$post_time_days = time() - 86400 * $k_recent_search_days;
 
 $sql = 'SELECT SQL_CACHE p.post_id, t.topic_id, t.topic_time, t.topic_title, t.topic_replies, t.forum_id, t.topic_last_post_time, t.topic_last_post_id, t.topic_last_poster_id, t.topic_last_poster_name, t.topic_last_poster_colour, t.topic_type, f.forum_name, p.post_edit_time, p.post_subject, p.post_text, p.post_time, p.bbcode_bitfield, p.bbcode_uid, f.forum_desc
 		FROM ' . FORUMS_TABLE . ' f
@@ -144,7 +147,7 @@ $sql = 'SELECT SQL_CACHE p.post_id, t.topic_id, t.topic_time, t.topic_title, t.t
 					AND p.post_approved = 1
 					' . $types_sql . '
 					AND p.post_id = t.topic_first_post_id
-					AND t.topic_last_post_time >= (unix_timestamp(date_add(now(), interval - ' . $k_recent_search_days . ' day)))
+					AND t.topic_last_post_time >= ' . $post_time_days . '
 		ORDER BY t.forum_id, t.topic_last_post_time DESC';
 
 $result = $db->sql_query_limit($sql, $display_this_many, 0, $block_cache_time);
@@ -186,41 +189,38 @@ if ($scroll)
 }
 
 // get the little image if it exists else we will use the default (backward compatibility is a must) ;)
-
 if (file_exists($phpbb_root_path . "{$web_path}styles/" . $user->theme['theme_path'] . '/theme/images/next_line.gif'))
 {
-	$next_img = '<img src="' . $phpbb_root_path . "{$web_path}styles/" . $user->theme['theme_path'] . '/theme/images/next_line.gif" height="9px" width="11px" alt="" />';
+	$next_img = '<img src="' . $phpbb_root_path . "{$web_path}styles/" . $user->theme['theme_path'] . '/theme/images/next_line.gif" height="9" width="11" alt="" />';
 }
 else
 {
-	$next_img = '<img src="' . $phpbb_root_path . 'images/next_line.gif" height="9px" width="11px" alt="" />';
+	$next_img = '<img src="' . $phpbb_root_path . 'images/next_line.gif" height="9" width="11" alt="" />';
 }
 
 for ($i = 0; $i < $display_this_many; $i++)
 {
 	$unique = ($row[$i]['forum_id'] == $last_forum) ? false : true;
 
-	//echo 'Forum ID = ' . $row[$i]['forum_id'] . ' Compare to: '; echo $row[$i - $k_recent_topics_per_forum]['forum_id'] . '<br />';
 	if ($i >= $k_recent_topics_per_forum && $row[$i]['forum_id'] == $row[$i - $k_recent_topics_per_forum]['forum_id'])
 	{
 		continue;
 	}
 
-	// reduce length and pad with ... if too long //
-	$my_title = smilies_pass($row[$i]['topic_title']);
+	$my_title = $row[$i]['topic_title'];
+
 	if (strlen($my_title) > 25)
 	{
 		sgp_checksize ($my_title, 25);
 	}
 
-	// reduce length and pad with ... if too long //
-	$forum_name = smilies_pass($row[$i]['forum_name']);
+	$forum_name = $row[$i]['forum_name'];
+
 	if (strlen($forum_name) > 25)
 	{
-		sgp_checksize ($forum_name, 25);
+		$forum_name = sgp_checksize ($forum_name, 25);
 	}
 
-	//$view_topic_url = append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row[$i]['forum_id']) ? $row[$i]['forum_id'] : $forum_id) );
 	$view_topic_url = append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $row[$i]['forum_id']);
 
 	if ($row[$i]['post_edit_time'] > $row[$i]['topic_last_post_time'])
@@ -237,7 +237,7 @@ for ($i = 0; $i < $display_this_many; $i++)
 		'LAST_POST_IMG_W'	=> $user->img('icon_topic_newest', 'VIEW_LATEST_POST'),
 		'LAST_POST_IMG_W'	=> $next_img,
 		'FORUM_W'			=> $forum_name,
-		'U_FORUM_W'			=> append_sid("viewforum.$phpEx?" . POST_FORUM_URL . '=' . $row[$i]['forum_id']),
+		'U_FORUM_W'			=> append_sid("{$phpbb_root_path}viewforum.$phpEx?" . POST_FORUM_URL . '=' . $row[$i]['forum_id']),
 		'TITLE_W'			=> censor_text($my_title),
 		'U_TITLE_W'			=> $view_topic_url . '&amp;p=' . $row[$i]['topic_last_post_id'] . '#p' . $row[$i]['topic_last_post_id'],
 		'POSTER_FULL_W'		=> get_username_string('full', $row[$i]['topic_last_poster_id'], $row[$i]['topic_last_poster_name'], $row[$i]['topic_last_poster_colour']),
@@ -247,8 +247,6 @@ for ($i = 0; $i < $display_this_many; $i++)
 		'S_TYPE_W'			=> $row[$i]['topic_type'],
 		'TOOLTIP_W'			=> bbcode_strip($row[$i]['post_text']),
 		'TOOLTIP2_W'		=> bbcode_strip($row[$i]['forum_desc']),
-		//'TOOLTIP'			=> bbcode_strip(censor_text($row[$i]['post_text'])),
-		//'TOOLTIP2'		=> bbcode_strip(censor_text($row[$i]['forum_desc'])),
 	));
 
 	$last_forum = $row[$i]['forum_id'];

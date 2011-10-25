@@ -42,15 +42,16 @@ $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k
 $k_top_topics_max = $k_config['k_top_topics_max'];
 $k_top_topics_days = $k_config['k_top_topics_days'];
 
+
 $sql = 'SELECT topic_id, topic_title, topic_replies, forum_id
 	FROM ' . TOPICS_TABLE . '
 	WHERE topic_approved = 1
 		AND topic_replies <> 0
-		AND topic_status <> 2
+		AND topic_status <> ' . ITEM_MOVED . '
 		AND topic_last_post_time > ' . (time() - $k_top_topics_days * 86400 ) . '
 	ORDER BY topic_replies DESC';
 
-$result = $db->sql_query_limit($sql, $k_top_topics_max, 0 , $block_cache_time);
+$result = $db->sql_query_limit($sql, $k_top_topics_max, 0, $block_cache_time);
 
 while($row = $db->sql_fetchrow($result))
 {
@@ -63,7 +64,7 @@ while($row = $db->sql_fetchrow($result))
 	if ($auth->acl_gets('f_list', 'f_read', $row['forum_id']))
 	{
 		// reduce length and pad with ... if too long //
-		$my_title = smilies_pass($row['topic_title']);
+		$my_title = $row['topic_title'];
 
 		if (strlen($my_title) > 16)
 		{
@@ -72,7 +73,7 @@ while($row = $db->sql_fetchrow($result))
 
 		$template->assign_block_vars('top_topics', array(
 			'TOPIC_TITLE'		=> $my_title,
-			'FULL_T_TITLE'		=> smilies_pass($row['topic_title']),
+			'FULL_T_TITLE'		=> $row['topic_title'],
 			'S_SEARCH_ACTION'	=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $row['forum_id'] . '&amp;t=' . $row['topic_id']),
 			'TOPIC_REPLIES'		=> $row['topic_replies'],
 			)

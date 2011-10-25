@@ -11,7 +11,7 @@
 *        this is part of the Stargate Portal copyright agreement...
 *
 * @version $Id: block_announcements.php 336 2009-01-23 02:06:37Z Michealo $
-* Updated: 15 December 2008
+* Updated: 28 July 2011 00:03
 *
 */
 
@@ -36,12 +36,11 @@ foreach ($k_blocks as $blk)
 	if ($blk['html_file_name'] == 'block_announcements.html')
 	{
 		$block_cache_time = $blk['block_cache_time'];
-		//$block_cache_time = (isset($blk['block_cache_time'])) ? $blk['block_cache_time'] : '0';
 	}
 }
 $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k_block_cache_time_default']);
 
-$queries = $cached_queries = 0;
+$queries = $cached_queries = $i = $j = 0;
 
 // Get portal cache data
 $k_announce_allow = $k_config['k_announce_allow'];
@@ -49,10 +48,10 @@ $k_announce_type = $k_config['k_announce_type'];
 $k_announce_to_display = $k_config['k_announce_to_display'];
 $k_announce_item_max_length = $k_config['k_announce_item_max_length'];
 
-$bbcode_bitfield = $a_type = $where_attachments = '';
+$bbcode_bitfield = $a_type = '';
 $has_attachments = $display_notice = false;
 
-$attach_list = $post_list = $posts = $attachments = $extensions = array();
+$attach_array = $attach_list = $post_list = $posts = $attachments = $extensions = array();
 $time_now = time();
 
 // Build sql WHERE clause based on $config['k_announce_type']... //fix stu http://www.phpbbireland.com/phpBB3/viewtopic.php?p=16804
@@ -62,11 +61,11 @@ switch ($k_announce_type)
 		$a_type = "(t.topic_id = p.topic_id AND t.topic_type = 2 AND t.topic_status <> 2 AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now) OR " . "t.topic_id = p.topic_id AND t.topic_type = 3 AND t.topic_status <> 2 AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now) )";
 	break;
 
-	case 2:   //local
+	case POST_ANNOUNCE:
 		$a_type = "(t.topic_id = p.topic_id AND t.topic_type = 2 AND t.topic_status <> 2 AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now))";
 	break;
 
-	case 3:   //global
+	case POST_GLOBAL:
 		$a_type = "(t.topic_id = p.topic_id AND t.topic_type = 3 AND t.topic_status <> 2 AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now))";
 	break;
 
@@ -117,13 +116,7 @@ $sql = 'SELECT
 	ORDER BY
 		t.topic_type DESC, t.topic_time DESC';
 
-// query the database
-if (!($result = $db->sql_query_limit($sql, (($k_announce_to_display) ? $k_announce_to_display : 1), 0, $block_cache_time)))
-{
-	trigger_error($user->lang['ERROR_PORTAL_ANNOUNCE'] 	. ' ' . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
-}
-
-$i = 0;
+$result = $db->sql_query_limit($sql, (($k_announce_to_display) ? $k_announce_to_display : 1), 0, $block_cache_time);
 
 while ($row = $db->sql_fetchrow($result))
 {
@@ -151,19 +144,20 @@ while ($row = $db->sql_fetchrow($result))
 			'post_id'			=> $row['post_id'],
 			'poster_id'			=> $row['poster_id'],
 			'topic_replies'		=> $row['topic_replies'],
-			'topic_time'		=> $user->format_date($row['post_time']),
 			'topic_title'		=> $row['topic_title'],
 			'topic_type'		=> $row['topic_type'],
 			'topic_status'		=> $row['topic_status'],
 			'username'			=> $row['username'],
 			'user_colour'		=> $row['user_colour'],
 			'poll_title'		=> ($row['poll_title']) ? true : false,
-			'post_time'			=> create_date($config['default_dateformat'], $row['post_time'],  $config['board_timezone']),
-			'topic_time'		=> create_date($config['default_dateformat'], $row['topic_time'], $config['board_timezone']),
+			'post_time'			=> $user->format_date($row['post_time']),
+			'topic_time'		=> $user->format_date($row['topic_time']),
 			'post_approved'		=> $row['post_approved'],
 			'post_attachment'	=> $row['post_attachment'],
 			'bbcode_bitfield'	=> $row['bbcode_bitfield'],
 			'bbcode_uid'		=> $row['bbcode_uid'],
+			'enable_bbcode'		=> $row['enable_bbcode'],
+			'bbcode_options'	=> (($row['enable_bbcode']) ? OPTION_FLAG_BBCODE : 0) + (($row['enable_smilies']) ? OPTION_FLAG_SMILIES : 0) + (($row['enable_magic_url']) ? OPTION_FLAG_LINKS : 0),
 		);
 
 		// Define the global bbcode bitfield, will be used to load bbcodes
@@ -174,13 +168,13 @@ while ($row = $db->sql_fetchrow($result))
 		{
 			global $cache;
 
-			//if (!function_exists('obtain_attach_extensions'))
 			if (!class_exists('cache'))
 			{
 				include($phpbb_root_path . 'includes/cache.' . $phpEx);
 			}
 
-			$where_attachments .= $row['post_id'] . ', ';
+			$attach_array[$j++] = $row['post_id'];
+
 			$extensions .= $cache->obtain_attach_extensions($row['forum_id']);
 		}
 	}
@@ -190,26 +184,17 @@ $db->sql_freeresult($result);
 // Pull attachment data
 if (sizeof($attach_list))
 {
-	$where_attachments = rtrim($where_attachments, ', ');
-
-	if ($where_attachments == '')
-	{
-		$where_attachments = '1';
-	}
-
 	if ($auth->acl_get('u_download'))
 	{
 		$sql = 'SELECT *
 			FROM ' . ATTACHMENTS_TABLE . '
-			WHERE post_msg_id IN (' . $where_attachments . ')
-				AND in_message = 0
+			WHERE ' . $db->sql_in_set('post_msg_id', $attach_array) . '
 			ORDER BY filetime DESC';
 		$result = $db->sql_query($sql, $block_cache_time);
 
 		while($row = $db->sql_fetchrow($result))
 		{
 			$attachments[$row['post_msg_id']][] = $row;
-			$attachmentss[$row['post_msg_id']][] = $row;
 		}
 		$db->sql_freeresult($result);
 	}
@@ -219,12 +204,13 @@ if (sizeof($attach_list))
 	}
 }
 
-
 // Instantiate BBCode if need be
 if ($bbcode_bitfield !== '')
 {
 	$bbcode = new bbcode(base64_encode($bbcode_bitfield));
 }
+
+$image_path = $phpbb_root_path . 'styles/' . $user->theme['imageset_path'] . '/imageset/portal/';
 
 for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 {
@@ -235,7 +221,6 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 
 	$row =& $rowset[$post_list[$i]];
 
-
 	// Size the message to max length
 	if (($k_announce_item_max_length != 0) && (strlen($row['post_text']) > $k_announce_item_max_length))
 	{
@@ -243,22 +228,14 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		$row['post_text'] .= ' <a href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '"><strong>[' . $user->lang['VIEW_FULL_ARTICLE']  . ']</strong></a>';
 	}
 
-	// Parse the message
-	$message = censor_text($row['post_text']);
-
-	// Second parse bbcode here
-	if ($row['bbcode_bitfield'])
-	{
-		$bbcode->bbcode_second_pass($message, $row['bbcode_uid'], $row['bbcode_bitfield']);
-	}
-
-	$message = bbcode_nl2br($message);
-	$message = smiley_text($message);
+	$message = generate_text_for_display($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield'], $row['bbcode_options']);
 
 	if (!empty($attachments[$row['post_id']]))
 	{
 		parse_attachments($row['forum_id'], $message, $attachments[$row['post_id']], $update_count);
 	}
+
+	$message = sgp_local_acronyms($message);
 
 	$postrow = array(
 		'ALLOW_REPLY'	=> ($auth->acl_get('f_reply', $row['forum_id']) && $row['topic_status'] != '1') ? TRUE : FALSE,
@@ -273,10 +250,11 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		'U_VIEW'		=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']),
 		'U_REPLY'		=> append_sid("{$phpbb_root_path}posting.$phpEx", 'mode=reply&amp;t=' . $row['topic_id'] . '&amp;f=' . $row['forum_id']),
 
-		'U_PRINT'		=> ($auth->acl_get('f_print', $row['forum_id'])) ? append_sid("{$phpbb_root_path}viewtopic.$phpEx", "f=" . $row['forum_id'] . " &amp;t=" . $row['topic_id'] . "&amp;view=print") : '',
-		'U_REPLY_IMG'	=> '<img src="' . $phpbb_root_path . 'styles/' . $user->theme['imageset_path'] . '/imageset/blocks/post_comment.png'  . '" title="' . $user->lang['POST_COMMENTS']  . '" alt="' . $user->lang['POST_COMMENTS']  . '" />',
-		'U_PRINT_IMG' 	=> '<img src="' . $phpbb_root_path . 'styles/' . $user->theme['imageset_path'] . '/imageset/blocks/post_print.png' . '" title="' . $user->lang['PRINT_IT']  . '" alt="' . $user->lang['PRINT_IT']  . '" />',
-		'U_VIEW_IMG'	=> '<img src="' . $phpbb_root_path . 'styles/' . $user->theme['imageset_path'] . '/imageset/blocks/post_view.png' . '" title="' . $user->lang['VIEW_FULL_ARTICLE']  . '" alt="' . $user->lang['VIEW_FULL_ARTICLE']  . '" />',
+		'U_PRINT'		=> ($auth->acl_get('f_print', $row['forum_id'])) ? append_sid("{$phpbb_root_path}viewtopic.$phpEx", "f=" . $row['forum_id'] . "&amp;t=" . $row['topic_id'] . "&amp;view=print") : '',
+
+		'REPLY_IMG'		=> $image_path . 'post_comment.png',
+		'PRINT_IMG' 	=> $image_path . 'post_print.png',
+		'VIEW_IMG'		=> $image_path . 'post_view.png',
 
 		'S_TOPIC_TYPE'	=> $row['topic_type'],
 		'S_NOT_LAST'	=> ($i < sizeof($posts) - 1) ? true : false,
@@ -313,6 +291,7 @@ $template->assign_vars(array(
 	'S_ANNOUNCEMENTS_COUNT_ASKED'		=> sizeof($posts),
 	'S_ANNOUNCEMENTS_COUNT_RETURNED'	=> sizeof($post_list),
 	'T_IMAGESET_LANG_PATH'				=> "{$phpbb_root_path}styles/" . $user->theme['imageset_path'] . '/imageset/' . $user->data['user_lang'],
+
 	'ANNOUNCEMENYS_DEBUG'				=> sprintf($user->lang['PORTAL_DEBUG_QUERIES'], ($queries) ? $queries : '0', ($cached_queries) ? $cached_queries : '0', ($total_queries) ? $total_queries : '0'),
 ));
 

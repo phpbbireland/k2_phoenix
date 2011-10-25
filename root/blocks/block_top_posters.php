@@ -42,7 +42,7 @@ $k_top_posters_to_display = (!empty($k_config['k_top_posters_to_display'])) ? $k
 
 $sql = 'SELECT user_id, username, user_posts, user_colour, user_type, group_id, user_avatar, user_avatar_type, user_avatar_width , user_avatar_height, user_website
 	FROM ' . USERS_TABLE . '
-	WHERE user_type <> 2
+	WHERE user_type <> ' . USER_IGNORE . '
 		AND user_posts <> 0
 	ORDER BY user_posts DESC';
 
@@ -59,7 +59,7 @@ while($row = $db->sql_fetchrow($result))
         'S_SEARCH_ACTION'	=> append_sid("{$phpbb_root_path}search.$phpEx", 'author_id=' . $row['user_id'] . '&amp;sr=posts'),
 		'USERNAME_FULL'		=> get_username_string('full', $row['user_id'], sgp_checksize($row['username'],15), $row['user_colour']),
         'POSTER_POSTS'		=> $row['user_posts'],
-        'USER_AVATAR_IMG'	=> sgp_get_user_avatar($row['user_avatar'], $row['user_avatar_type'], '16', '16', $user->lang['USER_AVATAR']),
+        'USER_AVATAR_IMG'	=> get_user_avatar($row['user_avatar'], $row['user_avatar_type'], '16', '16', $user->lang['USER_AVATAR']),
         'URL'				=> $row['user_website'],
         )
     );

@@ -45,12 +45,12 @@ if ($this_page[0] != 'index' && $this_page[0] != 'portal')
 	// Generate logged in/logged out status
 	if ($user->data['user_id'] != ANONYMOUS)
 	{
-		$u_login_logout = append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=logout', true, $user->session_id);
+		//$u_login_logout = append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=logout', true, $user->session_id);
 		$l_login_logout = sprintf($user->lang['LOGOUT_USER'], $user->data['username']);
 	}
 	else
 	{
-		$u_login_logout = append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=login');
+		//$u_login_logout = append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=login');
 		$l_login_logout = $user->lang['LOGIN'];
 	}
 
@@ -276,7 +276,7 @@ if ($this_page[0] != 'index' && $this_page[0] != 'portal')
 		'SITE_LOGO_IMG'			=> $user->img('site_logo'),
 
 		'A_COOKIE_SETTINGS'		=> addslashes('; path=' . $config['cookie_path'] . ((!$config['cookie_domain'] || $config['cookie_domain'] == 'localhost' || $config['cookie_domain'] == '127.0.0.1') ? '' : '; domain=' . $config['cookie_domain']) . ((!$config['cookie_secure']) ? '' : '; secure')),
-		'AVATAR_SMALL_IMG'		=> sgp_get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], '35', '35'),
+		'AVATAR_SMALL_IMG'		=> get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], '35', '35'),
 		'P_USERNAME'			=> (STARGATE) ? $user->data['username'] : '',
 		'P_USERNAME_FULL'		=> (STARGATE) ? get_username_string('full', $user->data['user_id'], $user->data['username'], $user->data['user_colour']) : '',
 	));
