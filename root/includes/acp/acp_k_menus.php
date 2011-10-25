@@ -50,22 +50,14 @@ class acp_k_menus
 		{
 			$submit = false;
 			$mode = '';
-			trigger_error('Error! ' . $user->lang['FORM_INVALID'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+			trigger_error($user->lang['FORM_INVALID'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 		}
 
 		$menuitem	= request_var('menuitem', '');
 
 		$template->assign_vars(array(
-
-			'U_BACK'	=> "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_menus&amp;mode=nav",
-			'U_EDIT'	=> "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_menus&amp;mode=edit" . '&amp;menu=' . $menuitem,
-			'U_UP'		=> "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_menus&amp;mode=up" . '&amp;menu=' . $menuitem,
-			'U_DOWN'	=> "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_menus&amp;mode=down" . '&amp;menu=' . $menuitem,
-			'U_DELETE'	=> "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_menus&amp;mode=delete" . '&amp;menu=' . $menuitem,
-
-			)
-		);
-
+			'U_BACK'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_menus&amp;mode=nav"),
+		));
 
 		// Set up general vars
 		//$action = request_var('action', '');
@@ -111,15 +103,13 @@ class acp_k_menus
 					$extern			= request_var('extern', 0);
 					$soft_hr		= request_var('soft_hr', 0);
 					$sub_heading	= request_var('sub_heading', 0);
-
-					$view_by		= request_var('view_by', 1);
+					$view			= request_var('view', 1);
 					$view_all		= request_var('view_all', 1);
 					$view_groups	= request_var('view_groups', '');
 
 					if($view_all)
 					{
-						$view_by = 1;
-						$view_groups = '';
+						$view_groups = get_all_groups();
 					}
 
 					if (strstr($menu_icon, '..'))
@@ -127,7 +117,6 @@ class acp_k_menus
 						$menu_icon = 'default.png';
 					}
 
-					//echo $menu_icon;
 					$sql_ary = array(
 						'menu_type'		=> $menu_type,
 						'ndx'			=> $ndx,
@@ -139,17 +128,15 @@ class acp_k_menus
 						'extern'		=> $extern,
 						'soft_hr'		=> $soft_hr,
 						'sub_heading'	=> $sub_heading,
-
 						'view_all'		=> $view_all,
-						'view_by'		=> $view_by,
 						'view_groups'	=> $view_groups,
-
 					);
+
 					$sql = 'UPDATE ' . K_MENUS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_ary) . " WHERE m_id = " . (int)$m_id;
 
 					if (!$result = $db->sql_query($sql))
 					{
-						trigger_error($user->lang['ERROR_PORTAL_MENUS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+						trigger_error($user->lang['ERROR_PORTAL_MENUS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 					}
 
 
@@ -161,12 +148,17 @@ class acp_k_menus
 						break;
 						case 2: $mode = 'sub';
 						break;
-						default: $mode = 'manage';
+						case 3: $mode= 'foot';
+						break;
+						case 4: $mode= 'link';
+						break;
+
+						default: $mode = $mode;
 						break;
 					}
 
 					$template->assign_vars(array(
-						'L_MENU_REPORT' => $user->lang['DATA_IS_BEING_SAVED'] . '</font><br />',
+						'L_MENU_REPORT' => $user->lang['SAVED'] . '<br />',
 						'S_OPTIONS' => 'save',
 					));
 
@@ -175,7 +167,7 @@ class acp_k_menus
 				}
 
 				// get all groups and fill array //
-				get_all_groups();
+				parse_all_groups();
 
 				// A simple fix to allow delete
 				if ($menu > 99)
@@ -216,7 +208,7 @@ class acp_k_menus
 					$name = (string) $db->sql_fetchfield('name');
 					$id = (int) $db->sql_fetchfield('m_id');
 					$db->sql_freeresult($result);
-					$name .= ' Menu ';
+					$name .= $user->lang['MENU'];
 
 					$sql = 'DELETE FROM ' . K_MENUS_TABLE . "
 						WHERE m_id = " . (int)$menu;
@@ -224,7 +216,7 @@ class acp_k_menus
 					$db->sql_query($sql);
 
 
-					$template->assign_var('L_MENU_REPORT', $name . $user->lang['DELETED'] . '</font><br />');
+					$template->assign_var('L_MENU_REPORT', $name . $user->lang['DELETED'] . '<br />');
 					$cache->destroy('sql', K_MENUS_TABLE);
 
 					meta_refresh (1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_menus&amp;mode=all'));
@@ -253,11 +245,11 @@ class acp_k_menus
 
 				// get current menu data //
 				$sql = "SELECT m_id, ndx, menu_type FROM " . K_MENUS_TABLE . "
-					WHERE m_id = " . (int)$menu . " LIMIT 1";
+					WHERE m_id = " . (int)$menu;
 
-				if (!$result = $db->sql_query($sql))
+				if (!$result = $db->sql_query_limit($sql, 1))
 				{
-					trigger_error($user->lang['ERROR_PORTAL_MENUS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+					trigger_error($user->lang['ERROR_PORTAL_MENUS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 				}
 
 				$row = $db->sql_fetchrow($result);
@@ -277,11 +269,11 @@ class acp_k_menus
 				// get move_to menu data//
 				$sql = "SELECT m_id, ndx, menu_type FROM " . K_MENUS_TABLE . "
 					WHERE ndx =  $temp
-						AND menu_type = '" . $db->sql_escape($type) . "' LIMIT 1";
+						AND menu_type = '" . $db->sql_escape($type) . "'";
 
-				if (!$result = $db->sql_query($sql))
+				if (!$result = $db->sql_query_limit($sql, 1))
 				{
-					trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+					trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 				}
 
 				$row = $db->sql_fetchrow($result);
@@ -290,7 +282,7 @@ class acp_k_menus
 
 				if ($move_to['ndx'] != $temp )
 				{
-					trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+					trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 				}
 
 				if ($mode == 'up')
@@ -299,13 +291,13 @@ class acp_k_menus
 					$sql = "UPDATE " . K_MENUS_TABLE . " SET ndx = " . (int)$to_move['ndx'] . " WHERE m_id = " . (int)$move_to['m_id'];
 					if (!$result = $db->sql_query($sql))
 					{
-						trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+						trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 					}
 
 					$sql = "UPDATE " . K_MENUS_TABLE . " SET ndx = " . (int)$move_to['ndx'] . " WHERE m_id = " . (int)$to_move['m_id'];
 					if (!$result = $db->sql_query($sql))
 					{
-						trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+						trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 					}
 				}
 				if ($mode == 'down')
@@ -314,13 +306,13 @@ class acp_k_menus
 					$sql = "UPDATE " . K_MENUS_TABLE . " SET ndx = " . (int)$move_to['ndx'] . " WHERE m_id = " . (int)$to_move['m_id'];
 					if (!$result = $db->sql_query($sql))
 					{
-						trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+						trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 					}
 
 					$sql = "UPDATE " . K_MENUS_TABLE . " SET ndx = " . (int)$to_move['ndx'] . " WHERE m_id = " . (int)$move_to['m_id'];
 					if (!$result = $db->sql_query($sql))
 					{
-						trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+						trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 					}
 				}
 
@@ -344,7 +336,6 @@ class acp_k_menus
 				{
 					//$m_id		=request_var('m_id', '');
 					//$ndx    	= request_var('ndx', '');
-
 					$menu_type 		= request_var('menu_type', '');
 					$menu_icon  	= request_var('menu_icon', '');
 					$name  			= utf8_normalize_nfc(request_var('name', '', true));
@@ -354,14 +345,12 @@ class acp_k_menus
 					$extern			= request_var('extern', 0);
 					$soft_hr		= request_var('soft_hr', 0);
 					$sub_heading	= request_var('sub_heading', 0);
-
-					$view_by		= request_var('view_by', 1);
 					$view_all		= request_var('view_all', 1);
 					$view_groups	= request_var('view_groups', '');
 
-					if ($menu_type == NULL || $name == NULL)// || $view_by == NULL)
+					if ($menu_type == NULL || $name == NULL)
 					{
-						// catch all we check menu_type, $name, view_by)
+						// catch all we check menu_type, $name, view)
 						$template->assign_vars(array(
 							'L_MENU_REPORT' => $user->lang['MISSING_DATA'],
 							'S_OPTIONS' => 'updn',
@@ -378,7 +367,7 @@ class acp_k_menus
 
 					if($view_all)
 					{
-						$view_by = 1;
+						$view = 1;
 						$view_groups = '';
 					}
 
@@ -393,11 +382,8 @@ class acp_k_menus
 						'extern'		=> $extern,
 						'soft_hr'		=> $soft_hr,
 						'sub_heading'	=> $sub_heading,
-
 						'view_all'		=> $view_all,
-						'view_by'		=> $view_by,
 						'view_groups'	=> $view_groups,
-
 					);
 
 					$db->sql_query('INSERT INTO ' . K_MENUS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_array));
@@ -414,7 +400,7 @@ class acp_k_menus
 				else
 				{
 					// get all groups and fill array //
-					get_all_groups();
+					parse_all_groups();
 					get_menu_icons();
 					$template->assign_var('S_OPTIONS', 'add');
 					break;
@@ -437,13 +423,13 @@ class acp_k_menus
 			}
 
 			case 'manage':
-				$template->assign_var('L_MENU_REPORT', $user->lang['FUTURE_DEVELOPMENT'] . '</font><br />');
+				$template->assign_var('L_MENU_REPORT', $user->lang['FUTURE_DEVELOPMENT'] . '<br />');
 				$template->assign_var('S_OPTIONS', 'manage');
 
 			break;
 
 			case 'sync':
-				$template->assign_vars('L_MENU_REPORT', $user->lang['NOT_ASSIGNED'] . '</font><br />');
+				$template->assign_vars('L_MENU_REPORT', $user->lang['NOT_ASSIGNED'] . '<br />');
 				$template->assign_var('S_OPTIONS', 'sync');
 			break;
 
@@ -462,24 +448,23 @@ class acp_k_menus
 function get_menu($this_one)
 {
 	global $db, $phpbb_root_path, $phpEx, $template;
+	global $phpbb_admin_path, $phpEx;
 
 	switch ($this_one)
 	{
-		case 0:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = 0 ORDER BY ndx ASC';	// header menus
+		case 1:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . NAV_MENUS . ' ORDER BY ndx ASC';	// nav menus
 		break;
-		case 1:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = 1 ORDER BY ndx ASC';	// nav menus
+		case 2:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . SUB_MENUS . ' ORDER BY ndx ASC'; 	// sub menus
 		break;
-		case 2:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = 2 ORDER BY ndx ASC'; 	// sub menus
+		case 3:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . HEAD_MENUS . ' ORDER BY ndx ASC';	// nav menus
 		break;
-		case 3:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = 3 ORDER BY ndx ASC';	// nav menus
+		case 4:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . FOOT_MENUS . ' ORDER BY ndx ASC'; 	// sub menus
 		break;
-		case 4:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = 4 ORDER BY ndx ASC'; 	// sub menus
-		break;
-		case 3:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = 1 || menu_type = 2 || menu_type = 3 || menu_type = 4 ORDER BY ndx ASC';	// sub menus
+		case 5:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . LINKS_MENUS . ' ORDER BY ndx ASC'; 	// sub menus
 		break;
 		case 90: 	$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' ORDER BY menu_type, ndx ASC';
 		break;
-		case 99:	$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type > 4 ORDER BY ndx, menu_type ASC';
+		case 99:	$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . UN_ALLOC__MENUS . ' ORDER BY ndx, menu_type ASC';
 		break;
 		default: 	$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type=' . $this_one; break;
 	}
@@ -496,24 +481,24 @@ function get_menu($this_one)
 				'S_MENU_ITEM_NAME'	=> $row['name'],
 				'S_MENU_LINK'		=> $row['link_to'],
 				'S_MENU_APPEND_SID' => $row['append_sid'],
-
-				'S_MENU_VIEW'		=> which_group($row['view_by']),
 				'S_VIEW_ALL'		=> $row['view_all'],
 				'S_VIEW_GROUPS'		=> $row['view_groups'],
-
 				'S_MENU_APPEND_UID' => $row['append_uid'],
 				'S_MENU_EXTERN'		=> $row['extern'],
 				'S_SOFT_HR'			=> $row['soft_hr'],
 				'S_SUB_HEADING'		=> $row['sub_heading'],
 
-				)
-			);
+				'U_EDIT'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_menus&amp;mode=edit&amp;menu=" . $row['m_id']),
+				'U_UP'		=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_menus&amp;mode=up&amp;menu=" . $row['m_id']),
+				'U_DOWN'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_menus&amp;mode=down&amp;menu=" . $row['m_id']),
+				'U_DELETE'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_menus&amp;mode=delete&amp;menu=" . $row['m_id']),
+			));
 		}
 		$db->sql_freeresult($result);
 	}
 	else
 	{
-		trigger_error($user_lang['COULD_NOT_RETRIEVE_BLOCK'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+		trigger_error($user_lang['COULD_NOT_RETRIEVE_BLOCK'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 	}
 }
 
@@ -537,7 +522,6 @@ function get_menu_item($item)
 		'S_MENU_ICON'		=> $row['menu_icon'],
 		'S_MENU_ITEM_NAME'	=> $row['name'],
 		'S_MENU_LINK'		=> $row['link_to'],
-		'S_MENU_VIEW'		=> which_group($row['view_by']),
 		'S_VIEW_ALL'		=> $row['view_all'],
 		'S_VIEW_GROUPS'		=> $row['view_groups'],
 		'S_MENU_APPEND_SID' => $row['append_sid'],
@@ -596,10 +580,9 @@ function get_next_ndx($type)
 	}
 }
 
-function get_all_groups()
+function parse_all_groups()
 {
 	global $db, $template, $user;
-	$i = 0;
 
 	// Get us all the groups
 	$sql = 'SELECT group_id, group_name
@@ -627,31 +610,50 @@ function get_all_groups()
 	$db->sql_freeresult($result);
 }
 
-// this is very inefficient... I will update later...
-function which_group($id)
+function get_all_groups()
 {
 	global $db, $template, $user;
+	$all_groups = '';
 
-	// Get us all the groups
-	$sql = 'SELECT group_name
+	// Get all the groups
+	$sql = 'SELECT group_id, group_name
 		FROM ' . GROUPS_TABLE . '
-		WHERE group_id = ' . (int)$id;
-
+		ORDER BY group_id ASC, group_name';
 	$result = $db->sql_query($sql);
 
-	$name = $db->sql_fetchfield('group_name');
+	while ($row = $db->sql_fetchrow($result))
+	{
+		$group_id = $row['group_id'];
+		$all_groups .= $group_id . ',';
 
+	}
 	$db->sql_freeresult($result);
 
-	//????//$name = mb_convert_case($name, MB_CASE_TITLE, "UTF-8");// not in all versions
+	// lose the last comma //
+	$all_groups = substr_replace($all_groups,"",-1);
 
-	if ($name == '')
-	{
-		return($user->lang['NONE']);
-	}
-	else
-	{
-		return ($name);
-	}
+	return($all_groups);
 }
+
+/*
+// this is very inefficient... I will update later...
+function get_group_name($data)
+{
+	global $db, $template, $user;
+	$names = array();
+
+	// Get group name by id
+	$sql = 'SELECT group_name
+		FROM ' . GROUPS_TABLE . '
+		WHERE ' . $db->sql_in_set('group_id', $data);
+
+	while ($row = $db->sql_fetchrow($result))
+	{
+		$names[] = $row['group_name'];
+	}
+	$db->sql_freeresult($result);
+
+	return ($names);
+}
+*/
 ?>

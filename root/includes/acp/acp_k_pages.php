@@ -31,11 +31,14 @@ class acp_k_pages
 		global $db, $user, $auth, $template, $cache;
 		global $config, $SID, $phpbb_root_path, $phpbb_admin_path, $phpEx;
 
+		$current_pages = array();
+
 		include($phpbb_root_path . 'includes/sgp_functions.' . $phpEx);
 
 		$user->add_lang('acp/k_pages');
 		$this->tpl_name = 'acp_k_pages';
 		$this->page_filename = 'ACP_PAGES';
+		$this->page_title = 'ACP_K_PAGES';
 
 		$form_key = 'acp_k_pages';
 		add_form_key($form_key);
@@ -59,28 +62,24 @@ class acp_k_pages
 			case 'config':
 				$template->assign_var('MESSAGE', $user->lang['SWITCHING']);
 
-				meta_refresh (1, "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_vars&amp;mode=config&amp;switch=k_pages");
+				meta_refresh(1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_vars&amp;mode=config&amp;switch=k_pages'));
 			break;
 
 			default:
 			break;
 		}
 
-
 		if ($submit && !check_form_key($form_key))
 		{
 			$submit = false;
 			$mode = '';
-			trigger_error($user->lang['FORM_INVALID'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+			trigger_error($user->lang['FORM_INVALID'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 		}
 
-
 		$template->assign_vars(array(
-			'U_BACK'	=> "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_pages&mode=manage",
-			'U_ADD'		=> "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_pages&amp;mode=add",
-			'U_EDIT'	=> "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_pages&amp;mode=edit" . '&amp;page_id=' . $page_id,
-			'U_DELETE'	=> "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_pages&amp;mode=delete" . '&amp;page_id=' . $page_id,
-			'U_MANAGE'	=> "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_pages&amp;mode=manage",
+			'U_BACK'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=manage"),
+			'U_ADD'		=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=add"),
+			'U_MANAGE'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=manage"),
 			'S_OPT'		=> 'S_MANAGE',
 		));
 
@@ -95,7 +94,7 @@ class acp_k_pages
 
 					if (!$result = $db->sql_query($sql))
 					{
-						trigger_error($user->lang['ERROR_PORTAL_PAGES'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+						trigger_error($user->lang['ERROR_PORTAL_PAGES'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 					}
 
 					$cache->destroy('sql', K_PAGES_TABLE);
@@ -105,12 +104,12 @@ class acp_k_pages
 						'MESSAGE'	=> $user->lang['REMOVING_PAGES'] . $page_name,
 					));
 
-					meta_refresh(1, "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_pages&amp;mode=manage");
+					meta_refresh(1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_pages&amp;mode=manage'));
 					break;
 				}
 				else
 				{
-					confirm_box(false, sprintf("%s (%s)", $user->lang['CONFIRM_DELETE'], $page_name), build_hidden_fields(array(
+					confirm_box(false, sprintf("%s (%s)", $user->lang['DELETE_FROM_LIST'], $page_name), build_hidden_fields(array(
 						'id'		=> $page_id,
 						'mode'		=> $mode,
 						'action'	=> 'delete'))
@@ -119,7 +118,8 @@ class acp_k_pages
 
 				$template->assign_var('MESSAGE', $user->lang['ACTION_CANCELLED']);
 
-				meta_refresh(1, "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_pages&amp;mode=manage");
+				meta_refresh(1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_pages&amp;mode=manage'));
+
 			break;
 
 			case 'add':
@@ -135,8 +135,13 @@ class acp_k_pages
 							'S_OPTION'	=> 'processing', // not lang var
 							'MESSAGE'	=> sprintf($user->lang['ERROR_PAGE'], $tag_id),
 						));
-						meta_refresh(3, "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_pages&amp;mode=manage");
+						meta_refresh(2, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_pages&amp;mode=manage'));
 						return;
+					}
+
+					if(in_array($tag_id, $current_pages))
+					{
+						break;
 					}
 
 					$sql_array = array(
@@ -145,7 +150,7 @@ class acp_k_pages
 
 		           $db->sql_query('INSERT INTO ' . K_PAGES_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_array));
 
-					meta_refresh(1, "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_pages&amp;mode=manage");
+					meta_refresh(1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_pages&amp;mode=manage'));
 
 					$template->assign_vars(array(
 						'S_OPTION'	=> 'processing', // not lang var
@@ -175,7 +180,8 @@ class acp_k_pages
 
 function get_pages_data()
 {
-	global $db, $template;//, $s_hidden_fields;
+	global $db, $template, $phpbb_admin_path, $phpEx;
+	global $current_pages;
 
 	$sql = 'SELECT *
 		FROM ' . K_PAGES_TABLE ;
@@ -184,9 +190,13 @@ function get_pages_data()
 
 	while ($row = $db->sql_fetchrow($result))
 	{
+		$current_pages = $row['page_name'];
+
 		$template->assign_block_vars('phpbbpages', array(
 			'S_PAGE_ID'		=> $row['page_id'],
 			'S_PAGE_NAME'	=> $row['page_name'],
+			'U_EDIT'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=edit&amp;page_id=" . $row['page_id']),
+			'U_DELETE'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=delete&amp;page_id=" . $row['page_id']),
 		));
 	}
 	$db->sql_freeresult($result);
@@ -201,8 +211,25 @@ function get_pages_data()
 function get_all_available_files()
 {
 	global $phpbb_root_path, $phpEx, $template, $dirslist, $db, $user;
+
 	$page_name = '';
 	$i = 0;
+
+	// --------------- //
+	// For mod authors //
+	// --------------- //
+
+	/*	Allowing specific mod pages to display block
+		--------------------------------------------
+
+		If your mod uses a dedicated mod folder and you want to allow blocks to be displayed on specific pages, simply add the
+		mod's folder name to the $mods_folder_array below... (we don't know which mods will be installed therefore we can't automate this).
+
+		To prevent the dropdown box from displaying illegal pages add these to the $illegal_files_array below (see line: ~357 )
+	*/
+
+
+	$mods_folder_array = array("a_mod_folder");
 
 	$sql = 'SELECT page_name
 		FROM ' . K_PAGES_TABLE . '
@@ -219,14 +246,14 @@ function get_all_available_files()
 
 	$dirs = dir($phpbb_root_path);
 
-	$dirslist = '... '; // use ... for empty //
+	$dirslist = ' ';
 
 	while ($file = $dirs->read())
 	{
 		if ($file != '.' && $file != '..' && stripos($file, ".php") && !stripos($file, ".bak") && !in_array($file, $arr, true))
 		{
-			// array of filename we don't process... store in databse and add code to facilitate add/edit/delete later //
-			$illegal_files = array("common.php", "report.php", "feed.php", "cron.php", "config.php", "csv.php", "style.php", "sgp_refresh.php", "sgp_ajax.php", "sgpical.php", "rss.php");
+			// array of filename we don't process //
+			$illegal_files = array(".htaccess", "common.php", "report.php", "feed.php", "cron.php", "config.php", "csv.php", "style.php", "sgp_ajax.php", "sgpical.php", "rss.php");
 
 			if(!in_array($file, $illegal_files))
 			{
@@ -234,20 +261,39 @@ function get_all_available_files()
 			}
 		}
 
+		// Search mod folders using the $mods_folder_array (we only look one folder deep ATM) //
+		if (in_array($file, $mods_folder_array, true))
+		{
+			search_sub_directory($mods_folder_array, $arr);
+		}
+
 	}
+
 	closedir($dirs->handle);
 
 	$dirslist = explode(" ", $dirslist);
 	sort($dirslist);
-	for ($i = 0; $i < sizeof($dirslist); $i++)
+
+	$phpbb_files = '';
+	$files_found = 0;
+
+	// As we use onchange event we need an empty line first //
+	$phpbb_files .= '<option value="' . ' ' . '">' . ' ' . '</option>';
+
+	foreach ($dirslist as $file)
 	{
-		if ($dirslist[$i] != '')
+		if($file != '')
 		{
-			$template->assign_block_vars('phpbb_pages', array(
-				'S_PHPBB_FILES'	=> $dirslist[$i]
-			));
+			$files_found++;
+			$phpbb_files .= '<option value="' . $file  . '"' . (($files_found == 0) ? ' selected="selected"' : '') . '>' . $file . '</option>';
 		}
 	}
+
+	$template->assign_vars(array(
+		'S_PHPBB_FILES' => $phpbb_files,
+		'S_FILES_FOUND'	=> $files_found,
+	));
+
 }
 
 /**
@@ -276,4 +322,42 @@ function get_page_filename($page_id)
 
 	return($row['page_name']);
 }
+
+
+/**
+* search mod folders for valid files
+* the admin must add the mod folder to the $mod array above
+**/
+function search_sub_directory($mod_folders, $arr)
+{
+	global $phpbb_root_path, $phpEx, $dirslist;
+
+	foreach($mod_folders as $folder)
+	{
+		$dirs = dir($phpbb_root_path . $folder);
+
+		while ($file = $dirs->read())
+		{
+			if ($file != '.' && $file != '..' && stripos($file, ".php") && !stripos($file, ".bak") && !in_array($folder .'/'. $file, $arr, true))
+			{
+				// --------------- //
+				// For mod authors //
+				// --------------- //
+
+				// Not all files in a mod folder should be included in the dropdown list... //
+				// To restrict specific files, add them to the $illegal_files array below... //
+
+				$illegal_files_array = array($folder . '/' . 'dummy.php');
+
+				$temp = $folder . '/' . $file;
+
+				if(!in_array($temp, $illegal_files_array))
+				{
+					$dirslist .= $temp. " ";
+				}
+			}
+		}
+	}
+}
+
 ?>

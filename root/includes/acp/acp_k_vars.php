@@ -42,14 +42,9 @@ class acp_k_vars
 		add_form_key($form_key);
 
 		$choice = request_var('switch', '');
-		$block = request_var('block', '');
+		$block = request_var('block', 0);
 		$mode	= request_var('mode', '');
 		$switch = request_var('switch', '');
-
-		if ($block == '')
-		{
-			$block = 0;
-		}
 
 		if ($mode = 'config' && $choice == '')
 		{
@@ -96,11 +91,8 @@ class acp_k_vars
 			trigger_error($user->lang['FORM_INVALID']);
 		}
 
-		//$wheresql = ' WHERE block_id = ' .  $block;
-		$wheresql = '';
-
 		$sql = 'SELECT config_name, config_value
-			FROM ' . K_BLOCKS_CONFIG_VAR_TABLE . $wheresql;
+			FROM ' . K_BLOCKS_CONFIG_VAR_TABLE;
 
 		$result = $db->sql_query($sql);
 
@@ -136,7 +128,6 @@ class acp_k_vars
 				$k_teams							= request_var('k_teams', '');
 				$k_recent_topics_search_exclude		= request_var('k_recent_topics_search_exclude', '');
 				$k_post_types						= request_var('k_post_types', '');
-
 				$k_announce_allow					= request_var('k_announce_allow', 1);
 				$k_announce_item_max_length			= request_var('k_announce_item_max_length', 0);
 				$k_announce_to_display				= request_var('k_announce_to_display', 5);
@@ -186,41 +177,32 @@ class acp_k_vars
 				}
 
 				// all data is escaped in sgp_acp_set_config //
-
 				sgp_acp_set_config('k_allow_rotating_logos', $k_allow_rotating_logos);
 				sgp_acp_set_config('k_announce_allow', $k_announce_allow);
 				sgp_acp_set_config('k_bot_display_allow', $k_bot_display_allow);
 				sgp_acp_set_config('k_footer_images_allow', $k_footer_images_allow);
-
 				sgp_acp_set_config('k_announce_type', $k_announce_type);
 				sgp_acp_set_config('k_blocks_display_globally', $k_blocks_display_globally);
 				sgp_acp_set_config('k_smilies_show', $k_smilies_show);
 				sgp_acp_set_config('k_announce_to_display', $k_announce_to_display);
 				sgp_acp_set_config('k_bots_to_display', $k_bots_to_display);
 				sgp_acp_set_config('k_announce_item_max_length', $k_announce_item_max_length);
-
 				sgp_acp_set_config('k_links_forum_id', $k_links_forum_id);
 				sgp_acp_set_config('k_links_to_display', $k_links_to_display);
-
 				sgp_acp_set_config('k_news_allow', $k_news_allow);
 				sgp_acp_set_config('k_news_type', $k_news_type);
 				sgp_acp_set_config('k_news_items_to_display', $k_news_items_to_display);
 				sgp_acp_set_config('k_news_item_max_length', $k_news_item_max_length);
-
 				sgp_acp_set_config('k_post_types', $k_post_types);
-
 				sgp_acp_set_config('k_recent_topics_to_display', $k_recent_topics_to_display);
 				sgp_acp_set_config('k_recent_topics_per_forum', $k_recent_topics_per_forum);
 				sgp_acp_set_config('k_recent_topics_search_exclude', $k_recent_topics_search_exclude);
 				sgp_acp_set_config('k_recent_search_days', $k_recent_search_days);
-
 				sgp_acp_set_config('k_teams', $k_teams);
 				sgp_acp_set_config('k_teams_display_this_many', $k_teams_display_this_many);
-
 				sgp_acp_set_config('k_top_posters_to_display', $k_top_posters_to_display);
 				sgp_acp_set_config('k_top_topics_max', $k_top_topics_max);
 				sgp_acp_set_config('k_top_topics_days', $k_top_topics_days);
-
 				sgp_acp_set_config('k_last_online_max', $k_last_online_max);
 				sgp_acp_set_config('k_quick_reply', $k_quick_reply);
 				sgp_acp_set_config('k_block_cache_time_default', $k_block_cache_time_default);
@@ -229,7 +211,7 @@ class acp_k_vars
 				$mode='reset';
 
 				$template->assign_vars(array(
-					'S_OPT' => $user->lang['SAVING'],
+					'S_OPT' => 'saving',
 					'MESSAGE' => $user->lang['SAVED'],
 				));
 

@@ -47,8 +47,8 @@ class acp_k_config
 
 		if ($submit && !check_form_key($form_key))
 		{
-			$submit = false;
-			$mode = '';
+			//$submit = false;
+			//$mode = '';
 			trigger_error($user->lang['FORM_INVALID']);
 		}
 
@@ -58,14 +58,14 @@ class acp_k_config
 		$portal_build	= $config['portal_build'];
 
 		$template->assign_vars(array(
-			'S_BLOCKS_WIDTH'				=> $blocks_width,
-			'S_BLOCKS_ENABLED'				=> $blocks_enabled,
-			'S_PORTAL_VERSION'				=> $portal_version,
-			'S_PORTAL_BUILD'				=> $portal_build,
-			'U_BACK'						=> $this->u_action,
+			'S_BLOCKS_WIDTH'	=> $blocks_width,
+			'S_BLOCKS_ENABLED'	=> $blocks_enabled,
+			'S_PORTAL_VERSION'	=> $portal_version,
+			'S_PORTAL_BUILD'	=> $portal_build,
+			'U_BACK'			=> $this->u_action,
 		));
 
-		$template->assign_vars(array('S_OPT' => 'Configure')); // S_OPT is not a language variabe //
+		$template->assign_vars(array('S_OPT' => 'configure')); // S_OPT is not a language variabe //
 
 		if ($submit)
 		{
@@ -84,6 +84,7 @@ class acp_k_config
 				$blocks_width   	= request_var('blocks_width', '');
 				$blocks_enabled		= request_var('blocks_enabled', '');
 				$portal_version		= request_var('portal_version', '');
+				$portal_build		= request_var('portal_build', '');
 
 				set_config('blocks_width', $blocks_width);
 				set_config('blocks_enabled', $blocks_enabled);
@@ -94,13 +95,12 @@ class acp_k_config
 
 				$template->assign_var('S_OPT', 'save');
 
-				//meta_refresh(2, "{$phpbb_root_path}adm/index.$phpEx$SID&amp;i=k_config&amp;mode=config");
-
 				$url = $this->u_action . "&amp;i=k_config&amp;action=config";
-				meta_refresh(0, $url);
 
+				meta_refresh(0, $url);
 				return;
 			}
+
 			case 'default':
 			break;
 		}

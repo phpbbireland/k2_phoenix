@@ -63,7 +63,7 @@ if (!function_exists('sgp_get_rand_logo'))
 
 		$logos_dir = "{$phpbb_root_path}styles/" . $user->theme['theme_path'] . '/theme/images/logos';
 
-		@$handle=opendir($logos_dir);
+		$handle = @opendir($logos_dir);
 
 		// for logo in default directory 	//@$handle=opendir('images/logos');
 
@@ -210,55 +210,8 @@ if (!function_exists('k_progress_bar'))
 
 
 /***
-* create a date (old code)
-*/
-if (!function_exists('create_date'))
-{
-	function create_date($format, $gmepoch, $tz)
-	{
-		global $board_config, $lang;
-		static $translate;
-		global $userdata, $db;
-
-		$switch_summer_time = ( $userdata['user_summer_time'] && $board_config['summer_time'] ) ? true : false;
-		if ($switch_summer_time) $tz++;
-
-		if (empty($translate) && $board_config['default_lang'] != 'english')
-		{
-			@reset($lang['datetime']);
-			while ( list($match, $replace) = @each($lang['datetime']) )
-			{
-				$translate[$match] = $replace;
-			}
-		}
-		return ( !empty($translate) ) ? strtr(@gmdate($format, $gmepoch + (3600 * $tz)), $translate) : @gmdate($format, $gmepoch + (3600 * $tz));
-	}
-}
-
-
-/***
-* Smilie processing.
-*/
-if (!function_exists('smilie_text'))
-{
-	function smilie_text($text, $force_option = false)
-	{
-		global $config, $user, $phpbb_root_path;
-
-		// could redirect to style based smilies //
-		$userstylepath = $phpbb_root_path . $config['smilies_path'] . '/';
-
-		$phpbb_root_path = './';
-
-		return ($force_option || !$config['allow_smilies'] || !$user->optionget('viewsmilies')) ? preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/.*? \/><!\-\- s\1 \-\->#', '\1', $text) : str_replace('<img src="{SMILIES_PATH}', '<img src="' . $userstylepath, $text);
-	}
-}
-
-
-/***
 * same as truncate_string() with ...
 */
-
 if (!function_exists('sgp_checksize'))
 {
 	function sgp_checksize($txt,$len)
@@ -272,65 +225,10 @@ if (!function_exists('sgp_checksize'))
 	}
 }
 
-/***
-*
-*/
-
-if (!function_exists('smilies_pass'))
-{
-	function smilies_pass($message)
-	{
-		static $orig, $repl;
-
-		if (!isset($orig))
-		{
-
-			global $db, $images, $portal_config, $var_cache, $phpbb_root_path, $config;
-
-			$orig = $repl = array();
-
-			if (!$orig)
-			{
-				$sql = 'SELECT * FROM ' . SMILIES_TABLE;
-				if ( !$result = $db->sql_query($sql) )
-				{
-					trigger_error($user->lang['ERROR_SMILIES_DATA'] , __LINE__, __FILE__, $sql);
-				}
-				$smilies = $db->sql_fetchrowset($result);
-
-				if (count($smilies))
-				{
-					usort($smilies, "smiley_sort");
-				}
-
-				for ($i = 0; $i < count($smilies); $i++)
-				{
-					$orig[] = "/(?<=.\W|\W.|^\W)" . phpbb_preg_quote($smilies[$i]['code'], "/") . "(?=.\W|\W.|\W$)/";
-					$repl[] = '<img src="'. $phpbb_root_path . $config['smilies_path'] . '/' . $smilies[$i]['smiley_url'] . '" alt="' . $smilies[$i]['emotion'] . '" border="0" />';
-				}
-
-				if ($portal_config['cache_enabled'])
-				{
-					$var_cache->save($orig, 'orig2', 'smilies');
-					$var_cache->save($repl, 'repl2', 'smilies');
-				}
-			}
-		}
-
-		if (count($orig))
-		{
-			$message = preg_replace($orig, $repl, ' ' . $message . ' ');
-			$message = substr($message, 1, -1);
-		}
-
-		return $message;
-	}
-}
 
 /***
 * sort smilies
 */
-
 if (!function_exists('smiley_sort'))
 {
 	function smiley_sort($a, $b)
@@ -347,7 +245,6 @@ if (!function_exists('smiley_sort'))
 /***
 * search block search
 */
-
 if (!function_exists('search_block_func'))
 {
 	function search_block_func()
@@ -366,9 +263,8 @@ if (!function_exists('search_block_func'))
 }
 
 /**
-*	returns the users group name (phpbb code reused)
+*	returns the users group name
 */
-
 if (!function_exists('which_group'))
 {
 	function which_group($id)
@@ -378,7 +274,7 @@ if (!function_exists('which_group'))
 		// Get group name for this user
 		$sql = 'SELECT group_name
 			FROM ' . GROUPS_TABLE . '
-			WHERE group_id = ' . $id;
+			WHERE group_id = ' . (int)$id;
 
 		$result = $db->sql_query($sql,650);
 
@@ -386,93 +282,10 @@ if (!function_exists('which_group'))
 
 		$db->sql_freeresult($result);
 
-		// mb_convert_case is not available in some versions //
-		//$name = mb_convert_case($name, MB_CASE_TITLE, "UTF-8");
-
-		if ($name == '')
-		{
-			return('None');
-		}
-		else
-		{
-			return ($name);
-		}
+		return ($name);
 	}
 }
 
-/***
-* get all group names (used to avoid problems with group ID's changing) phpBB 2
-* (phpbb code reused)
-*/
-
-/*
-if (!function_exists('get_all_groups'))
-{
-	function get_all_groups()
-	{
-
-		global $db, $template, $k_groups, $k_group_id, $k_group_name_id;
-
-		// Get us all the groups
-		$sql = 'SELECT group_id, group_name
-			FROM ' . GROUPS_TABLE . '
-			ORDER BY group_id ASC, group_name';
-		$result = $db->sql_query($sql,600);
-		$i = 0;
-		while ($row = $db->sql_fetchrow($result))
-		{
-			$k_groups[$i++] = $row['group_name'];
-			$k_group_id[$row['group_id']] = $row;
-			$k_group_name_id[$row['group_name']] = $row['group_id'];
-		}
-		$db->sql_freeresult($result);
-	}
-}
-*/
-
-/*
-* A simple function to replace variables in pages with values if the are present in either config or $k_config tables
-* The format used mimics the standard, for example: {STARGATE_VERSION}
-*
-* This needs to be cached!!!!!
-*/
-/*
-if (!function_exists('process_for_vars'))
-{
-	function process_for_vars($data)
-	{
-		global $config, $k_config;
-
-		$a = array('{', '}');
-		$b = array('','');
-
-		$replace = array();
-
-		$searchs = s_get_vars_array();
-
-		foreach ($searchs as $search)
-		{
-			$find = $search;
-
-			// convert to normal text //
-			$search = str_replace($a, $b, $search);
-			$search = strtolower($search);
-
-			if (isset($k_config[$search]))
-			{
-				$replace = (isset($k_config[$search])) ? $k_config[$search] : '';
-				$data = str_replace($find, $replace, $data);
-			}
-			else if (isset($config[$search]))
-			{
-				$replace = (isset($config[$search])) ? $config[$search] : '';
-				$data = str_replace($find, $replace, $data);
-			}
-		}
-		return($data);
-	}
-}
-*/
 
 if (!function_exists('process_for_vars'))
 {
@@ -509,10 +322,8 @@ if (!function_exists('process_for_vars'))
 }
 
 
-
 // Stargate Random Banner mod //
-global $k_config, $template, $phpbb_root_path, $user;
-
+///global $k_config, $template, $phpbb_root_path, $user;
 
 if (!function_exists('get_user_data'))
 {
@@ -528,7 +339,7 @@ if (!function_exists('get_user_data'))
 		// Get user info
 		$sql = 'SELECT user_id, username, user_colour
 			FROM ' . USERS_TABLE . '
-			WHERE user_id = ' . $id. ' LIMIT 1';
+			WHERE user_id = ' . (int)$id;
 
 		$result = $db->sql_query($sql,10);
 		$row = $db->sql_fetchrow($result);
@@ -544,121 +355,6 @@ if (!function_exists('get_user_data'))
 
 			default:
 				return;
-		}
-	}
-}
-
-
-/**
-* Return all page in a given path or template assign them
-*
-* @param string $path The path to search
-* @param string $token A token to include in the search
-* @param string $publish Template assign in file list
-*
-* @return bool Returns true if the password is correct, false if not.
-*/
-
-if (!function_exists('sgp_get_file_list'))
-{
-	function sgp_get_file_list($path, $token = '.', $publish = false)
-	{
-		$dirs = '';
-		$dirslist ='';
-
-		if ($path == '')
-		{
-			if (DEBUG_EXTRA) echo 'Debug notice: Path not found';
-			return;
-		}
-
-		@$handle = opendir($path);
-
-		if (!$handle)
-		{
-			if (DEBUG_EXTRA) echo 'Debug notice: No handle for:[' . $path . ']';
-			return;
-		}
-
-		while (false!==($file = readdir($handle)))
-		{
-			if ($file != '.' and $file != '..')
-				$dirslist .= "$file ";
-		}
-		closedir($handle);
-
-		$dirslist = explode(" ", $dirslist);
-		sort($dirslist);
-
-		if ($publish)
-		{
-			for ( $i=0; $i < sizeof($dirslist); $i++ )
-			{
-				if ($dirslist[$i] != '')
-					$template->assign_block_vars('sgp_file_list', array('S_VAR_FILE_NAME' => $dirslist[$i]));
-			}
-			$dirslist = '';
-			//return;
-		}
-		else
-		{
-			// Can this not be done with pointers...
-			// Would rather return pounter to list that the actual list?
-			return($dirslist);
-		}
-		//return;
-	}
-}
-
-
-
-
-/**
-* (phpbb code reused)
-* Get user rank title and image rewrite for portal to avoid re-declaration copyright phhpBB
-*
-* @param int $user_rank the current stored users rank id
-* @param int $user_posts the users number of posts
-* @param string &$rank_title the rank title will be stored here after execution
-* @param string &$rank_img the rank image as full img tag is stored here after execution
-* @param string &$rank_img_src the rank image source is stored here after execution
-*
-* Note: since we do not want to break backwards-compatibility, this function will only properly assign ranks to guests if you call it for them with user_posts == false
-*/
-
-if (!function_exists('sgp_get_user_rank'))
-{
-	function sgp_get_user_rank($user_rank, $user_posts, &$rank_title, &$rank_img, &$rank_img_src)
-	{
-		global $ranks, $config, $phpbb_root_path;
-
-		if (empty($ranks))
-		{
-			global $cache;
-			$ranks = $cache->obtain_ranks();
-		}
-
-		if (!empty($user_rank))
-		{
-			$rank_title = (isset($ranks['special'][$user_rank]['rank_title'])) ? $ranks['special'][$user_rank]['rank_title'] : '';
-			$rank_img = (!empty($ranks['special'][$user_rank]['rank_image'])) ? '<img src="' . $phpbb_root_path . $config['ranks_path'] . '/' . $ranks['special'][$user_rank]['rank_image'] . '" alt="' . $ranks['special'][$user_rank]['rank_title'] . '" title="' . $ranks['special'][$user_rank]['rank_title'] . '" />' : '';
-			$rank_img_src = (!empty($ranks['special'][$user_rank]['rank_image'])) ? $phpbb_root_path . $config['ranks_path'] . '/' . $ranks['special'][$user_rank]['rank_image'] : '';
-		}
-		else if ($user_posts !== false)
-		{
-			if (!empty($ranks['normal']))
-			{
-				foreach ($ranks['normal'] as $rank)
-				{
-					if ($user_posts >= $rank['rank_min'])
-					{
-						$rank_title = $rank['rank_title'];
-						$rank_img = (!empty($rank['rank_image'])) ? '<img src="' . $phpbb_root_path . $config['ranks_path'] . '/' . $rank['rank_image'] . '" alt="' . $rank['rank_title'] . '" title="' . $rank['rank_title'] . '" />' : '';
-						$rank_img_src = (!empty($rank['rank_image'])) ? $phpbb_root_path . $config['ranks_path'] . '/' . $rank['rank_image'] : '';
-						break;
-					}
-				}
-			}
 		}
 	}
 }
@@ -687,7 +383,8 @@ if (!function_exists('sgp_build_minimods'))
 
 		if (!$result1 = $db->sql_query($sql, $block_cache_time))
 		{
-			trigger_error($user->lang['ERROR_PORTAL_MENUS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+			//trigger_error($user->lang['ERROR_PORTAL_MENUS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
+			trigger_error($user->lang['ERROR_PORTAL_MENUS']);
 		}
 
 		$mod = array();
@@ -740,7 +437,8 @@ if (!function_exists('sgp_build_minimods'))
 			$info = bbcode_nl2br($info);
 			$info = smiley_text($info);
 
-			$filename = $phpbb_root_path . 'download/file.php?name=' . $mod['mod_filename'] . '.zip';
+			//$filename = $phpbb_root_path . 'download/file.php?name=' . $mod['mod_filename'] . '.zip';
+			$filename = append_sid("$phpbb_root_path}download/file.phpEx", 'name=' . $mod['mod_filename'] . '.zip');
 
 			// separate out our mods //
 			if ($mod['mod_origin'])
@@ -764,7 +462,7 @@ if (!function_exists('sgp_build_minimods'))
 					'U_MOD_FILENAME'		=> $filename,
 					'U_MOD_LINK'			=> htmlspecialchars_decode($mod['mod_link']),// . $mod['mod_name'],
 					'U_MOD_SUPPORT'			=> htmlspecialchars_decode($mod['mod_support_link']),
-					'U_MOD_TEST_IT'			=> ($mod['mod_link_id'] && $select_allow) ? $phpbb_root_path . 'portal.php?style=' . $mod['mod_link_id'] : '',
+					'U_MOD_TEST_IT'			=> ($mod['mod_link_id'] && $select_allow) ? append_sid("{$phpbb_root_path}portal.$phpEx", 'style=' . $mod['mod_link_id']) : '',
 				));
 			}
 			else
@@ -795,238 +493,16 @@ if (!function_exists('sgp_build_minimods'))
 		}
 
 		$template->assign_vars(array(
-			'DOWNLOAD_IMG'		=> '<img src="' . $phpbb_root_path . 'images/2download-box-32.png" title="Download" alt="" />',
-			'TEST_IT_IMG'		=> '<img src="' . $phpbb_root_path . 'images/gnome-view-fullscreen-32.png" title="Check it out!" alt="" />',
-			'PINFO_IMG'			=> '<img src="' . $phpbb_root_path . 'images/information-32.png" title="Info" alt="" />',
+			'DOWNLOAD_IMG'		=> '<img src="' . $phpbb_root_path . 'images/2download-box-32.png" title="' . $user->lang['DOWNLOAD'] . '" alt="" />',
+			'TEST_IT_IMG'		=> '<img src="' . $phpbb_root_path . 'images/gnome-view-fullscreen-32.png" title="' . $user->lang['CHECKITOUT'] . '" alt="" />',
+			'PINFO_IMG'			=> '<img src="' . $phpbb_root_path . 'images/information-32.png" title="' . $user->lang['INFO'] . '" alt="" />',
 		));
 	}
 }
 
-
-if (!function_exists('ready_text_for_storage'))
-{
-	function ready_text_for_storage($data)
-	{
-		$uid = $bitfield = $options = '';
-		$allow_bbcode = $allow_urls = $allow_smilies = true;
-
-		generate_text_for_storage($data, $uid, $bitfield, $options, $allow_bbcode, $allow_urls, $allow_smilies);
-
-		$data_array = array(
-			'mod_text'				=> $data,
-			'mod_bbcode_uid'		=> $uid,
-			'mod_bbcode_bitfield'	=> $bitfield,
-			'mod_bbcode_options'	=> $options,
-		);
-		return($data_array);
-	}
-}
-
-if (!function_exists('ready_text_from_storage'))
-{
-	function ready_text_from_storage($row)
-	{
-		/*
-		$sql = 'SELECT text, bbcode_uid, bbcode_bitfield, enable_bbcode, enable_smilies, enable_magic_url
-			FROM ' . $table;
-			$result = $db->sql_query($sql);
-			$row = $db->sql_fetchrow($result);
-			$db->sql_freeresult($result);
-		*/
-
-		$row['mod_bbcode_options'] = (($row['mod_enable_bbcode']) ? OPTION_FLAG_BBCODE : 0) +
-			(($row['mod_enable_smilies']) ? OPTION_FLAG_SMILIES : 0) +
-			(($row['mod_enable_magic_url']) ? OPTION_FLAG_LINKS : 0);
-
-		$text = generate_text_for_display($row['mod_text'], $row['mod_bbcode_uid'], $row['mod_bbcode_bitfield'], $row['mod_bbcode_options']);
-
-		return($text);
-	}
-}
-
-
 /**
-* Obtain list of moderators of each forum
-* (phpbb code reused)
+* templates
 */
-if (!function_exists('sgp_get_moderators'))
-{
-	/**
-	* Obtain list of moderators of each forum
-	*/
-	function sgp_get_moderators(&$forum_moderators, $forum_id = false)
-	{
-		global $config, $template, $db, $phpbb_root_path, $phpEx, $user, $auth;
-
-		$forum_id_ary = array();
-
-		if ($forum_id !== false)
-		{
-			if (!is_array($forum_id))
-			{
-				$forum_id = array($forum_id);
-			}
-
-			// Exchange key/value pair to be able to faster check for the forum id existence
-			$forum_id_ary = array_flip($forum_id);
-		}
-
-		$sql_array = array(
-			'SELECT'	=> 'm.*, u.user_colour, g.group_colour, g.group_type',
-
-			'FROM'		=> array(
-				MODERATOR_CACHE_TABLE	=> 'm',
-			),
-
-			'LEFT_JOIN'	=> array(
-				array(
-					'FROM'	=> array(USERS_TABLE => 'u'),
-					'ON'	=> 'm.user_id = u.user_id',
-				),
-				array(
-					'FROM'	=> array(GROUPS_TABLE => 'g'),
-					'ON'	=> 'm.group_id = g.group_id',
-				),
-			),
-
-			'WHERE'		=> 'm.display_on_index = 1',
-		);
-
-		// We query every forum here because for caching we should not have any parameter.
-		$sql = $db->sql_build_query('SELECT', $sql_array);
-		$result = $db->sql_query($sql, 3600);
-
-		while ($row = $db->sql_fetchrow($result))
-		{
-			$f_id = (int) $row['forum_id'];
-
-			if (!isset($forum_id_ary[$f_id]))
-			{
-				continue;
-			}
-
-			if (!empty($row['user_id']))
-			{
-				$forum_moderators[$f_id][] = get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']);
-			}
-			else
-			{
-				$group_name = (($row['group_type'] == GROUP_SPECIAL) ? $user->lang['G_' . $row['group_name']] : $row['group_name']);
-
-				if ($user->data['user_id'] != ANONYMOUS && !$auth->acl_get('u_viewprofile'))
-				{
-					$forum_moderators[$f_id][] = '<span' . (($row['group_colour']) ? ' style="color:#' . $row['group_colour'] . ';"' : '') . '>' . $group_name . '</span>';
-				}
-				else
-				{
-					$forum_moderators[$f_id][] = '<a' . (($row['group_colour']) ? ' style="color:#' . $row['group_colour'] . ';"' : '') . ' href="' . append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=group&amp;g=' . $row['group_id']) . '">' . $group_name . '</a>';
-				}
-			}
-		}
-		$db->sql_freeresult($result);
-
-		return;
-	}
-}
-
-/**
-* (phpbb code reused)
-* Obtain either the members of a specified group, the groups the specified user is subscribed to
-* or checking if a specified user is in a specified group. This function does not return pending memberships.
-*
-* Note: Never use this more than once... first group your users/groups
-*/
-if (!function_exists('sgp_group_memberships'))
-{
-	function sgp_group_memberships($group_id_ary = false, $user_id_ary = false, $return_bool = false)
-	{
-		global $db;
-
-		if (!$group_id_ary && !$user_id_ary)
-		{
-			return true;
-		}
-
-		if ($user_id_ary)
-		{
-			$user_id_ary = (!is_array($user_id_ary)) ? array($user_id_ary) : $user_id_ary;
-		}
-
-		if ($group_id_ary)
-		{
-			$group_id_ary = (!is_array($group_id_ary)) ? array($group_id_ary) : $group_id_ary;
-		}
-
-		$sql = 'SELECT ug.*, u.username, u.username_clean, u.user_email
-			FROM ' . USER_GROUP_TABLE . ' ug, ' . USERS_TABLE . ' u
-			WHERE ug.user_id = u.user_id
-				AND ug.user_pending = 0 AND ';
-
-		if ($group_id_ary)
-		{
-			$sql .= ' ' . $db->sql_in_set('ug.group_id', $group_id_ary);
-		}
-
-		if ($user_id_ary)
-		{
-			$sql .= ($group_id_ary) ? ' AND ' : ' ';
-			$sql .= $db->sql_in_set('ug.user_id', $user_id_ary);
-		}
-
-		$result = ($return_bool) ? $db->sql_query_limit($sql, 1, 0, 600, 'sgp') : $db->sql_query($sql, 600);
-
-		$row = $db->sql_fetchrow($result);
-
-		if ($return_bool)
-		{
-			$db->sql_freeresult($result);
-			return ($row) ? true : false;
-		}
-
-		if (!$row)
-		{
-			return false;
-		}
-
-		$return = array();
-
-		do
-		{
-			$return[] = $row;
-		}
-		while ($row = $db->sql_fetchrow($result));
-
-		$db->sql_freeresult($result);
-
-		return $return;
-	}
-}
-
-/**
-* Get group name (phpbb code reused)
-*/
-if (!function_exists('sgp_get_group_name'))
-{
-	function sgp_get_group_name($group_id)
-	{
-		global $db, $user;
-
-		$sql = 'SELECT group_name, group_type
-			FROM ' . GROUPS_TABLE . '
-			WHERE group_id = ' . (int) $group_id;
-		$result = $db->sql_query($sql);
-		$row = $db->sql_fetchrow($result);
-		$db->sql_freeresult($result);
-
-		if (!$row || ($row['group_type'] == GROUP_SPECIAL && empty($user->lang)))
-		{
-			return('');
-		}
-
-		return ($row['group_type'] == GROUP_SPECIAL) ? $user->lang['G_' . $row['group_name']] : $row['group_name'];
-	}
-}
-
 if (!function_exists('portal_block_template'))
 {
 	function portal_block_template($block_file)
@@ -1049,7 +525,7 @@ if (!function_exists('process_for_admin_bbcodes'))
 
 		// later pull admin bbcodes from DB //
 
-		if ($user->data['username'] == 'Anonymous')
+		if ($user->data['user_id'] == ANONYMOUS)
 		{
 			$data = str_replace("[you]", $user->lang['GUEST'], $data);
 		}
@@ -1062,26 +538,15 @@ if (!function_exists('process_for_admin_bbcodes'))
 }
 
 
-
-
 /*
 * Takes the page name
 * Returns the pages id
-* The query is cached... is there a better method?
 */
 if (!function_exists('get_page_id'))
 {
 	function get_page_id($this_page_name)
 	{
 		global $db, $user, $k_pages;
-
-/*
-		// Basic error checking //
-		if ($this_page_name == '')
-		{
-			trigger_error($user->lang['SOMETHING_WENT_WRONG'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
-		}
-*/
 
 		foreach ($k_pages as $page)
 		{
@@ -1123,6 +588,7 @@ if (!function_exists('get_menu_lang_name'))
 * Takes a phpBB $page name and position (left/right/centre)...
 * Returns true/false if the block should be displayed on a giveb page...
 **/
+/***
 if (!function_exists('show_blocks'))
 {
 	function show_blocks($page, $position)
@@ -1131,23 +597,14 @@ if (!function_exists('show_blocks'))
 
 		$page_id = get_page_id($page);
 
-		if ($position == 'L')
+		if ($position == 'L' || $position == 'R' || $position == 'C')
 		{
-			//return($k_config['show_lb_ipsmuy'][$page_id]) ? true : false;
 			return(true);
 		}
-		else if ($position == 'R')
-		{
-			//return($k_config['show_rb_ipsmuy'][$page_id]) ? true : false;
-			return(true);
-		}
-		else if ($position == 'C')
-		{
-			//return($k_config['show_rb_ipsmuy'][$page_id]) ? true : false;
-			return(true);
-		}
+		return(false);
 	}
 }
+***/
 
 if (!function_exists('s_get_vars_array'))
 {
@@ -1176,9 +633,7 @@ if (!function_exists('s_get_vars'))
 	{
 		global $db, $template;
 
-		$type = "'V'";
-
-		$sql = 'SELECT * FROM ' . K_RESOURCES_TABLE  . ' WHERE type = ' . $type . ' ORDER BY word ASC';
+		$sql = 'SELECT * FROM ' . K_RESOURCES_TABLE  . ' WHERE type = V ORDER BY word ASC';
 
 		$result = $db->sql_query($sql);
 
@@ -1189,146 +644,6 @@ if (!function_exists('s_get_vars'))
 			));
 		}
 		$db->sql_freeresult($result);
-	}
-}
-
-/*
-* Rewrite of a phpbb function so we can wrap it and call it without additional code
-* Wrapping, stops redeclaration errors...
-*/
-if (!function_exists('is_member'))
-{
-	function is_member($group_id_ary = false, $user_id_ary = false, $return_bool = false)
-	{
-		global $db;
-
-		if (!$group_id_ary && !$user_id_ary)
-		{
-			return true;
-		}
-
-		if ($user_id_ary)
-		{
-			$user_id_ary = (!is_array($user_id_ary)) ? array($user_id_ary) : $user_id_ary;
-		}
-
-		if ($group_id_ary)
-		{
-			$group_id_ary = (!is_array($group_id_ary)) ? array($group_id_ary) : $group_id_ary;
-		}
-
-		$sql = 'SELECT ug.*, u.username, u.username_clean, u.user_email
-			FROM ' . USER_GROUP_TABLE . ' ug, ' . USERS_TABLE . ' u
-			WHERE ug.user_id = u.user_id
-				AND ug.user_pending = 0 AND ';
-
-		if ($group_id_ary)
-		{
-			$sql .= ' ' . $db->sql_in_set('ug.group_id', $group_id_ary);
-		}
-
-		if ($user_id_ary)
-		{
-			$sql .= ($group_id_ary) ? ' AND ' : ' ';
-			$sql .= $db->sql_in_set('ug.user_id', $user_id_ary);
-		}
-
-		// we cache he resut for 600 //
-		$result = ($return_bool) ? $db->sql_query_limit($sql, 1, 0, 600) : $db->sql_query($sql);
-
-		$row = $db->sql_fetchrow($result);
-
-		if ($return_bool)
-		{
-			$db->sql_freeresult($result);
-			return ($row) ? true : false;
-		}
-
-		if (!$row)
-		{
-			return false;
-		}
-
-		$return = array();
-
-		do
-		{
-			$return[] = $row;
-		}
-		while ($row = $db->sql_fetchrow($result));
-
-		$db->sql_freeresult($result);
-
-		return $return;
-	}
-}
-
-
-/**
-* Get user avatar Note! To avoid conflict copied and renamed for portal
-*
-* @param string $avatar Users assigned avatar name
-* @param int $avatar_type Type of avatar
-* @param string $avatar_width Width of users avatar
-* @param string $avatar_height Height of users avatar
-* @param string $alt Optional language string for alt tag within image, can be a language key or text
-*
-* @return string Avatar image (if avatars are enabled in ACP and a member has not selected an avatar).
-*/
-
-if (!function_exists('sgp_get_user_avatar'))
-{
-	function sgp_get_user_avatar($avatar, $avatar_type, $avatar_width = '80', $avatar_height = '80', $alt = 'USER_AVATAR')
-	{
-		if (!STARGATE)
-		{
-			return;
-		}
-
-		global $user, $config, $phpbb_root_path, $phpEx;
-
-		// 18 August 2010 //
-		// if avatars are disabled in acp return //
-		if (!$config['allow_avatar'])
-		{
-			return;
-		}
-
-		if (empty($avatar) || !$avatar_type)
-		{
-			$poster_avatar = get_random_image($phpbb_root_path . 'images/avatars/no_avitar', false, '');
-
-			// do we wish to resize? 28 January 2010 should not require else...? will look later //
-			if ($avatar_width || $avatar_height)
-			{
-				if (strpos($poster_avatar, '/>"'))
-				{
-					$poster_avatar = str_replace('/>"', '" height="' . $avatar_height . '" width="' . $avatar_width . '" />', $poster_avatar);
-				}
-				elseif (strpos($poster_avatar, '/>'))
-				{
-					$poster_avatar = str_replace('/>', ' height="' . $avatar_height . '" width="' . $avatar_width . '" />', $poster_avatar);
-				}
-			}
-
-			return($poster_avatar);
-		}
-
-		$avatar_img = '';
-
-		switch ($avatar_type)
-		{
-			case AVATAR_UPLOAD:
-				$avatar_img = $phpbb_root_path . "download/file.$phpEx?avatar=";
-			break;
-
-			case AVATAR_GALLERY:
-				$avatar_img = $phpbb_root_path . $config['avatar_gallery_path'] . '/';
-			break;
-		}
-
-		$avatar_img .= $avatar;
-		return '<img src="' . (str_replace(' ', '%20', $avatar_img)) . '" width="' . $avatar_width . '" height="' . $avatar_height . '" alt="' . ((!empty($user->lang[$alt])) ? $user->lang[$alt] : $alt) . '" />';
 	}
 }
 

@@ -17,6 +17,11 @@ if (!defined('IN_PHPBB'))
 	exit;
 }
 
+if(defined('IN_INSTALL'))
+{
+	return;
+}
+
 /**
 * acronym_pass()
 * acronym_cache()
@@ -52,7 +57,11 @@ if (!class_exists('acronym_cache'))
 				$sql = 'SELECT acronym, meaning
 					FROM ' . K_ACRONYMS_TABLE . "
 					WHERE lang = '" . $user->data['user_lang'] . "'
-					ORDER BY LENGTH(TRIM(acronym))	DESC";
+					ORDER BY acronym DESC";
+
+					// ORDER BY LENGTH(TRIM(acronym)) DESC";
+					// How would I write thid for all databases ???
+					//
 
 				$result = $db->sql_query($sql, 600);
 
@@ -82,13 +91,11 @@ if (!function_exists('sgp_local_acronyms'))
 		global $user;
 		$you = $user->lang['THIS_MEANS_YOU'];
 
-		/*
-		$message = str_replace("[you!]", '<span title="' . $you . '" style="font-style:italic; border-bottom:1px #BD5121 dashed; cursor: help; color:#' . $user->data['user_colour'] . ';">' . $user->data['username'] . '</span>', $message);
-		$message = str_replace("[day-time]", $user->format_date(time()), $message);
-		$message = str_replace("[date-now]", date( "d-m-Y", time() ), $message);
-		*/
-		$message = str_replace("Stargate Portal", '<local_acronym title="Stargate Portal (aka Kiss Portal), the original phpBB3 portal &copy; Michael O\'Toole." > ' . 'Stargate Portal'       . '</local_acronym>', $message);
-		$message = str_replace("Kiss II", '<local_acronym title="Stargate Portal without frills... (The new Kiss Portal Engine 2011)" > ' . 'Kiss II'       . '</local_acronym>', $message);
+		// process sigle word acronyms first...
+		$message = str_replace("phpBB3", '<acronym title="' . $user->lang['ACRO_3'] . '"> phpBB3 </acronym>', $message);
+		$message = str_replace("Stargate Portal", '<acronym title="' . $user->lang['ACRO_1'] . '"> Stargate Portal </acronym>', $message);
+		$message = str_replace("Kiss Portal Engine", '<acronym title="' . $user->lang['ACRO_2'] . '"> Kiss Portal Engine </acronym>', $message);
+
 		return($message);
 	}
 }
@@ -121,7 +128,7 @@ if (!function_exists('phpbb_preg_quote'))
 
 if (!function_exists('sgp_truncate_message'))
 {
-	function sgp_truncate_message($txt, $length)
+	function sgp_truncate_message($txt, $length = 0)
 	{
 		global $phpbb_root_path, $config;
 		$buffer = $div_append = '';
@@ -281,7 +288,6 @@ if (!function_exists('correct_truncate_length'))
 					if($uid_start < $truncate && $uid_end < $truncate)
 					{
 						$return_val = $truncate;
-
 					}
 
 					if($uid_start < $truncate && $uid_end > $truncate)

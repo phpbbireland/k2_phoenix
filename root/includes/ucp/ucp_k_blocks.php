@@ -65,7 +65,6 @@ class ucp_k_blocks
 			case 'arrange':
 				$template->assign_vars(array(
 					'ARRANGE_ICO'		=> $user->lang['UCP_K_INFO_ARRANGE'],
-					//'L_ARRANGE_ICON'	=> sprintf($user->lang['ARRANGE_ICON'], '<img src="' . $phpbb_root_path . '/images/portal_ucp_images/arrange.gif"' . ' alt="" />'),
 					'L_ARRANGE_ICON'	=> $user->lang['ARRANGE_ICON'],
 					'U_PORTAL_ARRANGE'	=> append_sid("{$phpbb_root_path}portal.$phpEx", "arrange=1"),
 					'LINK_IMG'			=> '<img src="' . $phpbb_root_path . '/images/portal_ucp_images/arrange.gif" alt="" />',
@@ -103,8 +102,6 @@ class ucp_k_blocks
 				$template->assign_vars(array(
 					'CKECKBOX'			=> 1,
 					'L_SWITCH_INFO'		=> $user->lang['UCP_K_INFO_WIDTH'],
-					'U_WIDE'			=> '<a href="javascript:chooseStyle(' . "'none'" . ',60)" > <img src="images/wide.gif"   height="15" width="14" alt="" title="' . $user->lang['WIDE'] . '" />' . '</a>',
-					'U_NARROW'			=> '<a href="javascript:chooseStyle(' . "'fixed'" .',60)" > <img src="images/narrow.gif" height="15" width="11" alt="" title="' . $user->lang['NARROW'] . '" />' . '</a>',
 				));
 			break;
 
@@ -131,9 +128,9 @@ class ucp_k_blocks
 					SET user_left_blocks = '" . $db->sql_escape($user_left_blocks) . "',
 						user_center_blocks = '" . $db->sql_escape($user_center_blocks) . "',
 						user_right_blocks = '" . $db->sql_escape($user_right_blocks) . "'
-					WHERE user_id = '" . $user->data['user_id'] . "' LIMIT 1";
+					WHERE user_id = '" . $user->data['user_id'] . "'";
 
-				$result = $db->sql_query($sql);
+				$result = $db->sql_query_limit($sql, 1);
 
 				if (!$result)
 				{
@@ -151,10 +148,10 @@ class ucp_k_blocks
 			{
 				if($reset_blocks)
 				{
-					$sql = 'UPDATE ' . USERS_TABLE . '
-						SET user_left_blocks = "", user_center_blocks = "", user_right_blocks = ""
-						WHERE user_id = ' . $user_id . ' LIMIT 1';
-					$result = $db->sql_query($sql);
+					$sql = "UPDATE " . USERS_TABLE . "
+						SET user_left_blocks = '', user_center_blocks = '', user_right_blocks = ''
+						WHERE user_id = " . $user_id;
+					$result = $db->sql_query_limit($sql, 1);
 
 					$template->assign_vars(array(
 						'CKECKBOX'		=> 0,
@@ -194,7 +191,7 @@ function get_current_block_layout($id)
 
 	$sql = "SELECT user_id, user_left_blocks, user_center_blocks, user_right_blocks
 		FROM " . USERS_TABLE . "
-		WHERE user_id = $id";
+		WHERE user_id = " . (int)$id;
 
 	if ($result = $db->sql_query($sql))
 	{
@@ -215,7 +212,7 @@ function get_default_block_layout($id)
 	$sql = 'SELECT id, position, html_file_name, view_pages, view_all
 		FROM ' . K_BLOCKS_TABLE . '
 		WHERE active = 1
-			AND (view_pages <> 0)';
+			AND view_pages <> 0';
 
 	if ($result = $db->sql_query($sql))
 	{

@@ -60,7 +60,10 @@ class acp_k_resources
 		$add		= request_var('add', '');
 
 
-		$id_list = ( ( isset($_POST['id_list']) ) ? $_POST['id_list'] : ( (isset($_GET['id_list'])) ? $_GET['id_list'] : array()));
+		//request_var('id_list', array('' => 0))
+		//request_var('id_list', array(0))
+
+		$id_list = (( isset($_POST['id_list']) ) ? request_var('id_list', array(0)) : ( (isset($_GET['id_list'])) ? request_var('id_list', array(0)) : array()));
 
 		switch($action)
 		{
@@ -101,7 +104,7 @@ class acp_k_resources
 
 					if (!$db->sql_query('INSERT INTO ' . K_RESOURCES_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_array)))
 					{
-						trigger_error($user->lang['ERROR_PORTAL_WORDS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+						trigger_error($user->lang['ERROR_PORTAL_WORDS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 					}
 				}
 
@@ -113,7 +116,7 @@ class acp_k_resources
 					$sql = 'DELETE FROM '. K_RESOURCES_TABLE ." WHERE id = " . (int)$id_list[$i];
 					if (!$result = $db->sql_query($sql))
 					{
-						trigger_error($user->lang['ERROR_PORTAL_WORDS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+						trigger_error($user->lang['ERROR_PORTAL_WORDS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 					}
 				}
 			break;
@@ -127,7 +130,7 @@ class acp_k_resources
 
 		if (!$result = $db->sql_query($sql))
 		{
-			trigger_error($user->lang['ERROR_PORTAL_WORDS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+			trigger_error($user->lang['ERROR_PORTAL_WORDS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 		}
 
 		$a = array('{', '}');

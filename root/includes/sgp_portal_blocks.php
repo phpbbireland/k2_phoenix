@@ -55,6 +55,7 @@ $LB = $CB = $RB = array();
 $active_blocks = array();
 
 // if styles use large block images change path to images //
+$block_image_path = $phpbb_root_path . 'images/block_images/block/';
 $big_image_path = $phpbb_root_path . 'images/block_images/large/';
 
 $user->add_lang('portal/kiss_block_variables');
@@ -92,11 +93,12 @@ if ($result = $db->sql_query($sql))
 }
 else
 {
-	trigger_error($user->lang['ERROR_USER_TABLE'] . ': ' . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . ', line ' . __LINE__);
+	//trigger_error($user->lang['ERROR_USER_TABLE'] . ': ' . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
+	trigger_error($user->lang['ERROR_USER_TABLE']);
 }
 
 // Process block positions for members //
-if($row['username'] != ANONYMOUS)
+if($row['group_id'] != ANONYMOUS)
 {
 	if (isset($_COOKIE[$config['cookie_name'] . '_sgp_left']) || isset($_COOKIE[$config['cookie_name'] . '_sgp_center']) || isset($_COOKIE[$config['cookie_name'] . '_sgp_right']) && $use_block_cookies)
 	{
@@ -129,17 +131,6 @@ if($row['username'] != ANONYMOUS)
 				'S_CLEAR_CACHE' => true
 			));
 		}
-
-
-		// this does not appear to be functioning? I switched to js for this//
-		/*
-		$set_time = time() - 31536000;
-		$user->set_cookie('sgp_left', '', $set_time);
-		$user->set_cookie('sgp_center', '', $set_time);
-		$user->set_cookie('sgp_right', '', $set_time);
-		unset($set_time);
-		*/
-
 	}
 
 	if (empty($row['user_left_blocks']))
@@ -147,7 +138,6 @@ if($row['username'] != ANONYMOUS)
 		$sql = 'SELECT *
 			FROM ' . K_BLOCKS_TABLE . '
 			WHERE active = 1
-				AND (view_by <> 0 OR view_all = 1)
 				AND (view_pages <> 0)
 				ORDER BY ndx ASC';
 	}
@@ -166,7 +156,6 @@ else
 	$sql = 'SELECT *
 		FROM ' . K_BLOCKS_TABLE . '
 		WHERE active = 1
-				AND (view_by <> 0 OR view_all = 1)
 				AND (view_pages <> 0)
 				ORDER BY ndx ASC';
 }
@@ -190,13 +179,6 @@ foreach ($active_blocks as $active_block)
 
 	if (file_exists($phpbb_root_path . 'blocks/' . $filename . '.' . $phpEx))
 	{
-/*
-		if (!$k_config['k_blocks_display_globally'])
-		{
-			$this_page_name = '';
-		}
-*/
-
 		$page_id = get_page_id($this_page_name);
 
 		if(in_array($page_id, $arr[$active_block['id']]))
@@ -207,8 +189,12 @@ foreach ($active_blocks as $active_block)
 }
 $db->sql_freeresult($result);
 
+if(!function_exists('group_memberships'))
+{
+	include($phpbb_root_path . 'includes/functions_user.'. $phpEx);
+}
 $memberships = array();
-$memberships = sgp_group_memberships(false, $user->data['user_id'], false);
+$memberships = group_memberships(false, $user->data['user_id'], false);
 
 // Main processing of block data here //
 
@@ -236,7 +222,6 @@ if ($active_blocks)
 		$block_title		= $row['title'];
 		$block_active		= $row['active'];
 		$block_type			= $row['type'];
-		$block_view_by		= $row['view_by'];
 		$block_view_groups	= $row['view_groups'];
 		$block_view_all		= $row['view_all'];
 		$block_scroll		= $row['scroll'];
@@ -251,48 +236,33 @@ if ($active_blocks)
 		$process_block = false;
 		$block_title = get_menu_lang_name($row['title']);
 
-		// is block active //
-		if ($block_view_by == 0)
+		// process blocks for different groups //
+		if ($memberships)
 		{
-			$process_block = false;
-		}
-		else
-		{
-			// process blocks for different groups //
-			if ($memberships)
+			foreach ($memberships as $member)
 			{
-				foreach ($memberships as $member)
+				// First we check to see if the view_all over-ride is set (saves having to enter all groups) //
+				if ($block_view_all)
 				{
-					// First we check to see if the view_all over-ride is set (saves having to enter all groups) //
-					if ($block_view_all)
+					$process_block = true;
+				}
+				else
+				{
+					for ($j = 0; $j < $jcount = count($grps); $j++) // now we loop for all group the user is in //
 					{
-						$process_block = true;
-					}
-					else if ($block_view_by == $member['group_id'])	// Now we check for the users group id ($block_view_all is not set)... We also allow all blocks for admin //
-					{
-						$process_block = true;
-					}
-					else
-					{
-						for ($j = 0; $j < count($grps); $j++) // now we loop for all group the user is in //
+						if ($grps[$j] == $member['group_id'])
 						{
-							if ($grps[$j] == $member['group_id'])
-							{
-								$process_block = true;
-							}
+							$process_block = true;
 						}
 					}
 				}
 			}
-			else
-			{
-				$process_block = false;
-			}
+
 		}
 
 		$page_id = get_page_id($this_page_name);
 
-		if($process_block && $block_view_by > 0 && in_array($page_id, $arr))
+		if($process_block && in_array($page_id, $arr))
 		{
 			switch($block_position)
 			{
@@ -305,7 +275,7 @@ if ($active_blocks)
 						$left_block_scroll[$L]	= $block_scroll;
 						$left_block_height[$L]	= $block_height;
 						$L++;
-						$show_left = show_blocks($this_page_name, $block_position);
+						$show_left = true;//show_blocks($this_page_name, $block_position);
 				break;
 				case 'C':
 						$center_block_ary[$C]		= $html_file_name;
@@ -316,7 +286,7 @@ if ($active_blocks)
 						$center_block_scroll[$C]	= $block_scroll;
 						$center_block_height[$C]	= $block_height;
 						$C++;
-						$show_center = show_blocks($this_page_name, $block_position);
+						$show_center = true;//show_blocks($this_page_name, $block_position);
 				break;
 				case 'R':
 						$right_block_ary[$R]	= $html_file_name;
@@ -327,7 +297,7 @@ if ($active_blocks)
 						$right_block_scroll[$R]	= $block_scroll;
 						$right_block_height[$R]	= $block_height;
 						$R++;
-						$show_right = show_blocks($this_page_name, $block_position);
+						$show_right = true;//show_blocks($this_page_name, $block_position);
 				break;
 				default:
 			}
@@ -346,8 +316,8 @@ if (isset($left_block_ary) && $show_left)
 			'LEFT_BLOCK_TITLE'		=> $left_block_title[$block],
 			'LEFT_BLOCK_SCROLL'		=> $left_block_scroll[$block],
 			'LEFT_BLOCK_HEIGHT'		=> $left_block_height[$block],
-			'LEFT_BLOCK_IMG'		=> ($left_block_img[$block]) ? '<img src="' . $phpbb_root_path . 'images/block_images/block/' . $left_block_img[$block] . '" alt="" />' : '<img src="' . $phpbb_root_path . 'images/block_images/block/none.gif" height="1px" width="1px" alt="" >',
-			'LEFT_BLOCK_IMG_2'		=> (file_exists($big_image_path . $left_block_img[$block])) ? '<img src="' . $big_image_path  . $left_block_img[$block] . '" alt="" />' : '<img src="' . $phpbb_root_path . 'images/block_images/large/none.png" alt="" >',
+			'LEFT_BLOCK_IMG'		=> ($left_block_img[$block]) ? $block_image_path . $left_block_img[$block] : $block_image_path . 'none.gif',
+			'LEFT_BLOCK_IMG_2'		=> (file_exists($big_image_path . $left_block_img[$block])) ? $big_image_path  . $left_block_img[$block] : $big_image_path . 'none.png',
 			'S_CONTENT_FLOW_BEGIN'	=> ($user->lang['DIRECTION'] == 'ltr') ? 'left' : 'right',
 			'S_CONTENT_FLOW_END'	=> ($user->lang['DIRECTION'] == 'ltr') ? 'right' : 'left',
 		));
@@ -364,8 +334,8 @@ if (isset($right_block_ary) && $show_right)
 			'RIGHT_BLOCK_TITLE'		=> $right_block_title[$block],
 			'RIGHT_BLOCK_SCROLL'	=> $right_block_scroll[$block],
 			'RIGHT_BLOCK_HEIGHT'	=> $right_block_height[$block],
-			'RIGHT_BLOCK_IMG'		=> ($right_block_img[$block]) ? '<img src="' . $phpbb_root_path . 'images/block_images/block/' . $right_block_img[$block] . '" alt="" />' : '<img src="' . $phpbb_root_path . 'images/block_images/block/none.gif" height="1px" width="1px" alt="" >',
-			'RIGHT_BLOCK_IMG_2'		=> (file_exists($big_image_path . $right_block_img[$block])) ? '<img src="' . $big_image_path  . $right_block_img[$block] . '" alt="" />' : '<img src="' . $phpbb_root_path . 'images/block_images/large/none.png" alt="" >',
+			'RIGHT_BLOCK_IMG'		=> ($right_block_img[$block]) ? $block_image_path . $right_block_img[$block] : $block_image_path . 'none.gif',
+			'RIGHT_BLOCK_IMG_2'		=> (file_exists($big_image_path . $right_block_img[$block])) ? $big_image_path  . $right_block_img[$block] : $big_image_path . 'none.png',
 
 			'S_CONTENT_FLOW_BEGIN'	=> ($user->lang['DIRECTION'] == 'ltr') ? 'left' : 'right',
 			'S_CONTENT_FLOW_END'	=> ($user->lang['DIRECTION'] == 'ltr') ? 'right' : 'left',
@@ -403,8 +373,8 @@ if (isset($center_block_ary) && $show_center)
 			'CENTER_BLOCK_TITLE'	=> $center_block_title[$block],
 			'CENTER_BLOCK_SCROLL'	=> $center_block_scroll[$block],
 			'CENTER_BLOCK_HEIGHT'	=> $center_block_height[$block],
-			'CENTER_BLOCK_IMG'		=> ($center_block_img[$block]) ? '<img src="' . $phpbb_root_path . 'images/block_images/block/' . $center_block_img[$block] . '" alt="" />' : '<img src="' . $phpbb_root_path . 'images/block_images/block/none.gif" height="1px" width="1px" alt="" >',
-			'CENTER_BLOCK_IMG_2'	=> (file_exists($big_image_path . $center_block_img[$block])) ? '<img src="' . $big_image_path  . $center_block_img[$block] . '" alt="" />' : '<img src="' . $phpbb_root_path . 'images/block_images/large/none.png" alt="" >',
+			'CENTER_BLOCK_IMG'		=> ($center_block_img[$block]) ? $block_image_path . $center_block_img[$block] : $block_image_path . 'none.gif',
+			'CENTER_BLOCK_IMG_2'	=> (file_exists($big_image_path . $center_block_img[$block])) ? $big_image_path  . $center_block_img[$block] : $big_image_path . 'none.png',
 
 			'S_CONTENT_FLOW_BEGIN'	=> ($user->lang['DIRECTION'] == 'ltr') ? 'left' : 'right',
 			'S_CONTENT_FLOW_END'	=> ($user->lang['DIRECTION'] == 'ltr') ? 'right' : 'left',
@@ -413,7 +383,7 @@ if (isset($center_block_ary) && $show_center)
 }
 
 $template->assign_vars(array(
-	'AVATAR'			=> sgp_get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], $user->data['user_avatar_width'], $user->data['user_avatar_height']),
+	'AVATAR'			=> get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], $user->data['user_avatar_width'], $user->data['user_avatar_height']),
 	'BLOCK_WIDTH'		=> $blocks_width . 'px',
 
 	'PORTAL_ACTIVE'		=> $config['portal_enabled'],
@@ -449,11 +419,12 @@ if ($this_page[0] == 'viewtopic')
 	global $phpEx, $phpbb_root_path;
 	global $config, $user, $template, $k_quick_posting_mode, $forum_id, $post_data, $topic_id, $topic_data, $k_config;
 
-	// using function_exists() will still result in redeclarations errors //
-	// I confirmed I could use include once under these circumstances over a year ago (official phpBB chat with devs) //
-	// I need to determine the actual functions required and check agains each ? //
-	include_once($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
-	include_once($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+	include($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
+
+	if(!function_exists('get_user_avatar'))
+	{
+		include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+	}
 
 	if (!isset($smilies_status))
 	{
