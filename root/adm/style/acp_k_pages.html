@@ -6,52 +6,44 @@
 // Not very elegant but it works Mike //
 function set_ids(list_index, tag_id)
 {
-    document.getElementById(tag_id).value = list_index;
+	if(tag_id)
+	{
+	    document.getElementById(tag_id).value = list_index;
+	}
 }
 // ]]>
 </script>
 
+<h1>{L_TITLE}</h1>
+<p>{L_TITLE_EXPLAIN_PAGES}</p>
 
-<h1>{L_ACP_PAGES}</h1>
-<p>{L_ACP_PAGES_EXPLAIN}</p>
-
-<form name="acp_k_modules" id="acp_k_modules" method="post" action="{U_ACTION}"><input type="hidden" name="module" value="{S_ID}" />
-<input type="hidden" name="new_file" value="{S_NEW_FILE}" />
+<form id="acp_k_modules" method="post" action="{U_ACTION}">
 
 <!-- IF S_OPTION == 'manage' || S_OPTION == 'delete' -->
 <fieldset>
 	<dl>
-		<dt><label for="page_name">{L_PAGE_NAME}:</label><br /><span>{L_PAGE_NAME_EXPLAIN}</span></dt>
-		<dd >
-			<table cellspacing="1" border="0"  width="300px;">
-				<thead>
-					<tr>
-						<th><span style="color#FFFF33">{L_FILENAME}</span><span style="padding-left:210px;">{L_OPTIONS}</span></th>
-					</tr>
-				</thead>
-			</table>
-		</dd>
+		<dt><label>{L_PAGE_NAME}:</label><br />{L_PAGE_NAME_EXPLAIN}</dt>
+		<dd><table><tr><th>{L_FILENAME} / {L_OPTIONS}</th></tr></table></dd>
 	</dl>
 
 	<legend>{S_PAGE_NAME}</legend>
 	<dl>
-		<dd>
 		<!-- BEGIN phpbbpages -->
-		<input class="post" size="40" maxlength="100" name="page_name" value="{phpbbpages.S_PAGE_NAME}" type="text" />
-		<a href="{U_DELETE}{phpbbpages.S_PAGE_ID}"><img src="images/icon_delete.gif" border="0" title="{L_DELETE_FROM_LIST}" alt="{L_DELETE}"></a>
-		<!-- END phpbbpages -->
+		<dd style="width:auto">
+			<input class="post" size="50" maxlength="100" name="page_name" value="{phpbbpages.S_PAGE_NAME}" type="text" />
+			<a href="{phpbbpages.U_DELETE}"><img src="images/icon_delete.gif" title="{L_DELETE_FROM_LIST}" alt="{L_DELETE}" /></a>
 		</dd>
+		<!-- END phpbbpages -->
 	</dl>
-	<input type="hidden" class="post" size="30" maxlength="100" name="tag_id" id="tag_id" value="{S_NEW_FILE}" type="text" />
+	<input type="hidden" class="post" size="30" maxlength="100" name="tag_id" id="tag_id" value="{S_NEW_FILE}" />
 	<dl>
-		<dt><label for="phpbb_files">{L_PAGE_NEW_FILENAME}:</label><br />{L_PAGE_NEW_FILENAME_EXPLAIN}</dt>
-		<dd><label><br />
-			<select name="phpbb_files" id="phpbb_files" class="post" onchange="set_ids(this.options[this.selectedIndex].value, 'tag_id'); ">{S_PHPBB_FILES}
-			<!-- BEGIN phpbb_pages -->
-			<option  value="{phpbb_pages.S_PHPBB_FILES}" >{phpbb_pages.S_PHPBB_FILES}</option>
-			<!-- END phpbb_pages -->
-			</select>
-			</label>
+		<dt><label>{L_PAGE_NEW_FILENAME}:</label><br />{L_PAGE_NEW_FILENAME_EXPLAIN}</dt>
+		<dd><br />
+		<!-- IF S_FILES_FOUND -->
+			<select name="phpbb_files" class="post" onchange="set_ids(this.options[this.selectedIndex].value, 'tag_id'); ">{S_PHPBB_FILES}</select>
+		<!-- ELSE -->
+			{L_NO_FILES_FOUND}
+		<!-- ENDIF -->
 		</dd>
 	</dl>
 </fieldset>
@@ -77,10 +69,11 @@ function set_ids(list_index, tag_id)
 <fieldset class="submit-buttons">
 	<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
 	<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	<input type="hidden" name="new_file" value="{S_NEW_FILE}" />
+	<input type="hidden" value="{S_ID}" />
+	{S_FORM_TOKEN}
 </fieldset>
 <!-- ENDIF -->
-
-{S_FORM_TOKEN}
 </form>
 
 

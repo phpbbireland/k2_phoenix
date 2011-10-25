@@ -10,25 +10,18 @@
 
 
 <div style="display:<!-- IF S_SWITCH == 'k_announce_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_announce_vars.html --></div>
-
 <div style="display:<!-- IF S_SWITCH == 'k_last_online_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_last_online_vars.html --></div>
 <div style="display:<!-- IF S_SWITCH == 'k_links_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_links_vars.html --></div>
-
 <div style="display:<!-- IF S_SWITCH == 'k_news_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_news_vars.html --></div>
 <div style="display:<!-- IF S_SWITCH == 'k_recent_topics_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_recent_topics_vars.html --></div>
-
-
 <div style="display:<!-- IF S_SWITCH == 'k_the_teams_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_the_teams_vars.html --></div>
-
-
 <div style="display:<!-- IF S_SWITCH == 'k_top_posters_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_top_posters_vars.html --></div>
 <div style="display:<!-- IF S_SWITCH == 'k_top_topics_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_top_topics_vars.html --></div>
-
 <div style="display:<!-- IF S_SWITCH == 'k_link_convert_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_link_convert_vars.html --></div>
 
 <div style="display:<!-- IF S_SWITCH == 'k_none.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_none.html --></div>
-
 <div style="display:<!-- IF S_SWITCH == '' -->inline<!-- ELSE -->none<!-- ENDIF -->">
+
 <!-- INCLUDE /k_block_vars/k_qr_vars.html -->
 
 <fieldset>
@@ -72,18 +65,18 @@
 </fieldset>
 </div>
 
-{L_NO_VARS_FOUND}
+<div>{L_NO_VARS_FOUND}</div>
 <!-- ENDIF -->
 
 <!-- IF MESSAGE -->
-<dl><legend><br /><b>{MESSAGE}</b><br /></legend></dl>
-<dl><br /></dl>
+<div><br /><b>{MESSAGE}</b><br /></div>
 <!-- ELSE -->
 <fieldset class="submit-buttons">
 	<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
 	<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	{S_FORM_TOKEN}
 </fieldset>
 <!-- ENDIF -->
-{S_FORM_TOKEN}
+
 </form>
 <!-- INCLUDE overall_footer.html -->
