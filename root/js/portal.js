@@ -1,3 +1,8 @@
+/******
+* This is a collection of scripts written for Stargate Portal (and Kiss Portal Engine)
+*
+*****/
+
 var PreloadFlag = false;
 var expDays = 90;
 var exp = new Date(); 
@@ -9,6 +14,8 @@ var exp = new Date();
 
 exp.setTime(exp.getTime() + (expDays*24*60*60*5000));
 
+
+// cookies //
 function SetCookie(name, value) 
 {
 	var argv = SetCookie.arguments;
@@ -46,22 +53,94 @@ function GetCookie(name)
 	{
 		var j = i + alen;
 		if (document.cookie.substring(i, j) == arg)
+		{
 			return getCookieVal(j);
+		}
+
 		i = document.cookie.indexOf(" ", i) + 1;
 		if (i == 0)
+		{
 			break;
+		}
 	} 
 	return null;
 }
 
+
+
+// Show/Hide element with cookie option
+
+
+/*** 
+*  takes three possible elements...
+*  switches the first element and set cookie
+*  switch second element visibility...
+*
+***/
+
+function Show(id)
+{
+	var element = null;
+	if (document.getElementById) 
+	{
+		element = document.getElementById(id);
+	}
+	else if (document.all)
+	{
+		element = document.all[id];
+	} 
+	else if (document.layers)
+	{
+		element = document.layers[id];
+	}
+	if (element.style.display == "none")
+	{ 
+		element.style.display = "inline"; 
+	}
+	else
+	{
+		element.style.display = "none";
+	}
+}
+function Hide(id)
+{
+	var element = null;
+	if (document.getElementById) 
+	{
+		element = document.getElementById(id);
+	}
+	else if (document.all)
+	{
+		element = document.all[id];
+	} 
+	else if (document.layers)
+	{
+		element = document.layers[id];
+	}
+	if (element.style.display == "inline")
+	{ 
+		element.style.display = "none"; 
+	}
+	else
+	{
+		element.style.display = "inline";
+	}
+}
+
+function ShowHideSwap(id1, id2)
+{
+	switch_visibility(id1);
+	switch_visibility(id2);
+}
+
 function ShowHide(id1, id2, id3) 
 {
-	var onoff = expMenu(id1);
-	if (id2 != '') expMenu(id2);
+	var onoff = switch_visibility(id1);
+	if (id2 != '') switch_visibility(id2);
 	if (id3 != '') SetCookie(id3, onoff, exp);
 }
 	
-function expMenu(id) 
+function switch_visibility(id) 
 {
 	var element = null;
 	if (document.getElementById) 
@@ -101,81 +180,147 @@ function expMenu(id)
 	}
 }
 
-function showMenu(id)
+
+/***
+* load a known css file form the users style path
+* takes a path and an int to prevent any injection
+***/
+
+function Load_css_file(path, option)
 {
-	var itm = null;
-	if (document.getElementById) 
+	file = (option == 'default') ? path + '/style_wide.css' : path + '/style_fixed.css';
+
+	var newURL = window.location.protocol + "://" + window.location.host + "" + window.location.pathname;
+
+	//	var current;//	current = GetCookie(mystyle);//	alert(current);
+
+	//alert(newURL);
+
+	var pathArray = window.location.pathname.split( '/' );
+
+	//	var script_path = pathArray[1];//	alert(pathArray[0]);//	alert(pathArray[1]);//	alert(pathArray[2]);
+
+
+	var fileref = document.createElement("link");
+
+	fileref.setAttribute("rel", "stylesheet");
+	fileref.setAttribute("type", "text/css");
+	fileref.setAttribute("href", file);
+
+	if (typeof fileref != "undefined")
 	{
-		itm = document.getElementById(id);
-	}
-	else if (document.all)
-	{
-		itm = document.all[id];
-	} 
-	else if (document.layers)
-	{
-		itm = document.layers[id];
-	}
-	if (!itm) 
-	{
-		// do nothing
-	}
-	else if (itm.style) 
-	{
-		if (itm.style.display == "none")
-		{ 
-			itm.style.display = ""; 
-			return true;
-		}
-		else
-		{
-//			itm.style.display = "none"; 
-			return true;
-		}
-	}
-	else 
-	{
-		itm.visibility = "show"; 
-		return true;
+		document.getElementsByTagName("head")[0].appendChild(fileref);
 	}
 }
 
-function hideMenu(id)
+
+/*
+function load_js_file(filename)
 {
-	var itm = null;
-	if (document.getElementById) 
+	var filepath = '$phpbb_root_path';
+	var fileref = document.createElement('script');
+	fileref.setAttribute("type","text/javascript");
+	fileref.setAttribute("src", filepath+filename);
+
+	if (typeof fileref != "undefined")
 	{
-		itm = document.getElementById(id);
+		document.getElementsByTagName("head")[0].appendChild(fileref);
 	}
-	else if (document.all)
+}
+*/
+
+
+/*** new code ***/
+function Set_Cookie( name, value, expires, path, domain, secure )
+{
+	var today = new Date();
+	today.setTime( today.getTime() );
+
+	if (expires)
 	{
-		itm = document.all[id];
-	} 
-	else if (document.layers)
-	{
-		itm = document.layers[id];
+		expires = expires * 1000 * 60 * 60 * 24;
 	}
-	if (!itm) 
+	var expires_date = new Date(today.getTime() + (expires));
+
+	document.cookie = name + "=" +escape( value ) +
+	( ( expires ) ? ";expires=" + expires_date.toGMTString() : "" ) +
+	( ( path ) ? ";path=" + path : "" ) +
+	( ( domain ) ? ";domain=" + domain : "" ) +
+	( ( secure ) ? ";secure" : "" );
+}
+
+function Get_Cookie(check_name)
+{
+	var a_all_cookies = document.cookie.split( ';' );
+	var a_temp_cookie = '';
+	var cookie_name = '';
+	var cookie_value = '';
+	var b_cookie_found = false; // set boolean t/f default f
+
+	for (i = 0; i < a_all_cookies.length; i++)
 	{
-		// do nothing
-	}
-	else if (itm.style) 
-	{
-		if (itm.style.display == "none")
-		{ 
-//			itm.style.display = ""; 
-			return true;
-		}
-		else
+		a_temp_cookie = a_all_cookies[i].split( '=' );
+		cookie_name = a_temp_cookie[0].replace(/^\s+|\s+$/g, '');
+
+		if (cookie_name == check_name)
 		{
-			itm.style.display = "none"; 
-			return true;
+			b_cookie_found = true;
+			if (a_temp_cookie.length > 1)
+			{
+				cookie_value = unescape(a_temp_cookie[1].replace(/^\s+|\s+$/g, ''));
+			}
+			return cookie_value;
+			break;
 		}
+		a_temp_cookie = null;
+		cookie_name = '';
 	}
-	else 
+	if (!b_cookie_found)
 	{
-		itm.visibility = "hide"; 
-		return true;
+		return null;
 	}
 }
 
+function Delete_Cookie( name, path, domain )
+{
+	if (Get_Cookie(name))
+	{
+		document.cookie = name + "=" + ((path) ? ";path=" + path : "") + ((domain) ? ";domain=" + domain : "" ) + ";expires=Thu, 01-Jan-1970 00:00:01 GMT";
+	}
+}
+
+//Set_Cookie('mystyle','default','','/','','');ShowHideSwap('alt',default');Load_css_file('{T_THEME_PATH}','default');
+function StyleSwitchCookie(cookie_name, cookie_value, path, alt, def)
+{
+	Set_Cookie(cookie_name, cookie_value, '', '/', '', '');
+	ShowHideSwap(def,alt);
+	Load_css_file(path, def);
+}
+
+
+
+
+
+/*
+function width_set()
+{
+	var w = 100;
+
+	current_width = Get_Cookie('stylewidth');
+
+	if(current_width)
+	{
+		w = current_width;
+	}
+
+	jQuery("#slider").css("display", 'inline');
+	jQuery("#slider").slider({
+		orientation: "horizontal",
+		range: "min",
+		max: 100,
+		value: w,
+		slide: jQuery.refreshWidth,
+		change: jQuery.refreshWidth
+	});
+}
+*/
