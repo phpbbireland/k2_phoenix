@@ -379,8 +379,8 @@ if (isset($center_block_ary) && $show_center)
 }
 
 $template->assign_vars(array(
-	'AVATAR'			=> get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], $user->data['user_avatar_width'], $user->data['user_avatar_height']),
-	'BLOCK_WIDTH'		=> $blocks_width . 'px',
+	'AVATAR'            => get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], $user->data['user_avatar_width'], $user->data['user_avatar_height']),
+	'BLOCK_WIDTH'       => $blocks_width . 'px',
 
 	'PORTAL_ACTIVE'     => $config['portal_enabled'],
 	'PORTAL_BUILD'      => $config['portal_build'],
