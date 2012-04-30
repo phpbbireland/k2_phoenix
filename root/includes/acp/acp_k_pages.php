@@ -52,7 +52,7 @@ class acp_k_pages
 
 		$submit = (isset($_POST['submit'])) ? true : false;
 
-		if($tag_id != '')
+		if ($tag_id != '')
 		{
 			$mode = 'add';
 		}
@@ -77,10 +77,10 @@ class acp_k_pages
 		}
 
 		$template->assign_vars(array(
-			'U_BACK'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=manage"),
-			'U_ADD'		=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=add"),
-			'U_MANAGE'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=manage"),
-			'S_OPT'		=> 'S_MANAGE',
+			'U_BACK'    => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=manage"),
+			'U_ADD'     => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=add"),
+			'U_MANAGE'  => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=manage"),
+			'S_OPT'     => 'S_MANAGE',
 		));
 
 		switch ($mode)
@@ -100,8 +100,8 @@ class acp_k_pages
 					$cache->destroy('sql', K_PAGES_TABLE);
 
 					$template->assign_vars(array(
-						'S_OPTION'	=> 'processing',
-						'MESSAGE'	=> $user->lang['REMOVING_PAGES'] . $page_name,
+						'S_OPTION' => 'processing',
+						'MESSAGE'  => $user->lang['REMOVING_PAGES'] . $page_name,
 					));
 
 					meta_refresh(1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_pages&amp;mode=manage'));
@@ -110,9 +110,9 @@ class acp_k_pages
 				else
 				{
 					confirm_box(false, sprintf("%s (%s)", $user->lang['DELETE_FROM_LIST'], $page_name), build_hidden_fields(array(
-						'id'		=> $page_id,
-						'mode'		=> $mode,
-						'action'	=> 'delete'))
+						'id'      => $page_id,
+						'mode'    => $mode,
+						'action'  => 'delete'))
 					);
 				}
 
@@ -129,17 +129,17 @@ class acp_k_pages
 					$tag_id = str_replace('.php', '', $tag_id);
 
 					// skip the spacer //
-					if($tag_id == '..')
+					if ($tag_id == '..')
 					{
 						$template->assign_vars(array(
-							'S_OPTION'	=> 'processing', // not lang var
-							'MESSAGE'	=> sprintf($user->lang['ERROR_PAGE'], $tag_id),
+							'S_OPTION' => 'processing', // not lang var
+							'MESSAGE'  => sprintf($user->lang['ERROR_PAGE'], $tag_id),
 						));
 						meta_refresh(2, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_pages&amp;mode=manage'));
 						return;
 					}
 
-					if(in_array($tag_id, $current_pages))
+					if (in_array($tag_id, $current_pages))
 					{
 						break;
 					}
@@ -153,8 +153,8 @@ class acp_k_pages
 					meta_refresh(1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_pages&amp;mode=manage'));
 
 					$template->assign_vars(array(
-						'S_OPTION'	=> 'processing', // not lang var
-						'MESSAGE'	=> $user->lang['ADDING_PAGES'],
+						'S_OPTION' => 'processing', // not lang var
+						'MESSAGE'  => $user->lang['ADDING_PAGES'],
 					));
 
 					$cache->destroy('sql', K_PAGES_TABLE);
@@ -193,10 +193,10 @@ function get_pages_data()
 		$current_pages = $row['page_name'];
 
 		$template->assign_block_vars('phpbbpages', array(
-			'S_PAGE_ID'		=> $row['page_id'],
-			'S_PAGE_NAME'	=> $row['page_name'],
-			'U_EDIT'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=edit&amp;page_id=" . $row['page_id']),
-			'U_DELETE'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=delete&amp;page_id=" . $row['page_id']),
+			'S_PAGE_ID'     => $row['page_id'],
+			'S_PAGE_NAME'   => $row['page_name'],
+			'U_EDIT'        => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=edit&amp;page_id=" . $row['page_id']),
+			'U_DELETE'      => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=delete&amp;page_id=" . $row['page_id']),
 		));
 	}
 	$db->sql_freeresult($result);
@@ -255,7 +255,7 @@ function get_all_available_files()
 			// array of filename we don't process //
 			$illegal_files = array(".htaccess", "common.$phpEx", "report.$phpEx", "feed.$phpEx", "cron.$phpEx", "config.$phpEx", "csv.$phpEx", "style.$phpEx", "sgp_ajax.$phpEx", "sgpical.$phpEx", "rss.$phpEx");
 
-			if(!in_array($file, $illegal_files))
+			if (!in_array($file, $illegal_files))
 			{
 				$dirslist .= "$file ";
 			}
@@ -282,7 +282,7 @@ function get_all_available_files()
 
 	foreach ($dirslist as $file)
 	{
-		if($file != '')
+		if ($file != '')
 		{
 			$files_found++;
 			$phpbb_files .= '<option value="' . $file  . '"' . (($files_found == 0) ? ' selected="selected"' : '') . '>' . $file . '</option>';
@@ -291,7 +291,7 @@ function get_all_available_files()
 
 	$template->assign_vars(array(
 		'S_PHPBB_FILES' => $phpbb_files,
-		'S_FILES_FOUND'	=> $files_found,
+		'S_FILES_FOUND' => $files_found,
 	));
 
 }
@@ -314,8 +314,8 @@ function get_page_filename($page_id)
 	}
 
 	$template->assign_vars(array(
-		'PAGE_ID'	=> $row['page_id'],
-		'PAGE_NAME'	=> $row['page_name'],
+		'PAGE_ID'   => $row['page_id'],
+		'PAGE_NAME' => $row['page_name'],
 	));
 
 	$db->sql_freeresult($result);
@@ -351,7 +351,7 @@ function search_sub_directory($mod_folders, $arr)
 
 				$temp = $folder . '/' . $file;
 
-				if(!in_array($temp, $illegal_files_array))
+				if (!in_array($temp, $illegal_files_array))
 				{
 					$dirslist .= $temp. " ";
 				}

@@ -23,13 +23,13 @@ class acp_k_pages_info
 	function module()
 	{
 		return array(
-			'filename'	=> 'acp_k_pages',
-			'title'		=> 'ACP_K_PAGES',
-			'version'	=> '1.0.0m',
-			'modes' => array(
-				'add'		=> array('title' => 'ACP_K_PAGES_ADD',		'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_PAGES'), 'display' => false),
-				'delete'	=> array('title' => 'ACP_K_PAGES_DELETE',	'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_PAGES'), 'display' => false),
-				'manage'	=> array('title' => 'ACP_K_PAGES_MANAGE',	'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_PAGES'))
+			'filename' => 'acp_k_pages',
+			'title'    => 'ACP_K_PAGES',
+			'version'  => '1.0.0m',
+			'modes'    => array(
+				'add'    => array('title' => 'ACP_K_PAGES_ADD',	   'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_PAGES'), 'display' => false),
+				'delete' => array('title' => 'ACP_K_PAGES_DELETE', 'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_PAGES'), 'display' => false),
+				'manage' => array('title' => 'ACP_K_PAGES_MANAGE', 'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_PAGES'))
 			),
 		);
 	}

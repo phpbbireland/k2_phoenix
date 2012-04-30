@@ -120,39 +120,39 @@ class acp_k_vars
 		{
 			case 'save':
 			{
-				$k_announce_type					= request_var('k_announce_type', '');
-				$k_news_type						= request_var('k_news_type', '');
-				$k_links_forum_id					= request_var('k_links_forum_id', '');
-				$k_teams							= request_var('k_teams', '');
-				$k_recent_topics_search_exclude		= request_var('k_recent_topics_search_exclude', '');
-				$k_post_types						= request_var('k_post_types', '');
-				$k_announce_allow					= request_var('k_announce_allow', 1);
-				$k_announce_item_max_length			= request_var('k_announce_item_max_length', 0);
-				$k_announce_to_display				= request_var('k_announce_to_display', 5);
-				$k_allow_rotating_logos				= request_var('k_allow_rotating_logos', 1);
-				$k_bots_to_display					= request_var('k_bots_to_display', 10);
-				$k_block_cache_time_default			= request_var('k_block_cache_time_default', 600);
-				$k_block_cache_time_fast			= request_var('k_block_cache_time_fast', 10);
-				$k_blocks_display_globally			= request_var('k_blocks_display_globally', 1);
-				$k_bot_display_allow				= request_var('k_bot_display_allow', 1);
-				$k_footer_images_allow				= request_var('k_footer_images_allow', 1);
-				$k_news_allow						= request_var('k_news_allow', 1);
-				$k_news_items_to_display			= request_var('k_news_items_to_display', 5);
-				$k_news_item_max_length				= request_var('k_news_item_max_length', 0);
-				$k_recent_topics_to_display			= request_var('k_recent_topics_to_display', 10);
-				$k_recent_topics_per_forum			= request_var('k_recent_topics_per_forum', 5);
-				$k_recent_search_days				= request_var('k_recent_search_days', 7);
-				$k_last_online_max					= request_var('k_last_online_max', 5);
-				$k_links_to_display					= request_var('k_links_to_display', 5);
-				$k_quick_reply						= request_var('k_quick_reply', 1);
-				$k_smilies_show						= request_var('k_smilies_show', 1);
-				$k_teams_display_this_many			= request_var('k_teams_display_this_many', 1);
-				$k_top_topics_days					= request_var('k_top_topics_days', 7);
-				$k_top_topics_max					= request_var('k_top_topics_max', 5);
-				$k_top_posters_to_display			= request_var('k_top_posters_to_display', 5);
-				$k_allow_acronyms					= request_var('k_allow_acronyms', 0);
-				$k_max_block_avatar_width			= request_var('k_max_block_avatar_width', 0);
-				$k_max_block_avatar_height			= request_var('k_max_block_avatar_height', 0);
+				$k_announce_type                 = request_var('k_announce_type', '');
+				$k_news_type                     = request_var('k_news_type', '');
+				$k_links_forum_id                = request_var('k_links_forum_id', '');
+				$k_teams                         = request_var('k_teams', '');
+				$k_recent_topics_search_exclude  = request_var('k_recent_topics_search_exclude', '');
+				$k_post_types                    = request_var('k_post_types', '');
+				$k_announce_allow                = request_var('k_announce_allow', 1);
+				$k_announce_item_max_length      = request_var('k_announce_item_max_length', 0);
+				$k_announce_to_display           = request_var('k_announce_to_display', 5);
+				$k_allow_rotating_logos          = request_var('k_allow_rotating_logos', 1);
+				$k_bots_to_display               = request_var('k_bots_to_display', 10);
+				$k_block_cache_time_default      = request_var('k_block_cache_time_default', 600);
+				$k_block_cache_time_fast         = request_var('k_block_cache_time_fast', 10);
+				$k_blocks_display_globally       = request_var('k_blocks_display_globally', 1);
+				$k_bot_display_allow             = request_var('k_bot_display_allow', 1);
+				$k_footer_images_allow           = request_var('k_footer_images_allow', 1);
+				$k_news_allow                    = request_var('k_news_allow', 1);
+				$k_news_items_to_display         = request_var('k_news_items_to_display', 5);
+				$k_news_item_max_length          = request_var('k_news_item_max_length', 0);
+				$k_recent_topics_to_display      = request_var('k_recent_topics_to_display', 10);
+				$k_recent_topics_per_forum       = request_var('k_recent_topics_per_forum', 5);
+				$k_recent_search_days            = request_var('k_recent_search_days', 7);
+				$k_last_online_max               = request_var('k_last_online_max', 5);
+				$k_links_to_display              = request_var('k_links_to_display', 5);
+				$k_quick_reply                   = request_var('k_quick_reply', 1);
+				$k_smilies_show                  = request_var('k_smilies_show', 1);
+				$k_teams_display_this_many       = request_var('k_teams_display_this_many', 1);
+				$k_top_topics_days               = request_var('k_top_topics_days', 7);
+				$k_top_topics_max                = request_var('k_top_topics_max', 5);
+				$k_top_posters_to_display        = request_var('k_top_posters_to_display', 5);
+				$k_allow_acronyms                = request_var('k_allow_acronyms', 0);
+				$k_max_block_avatar_width        = request_var('k_max_block_avatar_width', 0);
+				$k_max_block_avatar_height       = request_var('k_max_block_avatar_height', 0);
 
 				if ($k_max_block_avatar_width == 0 || $k_max_block_avatar_height == 0)
 				{
@@ -167,24 +167,24 @@ class acp_k_vars
 
 				switch($k_announce_type)
 				{
-					case 2:		$k_announce_type = POST_ANNOUNCE;
+					case 2:  $k_announce_type = POST_ANNOUNCE;
 					break;
 
-					case 3:		$k_announce_type = POST_GLOBAL;
+					case 3:  $k_announce_type = POST_GLOBAL;
 					break;
 
-					default:	$k_announce_type = 0;
+					default: $k_announce_type = 0;
 					break;
 				}
 				switch($k_news_type)
 				{
-					case 4:		$k_news_type = POST_NEWS;
+					case 4:  $k_news_type = POST_NEWS;
 					break;
 
-					case 5:		$k_news_type = POST_NEWS_GLOBAL;
+					case 5:  $k_news_type = POST_NEWS_GLOBAL;
 					break;
 
-					default:	$k_news_type = 0;
+					default: $k_news_type = 0;
 					break;
 				}
 

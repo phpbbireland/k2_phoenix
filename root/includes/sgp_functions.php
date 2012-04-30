@@ -15,18 +15,6 @@
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 */
 
-/*
-* Several of the phpBB functions core are repeated here with two alterations.
-*
-* Function names are proceeded with 'sgp_' and wrapped in 'function_exists'
-* to prevent re-declaration.
-*
-* It would have been much easier to wrap the function in the phpBB core
-* file, however this might cause problems later when adding mods in addition to
-* being bad practice...
-*/
-
-
 if ( !defined('IN_PHPBB') )
 {
 	exit;
@@ -64,7 +52,8 @@ if (!function_exists('sgp_get_rand_logo'))
 
 		$handle = @opendir($logos_dir);
 
-		// for logo in default directory 	//@$handle=opendir('images/logos');
+		// for logo in default directory
+		//@$handle=opendir('images/logos');
 
 		if (!$handle) // no handle so we don't have logo directory or we are attempting to login to ACP so we need to return the default logo //
 		{
@@ -117,9 +106,9 @@ if (!function_exists('sgp_acp_set_config'))
 		if (!$db->sql_affectedrows() && !isset($k_config[$config_name]))
 		{
 			$sql = 'INSERT INTO ' . K_BLOCKS_CONFIG_VAR_TABLE . ' ' . $db->sql_build_array('INSERT', array(
-				'config_name'	=> $config_name,
-				'config_value'	=> $config_value,
-				'is_dynamic'	=> ($is_dynamic) ? 1 : 0));
+				'config_name'   => $config_name,
+				'config_value'  => $config_value,
+				'is_dynamic'    => ($is_dynamic) ? 1 : 0));
 			$db->sql_query($sql);
 		}
 
@@ -149,6 +138,7 @@ if (!function_exists('get_k_config_var'))
 			WHERE config_name = ' . (int)$item;
 
 		$row = $db->sql_fetchrow($result);
+
 		//$k_config[$row['config_name']] = $row['config_value'];
 		return $row['config_value'];
 	}
@@ -166,9 +156,9 @@ if (!function_exists('k_progress_bar'))
 		$ss = "";
 
 		// define these in css
-		$start = '<b class="green">';	// green
-		$middl = '<b class="orange">';	// orange
-		$endss = '<b class="red">';		// red
+		$start = '<b class="green">';   // green
+		$middl = '<b class="orange">';  // orange
+		$endss = '<b class="red">';     // red
 
 		$tens = $percent / 10; // how many tens //
 
@@ -254,9 +244,9 @@ if (!function_exists('search_block_func'))
 		$phpEx = substr(strrchr(__FILE__, '.'), 1);
 
 		$template->assign_vars(array(
-			"L_SEARCH_ADV"		=> $lang['SEARCH_ADV'],
-			"L_SEARCH_OPTION"	=> (!empty($portal_config['search_option_text'])) ? $portal_config['search_option_text'] : $board_config ['sitename'],
-			'U_SEARCH'			=> append_sid("{$phpbb_root_path}search.$phpEx", 'keywords=' . urlencode($keywords)),
+			"L_SEARCH_ADV"     => $lang['SEARCH_ADV'],
+			"L_SEARCH_OPTION"  => (!empty($portal_config['search_option_text'])) ? $portal_config['search_option_text'] : $board_config ['sitename'],
+			'U_SEARCH'         => append_sid("{$phpbb_root_path}search.$phpEx", 'keywords=' . urlencode($keywords)),
 			)
 		);
 	}
@@ -323,8 +313,6 @@ if (!function_exists('process_for_vars'))
 
 
 // Stargate Random Banner mod //
-///global $k_config, $template, $phpbb_root_path, $user;
-
 if (!function_exists('get_user_data'))
 {
 	function get_user_data($what = '', $id)
@@ -499,7 +487,7 @@ if (!function_exists('s_get_vars'))
 		while ($row = $db->sql_fetchrow($result))
 		{
 			$template->assign_block_vars('adm_vars', array(
-				'VAR'	=> $row['word'],
+				'VAR' => $row['word'],
 			));
 		}
 		$db->sql_freeresult($result);

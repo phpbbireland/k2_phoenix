@@ -34,7 +34,7 @@ if (!function_exists('get_reserved_words'))
 			$reserved_words[] = $row['word'];
 
 			$template->assign_block_vars('reserved_words', array(
-				'RESERVED_WORDS'	=> $row['word'],
+				'RESERVED_WORDS' => $row['word'],
 			));
 
 		}
@@ -44,7 +44,6 @@ if (!function_exists('get_reserved_words'))
 
 	}
 }
-
 
 if (!function_exists('get_all_groups'))
 {
@@ -60,8 +59,8 @@ if (!function_exists('get_all_groups'))
 
 		// backward compatability, set up group zero //
 		$template->assign_block_vars('groups', array(
-			'GROUP_NAME'	=> $user->lang['NONE'],
-			'GROUP_ID'		=> 0,
+			'GROUP_NAME' => $user->lang['NONE'],
+			'GROUP_ID'   => 0,
 			)
 		);
 
@@ -71,8 +70,8 @@ if (!function_exists('get_all_groups'))
 			$group_name = $row['group_name'];
 
 			$template->assign_block_vars('groups', array(
-				'GROUP_NAME'	=> $group_name,
-				'GROUP_ID'		=> $group_id,
+				'GROUP_NAME' => $group_name,
+				'GROUP_ID'   => $group_id,
 				)
 			);
 		}
@@ -83,7 +82,6 @@ if (!function_exists('get_all_groups'))
 /***
 * phpbb pregs quote reused
 */
-
 if (!function_exists('phpbb_preg_quote'))
 {
 	function phpbb_preg_quote($str, $delimiter)

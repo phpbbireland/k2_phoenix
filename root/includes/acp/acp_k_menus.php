@@ -82,34 +82,34 @@ class acp_k_menus
 
 		switch ($mode)
 		{
-			case 'head': 	get_menu(HEAD_MENUS); 	$template->assign_var('S_OPTIONS', 'head'); break;
-			case 'nav':		get_menu(NAV_MENUS); 	$template->assign_var('S_OPTIONS', 'nav');  break;
-			case 'sub':		get_menu(SUB_MENUS); 	$template->assign_var('S_OPTIONS', 'sub');  break;
-			case 'foot':	get_menu(FOOT_MENUS); 	$template->assign_var('S_OPTIONS', 'foot'); break;
-			case 'link':	get_menu(LINKS_MENUS); 	$template->assign_var('S_OPTIONS', 'link'); break;
-			case 'all':		get_menu(ALL_MENUS); 	$template->assign_var('S_OPTIONS', 'all');  break;
-			case 'unalloc':	get_menu(UNALLOC_MENUS); 	$template->assign_var('S_OPTIONS', 'unalloc'); break;
+			case 'head':     get_menu(HEAD_MENUS);    $template->assign_var('S_OPTIONS', 'head'); break;
+			case 'nav':      get_menu(NAV_MENUS);     $template->assign_var('S_OPTIONS', 'nav');  break;
+			case 'sub':      get_menu(SUB_MENUS);     $template->assign_var('S_OPTIONS', 'sub');  break;
+			case 'foot':     get_menu(FOOT_MENUS);    $template->assign_var('S_OPTIONS', 'foot'); break;
+			case 'link':     get_menu(LINKS_MENUS);   $template->assign_var('S_OPTIONS', 'link'); break;
+			case 'all':      get_menu(ALL_MENUS);     $template->assign_var('S_OPTIONS', 'all');  break;
+			case 'unalloc':  get_menu(UNALLOC_MENUS); $template->assign_var('S_OPTIONS', 'unalloc'); break;
 
 			case 'edit':
 			{
 				if ($submit)
 				{
-					$m_id			= request_var('m_id', 0);
-					$ndx    		= request_var('ndx', 0);
-					$menu_type 		= request_var('menu_type', '');
-					$menu_icon  	= request_var('menu_icon', '');
-					$name       	= utf8_normalize_nfc(request_var('name', '', true));
-					$link_to  		= request_var('link_to', '');
-					$append_sid		= request_var('append_sid', 0);
-					$append_uid		= request_var('append_uid', 0);
-					$extern			= request_var('extern', 0);
-					$soft_hr		= request_var('soft_hr', 0);
-					$sub_heading	= request_var('sub_heading', 0);
-					$view			= request_var('view', 1);
-					$view_all		= request_var('view_all', 1);
-					$view_groups	= request_var('view_groups', '');
+					$m_id           = request_var('m_id', 0);
+					$ndx            = request_var('ndx', 0);
+					$menu_type      = request_var('menu_type', '');
+					$menu_icon      = request_var('menu_icon', '');
+					$name           = utf8_normalize_nfc(request_var('name', '', true));
+					$link_to        = request_var('link_to', '');
+					$append_sid     = request_var('append_sid', 0);
+					$append_uid     = request_var('append_uid', 0);
+					$extern         = request_var('extern', 0);
+					$soft_hr        = request_var('soft_hr', 0);
+					$sub_heading    = request_var('sub_heading', 0);
+					$view           = request_var('view', 1);
+					$view_all       = request_var('view_all', 1);
+					$view_groups    = request_var('view_groups', '');
 
-					if($view_all)
+					if ($view_all)
 					{
 						$view_groups = get_all_groups();
 						if ($view_groups == '')
@@ -124,18 +124,18 @@ class acp_k_menus
 					}
 
 					$sql_ary = array(
-						'menu_type'		=> $menu_type,
-						'ndx'			=> $ndx,
-						'menu_icon'		=> $menu_icon,
-						'name'			=> $name,
-						'link_to'		=> $link_to,
-						'append_sid'	=> $append_sid,
-						'append_uid'	=> $append_uid,
-						'extern'		=> $extern,
-						'soft_hr'		=> $soft_hr,
-						'sub_heading'	=> $sub_heading,
-						'view_all'		=> $view_all,
-						'view_groups'	=> $view_groups,
+						'menu_type'    => $menu_type,
+						'ndx'          => $ndx,
+						'menu_icon'    => $menu_icon,
+						'name'         => $name,
+						'link_to'      => $link_to,
+						'append_sid'   => $append_sid,
+						'append_uid'   => $append_uid,
+						'extern'       => $extern,
+						'soft_hr'      => $soft_hr,
+						'sub_heading'  => $sub_heading,
+						'view_all'     => $view_all,
+						'view_groups'  => $view_groups,
 					);
 
 					$sql = 'UPDATE ' . K_MENUS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_ary) . " WHERE m_id = " . (int)$m_id;
@@ -231,9 +231,9 @@ class acp_k_menus
 				else
 				{
 					confirm_box (false, $user->lang['CONFIRM_OPERATION_MENUS'], build_hidden_fields(array(
-						'i'			=> $id,
-						'mode'		=> $mode,
-						'action'	=> 'delete',
+						'i'       => $id,
+						'mode'    => $mode,
+						'action'  => 'delete',
 					)));
 				}
 
@@ -340,19 +340,19 @@ class acp_k_menus
 			{
 				if ($submit)
 				{
-					//$m_id		=request_var('m_id', '');
-					//$ndx    	= request_var('ndx', '');
-					$menu_type 		= request_var('menu_type', '');
-					$menu_icon  	= request_var('menu_icon', '');
-					$name  			= utf8_normalize_nfc(request_var('name', '', true));
-					$link_to  		= request_var('link_to', '');
-					$append_sid		= request_var('append_sid', 0);
-					$append_uid		= request_var('append_uid', 0);
-					$extern			= request_var('extern', 0);
-					$soft_hr		= request_var('soft_hr', 0);
-					$sub_heading	= request_var('sub_heading', 0);
-					$view_all		= request_var('view_all', 1);
-					$view_groups	= request_var('view_groups', '');
+					//$m_id     = request_var('m_id', '');
+					//$ndx      = request_var('ndx', '');
+					$menu_type     = request_var('menu_type', '');
+					$menu_icon     = request_var('menu_icon', '');
+					$name          = utf8_normalize_nfc(request_var('name', '', true));
+					$link_to       = request_var('link_to', '');
+					$append_sid    = request_var('append_sid', 0);
+					$append_uid    = request_var('append_uid', 0);
+					$extern        = request_var('extern', 0);
+					$soft_hr       = request_var('soft_hr', 0);
+					$sub_heading   = request_var('sub_heading', 0);
+					$view_all      = request_var('view_all', 1);
+					$view_groups   = request_var('view_groups', '');
 
 					if ($menu_type == NULL || $name == NULL)
 					{
@@ -371,25 +371,25 @@ class acp_k_menus
 
 					$ndx = get_next_ndx($menu_type);
 
-					if($view_all)
+					if ($view_all)
 					{
 						$view = 1;
 						$view_groups = '';
 					}
 
 					$sql_array = array(
-						'menu_type'		=> $menu_type,
-						'ndx'			=> $ndx,
-						'menu_icon'		=> $menu_icon,
-						'name'			=> $name,
-						'link_to'		=> $link_to,
-						'append_sid'	=> $append_sid,
-						'append_uid'	=> $append_uid,
-						'extern'		=> $extern,
-						'soft_hr'		=> $soft_hr,
-						'sub_heading'	=> $sub_heading,
-						'view_all'		=> $view_all,
-						'view_groups'	=> $view_groups,
+						'menu_type'    => $menu_type,
+						'ndx'          => $ndx,
+						'menu_icon'    => $menu_icon,
+						'name'         => $name,
+						'link_to'      => $link_to,
+						'append_sid'   => $append_sid,
+						'append_uid'   => $append_uid,
+						'extern'       => $extern,
+						'soft_hr'      => $soft_hr,
+						'sub_heading'  => $sub_heading,
+						'view_all'     => $view_all,
+						'view_groups'  => $view_groups,
 					);
 
 					$db->sql_query('INSERT INTO ' . K_MENUS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_array));
@@ -425,11 +425,11 @@ class acp_k_menus
 
 				$i = get_menu_icons();
 				$template->assign_vars(array(
-					'S_OPTIONS' 			=> 'icons',
-					'S_HIDE' 				=> 'HIDE',
-					'L_ICONS_REPORT'		=> '',
-					'S_MENU_ICON_COUNT'		=> $i,
-					'S_MENU_ICONS_LIST'		=> $dirslist,
+					'S_OPTIONS'          => 'icons',
+					'S_HIDE'             => 'HIDE',
+					'L_ICONS_REPORT'     => '',
+					'S_MENU_ICON_COUNT'  => $i,
+					'S_MENU_ICONS_LIST'  => $dirslist,
 					)
 				);
 				break;
@@ -463,15 +463,15 @@ function get_menu($this_one)
 	global $db, $phpbb_root_path, $phpEx, $template;
 	global $phpbb_admin_path, $phpEx;
 
-	if($this_one > 0 && $this_one < 6) // standard menus defined as 1 to 5 //
+	if ($this_one > 0 && $this_one < 6) // standard menus defined as 1 to 5 //
 	{
 		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . (int)$this_one . ' ORDER BY ndx ASC';
 	}
-	else if($this_one == ALL_MENUS)
+	else if ($this_one == ALL_MENUS)
 	{
 		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' ORDER BY menu_type, ndx ASC';
 	}
-	else if($this_one == UNALLOC_MENUS)
+	else if ($this_one == UNALLOC_MENUS)
 	{
 		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . (int)$this_one . ' ORDER BY ndx, menu_type ASC';
 	}
@@ -485,24 +485,24 @@ function get_menu($this_one)
 		while ($row = $db->sql_fetchrow($result))
 		{
 			$template->assign_block_vars('mdata', array(
-				'S_MENUID' 			=> $row['m_id'],
-				'S_MENU_NDX'		=> $row['ndx'],
-				'S_MENU_TYPE'		=> $row['menu_type'],
-				'S_MENU_ICON'		=> $row['menu_icon'],
-				'S_MENU_ITEM_NAME'	=> $row['name'],
-				'S_MENU_LINK'		=> $row['link_to'],
-				'S_MENU_APPEND_SID' => $row['append_sid'],
-				'S_VIEW_ALL'		=> $row['view_all'],
-				'S_VIEW_GROUPS'		=> $row['view_groups'],
-				'S_MENU_APPEND_UID' => $row['append_uid'],
-				'S_MENU_EXTERN'		=> $row['extern'],
-				'S_SOFT_HR'			=> $row['soft_hr'],
-				'S_SUB_HEADING'		=> $row['sub_heading'],
+				'S_MENUID'           => $row['m_id'],
+				'S_MENU_NDX'         => $row['ndx'],
+				'S_MENU_TYPE'        => $row['menu_type'],
+				'S_MENU_ICON'        => $row['menu_icon'],
+				'S_MENU_ITEM_NAME'   => $row['name'],
+				'S_MENU_LINK'        => $row['link_to'],
+				'S_MENU_APPEND_SID'  => $row['append_sid'],
+				'S_VIEW_ALL'         => $row['view_all'],
+				'S_VIEW_GROUPS'      => $row['view_groups'],
+				'S_MENU_APPEND_UID'  => $row['append_uid'],
+				'S_MENU_EXTERN'      => $row['extern'],
+				'S_SOFT_HR'          => $row['soft_hr'],
+				'S_SUB_HEADING'      => $row['sub_heading'],
 
-				'U_EDIT'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_menus&amp;mode=edit&amp;menu=" . $row['m_id']),
-				'U_UP'		=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_menus&amp;mode=up&amp;menu=" . $row['m_id']),
-				'U_DOWN'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_menus&amp;mode=down&amp;menu=" . $row['m_id']),
-				'U_DELETE'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_menus&amp;mode=delete&amp;menu=" . $row['m_id']),
+				'U_EDIT'    => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_menus&amp;mode=edit&amp;menu=" . $row['m_id']),
+				'U_UP'      => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_menus&amp;mode=up&amp;menu=" . $row['m_id']),
+				'U_DOWN'    => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_menus&amp;mode=down&amp;menu=" . $row['m_id']),
+				'U_DELETE'  => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_menus&amp;mode=delete&amp;menu=" . $row['m_id']),
 			));
 		}
 		$db->sql_freeresult($result);
@@ -527,19 +527,19 @@ function get_menu_item($item)
 	}
 
 	$template->assign_vars(array(
-		'S_MENUID' 			=> $row['m_id'],
-		'S_MENU_NDX'		=> $row['ndx'],
-		'S_MENU_TYPE'		=> $row['menu_type'],
-		'S_MENU_ICON'		=> $row['menu_icon'],
-		'S_MENU_ITEM_NAME'	=> $row['name'],
-		'S_MENU_LINK'		=> $row['link_to'],
-		'S_VIEW_ALL'		=> $row['view_all'],
-		'S_VIEW_GROUPS'		=> $row['view_groups'],
+		'S_MENUID'          => $row['m_id'],
+		'S_MENU_NDX'        => $row['ndx'],
+		'S_MENU_TYPE'       => $row['menu_type'],
+		'S_MENU_ICON'       => $row['menu_icon'],
+		'S_MENU_ITEM_NAME'  => $row['name'],
+		'S_MENU_LINK'       => $row['link_to'],
+		'S_VIEW_ALL'        => $row['view_all'],
+		'S_VIEW_GROUPS'     => $row['view_groups'],
 		'S_MENU_APPEND_SID' => $row['append_sid'],
 		'S_MENU_APPEND_UID' => $row['append_uid'],
-		'S_MENU_EXTERN'		=> $row['extern'],
-		'S_SOFT_HR'			=> $row['soft_hr'],
-		'S_SUB_HEADING'		=> $row['sub_heading'],
+		'S_MENU_EXTERN'     => $row['extern'],
+		'S_SOFT_HR'         => $row['soft_hr'],
+		'S_SUB_HEADING'     => $row['sub_heading'],
 		)
 	);
 	$db->sql_freeresult($result);
@@ -603,8 +603,8 @@ function parse_all_groups()
 
 	// backward compatability, set up group zero //
 	$template->assign_block_vars('groups', array(
-		'GROUP_NAME'	=> $user->lang['NONE'],
-		'GROUP_ID'		=> 0,
+		'GROUP_NAME' => $user->lang['NONE'],
+		'GROUP_ID'   => 0,
 	));
 
 	while ($row = $db->sql_fetchrow($result))
@@ -613,8 +613,8 @@ function parse_all_groups()
 		$group_name = $row['group_name'];
 
 		$template->assign_block_vars('groups', array(
-			'GROUP_NAME'	=> $group_name,
-			'GROUP_ID'		=> $group_id,
+			'GROUP_NAME' => $group_name,
+			'GROUP_ID'   => $group_id,
 			)
 		);
 	}

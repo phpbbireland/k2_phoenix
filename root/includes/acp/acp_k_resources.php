@@ -92,7 +92,7 @@ class acp_k_resources
 					$template->assign_var('L_PROCESS_REPORT', sprintf($user->lang['VAR_NOT_FOUND'], $new_word));
 				}
 
-				if($process)
+				if ($process)
 				{
 					$template->assign_var('L_PROCESS_REPORT', sprintf($user->lang['VAR_ADDED'], $new_word));
 
@@ -159,11 +159,11 @@ class acp_k_resources
 			}
 
 			$template->assign_block_vars('wordrow', array(
-				'ID'	=> $row['id'],
-				'WORD'	=> $row['word'],
-				'NAME'	=> $name,
-				'VALUE'	=> $value,
-				'TABLE'	=> $table
+				'ID'    => $row['id'],
+				'WORD'  => $row['word'],
+				'NAME'  => $name,
+				'VALUE' => $value,
+				'TABLE' => $table
 			));
 		}
 		$db->sql_freeresult($result);

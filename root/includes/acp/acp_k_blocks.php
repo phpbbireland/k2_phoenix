@@ -136,13 +136,13 @@ class acp_k_blocks
 
 				for ($i = 0; $i < $count = count($ids); $i++)
 				{
-					if($ndxs[$i] != $i + 1)
+					if ($ndxs[$i] != $i + 1)
 					{
 						$out_of_wack = true;
 					}
 				}
 
-				if($out_of_wack)
+				if ($out_of_wack)
 				{
 					for ($i = 0; $i < $count = count($ids); $i++)
 					{
@@ -153,8 +153,8 @@ class acp_k_blocks
 					$db->sql_freeresult($result);
 
 					$template->assign_vars(array(
-						'S_BUTTON_HIDE'	=> true,
-						'BLOCK_REPORT' => $user->lang['BLOCKS_AUTO_REINDEXED'],
+						'S_BUTTON_HIDE'  => true,
+						'BLOCK_REPORT'   => $user->lang['BLOCKS_AUTO_REINDEXED'],
 					));
 
 
@@ -331,21 +331,21 @@ class acp_k_blocks
 						return;
 					}
 
-					$title				= utf8_normalize_nfc(request_var('title', '', true));
-					$position			= request_var('position', '');
-					$active 			= request_var('active', 1);
-					$type				= request_var('type', '');
-					$scroll  			= request_var('scroll', 0);
-					$view_groups		= request_var('view_groups', '');
-					$view_all			= request_var('view_all', 1);
-					$view_pages			= request_var('view_pages', '');
-					$html_file_name		= request_var('html_file_name', '');
-					$var_file_name		= request_var('var_file_name', '');
-					$img_file_name		= request_var('img_file_name', '');
-					$has_vars			= request_var('has_vars', 0);
-					$minimod_based		= request_var('minimod_based', 0);
-					$mod_block_id		= request_var('mod_block_id', 0);
-					$block_cache_time	= request_var('block_cache_time', 600);
+					$title             = utf8_normalize_nfc(request_var('title', '', true));
+					$position          = request_var('position', '');
+					$active            = request_var('active', 1);
+					$type              = request_var('type', '');
+					$scroll            = request_var('scroll', 0);
+					$view_groups       = request_var('view_groups', '');
+					$view_all          = request_var('view_all', 1);
+					$view_pages        = request_var('view_pages', '');
+					$html_file_name    = request_var('html_file_name', '');
+					$var_file_name     = request_var('var_file_name', '');
+					$img_file_name     = request_var('img_file_name', '');
+					$has_vars          = request_var('has_vars', 0);
+					$minimod_based     = request_var('minimod_based', 0);
+					$mod_block_id      = request_var('mod_block_id', 0);
+					$block_cache_time  = request_var('block_cache_time', 600);
 
 					if ($html_file_name == '...')
 					{
@@ -375,21 +375,21 @@ class acp_k_blocks
 					$ndx = get_next_ndx($position);		// get the next ndx to use for this position	//
 
 					$sql_array = array(
-						'ndx'				=> $ndx,
-						'title'				=> $title,
-						'active'			=> $active,
-						'html_file_name'	=> $html_file_name,
-						'var_file_name'		=> $var_file_name,
-						'img_file_name'		=> $img_file_name,
-						'position'			=> $position,
-						'view_groups'		=> $view_groups,
-						'view_all'			=> $view_all,
-						'view_pages'		=> $view_pages,
-						'scroll'			=> $scroll,
-						'has_vars'			=> $has_vars,
-						'minimod_based'		=> $minimod_based,
-						'mod_block_id'		=> $mod_block_id,
-						'block_cache_time'	=> $block_cache_time,
+						'ndx'               => $ndx,
+						'title'             => $title,
+						'active'            => $active,
+						'html_file_name'    => $html_file_name,
+						'var_file_name'     => $var_file_name,
+						'img_file_name'     => $img_file_name,
+						'position'          => $position,
+						'view_groups'       => $view_groups,
+						'view_all'          => $view_all,
+						'view_pages'        => $view_pages,
+						'scroll'            => $scroll,
+						'has_vars'          => $has_vars,
+						'minimod_based'     => $minimod_based,
+						'mod_block_id'      => $mod_block_id,
+						'block_cache_time'  => $block_cache_time,
 					);
 
 					if (!$db->sql_query('INSERT INTO ' . K_BLOCKS_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_array)))
@@ -497,23 +497,23 @@ class acp_k_blocks
 			{
 				if ($submit)
 				{
-					$id				= request_var('id', 0);
-					$ndx			= request_var('ndx', 0);
-					$title			= utf8_normalize_nfc(request_var('title', '', true));
-					$position		= request_var('position', '');
-					$type			= request_var('type', '');
-					$active 		= request_var('active', 1);
-					$view_groups	= request_var('view_groups', '');
-					$view_all		= request_var('view_all', 1);
-					$view_pages		= request_var('view_pages', '');
-					$scroll			= request_var('scroll', 0);
-					$has_vars		= request_var('has_vars', 0);
-					$minimod_based	= request_var('minimod_based', 0);
-					$mod_block_id	= request_var('mod_block_id', 0);
-					$html_file_name	= request_var('html_file_name', '');
-					$var_file_name	= request_var('var_file_name', '');
-					$img_file_name	= request_var('img_file_name', '');
-					$block_cache_time	= request_var('block_cache_time', 600);
+					$id                = request_var('id', 0);
+					$ndx               = request_var('ndx', 0);
+					$title             = utf8_normalize_nfc(request_var('title', '', true));
+					$position          = request_var('position', '');
+					$type              = request_var('type', '');
+					$active            = request_var('active', 1);
+					$view_groups       = request_var('view_groups', '');
+					$view_all          = request_var('view_all', 1);
+					$view_pages        = request_var('view_pages', '');
+					$scroll            = request_var('scroll', 0);
+					$has_vars          = request_var('has_vars', 0);
+					$minimod_based     = request_var('minimod_based', 0);
+					$mod_block_id      = request_var('mod_block_id', 0);
+					$html_file_name    = request_var('html_file_name', '');
+					$var_file_name     = request_var('var_file_name', '');
+					$img_file_name     = request_var('img_file_name', '');
+					$block_cache_time  = request_var('block_cache_time', 600);
 
 					$view_page_id = request_var('view_page_id', array(0));
 
@@ -545,7 +545,7 @@ class acp_k_blocks
 						$type = 'B';
 					}
 
-					if($view_all)
+					if ($view_all)
 					{
 						$view_groups = get_all_groups();
 						if ($view_groups == '')
@@ -576,22 +576,22 @@ class acp_k_blocks
 					}
 
 					$sql_ary = array(
-						'ndx'				=> $ndx,
-						'active'			=> $active,
-						'title'				=> $title,
-						'position'			=> $position,
-						'type'				=> $type,
-						'html_file_name'	=> $html_file_name,
-						'var_file_name'		=> $var_file_name,
-						'img_file_name'		=> $img_file_name,
-						'view_groups'		=> $view_groups,
-						'view_pages'		=> $view_pages,
-						'view_all'			=> $view_all,
-						'scroll'			=> $scroll,
-						'has_vars'			=> $has_vars,
-						'minimod_based'		=> $minimod_based,
-						'mod_block_id'		=> $mod_block_id,
-						'block_cache_time'	=> $block_cache_time,
+						'ndx'               => $ndx,
+						'active'            => $active,
+						'title'             => $title,
+						'position'          => $position,
+						'type'              => $type,
+						'html_file_name'    => $html_file_name,
+						'var_file_name'     => $var_file_name,
+						'img_file_name'     => $img_file_name,
+						'view_groups'       => $view_groups,
+						'view_pages'        => $view_pages,
+						'view_all'          => $view_all,
+						'scroll'            => $scroll,
+						'has_vars'          => $has_vars,
+						'minimod_based'     => $minimod_based,
+						'mod_block_id'      => $mod_block_id,
+						'block_cache_time'  => $block_cache_time,
 					);
 
 					$sql = 'UPDATE ' . K_BLOCKS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_ary) . " WHERE id = " . (int)$id;
@@ -694,23 +694,23 @@ class acp_k_blocks
 
 
 				$template->assign_vars(array(
-					'S_ID'			=> $row['id'],
-					'S_NDX'			=> $row['ndx'],
-					'S_TITLE'		=> $row['title'],
-					'S_POSITION'	=> $row['position'],
-					'S_ACTIVE'		=> $row['active'],
-					'S_TYPE'		=> $row['type'],
-					'S_FNAME_H'		=> $row['html_file_name'],
-					'S_FNAME_V'		=> $row['var_file_name'],
-					'S_FNAME_I'		=> $row['img_file_name'],
-					'S_VIEW_GROUPS'	=> $row['view_groups'],
-					'S_VIEW_ALL'	=> $row['view_all'],
-					'S_VIEW_PAGES'	=> $row['view_pages'],
-					'S_SCROLL'		=> $row['scroll'],
-					'S_HAS_VARS'	=> $row['has_vars'],
-					'S_MINIMOD_BASED'	=> $row['minimod_based'],
-					'S_MOD_BLOCK_ID'	=> $row['mod_block_id'],
-					'BLOCK_CACHE_TIME'	=> $row['block_cache_time'],
+					'S_ID'             => $row['id'],
+					'S_NDX'            => $row['ndx'],
+					'S_TITLE'          => $row['title'],
+					'S_POSITION'       => $row['position'],
+					'S_ACTIVE'         => $row['active'],
+					'S_TYPE'           => $row['type'],
+					'S_FNAME_H'        => $row['html_file_name'],
+					'S_FNAME_V'        => $row['var_file_name'],
+					'S_FNAME_I'        => $row['img_file_name'],
+					'S_VIEW_GROUPS'    => $row['view_groups'],
+					'S_VIEW_ALL'       => $row['view_all'],
+					'S_VIEW_PAGES'     => $row['view_pages'],
+					'S_SCROLL'         => $row['scroll'],
+					'S_HAS_VARS'       => $row['has_vars'],
+					'S_MINIMOD_BASED'  => $row['minimod_based'],
+					'S_MOD_BLOCK_ID'   => $row['mod_block_id'],
+					'BLOCK_CACHE_TIME' => $row['block_cache_time'],
 				));
 
 				// get all groups and fill array //
@@ -769,9 +769,9 @@ class acp_k_blocks
 				else
 				{
 					confirm_box(false, $user->lang['CONFIRM_OPERATION_BLOCKS'], build_hidden_fields(array(
-						'i'			=> $id,
-						'mode'		=> $mode,
-						'action'	=> 'delete',
+						'i'       => $id,
+						'mode'    => $mode,
+						'action'  => 'delete',
 					)));
 				}
 
@@ -901,30 +901,30 @@ class acp_k_blocks
 						}
 
 						$template->assign_block_vars('bdata', array(
-							'S_ID' 				=> $row['id'],
-							'S_NDX'				=> $row['ndx'],
-							'S_TITLE'			=> $row['title'],
-							'S_POSITION'		=> $row['position'],
-							'S_ACTIVE'			=> $row['active'],
-							'S_TYPE'			=> $row['type'],
-							'S_FNAME_H'			=> $row['html_file_name'],
-							'S_FNAME_V'			=> $row['var_file_name'],
-							'S_FNAME_I'			=> $row['img_file_name'],
-							'S_VIEW_GROUPS'		=> $row['view_groups'],
-							'S_VIEW_ALL' 		=> $row['view_all'],
-							'S_VIEW_PAGES'		=> $row['view_pages'],
-							'S_SCROLL'			=> $row['scroll'],
-							'S_HAS_VARS'		=> $row['has_vars'],
-							'S_MINIMOD_BASED'	=> $row['minimod_based'],
-							'S_MOD_BLOCK_ID'	=> $row['mod_block_id'],
-							'S_BLOCK_CACHE_TIME'=> $row['block_cache_time'],
-							'S_BLOCK'			=> ($row['id'] == $block) ? $block : '.....',
+							'S_ID'               => $row['id'],
+							'S_NDX'              => $row['ndx'],
+							'S_TITLE'            => $row['title'],
+							'S_POSITION'         => $row['position'],
+							'S_ACTIVE'           => $row['active'],
+							'S_TYPE'             => $row['type'],
+							'S_FNAME_H'          => $row['html_file_name'],
+							'S_FNAME_V'          => $row['var_file_name'],
+							'S_FNAME_I'          => $row['img_file_name'],
+							'S_VIEW_GROUPS'      => $row['view_groups'],
+							'S_VIEW_ALL'         => $row['view_all'],
+							'S_VIEW_PAGES'       => $row['view_pages'],
+							'S_SCROLL'           => $row['scroll'],
+							'S_HAS_VARS'         => $row['has_vars'],
+							'S_MINIMOD_BASED'    => $row['minimod_based'],
+							'S_MOD_BLOCK_ID'     => $row['mod_block_id'],
+							'S_BLOCK_CACHE_TIME' => $row['block_cache_time'],
+							'S_BLOCK'            => ($row['id'] == $block) ? $block : '.....',
 
-							'U_EDIT2'			=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_blocks&amp;mode=edit&amp;block=" . $row['id']),
-							'U_UP'				=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_blocks&amp;mode=up&amp;block=" . $row['id']),
-							'U_DOWN'			=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_blocks&amp;mode=down&amp;block=" . $row['id']),
-							'U_DELETE'			=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_blocks&amp;mode=delete&amp;block=" . $row['id']),
-							'U_SET_VARS'		=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_vars&amp;mode=config&amp;block=" . $row['id']),
+							'U_EDIT2'            => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_blocks&amp;mode=edit&amp;block=" . $row['id']),
+							'U_UP'               => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_blocks&amp;mode=up&amp;block=" . $row['id']),
+							'U_DOWN'             => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_blocks&amp;mode=down&amp;block=" . $row['id']),
+							'U_DELETE'           => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_blocks&amp;mode=delete&amp;block=" . $row['id']),
+							'U_SET_VARS'         => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_vars&amp;mode=config&amp;block=" . $row['id']),
 						));
 					}
 
@@ -933,10 +933,10 @@ class acp_k_blocks
 
 				$template->assign_vars(array(
 					'S_OPTIONS'	=> strtolower($mode),
-					'S_LBL'	=> $l_b_last-1,
-					'S_RBL'	=> $r_b_last-1,
-					'S_CBL'	=> $c_b_last-1,
-					'S_LRC'	=> '1',
+					'S_LBL' => $l_b_last-1,
+					'S_RBL' => $r_b_last-1,
+					'S_CBL' => $c_b_last-1,
+					'S_LRC' => '1',
 				));
 
 			break;
@@ -979,9 +979,9 @@ function get_next_ndx($pos)
 	$sql = "SELECT * FROM " . K_BLOCKS_TABLE . " WHERE position = '" . $db->sql_escape($pos) . "' ORDER by ndx DESC";
 	if ($result = $db->sql_query($sql))
 	{
-		$row = $db->sql_fetchrow($result);		// just get last block ndx details	//
-		$ndx = $row['ndx'];						// only need last ndx returned		//
-		$ndx = $ndx + 1; 						// add 1 to index 					//
+		$row = $db->sql_fetchrow($result);    // just get last block ndx details  //
+		$ndx = $row['ndx'];                   // only need last ndx returned      //
+		$ndx = $ndx + 1;                      // add 1 to index                   //
 		return($ndx);
 	}
 }
@@ -1044,9 +1044,9 @@ function get_all_pages($id)
 		$page_id = $row['page_id'];
 		$page_name = $row['page_name'];
 		$template->assign_block_vars('pages', array(
-			'PAGE_NAME'		=> $page_name,
-			'PAGE_ID'		=> $page_id,
-			'IS_CHECKED'	=> ($id) ? (in_array($page_id, $arr)) ? true : false : '',
+			'PAGE_NAME'  => $page_name,
+			'PAGE_ID'    => $page_id,
+			'IS_CHECKED' => ($id) ? (in_array($page_id, $arr)) ? true : false : '',
 			)
 		);
 	}
@@ -1209,8 +1209,8 @@ function parse_all_groups()
 
 	// backward compatability, set up group zero //
 	$template->assign_block_vars('groups', array(
-		'GROUP_NAME'	=> $user->lang['NONE'],
-		'GROUP_ID'		=> 0,
+		'GROUP_NAME'  => $user->lang['NONE'],
+		'GROUP_ID'    => 0,
 	));
 
 	while ($row = $db->sql_fetchrow($result))
@@ -1219,8 +1219,8 @@ function parse_all_groups()
 		$group_name = $row['group_name'];
 
 		$template->assign_block_vars('groups', array(
-			'GROUP_NAME'	=> $group_name,
-			'GROUP_ID'		=> $group_id,
+			'GROUP_NAME' => $group_name,
+			'GROUP_ID'   => $group_id,
 			)
 		);
 	}
@@ -1229,7 +1229,7 @@ function parse_all_groups()
 
 function dir_file_exists($file)
 {
-	if(!file_exists($file))
+	if (!file_exists($file))
 	{
 		trigger_error(sprintf($user->lang['MISSING_FILE_OR_FOLDER'], $file));
 	}
@@ -1253,15 +1253,15 @@ function index_column_fix($position)
 	{
 		while ($row = $db->sql_fetchrow($result))
 		{
-			$id_array[]  = $row['id'];
-			$ndx_array[]= $row['ndx'];
+			$id_array[] = $row['id'];
+			$ndx_array[] = $row['ndx'];
 		}
 	}
 	$db->sql_freeresult($result);
 
 	for ($i = 0; $i < sizeof($id_array); $i++)
 	{
-		if($id_array[$i] != $i + 1)
+		if ($id_array[$i] != $i + 1)
 		{
 			$j = $i + 1;
 

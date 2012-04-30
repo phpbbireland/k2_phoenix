@@ -41,9 +41,9 @@ class ucp_k_blocks
 
 		$user->add_lang('k_tools');
 
-		$preview	= (!empty($_POST['preview'])) ? true : false;
-		$submit		= (!empty($_POST['submit'])) ? true : false;
-		$delete		= (!empty($_POST['delete'])) ? true : false;
+		$preview  = (!empty($_POST['preview'])) ? true : false;
+		$submit   = (!empty($_POST['submit'])) ? true : false;
+		$delete   = (!empty($_POST['delete'])) ? true : false;
 
 		$error = $data = array();
 		$s_hidden_fields = '';
@@ -64,44 +64,44 @@ class ucp_k_blocks
 		{
 			case 'arrange':
 				$template->assign_vars(array(
-					'ARRANGE_ICO'		=> $user->lang['UCP_K_INFO_ARRANGE'],
-					'L_ARRANGE_ICON'	=> $user->lang['ARRANGE_ICON'],
-					'U_PORTAL_ARRANGE'	=> append_sid("{$phpbb_root_path}portal.$phpEx", "arrange=1"),
-					'LINK_IMG'			=> '<img src="' . $phpbb_root_path . '/images/portal_ucp_images/arrange.gif" alt="" />',
+					'ARRANGE_ICO'      => $user->lang['UCP_K_INFO_ARRANGE'],
+					'L_ARRANGE_ICON'   => $user->lang['ARRANGE_ICON'],
+					'U_PORTAL_ARRANGE' => append_sid("{$phpbb_root_path}portal.$phpEx", "arrange=1"),
+					'LINK_IMG'         => '<img src="' . $phpbb_root_path . '/images/portal_ucp_images/arrange.gif" alt="" />',
 				));
 			break;
 
 			case 'edit':
 				$template->assign_vars(array(
-					'L_SWITCH_INFO'		=> $user->lang['UCP_K_INFO_EDIT'],
-					'K_LEFT_BLOCKS'		=> $row['user_left_blocks'],
-					'K_CENTER_BLOCKS'	=> $row['user_center_blocks'],
-					'K_RIGHT_BLOCKS'	=> $row['user_right_blocks'],
+					'L_SWITCH_INFO'    => $user->lang['UCP_K_INFO_EDIT'],
+					'K_LEFT_BLOCKS'    => $row['user_left_blocks'],
+					'K_CENTER_BLOCKS'  => $row['user_center_blocks'],
+					'K_RIGHT_BLOCKS'   => $row['user_right_blocks'],
 				));
 
 			break;
 
 			case 'delete':
 				$template->assign_vars(array(
-					'CKECKBOX'			=> 1,
-					'L_SWITCH_INFO'		=> $user->lang['UCP_K_INFO_DELETE'],
+					'CKECKBOX'       => 1,
+					'L_SWITCH_INFO'  => $user->lang['UCP_K_INFO_DELETE'],
 				));
 			break;
 
 			case 'info':
 				$template->assign_vars(array(
-					'CKECKBOX'			=> 1,
-					'L_SWITCH_INFO'		=> $user->lang['UCP_K_INFO_INFO'],
-					'PORTAL_SITE'		=> $user->lang['DEV_SITE'] . 'http://www.phpbbireland.com',
-					'PORTAL_VERSION'	=> $config['portal_version'],
-					'PORTAL_BUILD'		=> $config['portal_build'],
+					'CKECKBOX'        => 1,
+					'L_SWITCH_INFO'   => $user->lang['UCP_K_INFO_INFO'],
+					'PORTAL_SITE'     => $user->lang['DEV_SITE'] . 'http://www.phpbbireland.com',
+					'PORTAL_VERSION'  => $config['portal_version'],
+					'PORTAL_BUILD'    => $config['portal_build'],
 				));
 			break;
 
 			case 'width':
 				$template->assign_vars(array(
-					'CKECKBOX'			=> 1,
-					'L_SWITCH_INFO'		=> $user->lang['UCP_K_INFO_WIDTH'],
+					'CKECKBOX'       => 1,
+					'L_SWITCH_INFO'  => $user->lang['UCP_K_INFO_WIDTH'],
 				));
 			break;
 
@@ -166,18 +166,15 @@ class ucp_k_blocks
 		get_default_block_layout($user_id);
 
 		$template->assign_vars(array(
-			'SWITCH'				=> $mode,
-			'MESSAGE'				=> $message,
-			'CKECKBOX'				=> ($mode == 'delete') ? 1 : 0,
-
-			'DATA_LEFT'				=> $dataleft,
-			'DATA_CENTER'			=> $datacenter,
-			'DATA_RIGHT'			=> $dataright,
-
-			'L_TITLE'				=> $user->lang['UCP_K_BLOCKS_' . strtoupper($mode)],
-
-			'S_HIDDEN_FIELDS'		=> $s_hidden_fields,
-			'S_UCP_ACTION'			=> $this->u_action,
+			'SWITCH'           => $mode,
+			'MESSAGE'          => $message,
+			'CKECKBOX'         => ($mode == 'delete') ? 1 : 0,
+			'DATA_LEFT'        => $dataleft,
+			'DATA_CENTER'      => $datacenter,
+			'DATA_RIGHT'       => $dataright,
+			'L_TITLE'          => $user->lang['UCP_K_BLOCKS_' . strtoupper($mode)],
+			'S_HIDDEN_FIELDS'  => $s_hidden_fields,
+			'S_UCP_ACTION'     => $this->u_action,
 		));
 
 		$this->tpl_name = 'ucp_k_blocks';

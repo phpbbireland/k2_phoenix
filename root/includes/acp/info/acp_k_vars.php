@@ -23,11 +23,11 @@ class acp_k_vars_info
 	function module()
 	{
 		return array(
-			'filename'	=> 'acp_k_vars',
-			'title'		=> 'ACP_K_VARS',
-			'version'	=> '1.0.0m',
-			'modes'		=> array(
-				'config'	=> array('title' => 'ACP_K_VARS_CONFIG','auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_TOOLS')),
+			'filename' => 'acp_k_vars',
+			'title'    => 'ACP_K_VARS',
+			'version'  => '1.0.0m',
+			'modes'    => array(
+				'config'  => array('title' => 'ACP_K_VARS_CONFIG','auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_TOOLS')),
 			),
 		);
 	}

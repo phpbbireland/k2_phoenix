@@ -58,11 +58,11 @@ class acp_k_config
 		$portal_build	= $config['portal_build'];
 
 		$template->assign_vars(array(
-			'S_BLOCKS_WIDTH'	=> $blocks_width,
-			'S_BLOCKS_ENABLED'	=> $blocks_enabled,
-			'S_PORTAL_VERSION'	=> $portal_version,
-			'S_PORTAL_BUILD'	=> $portal_build,
-			'U_BACK'			=> $this->u_action,
+			'S_BLOCKS_WIDTH'    => $blocks_width,
+			'S_BLOCKS_ENABLED'  => $blocks_enabled,
+			'S_PORTAL_VERSION'  => $portal_version,
+			'S_PORTAL_BUILD'    => $portal_build,
+			'U_BACK'            => $this->u_action,
 		));
 
 		$template->assign_vars(array('S_OPT' => 'configure')); // S_OPT is not a language variabe //
@@ -81,10 +81,10 @@ class acp_k_config
 			case 'save':
 			{
 
-				$blocks_width   	= request_var('blocks_width', '');
-				$blocks_enabled		= request_var('blocks_enabled', '');
-				$portal_version		= request_var('portal_version', '');
-				$portal_build		= request_var('portal_build', '');
+				$blocks_width    = request_var('blocks_width', '');
+				$blocks_enabled  = request_var('blocks_enabled', '');
+				$portal_version  = request_var('portal_version', '');
+				$portal_build    = request_var('portal_build', '');
 
 				set_config('blocks_width', $blocks_width);
 				set_config('blocks_enabled', $blocks_enabled);
