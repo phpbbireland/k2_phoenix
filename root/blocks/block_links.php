@@ -81,14 +81,6 @@
 	$links_count = 	$total_images_found;
 
 
-/*
-	// do we have some images //
-	if ($links_count == 0)
-	{
-		return;
-	}
-*/
-
 	if ($k_links_to_display > $links_count)	// we do not have enough images! so display what we have //
 	{
 		$k_links_to_display = $links_count;

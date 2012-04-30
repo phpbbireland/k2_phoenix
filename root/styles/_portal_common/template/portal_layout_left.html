@@ -7,14 +7,18 @@
 			<div class="inner"><span class="corners-top"><span></span></span>
 
 				<div class="block_header <!-- IF S_ARRANGE -->handle<!-- ENDIF -->">
-					<div class="block_title" style="text-align:{S_CONTENT_FLOW_BEGIN}">
-						{left_block_files.LEFT_BLOCK_TITLE}
-						<div class="showhide" style="text-align:{S_CONTENT_FLOW_BEGIN}" id="p_{left_block_files.LEFT_BLOCK_ID}">
+					<div class="block_title" style="text-align:{S_CONTENT_FLOW_BEGIN}">{left_block_files.LEFT_BLOCK_TITLE}
+						<div style="text-align:{S_CONTENT_FLOW_BEGIN}" id="p_{left_block_files.LEFT_BLOCK_ID}">
+
 							<!-- IF S_ARRANGE -->
-							<a href="javascript:ShowHide('{left_block_files.LEFT_BLOCK_ID}','_{left_block_files.LEFT_BLOCK_ID}','BLOCK_{left_block_files.LEFT_BLOCK_ID}');">{HIDE_IMG}</a>
+							<span class="bmove">{MOVE_IMG}</span>
+							<a href="javascript:ShowHide('{left_block_files.LEFT_BLOCK_ID}','_{left_block_files.LEFT_BLOCK_ID}','BLOCK_{left_block_files.LEFT_BLOCK_ID}');">
+								<span class="bchide">{HIDE_IMG}</span>
+							</a>
 							<!-- ELSE -->
-							<img src="{left_block_files.LEFT_BLOCK_IMG}" alt="" />
+							<span class="bcimage"><img src="{left_block_files.LEFT_BLOCK_IMG}" alt="" /></span>
 							<!-- ENDIF -->
+
 						</div>
 					</div>
 				</div>

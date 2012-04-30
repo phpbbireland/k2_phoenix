@@ -34,6 +34,8 @@ class acp_k_menus
 		global $db, $user, $auth, $template, $cache;
 		global $config, $SID, $phpbb_root_path, $phpbb_admin_path, $phpEx;
 
+		include($phpbb_root_path . 'includes/sgp_functions_admin.'.$phpEx);
+
 		$store = '';
 
 		$user->add_lang('acp/k_menus');
@@ -80,13 +82,13 @@ class acp_k_menus
 
 		switch ($mode)
 		{
-			case 'head': 	get_menu(0); 	$template->assign_var('S_OPTIONS', 'head'); break;
-			case 'nav':		get_menu(1); 	$template->assign_var('S_OPTIONS', 'nav');  break;
-			case 'sub':		get_menu(2); 	$template->assign_var('S_OPTIONS', 'sub');  break;
-			case 'foot':	get_menu(3); 	$template->assign_var('S_OPTIONS', 'foot');  break;
-			case 'link':	get_menu(4); 	$template->assign_var('S_OPTIONS', 'link');  break;
-			case 'all':		get_menu(90); 	$template->assign_var('S_OPTIONS', 'all');  break;
-			case 'unalloc':	get_menu(99); 	$template->assign_var('S_OPTIONS', 'unalloc'); break;
+			case 'head': 	get_menu(HEAD_MENUS); 	$template->assign_var('S_OPTIONS', 'head'); break;
+			case 'nav':		get_menu(NAV_MENUS); 	$template->assign_var('S_OPTIONS', 'nav');  break;
+			case 'sub':		get_menu(SUB_MENUS); 	$template->assign_var('S_OPTIONS', 'sub');  break;
+			case 'foot':	get_menu(FOOT_MENUS); 	$template->assign_var('S_OPTIONS', 'foot'); break;
+			case 'link':	get_menu(LINKS_MENUS); 	$template->assign_var('S_OPTIONS', 'link'); break;
+			case 'all':		get_menu(ALL_MENUS); 	$template->assign_var('S_OPTIONS', 'all');  break;
+			case 'unalloc':	get_menu(UNALLOC_MENUS); 	$template->assign_var('S_OPTIONS', 'unalloc'); break;
 
 			case 'edit':
 			{
@@ -110,6 +112,10 @@ class acp_k_menus
 					if($view_all)
 					{
 						$view_groups = get_all_groups();
+						if ($view_groups == '')
+						{
+							$view_groups = 0;
+						}
 					}
 
 					if (strstr($menu_icon, '..'))
@@ -402,7 +408,14 @@ class acp_k_menus
 					// get all groups and fill array //
 					parse_all_groups();
 					get_menu_icons();
+
 					$template->assign_var('S_OPTIONS', 'add');
+
+					$template->assign_vars(array(
+						'S_MENU_ICON' => 'acp.png',
+						'S_OPTIONS'   => 'add',
+					));
+
 					break;
 				}
 			}
@@ -450,23 +463,21 @@ function get_menu($this_one)
 	global $db, $phpbb_root_path, $phpEx, $template;
 	global $phpbb_admin_path, $phpEx;
 
-	switch ($this_one)
+	if($this_one > 0 && $this_one < 6) // standard menus defined as 1 to 5 //
 	{
-		case 1:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . NAV_MENUS . ' ORDER BY ndx ASC';	// nav menus
-		break;
-		case 2:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . SUB_MENUS . ' ORDER BY ndx ASC'; 	// sub menus
-		break;
-		case 3:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . HEAD_MENUS . ' ORDER BY ndx ASC';	// nav menus
-		break;
-		case 4:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . FOOT_MENUS . ' ORDER BY ndx ASC'; 	// sub menus
-		break;
-		case 5:		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . LINKS_MENUS . ' ORDER BY ndx ASC'; 	// sub menus
-		break;
-		case 90: 	$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' ORDER BY menu_type, ndx ASC';
-		break;
-		case 99:	$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . UN_ALLOC__MENUS . ' ORDER BY ndx, menu_type ASC';
-		break;
-		default: 	$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type=' . $this_one; break;
+		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . (int)$this_one . ' ORDER BY ndx ASC';
+	}
+	else if($this_one == ALL_MENUS)
+	{
+		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' ORDER BY menu_type, ndx ASC';
+	}
+	else if($this_one == UNALLOC_MENUS)
+	{
+		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . (int)$this_one . ' ORDER BY ndx, menu_type ASC';
+	}
+	else
+	{
+		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type=' . (int)$this_one;
 	}
 
 	if ($result = $db->sql_query($sql))
@@ -539,7 +550,7 @@ function get_menu_icons()
 {
 	global $phpbb_root_path, $phpEx, $template, $dirslist, $user;
 
-	$dirslist = '.. ';
+	$dirslist = ' ';
 
 	$dirs = dir($phpbb_root_path. 'images/block_images/menu');
 
@@ -608,31 +619,6 @@ function parse_all_groups()
 		);
 	}
 	$db->sql_freeresult($result);
-}
-
-function get_all_groups()
-{
-	global $db, $template, $user;
-	$all_groups = '';
-
-	// Get all the groups
-	$sql = 'SELECT group_id, group_name
-		FROM ' . GROUPS_TABLE . '
-		ORDER BY group_id ASC, group_name';
-	$result = $db->sql_query($sql);
-
-	while ($row = $db->sql_fetchrow($result))
-	{
-		$group_id = $row['group_id'];
-		$all_groups .= $group_id . ',';
-
-	}
-	$db->sql_freeresult($result);
-
-	// lose the last comma //
-	$all_groups = substr_replace($all_groups,"",-1);
-
-	return($all_groups);
 }
 
 /*

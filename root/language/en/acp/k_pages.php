@@ -4,7 +4,7 @@
 * @package Kiss Portal Engine (acp_k_pages) (English)
 *
 * @package language
-* @version $Id:$ 1.0.0h
+* @version $Id:$ 1.0.0m
 * @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -55,7 +55,7 @@ $lang = array_merge($lang, array(
 	'MANAGE_PAGES'				=> 'Manage pages',
 	'NO_FILES_FOUND'			=> 'The dropdown is unavailable as there are no files to add...',
 	'PAGE_NAME'					=> 'phpBB pages already added',
-	'PAGE_NAME_EXPLAIN'			=> 'The names of files we are allowed to use.',
+	'PAGE_NAME_EXPLAIN'			=> 'Blocks can be displayed on these pages.',
 	'PAGE_NEW_FILENAME'			=> 'Add this file to the list',
 	'PAGE_NEW_FILENAME_EXPLAIN'	=> 'Select page from the dropdown and hit Submit...',
 	'REMOVING_PAGES'			=> 'Page removed... ',

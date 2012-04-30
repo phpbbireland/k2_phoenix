@@ -17,69 +17,6 @@ if (!defined('IN_PHPBB'))
 	exit;
 }
 
-if(defined('IN_INSTALL'))
-{
-	return;
-}
-
-/**
-* acronym_pass()
-* acronym_cache()
-* sgp_local_acronyms()
-*/
-
-
-/**
-* Class for grabbing/handling acronym cached entries, extends acm_file or acm_db depending on the setup
-* @package acm
-*/
-
-if (!class_exists('acronym_cache'))
-{
-	class acronym_cache extends acm
-	{
-		/**
-		* Obtain list of acronyms and build preg style replacement arrays for use by the calling script
-		*/
-		function obtain_acronym_list()
-		{
-			global $k_config, $user, $db;
-
-			//Fix ref: http://www.stargate-portal.com/forum/viewtopic.php?f=29&t=591&p=6857 syntron //
-			if (!class_exists('acm'))
-			{
-				global $phpbb_root, $phpEx;
-				require($phpbb_root_path . 'includes/acm/acm_file.' . $phpEx);
-			}
-
-			if (($acronyms = $this->get('_word_acronyms')) === false)
-			{
-				$sql = 'SELECT acronym, meaning
-					FROM ' . K_ACRONYMS_TABLE . "
-					WHERE lang = '" . $user->data['user_lang'] . "'
-					ORDER BY acronym DESC";
-
-					// ORDER BY LENGTH(TRIM(acronym)) DESC";
-					// How would I write thid for all databases ???
-					//
-
-				$result = $db->sql_query($sql, 600);
-
-				$acronyms = array();
-
-				while ($row = $db->sql_fetchrow($result))
-				{
-					$acronyms['match'][] = '#(' . phpbb_preg_quote($row['acronym'], '#') . ')#';
-					$acronyms['replace'][] = '<acronym title="' . $row['meaning'] . '">\\1</acronym>';
-				}
-				$db->sql_freeresult($result);
-				$this->put('_word_acronyms', $acronyms);
-			}
-			return $acronyms;
-		}
-	}
-}
-
 /***
 * stargate hardcoded acronyms function, replaces acronyms. Started: 14 February 2007
 * Fix: 10 January 2011
@@ -91,10 +28,10 @@ if (!function_exists('sgp_local_acronyms'))
 		global $user;
 		$you = $user->lang['THIS_MEANS_YOU'];
 
-		// process sigle word acronyms first...
-		$message = str_replace("phpBB3", '<acronym title="' . $user->lang['ACRO_3'] . '"> phpBB3 </acronym>', $message);
-		$message = str_replace("Stargate Portal", '<acronym title="' . $user->lang['ACRO_1'] . '"> Stargate Portal </acronym>', $message);
-		$message = str_replace("Kiss Portal Engine", '<acronym title="' . $user->lang['ACRO_2'] . '"> Kiss Portal Engine </acronym>', $message);
+		// process single word acronyms first...
+		$message = str_replace("[phpBB3]", '<acronym title="' . $user->lang['ACRO_3'] . '"> phpBB3 </acronym>', $message);
+		$message = str_replace("[Stargate Portal]", '<acronym title="' . $user->lang['ACRO_1'] . '"> Stargate Portal </acronym>', $message);
+		$message = str_replace("[Kiss Portal Engine]", '<acronym title="' . $user->lang['ACRO_2'] . '"> Kiss Portal Engine </acronym>', $message);
 
 		return($message);
 	}
@@ -299,5 +236,17 @@ if (!function_exists('correct_truncate_length'))
 		}
 		return($return_val);
 	}
+}
+
+
+/**
+ * Written by Rowan Lewis
+ * $search(string), the string to be searched for
+ * $replace(string), the string to replace $search
+ * $subject(string), the string to be searched in
+ */
+function word_replace($search, $replace, $subject)
+{
+	return preg_replace('/[a-zA-Z]+/e', '\'\0\' == \'' . $search . '\' ? \'' . $replace . '\': \'\0\';', $subject);
 }
 ?>

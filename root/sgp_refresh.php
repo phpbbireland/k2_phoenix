@@ -25,12 +25,8 @@ $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path . 'common.'.$phpEx);
 include($phpbb_root_path . 'includes/acp/acp_modules.' . $phpEx);
-//include ... once($phpbb_root_path . "includes/acm/acm_file.$phpEx");
 include($phpbb_root_path . "includes/functions_admin.$phpEx");
 include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
-
-// Report all errors, except notices
-error_reporting(E_ALL ^ E_NOTICE);
 
 $user->session_begin();
 $auth->acl($user->data);
@@ -47,7 +43,8 @@ $template->set_filenames(array(
 	'body' => 'sgp_refresh.html')
 );
 
-if ($user->data['is_registered'] && $auth->acl_get('a_'))
+// only allow founder
+if ($user->data['is_registered'] && $auth->acl_get('a_') && $user->data['user_type'] == USER_FOUNDER)
 {
 	$template->assign_var('S_IS_ADMIN', true);
 
@@ -78,7 +75,7 @@ if ($user->data['is_registered'] && $auth->acl_get('a_'))
 
 			$sql2 = 'SELECT template_filename, template_mtime
 				FROM ' . STYLES_TEMPLATE_DATA_TABLE . "
-				WHERE template_id = " . $template_row['template_id'];
+				WHERE template_id = " . (int)$template_row['template_id'];
 
 			$result2 = $db->sql_query($sql2);
 			if (!$result2)

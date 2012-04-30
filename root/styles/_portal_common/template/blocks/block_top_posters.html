@@ -7,28 +7,20 @@
 		</div>
 	</div>
 
-	<div class="tcontainer">
+	<div class="tcontainer" style="padding:1px; margin:0;">
 		<!-- BEGIN top_posters -->
+			<div class="trow" style="width:100%;">
 			<!-- IF top_posters.S_ROWS is even -->
-			<div class="trow">
-				<span class="tleft bg2" style="padding:1px; width:18px;"><!-- IF top_posters.USER_AVATAR_IMG -->{top_posters.USER_AVATAR_IMG}<!-- ELSE --><img src="{T_THEME_PATH}/images/no_avatar.gif" width="16" height="16" alt="" /><!-- ENDIF --></span>
-				<span class="tleft bg2" style="padding:1px; width:auto;">{top_posters.USERNAME_FULL}</span>
-				<span class="tleft bg2" style="padding:1px; width:auto; text-align:right; min-width:25px;"><a href="{top_posters.S_SEARCH_ACTION}">{top_posters.POSTER_POSTS}</a></span>
-			</div>
+				<span class="tleft bg2" style="padding:0px;"><!-- IF top_posters.USER_AVATAR_IMG -->{top_posters.USER_AVATAR_IMG}<!-- ELSE --><img src="{T_THEME_PATH}/images/no_avatar.gif" width="16" height="16" alt="" /><!-- ENDIF --></span>
+				<span class="tleft bg2" style="padding:1px; width:100%">{top_posters.USERNAME_FULL}</span>
+				<span class="tleft bg2" style="padding:1px; width:auto; text-align:right; min-width:35px;"><a href="{top_posters.S_SEARCH_ACTION}">{top_posters.POSTER_POSTS}</a></span>
 			<!-- ELSE -->
-			<div class="trow">
-				<span class="tleft bg1" style="padding:1px; width:auto;"><!-- IF top_posters.USER_AVATAR_IMG -->{top_posters.USER_AVATAR_IMG}<!-- ELSE --><img src="{T_THEME_PATH}/images/no_avatar.gif" width="16" height="16" alt="" /><!-- ENDIF --></span>
-				<span class="tleft bg1" style="padding:1px; width:100%;">{top_posters.USERNAME_FULL}</span>
+				<span class="tleft bg1" style="padding:0px;"><!-- IF top_posters.USER_AVATAR_IMG -->{top_posters.USER_AVATAR_IMG}<!-- ELSE --><img src="{T_THEME_PATH}/images/no_avatar.gif" width="16" height="16" alt="" /><!-- ENDIF --></span>
+				<span class="tleft bg1" style="padding:1px; width:100%">{top_posters.USERNAME_FULL}</span>
 				<span class="tleft bg1" style="padding:1px; width:auto; text-align:right; min-width:35px; overflow:hidden;"><a href="{top_posters.S_SEARCH_ACTION}">{top_posters.POSTER_POSTS}</a></span>
-			</div>
 			<!-- ENDIF -->
+			</div>
 		<!-- END top_posters -->
-	</div>
-
-	<div>
-		<span class="bg2" style="position: relative; float:left; text-align:center; width:100%; padding:0;" >
-
-		</span>
 	</div>
 
 <!-- IF DEBUG_QUERIES -->{TOP_POSTERS_DEBUG}<!-- ENDIF -->
@@ -36,4 +28,4 @@
 
 <!-- IDTAG block_top_posters.html ends 15 April 2007 -->
 
-<!-- FIX Safari --><br style="clear:both;" /><!-- FIX Safari -->
+

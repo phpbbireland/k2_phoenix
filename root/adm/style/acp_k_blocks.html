@@ -4,7 +4,7 @@
 // <![CDATA[
 	function set_list_image(data)
 	{
-		if(data != '...')
+		if(data != '')
 		{
 			document.getElementById('img_file_name').value=data;
 			document.getElementById("bimage").innerHTML = "<img alt='' align='absmiddle' src='./../images/block_images/block/" + data + "' />"
@@ -14,7 +14,7 @@
 	{
 		var bimage = myForm.img_file_name;
 
-		if(bimage != '...')
+		if(bimage != '')
 		{
 			document.getElementById("bimage").innerHTML = "<img alt='' align='absmiddle' src='./../images/block_images/block/" + bimage.value + "' />"
 		}
@@ -186,20 +186,20 @@
 	<legend>{L_BLOCKS_HEADER_ADMIN}</legend>
 	<input type="hidden" name="id" value="{S_ID}" />
 	<dl>
-		<dt><label>{L_BLOCK_ID}</label>&nbsp; {L_DO_NOT_EDIT}</dt>
-		<dd><input type="text" maxlength="3" size="5" name="id" value="{S_ID}" class="post" /></dd>
+		<dt><label for="id">{L_BLOCK_ID}</label>&nbsp; {L_DO_NOT_EDIT}</dt>
+		<dd><input type="text" maxlength="3" size="5" id="id" name="id" value="{S_ID}" class="post" /></dd>
 	</dl>
 	<dl>
-		<dt><label>{L_BLOCK_NDX}</label>&nbsp; {L_BLOCK_INDEX}</dt>
-		<dd><input type="text" maxlength="3" size="5" name="ndx" value="{S_NDX}" class="post" /></dd>
+		<dt><label for="ndx">{L_BLOCK_NDX}</label>&nbsp; {L_BLOCK_INDEX}</dt>
+		<dd><input type="text" maxlength="3" size="5" id="ndx" name="ndx" value="{S_NDX}" class="post" /></dd>
 	</dl>
 	<dl>
-		<dt><label>{L_BLOCK_TITLE}:</label></dt>
+		<dt><label for="title">{L_BLOCK_TITLE}:</label></dt>
 		<dd><input type="text" maxlength="60" size="24" id="title" name="title" value="{S_TITLE}" class="post" /></dd>
 	</dl>
 	<dl>
-		<dt><label>{L_BLOCK_POSITION_BIG}:</label><br /></dt>
-		<dd><select name="position" class="post">
+		<dt><label for="position" >{L_BLOCK_POSITION_BIG}:</label><br /></dt>
+		<dd><select id="position" name="position" class="post">
 				<option value="L" <!-- IF S_POSITION === "L" -->selected="selected" <!-- ENDIF -->>{L_PAGE_LEFT}</option>
 				<option value="C" <!-- IF S_POSITION === "C" -->selected="selected" <!-- ENDIF -->>{L_PAGE_CENTRE}</option>
 				<option value="R" <!-- IF S_POSITION === "R" -->selected="selected" <!-- ENDIF -->>{L_PAGE_RIGHT}</option>
@@ -223,9 +223,9 @@
 		</dd>
 	</dl>
 	<dl>
-		<dt><label>{L_BLOCK_FNAME_H_BIG}:</label><br />{L_BLOCK_FNAME_EXPLAIN}</dt>
+		<dt><label for="html_file_name">{L_BLOCK_FNAME_H_BIG}:</label><br />{L_BLOCK_FNAME_EXPLAIN}</dt>
 		<dd>
-			<select name="html_file_name" class="post">
+			<select id="html_file_name" name="html_file_name" class="post">
 			<!-- BEGIN html_file_name -->
 				<option value="{html_file_name.S_BLOCK_FILE_HTML}" <!-- IF html_file_name.S_BLOCK_FILE_HTML == S_FNAME_H -->selected="selected" <!-- ENDIF -->>{html_file_name.S_BLOCK_FILE_HTML}</option>
 			<!-- END html_file_name -->
@@ -233,20 +233,20 @@
 		</dd>
 	</dl>
 	<dl>
-		<dt><label>{L_BLOCK_FNAME_I_BIG}:</label><br /><span>{L_BLOCK_FNAME_I_EXPLAIN}</span></dt>
+		<dt><label for="img_file_name">{L_BLOCK_FNAME_I_BIG}:</label><br /><span>{L_BLOCK_FNAME_I_EXPLAIN}</span></dt>
 		<dd>
 			<select id="img_file_name" name="img_file_name" class="post" onchange="display_block_image(this.form); return false;">
 			<!-- BEGIN img_file_name -->
 				<option value="{img_file_name.S_BLOCK_FILE_I}" <!-- IF img_file_name.S_BLOCK_FILE_I == S_FNAME_I -->selected="selected" <!-- ENDIF -->>{img_file_name.S_BLOCK_FILE_I}</option>
 			<!-- END img_file_name -->
 			</select>
-			<span id='bimage'><img src='./../images/block_images/block/{S_FNAME_I}' alt='' /> </span>
+			<span id='bimage'>111<img src='./../images/block_images/block/{S_FNAME_I}' alt='{S_FNAME_I}' /> </span>
 		</dd>
 	</dl>
 	<dl>
-		<dt><label>{L_BLOCK_FNAME_IS_BIG}:</label></dt>
+		<dt><strong>{L_BLOCK_FNAME_IS_BIG}:</strong></dt>
 		<dd>
-			<span class="imageline" style="padding:5px; border: solid 1px #D7D7D7;">
+			<span id="imageline" class="imageline" style="padding:5px; border: solid 1px #D7D7D7;">
 			<!-- BEGIN img_file_name -->
 				<!-- IF img_file_name.S_BLOCK_FILE_I -->
 					<a href="#" onclick="set_list_image('{img_file_name.S_BLOCK_FILE_I}'); return false;">
@@ -267,7 +267,7 @@
 	</dl>
 	<hr />
 	<dl>
-		<dt><label>{L_VIEW_PAGES}:</label><br /><span>{L_VIEW_PAGES_EXPLAIN}</span></dt>
+		<dt><strong>{L_VIEW_PAGES}:</strong><br /><span>{L_VIEW_PAGES_EXPLAIN}</span></dt>
 		<dd><span class="imageline" style="padding:5px; border: solid 1px #D7D7D7;">{S_VIEW_PAGES}</span></dd>
 	</dl>
 	<dl>
@@ -289,15 +289,15 @@
 	</dl>
 	<hr />
 	<dl>
-		<dt><label>{L_BLOCK_VIEW_GROUPS}:</label><br /><span>{L_BLOCK_VIEW_GROUPS_EXPLAIN}</span></dt>
+		<dt><label for="view_groups">{L_BLOCK_VIEW_GROUPS}:</label><br /><span>{L_BLOCK_VIEW_GROUPS_EXPLAIN}</span></dt>
 		<dd><br />
 			<label><input class="post" size="26" maxlength="100" id="view_groups" name="view_groups" value="{S_VIEW_GROUPS}" type="text" /></label>
 		</dd>
 	</dl>
 	<dl>
-		<dt><label>{L_BLOCK_VIEW_BY}:</label><br /><span>{L_BLOCK_VIEW_BY_EXPLAIN}</span></dt>
+		<dt><label for="view_by">{L_BLOCK_VIEW_BY}:</label><br /><span>{L_BLOCK_VIEW_BY_EXPLAIN}</span></dt>
 		<dd><br />
-			<select name="view_by" class="post" onchange="set_ids(this.options[this.selectedIndex].value, 'view_groups'); ">
+			<select id="view_by" name="view_by" class="post" onchange="set_ids(this.options[this.selectedIndex].value, 'view_groups'); ">
 			<!-- BEGIN groups -->
 				<option value="{groups.GROUP_ID}" <!-- IF groups.GROUP_ID == S_VIEW_BY -->selected="selected" <!-- ENDIF -->>{groups.GROUP_ID} ({groups.GROUP_NAME})</option>
 			<!-- END groups -->
@@ -307,16 +307,16 @@
 	<dl>
 		<dt><label for="view_all">{L_BLOCK_VIEW_ALL}:</label><br /><span>{L_BLOCK_VIEW_ALL_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input id="view_all" type="radio" name="view_all" value="1" <!-- IF S_VIEW_ALL -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" name="view_all" value="0" <!-- IF not S_VIEW_ALL -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" name="view_all" value="1" <!-- IF S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" name="view_all" value="0" <!-- IF not S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<hr />
 	<dl>
 		<dt><label for="has_vars">{L_HAS_VARS}:</label><br />{L_HAS_VARS_EXPLAIN}</dt>
 		<dd>
-			<label><input id="has_vars" onclick="ShowHide('vars');" type="radio" name="has_vars" value="1" <!-- IF S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
-			<label><input onclick="ShowHide('vars');" type="radio" name="has_vars" value="0" <!-- IF not S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
+			<label><input onclick="ShowHide('vars');" type="radio" <!-- IF S_HAS_VARS -->id="has_vars"<!-- ENDIF --> name="has_vars" value="1" <!-- IF S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
+			<label><input onclick="ShowHide('vars');" type="radio" <!-- IF not S_HAS_VARS -->id="has_vars"<!-- ENDIF --> name="has_vars" value="0" <!-- IF not S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<div style="display:<!-- IF not S_HAS_VARS -->none<!-- ELSE -->block<!-- ENDIF -->" id="vars">
@@ -333,8 +333,8 @@
 	</div>
 	<hr />
 	<dl>
-		<dt><label>{L_BLOCK_CACHE_TIME}:</label><br />{L_BLOCK_CACHE_TIME_EXPLAIN}</dt>
-		<dd><input type="text" maxlength="10" size="6" name="block_cache_time" value="{BLOCK_CACHE_TIME}" class="post" /></dd>
+		<dt><label for="block_cache_time">{L_BLOCK_CACHE_TIME}:</label><br />{L_BLOCK_CACHE_TIME_EXPLAIN}</dt>
+		<dd><input type="text" maxlength="10" size="6" id="block_cache_time" name="block_cache_time" value="{BLOCK_CACHE_TIME}" class="post" /></dd>
 	</dl>
 </fieldset>
 <!-- ENDIF -->
@@ -344,39 +344,39 @@
 <fieldset>
 	<legend>{L_BLOCKS_ADD_HEADER}</legend>
 	<dl>
-		<dt><label>{L_BLOCK_TITLE}:</label></dt>
-		<dd><label><input type="text" maxlength="60" size="24" name="title" value="" class="post" /></label></dd>
+		<dt><label for="title">{L_BLOCK_TITLE}:</label></dt>
+		<dd><label><input type="text" maxlength="60" size="24" id="title" name="title" value="" class="post" /></label></dd>
 	</dl>
 	<dl>
-		<dt><label>{L_BLOCK_POSITION_BIG}:</label></dt>
+		<dt><label for="position">{L_BLOCK_POSITION_BIG}:</label></dt>
 		<dd>
-			<select name="position" class="post">
-				<option value="L" <!-- IF bdata.S_POSITION === "L" -->selected="selected" <!-- ENDIF -->>{L_PAGE_LEFT}</option>
-				<option value="C" <!-- IF bdata.S_POSITION === "C" -->selected="selected" <!-- ENDIF -->>{L_PAGE_CENTRE}</option>
-				<option value="R" <!-- IF bdata.S_POSITION === "R" -->selected="selected" <!-- ENDIF -->>{L_PAGE_RIGHT}</option>
-				<option value="l" <!-- IF bdata.S_POSITION === "l" -->selected="selected" <!-- ENDIF -->>{L_LEFT_OF_CENTRE}</option>
-				<option value="r" <!-- IF bdata.S_POSITION === "r" -->selected="selected" <!-- ENDIF -->>{L_RIGHT_OF_CENTRE}</option>
+			<select id="position" name="position" class="post">
+				<option value="L" <!-- IF bdata.S_POSITION === "L" or  bdata.S_POSITION === "" -->selected="selected" id="position"<!-- ENDIF -->>{L_PAGE_LEFT}</option>
+				<option value="C" <!-- IF bdata.S_POSITION === "C" -->selected="selected" id="position"<!-- ENDIF -->>{L_PAGE_CENTRE}</option>
+				<option value="R" <!-- IF bdata.S_POSITION === "R" -->selected="selected" id="position"<!-- ENDIF -->>{L_PAGE_RIGHT}</option>
+				<option value="l" <!-- IF bdata.S_POSITION === "l" -->selected="selected" id="position"<!-- ENDIF -->>{L_LEFT_OF_CENTRE}</option>
+				<option value="r" <!-- IF bdata.S_POSITION === "r" -->selected="selected" id="position"<!-- ENDIF -->>{L_RIGHT_OF_CENTRE}</option>
 			</select>
 		</dd>
 	</dl>
 	<dl>
 		<dt><label for="active" >{L_BLOCK_ACTIVE_BIG}:</label></dt>
 		<dd>
-			<label><input type="radio" name="active" id="active" value="1" <!-- IF S_ACTIVE -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" name="active" value="0" <!-- IF not S_ACTIVE -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" name="active" value="1" <!-- IF S_ACTIVE -->checked="checked" id="active"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" name="active" value="0" <!-- IF not S_ACTIVE -->checked="checked" id="active"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<dl>
 		<dt><label for="type">{L_BLOCK_TYPE_BIG}:</label></dt>
 		<dd>
-			<label><input type="radio" name="type" id="type" value="1" <!-- IF S_TYPE -->checked="checked" <!-- ENDIF --> /> {L_HTML}</label>
-			<label><input type="radio" name="type" value="0" <!-- IF not S_TYPE -->checked="checked" <!-- ENDIF --> /> {L_BBCODE}</label>
+			<label><input type="radio" name="type" value="1" <!-- IF S_TYPE -->checked="checked" id="type"<!-- ENDIF --> /> {L_HTML}</label>
+			<label><input type="radio" name="type" value="0" <!-- IF not S_TYPE -->checked="checked" id="type"<!-- ENDIF --> /> {L_BBCODE}</label>
 		</dd>
 	</dl>
 	<dl>
-		<dt><label>{L_BLOCK_FNAME_H_BIG}:</label></dt>
+		<dt><label for="html_file_name">{L_BLOCK_FNAME_H_BIG}:</label></dt>
 		<dd>
-			<select name="html_file_name" class="post">
+			<select id="html_file_name" name="html_file_name" class="post">
 				<!-- BEGIN html_file_name -->
 				<option value="{html_file_name.S_BLOCK_FILE_HTML}"> {html_file_name.S_BLOCK_FILE_HTML}</option>
 				<!-- END html_file_name -->
@@ -384,18 +384,18 @@
 		</dd>
 	</dl>
 	<dl>
-		<dt><label>{L_BLOCK_FNAME_I_BIG}:</label><br />{L_BLOCK_FNAME_I_EXPLAIN}</dt>
+		<dt><label for="img_file_name">{L_BLOCK_FNAME_I_BIG}:</label><br />{L_BLOCK_FNAME_I_EXPLAIN}</dt>
 		<dd>
 			<select id="img_file_name" name="img_file_name" class="post" onchange="display_block_image(this.form); return false;">
 			<!-- BEGIN img_file_name -->
 				<option value="{img_file_name.S_BLOCK_FILE_I}" <!-- IF img_file_name.S_BLOCK_FILE_I == S_FNAME_I -->selected="selected" <!-- ENDIF -->>{img_file_name.S_BLOCK_FILE_I}</option>
 			<!-- END img_file_name -->
 			</select>
-			<span id='bimage'> <img src='./../images/block_images/block/{S_FNAME_I}' alt="" /> </span>
+			<span id='bimage'><img src='./../images/block_images/block/{S_FNAME_I}' alt="{S_FNAME_I}" /> </span>
 		</dd>
 	</dl>
 	<dl>
-		<dt><label>{L_BLOCK_FNAME_IS_BIG}:</label><br />{L_BLOCK_FNAME_IS_BIG2}</dt>
+		<dt><strong>{L_BLOCK_FNAME_IS_BIG}:</strong><br />{L_BLOCK_FNAME_IS_BIG2}</dt>
 		<dd>
 			<span class="imageline" style="padding:5px; border: solid 1px #D7D7D7;">
 			<!-- BEGIN img_file_name -->
@@ -410,16 +410,16 @@
 	</dl>
 
 	<dl>
-		<dt><label>{L_BLOCK_VIEW_GROUPS}:</label><br />{L_BLOCK_VIEW_GROUPS_EXPLAIN}</dt>
+		<dt><label for="view_groups">{L_BLOCK_VIEW_GROUPS}:</label><br />{L_BLOCK_VIEW_GROUPS_EXPLAIN}</dt>
 		<dd><br />
 			<input class="post" size="26" maxlength="100" id="view_groups" name="view_groups" value="{S_VIEW_GROUPS}" type="text" />
 		</dd>
 	</dl>
 
 	<dl>
-		<dt>{L_BLOCK_VIEW_BY_EXPLAIN}</dt>
+		<dt><label for="view_by">{L_BLOCK_VIEW_BY_EXPLAIN}</label></dt>
 		<dd>
-			<select name="view_by" class="post" onchange="set_ids(this.options[this.selectedIndex].value, 'view_groups'); ">
+			<select id="view_by" name="view_by" class="post" onchange="set_ids(this.options[this.selectedIndex].value, 'view_groups'); ">
 			<!-- BEGIN groups -->
 				<option value="{groups.GROUP_ID}" <!-- IF groups.GROUP_ID == S_VIEW_BY -->selected="selected" <!-- ENDIF -->>{groups.GROUP_ID} ({groups.GROUP_NAME})</option>
 			<!-- END groups -->
@@ -429,8 +429,8 @@
 	<dl>
 		<dt><label for="view_all">{L_BLOCK_VIEW_ALL}:</label><br /><span>{L_BLOCK_VIEW_ALL_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input id="view_all" name="view_all" type="radio" value="1" <!-- IF S_VIEW_ALL -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" name="view_all" value="0" <!-- IF not S_VIEW_ALL -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
+			<label><input name="view_all" type="radio" value="1" <!-- IF S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input name="view_all" type="radio" value="0" <!-- IF not S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 
@@ -438,14 +438,14 @@
 	<dl>
 		<dt><label for="scroll">{L_BLOCK_SCROLL_BIG}:</label><span>{L_BLOCK_SCROLL_BIG_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input id="scroll" type="radio" name="scroll" value="1" <!-- IF S_SCROLL -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" name="scroll" value="0" <!-- IF not S_SCROLL -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" name="scroll" value="1" <!-- IF S_SCROLL -->checked="checked" id="scroll"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" name="scroll" value="0" <!-- IF not S_SCROLL -->checked="checked" id="scroll"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 
 
 	<dl>
-		<dt><label>{L_VIEW_PAGES}:</label><br /><span>{L_VIEW_PAGES_EXPLAIN}</span></dt>
+		<dt><strong>{L_VIEW_PAGES}:</strong><br /><span>{L_VIEW_PAGES_EXPLAIN}</span></dt>
 		<dd><span class="imageline" style="padding:5px; border: solid 1px #D7D7D7;">{S_VIEW_PAGES}</span></dd>
 	</dl>
 	<dl>
@@ -464,26 +464,35 @@
 			<input type="button" name="unmark_all" value="{L_UNMARK_ALL}" class="button1" onclick="switchMarks(false,'');" />&nbsp;
 		</dd>
 	</dl>
+
 	<hr />
 	<dl>
 		<dt><label for="has_vars">{L_HAS_VARS}:</label><br />{L_HAS_VARS_EXPLAIN}</dt>
-		<dd><br />
-			<label><input id="has_vars" onclick="ShowHide('vars');" type="radio" name="has_vars" value="1" <!-- IF S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
-			<label><input onclick="ShowHide('vars');" type="radio" name="has_vars" value="0" <!-- IF not S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
+		<dd>
+			<label><input onclick="ShowHide('vars');" type="radio" <!-- IF S_HAS_VARS -->id="has_vars"<!-- ENDIF --> name="has_vars" value="1" <!-- IF S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
+			<label><input onclick="ShowHide('vars');" type="radio" <!-- IF not S_HAS_VARS -->id="has_vars"<!-- ENDIF --> name="has_vars" value="0" <!-- IF not S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<div style="display:<!-- IF not S_HAS_VARS -->none<!-- ELSE -->block<!-- ENDIF -->" id="vars">
  	<dl>
-		<dt><label>{L_BLOCK_VAR_FILE}:</label><br />{L_BLOCK_VAR_FILE_EXPLAIN}</dt>
+		<dt>{L_BLOCK_VAR_FILE}:{L_BLOCK_VAR_FILE_EXPLAIN}</dt>
 		<dd>
 		<select name="var_file_name" class="post">
 			<!-- BEGIN var_file_name -->
-			<option value="{var_file_name.S_VAR_FILE_NAME}" <!-- IF var_file_name.S_VAR_FILE_NAME == S_FNAME_V -->selected="selected" <!-- ENDIF -->>{var_file_name.S_VAR_FILE_NAME}</option>
+				<option value="{var_file_name.S_VAR_FILE_NAME}" <!-- IF var_file_name.S_VAR_FILE_NAME == S_FNAME_V -->selected="selected" <!-- ENDIF -->>{var_file_name.S_VAR_FILE_NAME}</option>
 			<!-- END var_file_name -->
 		</select>
 		</dd>
 	</dl>
 	</div>
+	<hr />
+	<dl>
+		<dt><label for="block_cache_time">{L_BLOCK_CACHE_TIME}:</label><br />{L_BLOCK_CACHE_TIME_EXPLAIN}</dt>
+		<dd><input type="text" maxlength="10" size="6" id="block_cache_time" name="block_cache_time" value="{BLOCK_CACHE_TIME}" class="post" /></dd>
+	</dl>
+
+
+
 </fieldset>
 <!-- ENDIF -->
 

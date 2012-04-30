@@ -4,7 +4,7 @@
 * @package Kiss Portal Engine (acp_k_vars) (English)
 *
 * @package language
-* @version $Id:$ 1.0.0h
+* @version $Id:$ 1.0.0m
 * @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -240,6 +240,10 @@ $lang = array_merge($lang, array(
 	'ACP_SMALL'					=> 'Admin CP',
 	'ANNOUNCEMENTS'				=> 'Announcements',
 	'BIRTHDAY'					=> 'Birthday',
+	'BLOCK_CACHE_TIME_RECENT'	=> 'Recent topics cache time',
+	'BLOCK_CACHE_TIME_SHORT'	=> 'Block cache time short',
+	'BLOCK_CACHE_TIME_LONG'		=> 'Block cache time long ',
+	'BLOCK_CACHE_TIME_MEDIUM'	=> 'Block cache time medium',
 	'BLOG'						=> 'SGP Integrated Blog',
 	'BOARD_MINI_NAV'			=> 'Sub Nav',
 	'BOARD_STYLE'				=> 'Board Style',
@@ -254,15 +258,34 @@ $lang = array_merge($lang, array(
 	'FM_RADIO'					=> 'FM Radio',
 	'FORUM_CATEGORIES'			=> 'Forum categories',
 	'GALLERY'					=> 'Gallery',
+	'IRC_CHAT'					=> 'IRC Chat',
+
+	'K_BLOCK_CACHE_TIME_FAST'			=> 'Set recent topics cache time.',
+	'K_BLOCK_CACHE_TIME_FAST_EXPLAIN'	=> 'Default period for recent topics.',
+	'K_LAST_ONLINE_MAX'					=> 'Display this many members in list.',
+	'K_LAST_ONLINE_MAX_EXPLAIN'			=> 'The maximum members to display in online list.',
+	'K_MAX_BLOCK_AVATAR_WIDTH'			=> 'The maxinum width of the avatar',
+	'K_MAX_BLOCK_AVATAR_HEIGHT'			=> 'The maxinum height of the avatar',
+	'K_MAX_BLOCK_AVATAR_EXPLAIN'		=> 'Set to 0 to use phpBB config fault value',
+	'K_TOP_TOPICS_MAX'					=> 'Number of topics to display.',
+	'K_TOP_TOPICS_MAX_EXPLAIN'			=> 'The max number of most active topics to display.',
+	'K_TOP_TOPICS_DAYS'					=> 'Number of days to look back for top topics.',
+	'K_TOP_TOPICS_DAYS_EXPLAIN'			=> 'The number of past days used for the search.',
+
+	'LAST_ONLINE'				=> 'List recent online members.',
 	'LINKS'             		=> 'Links',
 	'MAIN_MENU'					=> 'Board Navigation',
 	'MEMBERS'					=> 'Members',
 	'MP3_PLAYER'				=> 'Mp3 player',
 	'NEWS'						=> 'News',
 	'NEWS_REPORT'				=> 'Site News Report',
+	'NO_CONFIG_FILE_FOUND'		=> 'No configuration required, or no file available for this module.',
 	'PORTAL'					=> 'Portal',
 	'PORTAL_STATUS'				=> 'Portal Status',
 	'RECENT_TOPICS'				=> 'Recent Topics',
+	'REQUIRED_DATA_MISSING'		=> 'Required data is missing...<br />',
+	'SAVING'					=> 'Database updated...',
+	'SAVED'						=> 'Database updated...',
 	'SELECT_STYLE'				=> 'Select a new style',
 	'SITE_LINK_TXT'				=> 'Link to us',
 	'STAFF'						=> 'Staff',
@@ -270,43 +293,23 @@ $lang = array_merge($lang, array(
 	'STATS'		 				=> 'Statistics',
 	'STYLE_STATUS'				=> 'Styles Status',
 	'SUB_MENU'					=> 'Secondary Menu',
+	'SWITCHING'					=> 'Switching to SGP config',
 	'TOP_10_PICS'				=> 'Top 10 Rated Pictures',
+	'TOP_TOPICS'				=> 'Most active topics.',
+	'TOPICSPERFORUM'			=> 'Number of topics per forum.',
+	'TOPICSPERFORUM_EXPLAIN'	=> 'Limit the number of topics returned for each forum.',
 	'TOP_DOWNLOADS'				=> 'Top Downloads',
 	'TOP_POSTERS'				=> 'Top Posters',
 	'TOP_REFERRALS'				=> 'Top Referrals',
-	'UNRESOLVED'				=> 'Unresolved',
 	'UCP'						=> 'User CP',
+	'UNRESOLVED'				=> 'Unresolved',
 	'USER_INFO'					=> 'User Information',
-	'WELCOME_SITE'				=> 'Welcome to<br /><strong>%s</strong>',
 	'YOUR_PROFILE'				=> 'User profile',
-	'SWITCHING'					=> 'Switching to SGP config',
-	'LAST_ONLINE'				=> 'List recent online members.',
-	'K_LAST_ONLINE_MAX'			=> 'Display this many members in list.',
-	'K_LAST_ONLINE_MAX_EXPLAIN'	=> 'The maximum members to display in online list.',
-	'TOP_TOPICS'				=> 'Most active topics.',
-	'K_TOP_TOPICS_MAX'			=> 'Number of topics to display.',
-	'K_TOP_TOPICS_MAX_EXPLAIN'	=> 'The max number of most active topics to display.',
-	'K_TOP_TOPICS_DAYS'			=> 'Number of days to look back for top topics.',
-	'K_TOP_TOPICS_DAYS_EXPLAIN'	=> 'The number of past days used for the search.',
-	'TOPICSPERFORUM'			=> 'Number of topics per forum.',
-	'TOPICSPERFORUM_EXPLAIN'	=> 'Limit the number of topics returned for each forum.',
-	'SAVING'					=> 'Updating database...',
-	'SAVED'						=> 'Saving changes... one moment',
-	'REQUIRED_DATA_MISSING'		=> 'Required data is missing...<br />',
-	'UNKNOWN_ERROR'				=> 'Error not processing saved data<br />',
-	'IRC_CHAT'					=> 'IRC Chat',
 	'YOUTUBE_LINK'				=> 'Actual YouTube link (URL)',
 	'YOUTUBE_LINK_EXPLAIN'		=> 'Just in case YouTube ever change we best provide an alternate',
-	'NO_CONFIG_FILE_FOUND'		=> 'No configuration required, or no file available for this module.',
-
-	'BLOCK_CACHE_TIME_RECENT'	=> 'Recent topics cache time',
-	'BLOCK_CACHE_TIME_SHORT'	=> 'Block cache time short',
-	'BLOCK_CACHE_TIME_LONG'		=> 'Block cache time long ',
-	'BLOCK_CACHE_TIME_MEDIUM'	=> 'Block cache time medium',
-
-
-	'k_block_cache_time_fast'			=> 'Set recent topics cache time.',
-	'k_block_cache_time_fast_EXPLAIN'	=> 'Default period for recent topics.',
+	'UNKNOWN_ERROR'				=> 'Error not processing saved data<br />',
+	'USER_MAX_AVATAR_SETTINGS'		=> 'Restrict the size of a user avatar in user information block.',
+	'WELCOME_SITE'				=> 'Welcome to<br /><strong>%s</strong>',
 ));
 
 // Block Names
@@ -331,8 +334,8 @@ $lang = array_merge($lang, array(
 
 	'ACRONYMS'					=> 'Acronyms',
 
-	'ALLOW_ACRONYMS'			=> 'Process acronyms in posts',
-	'ALLOW_ACRONYMS_EXPLAIN'	=> 'Acronyms in post will not be processed if disable here...',
+	'ALLOW_ACRONYMS'			=> 'Process Local Acronyms (built in) in posts',
+	'ALLOW_ACRONYMS_EXPLAIN'	=> 'Local Acronyms in post will not be processed if disable here...',
 
 	'ADD_ACRONYM'				=> 'Add Acronym',
 	'EDIT_ACRONYM'				=> 'Edit acronym',

@@ -4,7 +4,7 @@
 * @package Kiss Portal Engine (acp_k_blocks) (English)
 *
 * @package language
-* @version $Id:$ 1.0.0h
+* @version $Id:$ 1.0.0m
 * @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -73,7 +73,7 @@ $lang = array_merge($lang, array(
 	'BLOCK_ID' 					=> 'ID',
 	'BLOCK_INDEX'				=> '(Index / Sort Order)',
 	'BLOCK_MOVE'				=> 'Move',
-	'BLOCK_MOVE_ERROR'			=> 'Blocks require reindexing... <br />Use: BLOCKS > Manage All Blocks - Re-index blocks buttton and try again... If this condition persists, please try to manually correct the ndx values, and then try again. ',
+	'BLOCK_MOVE_ERROR'			=> 'Blocks require reindexing...<br /><br />The block ndx values are out of sequence, you can go back and correct these manually or use <br /><br /><strong>Manage All Blocks</strong> option on the left and click on [Re-index blocks] button...<br /><br />Once you have corrected the ndx values you can proceed to move blocks.<br />',
 	'BLOCK_NDX'					=> 'NDX',
 	'BLOCK_POSITION'	 		=> 'Position',
 	'BLOCK_POSITION_BIG' 		=> 'Block Position',
@@ -99,6 +99,7 @@ $lang = array_merge($lang, array(
 	'BLOCKS_ADD_HEADER'			=> 'Add a new block',
 	'BLOCKS_HEADER_ADMIN'		=> 'Block Management',
 	'BLOCKS_REINDEX'			=> 'Re-index blocks',
+	'BLOCKS_AUTO_REINDEXED'		=> 'The block index has been corrected...',
 	'BLOCKS_REINDEXED'			=> 'All blocks have been Re-Indexed',
 
 	'CONFIRM_OPERATION_BLOCKS'			=> 'Do you wish to delete this block?',

@@ -8,7 +8,7 @@
 				<!-- ELSE -->
 					<span class="menu_item">
 					<!-- IF portal_link_menus_row.PORTAL_LINK_MENU_ICON -->{portal_link_menus_row.PORTAL_LINK_MENU_ICON}<!-- ENDIF -->
-						<a href="{portal_link_menus_row.U_PORTAL_LINK_MENU_LINK}" <!-- IF portal_link_menus_row.EXTERN == '2' --> target="_blank" onclick="window.open(this.href); return false;"<!-- ENDIF --><!-- IF portal_link_menus_row.EXTERN == '1' --> target="_blank" <!-- ENDIF -->>{portal_link_menus_row.PORTAL_LINK_MENU_NAME}</a>
+						<a href="{portal_link_menus_row.U_PORTAL_LINK_MENU_LINK}" {portal_link_menus_row.LINK_OPTION} >{portal_link_menus_row.PORTAL_LINK_MENU_NAME}</a>
 					</span>
 					<!-- IF portal_link_menus_row.S_SOFT_HR == 1 --></div> <br /><img src="./images/soft_hr.gif" /><!-- ENDIF -->
 				<!-- ENDIF -->

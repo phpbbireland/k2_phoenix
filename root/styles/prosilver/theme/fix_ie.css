@@ -2,7 +2,8 @@
 	iefixes.css
 
 	This file is required to fix IE bugs... 
-	Michaelo phpbbireland.com 02 April 2008
+	Michaelo phpbbireland.com 12 November 2011
+	move blocks not working!!! will not fix!
 */
 
 /* highslide 02 April 2008 */
@@ -11,47 +12,14 @@
 /* in search 10 February 2008 */
 input.full	{ width: 99%; }
 
-/* block part fix 26 April 2008 */
-
-
-span.corners-top-news {
-	background-image: url("./images/corners_left_news.gif");
-}
-
-span.corners-top-news span {
-	background-image: url("./images/corners_right_news.gif");
-}
-
-span.corners-bottom-news {
-	background-image: url("./images/corners_left_news.gif");
-}
-
-span.corners-bottom-news span {
-	background-image: url("./images/corners_right_news.gif");
-}
-
-.showhide {
-	float: right; margin-top: -14px; margin-right: 9px;
-}
-
 /* Menu icons not sizing correctly IE bug*/
 div.sdmenu span {
    padding:1px;
 }
 
-.showhide {
-	position:relative; 
-	float: right; margin-top: -15px; margin-right: 1px;
-}
-.showhide img { max-width:16px; max-height:16px; }
-
 .show_in_ie { display:block; }
 
-.top_gap {clear:both; padding-top: 0px;}
-.bottom_gap {margin-top: 2px; }
-.left_blocks_col_show, .left_blocks_col_hide {margin-bottom: 3px; margin-top: 0px; }
-.right_blocks_col_show, .right_blocks_col_hide {margin-bottom: 3px; margin-top: 0px;}
-
+.handle { cursor: move; }
 
 /* fix IE9 16 March 2011 */
 ul.topiclist li.row dt a.subforum {
@@ -60,3 +28,5 @@ ul.topiclist li.row dt a.subforum {
 dd label {
 	white-space: inherit;
 }
+
+.blocks_hide_show_gap { margin-top: -9px; margin-bottom:2px }

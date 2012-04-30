@@ -1,20 +1,13 @@
 <!-- INCLUDE overall_header.html -->
 <!-- BEGIN mypage -->
-<div class="block_body">
-	<div class="inner">
-		<span class="corners-top"><span></span></span>
-			<div class="block_header">
-				<span class="handle">
-				{mypage.MY_PAGE_NAME} ({mypage.MY_DATE})
-				</span>
-			</div>
-			<div class="box">
-				<span class="rules">
-					<br />{mypage.MY_DATA}<br /><br />
-				</span>
-			</div>
-		<span class="corners-bottom"><span></span></span>
-	</div>
-</div>
+	<!-- INCLUDE blocks/blocks_header_left.html -->
+		{mypage.MY_PAGE_NAME} ({mypage.MY_DATE})
+	<!-- INCLUDE blocks/blocks_header_right.html -->
+		<div class="box">
+			<span class="rules">
+				<br />{mypage.MY_DATA}<br /><br />
+			</span>
+		</div>
+	<!-- INCLUDE blocks/blocks_footer.html -->
 <!-- END mypage -->
 <!-- INCLUDE overall_footer.html -->

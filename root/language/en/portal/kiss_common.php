@@ -80,6 +80,7 @@ $lang = array_merge($lang, array(
 	'BLOCK_CURRENTLY_DISABLED'	=> 'Block disabled!',
 	'BLOCK_DEV_STATUS'			=> 'Kiss Portal Development Status',
 	'BLOCK_IRC'					=> 'Kiss Portal IRC',
+	'BLOCK_LAYOUT_RESET'        => 'All user block layouts cleared...',
 	'BLOCK_MP3'					=> 'Kiss Portal MP3',
 	'BLOCK_PORTAL_STATUS'		=> 'Kiss Portal Status',
 	'BLOCK_RECENT_TOPICS'		=> 'Kiss Portal Recent Topics',
@@ -118,6 +119,7 @@ $lang = array_merge($lang, array(
 	'COULD_NOT_REINDEX_BLOCKS'		=> 'Error! Could not reindex blocks',
 	'COULD_NOT_QUERY_K_MODULES'		=> 'Error! Could not query portal k_modules table',
 	'COULD_NOT_UPDATE_K_MODULES'	=> 'Error! Could not update k_modules table',
+	'COULD_NOT_RESET_BLOCKS'        => 'Error! Could not reset block positions',
 
 	'CURRENT_STYLE'			=> 'Current Style Information',
 	'CURRENTLY_DISABLED'	=> 'Code is currently disable pending updates',
@@ -231,9 +233,10 @@ $lang = array_merge($lang, array(
 	'NO_COMMENTS'			=> 'No comments to display.',
 	'NO_ID_GIVEN'			=> 'No id supplied<br />',
 	'NO_MODS'				=> 'No mods assigned.',
-	'NO_MENU'				=> 'No menus entries!<br />Can be added in<br /> ACP > PORTAL > MENUS',
+	'NO_MENU'				=> 'No menus item set',
 	'NO_NEWS'           	=> 'No News Today',
 	'NO_TEAMS'				=> 'No teams selected!<br />Can be added in<br /> ACP > PORTAL > BLOCKS (team block variables)',
+	'NO_TOP_TOPICS'			=> 'No active topics',
 	'NO_POLL'				=> 'No poll selected',
 	'NO_RECENT_TOPICS'	 	=> ' No recent topics to display',
 	'NO_SEARCH'				=> 'Sorry but you are not permitted to use the search system.',
@@ -263,7 +266,7 @@ $lang = array_merge($lang, array(
 	'PROFILE_SMALL'			=> 'UCP',
 	'POST_BY_POSTER'		=> 'by',
 	'PORTED_BY'				=> 'Ported by',
-	'PORTAL_DEBUG_QUERIES'	=> '<div style="text-align:center; border: dotted 1px #FF0000; background-color:#E4DFD2; padding:5px;">Q = %d, C = %d, T = %d</div>',
+	'PORTAL_DEBUG_QUERIES'	=> 'Q = %d, C = %d, T = %d',
 	'PORTAL_DEBUG_RUNTOT'	=> 'Running: %d',
 	'POSTER'				=> 'Poster',
 	'POST_IMG'				=> 'Post',
@@ -310,7 +313,7 @@ $lang = array_merge($lang, array(
 	'RECENT_TOPICS'				=> 'Recent Topics',
 	'RECENT_REPLY'				=> 'View latest reply...',
 	'REGISTRATION'       		=> '<b>Click here to Register</b>',
-	'RE-INDEXING BLOCKS'		=> 'Error! You need to re-index the blocks!',
+	'RE-INDEXING BLOCKS'		=> 'Notice! Please re-index the blocks (this is a normal maintenance process when block get out of sequence)',
 	'REVERT'					=> 'Revert to default',
 	'RETURN_INDEX'				=> '%s Return to the portal page%s',
 	'RETURN_PORTAL'				=> '%s Return to the portal page%s',
@@ -391,7 +394,9 @@ $lang = array_merge($lang, array(
 	'WEB_PAGE'				=> 'Web Page',
 	'WEB_PAGE_EXAMPLES_1'	=> 'Web Pages Examples:',
 	'WEB_PAGE_EXAMPLES_2'	=> 'These pages are presented as example only, not all links are valid...<br />',
+
 	'WIDE'					=> 'Wide',
+	'NARROW'                => 'Narrow',
 	'WIDE2'					=> 'Style Width (100%)',
 	'WIDE_VERSION'			=> 'Wide Version',
 
@@ -410,7 +415,7 @@ $lang = array_merge($lang, array(
 
 
 	'NO_LANG_VALUE'				=> 'Missing language value',
-	'CLICK_TO_EXPAND'			=> 'Click to expand',
+	'CLICK_TO_EXPAND'			=> 'Click to expand/contract',
 	'NUMBER_OF_FORUMS'			=> 'Number of Forums',
 	'NOT_PROCESSED_FOR_PAGE'	=> 'Not processed for this page',
 	'MISSING_FILE_OR_FOLDER'	=> 'Missing file/folder: %s',
@@ -420,18 +425,20 @@ $lang = array_merge($lang, array(
 	'ACRO_2'					=> 'Kiss Portal Engine (Stargate Portal without frills)... &copy; Michael O’Toole 2011',
 	'ACRO_3'					=> 'Probably the best forum software ever...',
 
-	// Includes version info for debugging //
+	// Use this version to display debug info //
 	//'WELCOME_MESSAGE'			=> "Welcome back [you]...<br /><br /><strong>{SITENAME} </strong> is powered by <strong>phpBB</strong> {VERSION} and <strong> the Kiss Portal Engine </strong>{PORTAL_VERSION}."
 
 	// production, note {...} are process later //
-	'WELCOME_MESSAGE'			=> "Welcome back [you]...<br /><br /><strong>{SITENAME} </strong> is powered by <strong>phpBB</strong> and <strong> the Kiss Portal Engine </strong>.",
+	'WELCOME_MESSAGE'			=> "Welcome back [you]...<br /><br /><strong>{SITENAME} </strong> is powered by <strong>phpBB3</strong> and <strong> the Kiss Portal Engine </strong>.",
 	'EXAMPLE'					=> 'Example codde here',
 	'WELCOME_TO_MOD'			=> 'Welcome to',
-
 
 	'ICON_ANNOUNCEMENT_UNREAD'	=> 'Announcement unread',
 	'POST_NEWS_UNREAD'			=> 'News unread',
 	'POSTED_MINE'				=> 'Posted Mine',
+
+	'SHOW_BLOCKS'				=> 'Show blocks*',
+	'HIDE_BLOCKS'               => 'Hide blocks*',
 ));
 //- stargate aka Kiss portal engine lang definitions -//
 

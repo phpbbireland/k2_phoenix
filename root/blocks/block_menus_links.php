@@ -85,9 +85,16 @@
 		$menu_view_groups = $portal_link_menus[$i]['view_groups'];
 		$menu_item_view_all = $portal_link_menus[$i]['view_all'];
 
-		$process_menu_item = false;
+		if ($menu_item_view_all == 1)
+		{
+			$process_menu_item = true;
+		}
+		else
+		{
+			$process_menu_item = false;
+		}
 
-		if ($menu_item_view_all != 0)
+		if(!$process_menu_item)
 		{
 			$grps = explode(",", $menu_view_groups);
 
@@ -104,10 +111,6 @@
 					}
 				}
 			}
-		}
-		else
-		{
-			$process_menu_item = false;
 		}
 
 		if ($portal_link_menus[$i]['append_uid'] == 1)							// do we need to pass user id //
@@ -128,6 +131,20 @@
 
 		if ($process_menu_item)
 		{
+			switch($portal_link_menus[$i]['extern'])
+			{
+				case 1:
+					$link_option = 'rel="external"';
+				break;
+
+				case 2:
+					$link_option = ' onclick="window.open(this.href); return false;"';
+				break;
+
+				default:
+					 $link_option = '';
+				break;
+			}
 
 			if (strstr($portal_link_menus[$i]['link_to'], 'http'))
 			{
@@ -141,13 +158,13 @@
 			$is_sub_heading = ($portal_link_menus[$i]['sub_heading']) ? true : false;
 
 			$template->assign_block_vars('portal_link_menus_row', array(
-				'EXTERN'					=> $portal_link_menus[$i]['extern'],
-				'PORTAL_LINK_MENU_HEAD_NAME'	=> ($is_sub_heading) ? $name : '',
-				'PORTAL_LINK_MENU_NAME'		=> ($is_sub_heading) ? '' : $name,
-				'U_PORTAL_LINK_MENU_LINK'	=> ($is_sub_heading) ? '' : $link,
-				'PORTAL_LINK_MENU_ICON'		=> ($portal_link_menus[$i]['menu_icon'] == 'NONE') ? '' : '<img src="' . $phpbb_root_path . 'images/block_images/menu/' . $portal_link_menus[$i]['menu_icon'] . '" alt="" />',
-				'S_SOFT_HR'					=> ($is_sub_heading) ? $portal_link_menus[$i]['soft_hr'] : '',
-				'S_SUB_HEADING' 			=> ($is_sub_heading) ? true : false,
+				'LINK_OPTION'                => $link_option,
+				'PORTAL_LINK_MENU_HEAD_NAME' => ($is_sub_heading) ? $name : '',
+				'PORTAL_LINK_MENU_NAME'      => ($is_sub_heading) ? '' : $name,
+				'U_PORTAL_LINK_MENU_LINK'    => ($is_sub_heading) ? '' : $link,
+				'PORTAL_LINK_MENU_ICON'      => ($portal_link_menus[$i]['menu_icon'] == 'NONE') ? '' : '<img src="' . $phpbb_root_path . 'images/block_images/menu/' . $portal_link_menus[$i]['menu_icon'] . '" alt="" />',
+				'S_SOFT_HR'                  => ($is_sub_heading) ? $portal_link_menus[$i]['soft_hr'] : '',
+				'S_SUB_HEADING'              => ($is_sub_heading) ? true : false,
 			));
 		}
 	}

@@ -253,7 +253,7 @@ function get_all_available_files()
 		if ($file != '.' && $file != '..' && stripos($file, ".php") && !stripos($file, ".bak") && !in_array($file, $arr, true))
 		{
 			// array of filename we don't process //
-			$illegal_files = array(".htaccess", "common.php", "report.php", "feed.php", "cron.php", "config.php", "csv.php", "style.php", "sgp_ajax.php", "sgpical.php", "rss.php");
+			$illegal_files = array(".htaccess", "common.$phpEx", "report.$phpEx", "feed.$phpEx", "cron.$phpEx", "config.$phpEx", "csv.$phpEx", "style.$phpEx", "sgp_ajax.$phpEx", "sgpical.$phpEx", "rss.$phpEx");
 
 			if(!in_array($file, $illegal_files))
 			{
@@ -347,7 +347,7 @@ function search_sub_directory($mod_folders, $arr)
 				// Not all files in a mod folder should be included in the dropdown list... //
 				// To restrict specific files, add them to the $illegal_files array below... //
 
-				$illegal_files_array = array($folder . '/' . 'dummy.php');
+				$illegal_files_array = array($folder . '/' . 'dummy.$phpEx');
 
 				$temp = $folder . '/' . $file;
 

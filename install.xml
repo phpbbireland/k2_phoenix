@@ -5,15 +5,21 @@
 <header>
 	<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
 
-	<title lang="en">Kiss II Portal Engine (Phoenix)</title>
+	<title lang="en">Kiss Portal Engine (Phoenix)</title>
 
-	<description lang="en">A simplified version of the Stargate Portal (aka Kiss Portal) for phpBB 3.0.8</description>
+	<description lang="en">A simplified version of the Stargate Portal (aka Kiss Portal) for phpBB 3.0.10</description>
 
 	<author-notes lang="en">
 	All unnecessary code has been removed to produce a simplified version for your phpBB3 forum.
 	You can add blocks, menus and all the Stargate Portal Tools as you desire...
 
-	Many thanks to everyone who supported the portal and a special thanks to the development team: JohnnyTheOne, livewirestu, NeXur, HelterSkelter, Mitch and Tyler...
+	Many thanks to everyone who supported the portal and a special thanks to the development team: 
+	Stargate Portal: NeXur, livewirestu, JohnnyTheOne, HelterSkelter, Mitch and Tyler...
+	Kiss Portal Engine: HelterSkelter, Mitch, Tyler and dravekx...
+
+	Support: porfavor, roomeat, jkthinking, superroach, CaNNon, Blazeflack, Imajica, Robster400 and MWE_001...
+
+	Special thanks to Dean and [SOFW]BanG...
 
 	To add additional functionality you can download highslide (free for non commercial use) here: 
 	http://www.phpbbireland.com/kiss2/viewtopic.php?p=208#p208
@@ -23,20 +29,79 @@
 		<author>
 			<username>michaelo</username>
 			<realname>Michael O'Toole</realname>
-			<homepage>http://www.stargate-portal.com/</homepage>
+			<homepage>http://www.phpbbreland.com/</homepage>
 			<email>o2l@eircom.net</email>
 		</author>
 	</author-group>
 
-	<mod-version>1.0.0h</mod-version>
+	<mod-version>1.0.0o</mod-version>
 
 	<installation>
 		<level>intermediate</level>
 		<time>2003</time>
-		<target-version>3.0.9</target-version>
+		<target-version>3.0.10</target-version>
 	</installation>
 
 	<history>
+		<entry>
+			<date>2012-04-25</date>
+			<rev-version>1.0.0o</rev-version>
+			<changelog lang="en">
+				<change>Validation fixes.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2012-04-25</date>
+			<rev-version>1.0.0n</rev-version>
+			<changelog lang="en">
+				<change>Added: Automatic re-indexing.</change>
+				<change>Added: ACP > Reset user block layouts.</change>
+				<change>Fixed potential injection point.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2012-04-25</date>
+			<rev-version>1.0.0m</rev-version>
+			<changelog lang="en">
+				<change>Validation fixes.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2011-12-02</date>
+			<rev-version>1.0.0l</rev-version>
+			<changelog lang="en">
+				<change>Added: Automatic re-indexing.</change>
+				<change>Added: Two missing files.</change>
+				<change>Removed: Acronyms Mod from core.</change>
+				<change>Fixed 3 issues re validation.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2011-12-02</date>
+			<rev-version>1.0.0k</rev-version>
+			<changelog lang="en">
+				<change>Added: Max avatar size to user information block.</change>
+				<change>Fixed: Corrected block variables caching.</change>
+				<change>Recoded: Kiss Acronyms mod from core.</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2011-11-29</date>
+			<rev-version>1.0.0j</rev-version>
+			<changelog lang="en">
+				<change>Fixed bug re phpBB3 updating...</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2011-11-10</date>
+			<rev-version>1.0.0i</rev-version>
+			<changelog lang="en">
+				<change>Removed more HTML parsing from php files...</change>
+				<change>Improved some javascript code...</change>
+				<change>Replaced hardcoded vars from constants file...</change>
+				<change>Default logo now uses phpBB logo (in png format, located in the style logo folder)...</change>
+			</changelog>
+		</entry>
 		<entry>
 			<date>2011-09-21</date>
 			<rev-version>1.0.0h</rev-version>
@@ -169,11 +234,11 @@ function set_image(data)
 function ShowHide(id1, id2, id3)
 {
 	var onoff = expMenu(id1);
-	if (id2 != '') 
+	if (id2 != '')
 	{
 		expMenu(id2);
 	}
-	if (id3 != '') 
+	if (id3 != '')
 	{
 		SetCookie(id3, onoff, expire);
 	}
@@ -267,58 +332,221 @@ function expMenu(id)
 <action type="after-add"><![CDATA[
 /* Added by Stargate Portal
 ---------------------------------------- */
-.imageline { width:auto; height:auto; border:none; float:left; padding-top: 5px;}
+.imageline { 
+	width:auto; 
+	height:auto; 
+	border:none; 
+	float:left; 
+	padding-top: 5px;
+}
 .row5 { background-color: #F9EDBD; }
 .row6 { background-color: #E8DFC0; }
 
 
 /* Additional reply bbcode for sgp simple editor ...
 -------------------------------------------------- */
-.bbb-bold, .bbb-bold a{ background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-bold.gif"); width:22px; height:22px; }
-.bbb-bold:hover{ background-position: 0px -23px;}.bbb-quote,
-.bbb-italic, .bbb-italic a{ background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-italic.gif");width:22px; height:22px;}
-.bbb-italic:hover{ background-position: 0px -23px;}.bbb-quote, 
-.bbb-quote a{ background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-quote.gif"); width:22px; height:22px;}
-.bbb-quote:hover{ background-position: 0px -23px;}.bbb-code, 
-.bbb-code a{ background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-code.gif");width:22px; height:22px;}
-.bbb-code:hover{ background-position: 0px -23px;}.bbb-list, 
-.bbb-list a{ background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-list.gif");width:22px; height:22px;}
-.bbb-list:hover{ background-position: 0px -23px;}.bbb-flash, 
-.bbb-flash a{ background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-flash.gif"); width:22px; height:22px;}
-.bbb-flash:hover{ background-position: 0px -23px;}.bbb-image, 
-.bbb-image a{ background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-image.gif"); width:22px; height:22px;}
-.bbb-image:hover{ background-position: 0px -23px;}
-.bbb-url, .bbb-url a{ background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-url.gif"); width:22px; height:22px;}
-.bbb-url:hover{ background-position: 0px -23px;}
-.bbb-under_line, .bbb-under_line a { background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-under_line.gif");width:22px; height:22px;}
-.bbb-under_line:hover{ background-position: 0px -23px;}
-.bbb-align_center, .bbb-align_center a { background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-align_center.gif");width:22px; height:22px;}
-.bbb-align_center:hover{ background-position: 0px -23px;}
-.bbb-align_left, .bbb-align_left a { background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-align_left.gif");width:22px; height:22px;}
-.bbb-align_left:hover{ background-position: 0px -23px;}
-.bbb-align_right, .bbb-align_right a { background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-align_right.gif");width:22px; height:22px;}
-.bbb-align_right:hover { background-position: 0px -23px;}
-.bbb-ordered_list, .bbb-ordered_list a { background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-ordered_list.gif");width:22px; height:22px;}
-.bbb-ordered_list:hover{ background-position: 0px -23px;}
-.bbb-add_list_item, .bbb-add_list_item a { background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-add_list_item.gif"); width:22px; height:22px;}
-.bbb-add_list_item:hover { background-position: 0px -23px;}
-.bbb-note, .bbb-note a{ background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-note.gif");width:22px; height:22px;}
-.bbb-note:hover { background-position: 0px -23px;}
-.bbb-spoiler, .bbb-spoiler a{ background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-spoiler.gif"); width:22px; height:22px;}
-.bbb-spoiler:hover{ background-position: 0px -23px;}
-.bbb-tab, .bbb-tab a{ background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-tab.gif"); width:22px; height:22px;}
-.bbb-tab:hover{ background-position: 0px -23px;}
-.bbb-sup, .bbb-sup a{ background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-sup.gif"); width:22px; height:22px;}
-.bbb-sup:hover{ background-position: 0px -23px;}
-.bbb-sub, .bbb-sub a{ background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-sub.gif"); width:22px; height:22px;}
-.bbb-sub:hover{ background-position: 0px -23px;}
-.bbb-strike, .bbb-strike a{ background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-strike.gif");width:22px; height:22px;}
-.bbb-strike:hover { background-position: 0px -23px;}
-.bbb-link, .bbb-link a{ background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-link.gif");width:22px; height:22px;}
-.bbb-link:hover { background-position: 0px -23px;}
-.rollover, .rollover a { display: inline; float:left; } .rollover a:hover { background-position: 0 -23px; }
-.bbb-icon-spacer {background : transparent; border:none; background-image: url("./../../images/bbcode/bbb-icon-spacer.gif"); width:3px; height:22px;}
-button {border: solid 3px;}]]></action>
+.bbb-bold, .bbb-bold a{ 
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-bold.gif"); 
+	width:22px; height:22px; 
+}
+.bbb-bold:hover{ 
+	background-position: 0px -23px;}
+.bbb-quote, .bbb-italic, .bbb-italic a{ 
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-italic.gif");
+	width:22px; height:22px;
+}
+.bbb-italic:hover{ 
+	background-position: 0px -23px;
+}
+.bbb-quote, .bbb-quote a{ 
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-quote.gif"); 
+	width:22px; height:22px;
+}
+.bbb-quote:hover{ 
+	background-position: 0px -23px;
+}
+.bbb-code, .bbb-code a{ 
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-code.gif");
+	width:22px; height:22px;
+}
+.bbb-code:hover{ 
+	background-position: 0px -23px;
+}
+.bbb-list, .bbb-list a{ 
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-list.gif");
+	width:22px; height:22px;
+}
+.bbb-list:hover{ 
+	background-position: 0px -23px;
+}
+.bbb-flash, .bbb-flash a{ 
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-flash.gif"); 
+	width:22px; height:22px;
+}
+.bbb-flash:hover{ 
+	background-position: 0px -23px;
+}
+.bbb-image, .bbb-image a{ 
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-image.gif"); 
+	width:22px; height:22px;
+}
+.bbb-image:hover{ 
+	background-position: 0px -23px;
+}
+.bbb-url, .bbb-url a{ 
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-url.gif");
+	width:22px; height:22px;
+}
+.bbb-url:hover{ 
+	background-position: 0px -23px;
+}
+.bbb-under_line, .bbb-under_line a { 
+	background:transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-under_line.gif");
+	width:22px; height:22px;
+}
+.bbb-under_line:hover{ 
+	background-position: 0px -23px;
+}
+.bbb-align_center, .bbb-align_center a { 
+	background: transparent;
+	border:none;
+	background-image: url("./../../images/bbcode/bbb-icon-align_center.gif");
+	width:22px; height:22px;
+}
+.bbb-align_center:hover{
+	background-position: 0px -23px;
+}
+.bbb-align_left, .bbb-align_left a { 
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-align_left.gif");
+	width:22px; height:22px;
+}
+.bbb-align_left:hover{
+	background-position: 0px -23px;
+}
+.bbb-align_right, .bbb-align_right a {
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-align_right.gif");
+	width:22px; height:22px;
+}
+.bbb-align_right:hover {
+	background-position: 0px -23px;
+}
+.bbb-ordered_list, .bbb-ordered_list a {
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-ordered_list.gif");
+	width:22px; height:22px;
+}
+.bbb-ordered_list:hover{
+	background-position: 0px -23px;
+}
+.bbb-add_list_item, .bbb-add_list_item a {
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-add_list_item.gif"); 
+	width:22px; height:22px;
+}
+.bbb-add_list_item:hover {
+	background-position: 0px -23px;
+}
+.bbb-note, .bbb-note a{
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-note.gif");
+	width:22px; height:22px;
+}
+.bbb-note:hover {
+	background-position: 0px -23px;
+}
+.bbb-spoiler, .bbb-spoiler a{
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-spoiler.gif");
+	width:22px; height:22px;
+}
+.bbb-spoiler:hover{
+	background-position: 0px -23px;
+}
+.bbb-tab, .bbb-tab a{
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-tab.gif");
+	width:22px; height:22px;
+}
+.bbb-tab:hover{
+	background-position: 0px -23px;
+}
+.bbb-sup, .bbb-sup a{
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-sup.gif");
+	width:22px; height:22px;
+}
+.bbb-sup:hover{
+	background-position: 0px -23px;
+}
+.bbb-sub, .bbb-sub a{
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-sub.gif");
+	width:22px; height:22px;
+}
+.bbb-sub:hover{
+	background-position: 0px -23px;
+}
+.bbb-strike, .bbb-strike a{
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-strike.gif");
+	width:22px; height:22px;
+}
+.bbb-strike:hover {
+	background-position: 0px -23px;
+}
+.bbb-link, .bbb-link a{
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-link.gif");
+	width:22px; height:22px;
+}
+.bbb-link:hover {
+	background-position: 0px -23px;
+}
+.rollover, .rollover a {
+	display: inline; 
+	float:left;
+}
+.rollover a:hover {
+	background-position: 0 -23px;
+}
+.bbb-icon-spacer {
+	background: transparent; border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-spacer.gif"); 
+	width:3px; height:22px;
+}
+button {border: solid 3px;}
+]]></action>
 	
 	</edit></open>
 
@@ -337,14 +565,15 @@ $config = $cache->obtain_config();
 <action type="after-add"><![CDATA[
 
 @define('STARGATE', ($config['portal_enabled']));
+
 if (STARGATE)
 {
 	@define('DEBUG_QUERIES', false);
-	$k_config		= $cache->obtain_k_config();	//  1 query
-	$k_resources	= $cache->obtain_k_resources();	//  1 query
-	$k_groups		= $cache->obtain_k_groups();	//  1 query
-	$k_blocks		= $cache->obtain_block_data();	//	1 query
-	$k_pages		= $cache->obtain_k_pages();		//	1 query
+	$k_config		= $cache->obtain_k_config();    // 1 query
+	$k_resources	= $cache->obtain_k_resources(); // 1 query
+	$k_groups		= $cache->obtain_k_groups();    // 1 query
+	$k_blocks		= $cache->obtain_block_data();  // 1 query
+	$k_pages		= $cache->obtain_k_pages();     // 1 query
 }
 
 ]]></action>
@@ -366,7 +595,7 @@ if (STARGATE)
 <find><![CDATA[					AND topic_type NOT IN (" . POST_ANNOUNCE . ', ' . POST_GLOBAL . ")]]></find>
 <inline-edit>
 <inline-find>. POST_GLOBAL .</inline-find>
-<inline-action type="after-add"><![CDATA[ ' , ' . POST_NEWS . ' , ' . POST_NEWS_GLOBAL . ]]></inline-action>
+<inline-action type="after-add"><![CDATA[ ' , ' . POST_NEWS . ' , ' . POST_NEWS_GLOBAL .]]></inline-action>
 </inline-edit>
 </edit>
 </open>
@@ -378,6 +607,16 @@ if (STARGATE)
 			case POST_NEWS:
 			case POST_NEWS_GLOBAL:</action>
 </edit>
+<edit>
+<find><![CDATA[	$preview_message = $message_parser->format_display($post_data['enable_bbcode'], $post_data['enable_urls'], $post_data['enable_smilies'], false);]]></find>
+<action type="after-add"><![CDATA[	if (STARGATE)
+	{
+		$preview_message = sgp_local_acronyms($preview_message);
+	}]]></action>
+</edit>
+
+
+
 </open>
 
 <open src="search.php">
@@ -623,21 +862,20 @@ if (STARGATE)
 	}
 ]]></action>
 </edit>
-
 <edit>
 <find><![CDATA[?>]]></find>
 <action type="before-add"><![CDATA[
-// disable portal during update or install process
-if(defined('IN_INSTALL'))
+// Copy STARGATE define here as phpBB update does not use common.php  //
+if (defined('IN_INSTALL'))
 {
-	define('STARGATE', false);
+	global $config;
+	@define('STARGATE', ($config['portal_enabled']));
 }
-// Call portal contents functions 24 March 2010
 if (STARGATE)
 {
-	include($phpbb_root_path . 'includes/sgp_functions_content.' . $phpEx);
+	global $phpEx, $phpbb_root_path;
+	require($phpbb_root_path . 'includes/sgp_functions_content.' . $phpEx);
 }]]></action>
-
 </edit>
 </open>
 
@@ -929,20 +1167,23 @@ define('SUB_MENUS', 2);
 define('HEAD_MENUS', 3);
 define('FOOT_MENUS', 4);
 define('LINKS_MENUS', 5);
+define('ALL_MENUS', 90);
+define('UNALLOC_MENUS', 99);
 
 define('K_MENUS_TABLE',				$table_prefix . 'k_menus');
 define('K_BLOCKS_TABLE',			$table_prefix . 'k_blocks');
 define('K_BLOCKS_CONFIG_TABLE',		$table_prefix . 'k_blocks_config');
 define('K_BLOCKS_CONFIG_VAR_TABLE',	$table_prefix . 'k_blocks_config_vars');
 define('K_RESOURCES_TABLE',			$table_prefix . 'k_resources');
-define('K_PAGES_TABLE',				$table_prefix . 'k_pages');]]></action>
+define('K_PAGES_TABLE',				$table_prefix . 'k_pages');
+define('K_ACRONYMS_TABLE',			$table_prefix . 'k_acronyms');]]></action>
 </edit>
 </open>
 
 <open src="includes/functions.php">
 
 <edit>
-<find><![CDATA[	global $db, $config, $template, $SID, $_SID, $user, $auth, $phpEx, $phpbb_root_path;]]></find>
+<find><![CDATA[	global $db, $config, $template, $SID, $_SID, $_EXTRA_URL, $user, $auth, $phpEx, $phpbb_root_path;]]></find>
 <action type="after-add"><![CDATA[	
 	include($phpbb_root_path . 'includes/sgp_functions.' . $phpEx);]]></action>
 </edit>
@@ -1058,8 +1299,10 @@ if (!function_exists('bbcode_strip'))
 
 		static $RegEx = array();
 		static $bbcode_strip = 'flash';
-		// html is pretty but it may break the layout of the tooltips...let's
-		// remove some common ones from the tip
+
+		/* html is pretty but it may break the layout of the tooltips...let's
+		remove some common ones from the tip */
+
 		$text_html = array('&quot;','&amp;','&#039;','&lt;','&gt;');
 		$text = str_replace($text_html,'',$text);
 		if (empty($RegEx))
@@ -1242,6 +1485,29 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 		}
 	}]]></action>
 </edit>
+<edit>
+<find><![CDATA[	$avatar_img .= $avatar;]]></find>
+<action type="after-add"><![CDATA[
+	if(STARGATE && $ignore_config)
+	{
+		global $k_config;
+
+		/*  Restrict the size of the avatars in blocks, if the values are
+			not set, we use the default phpBB config values. This code also
+			maintains a degree of image proportionality. Mike
+		*/
+
+		$max_width = $k_config['k_max_block_avatar_width'];
+		$max_height = $k_config['k_max_block_avatar_height'];
+
+		while($avatar_width > $max_width || $avatar_height > $max_height)
+		{
+			$avatar_width = $avatar_width - 10;
+			$avatar_height = $avatar_height - 10;
+		}
+	}
+]]></action>
+</edit>
 </open>
 
 <open src="includes/functions_posting.php">
@@ -1260,10 +1526,8 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 </edit>
 <edit>
 <find><![CDATA[		'global'	=> array('const' => POST_GLOBAL, 'lang' => 'POST_GLOBAL')]]></find>
-<action type="replace-with"><![CDATA[		'global'	=> array('const' => POST_GLOBAL, 'lang' => 'POST_GLOBAL'),
-		'news'		=> array('const' => POST_NEWS, 'lang' => 'POST_NEWS'),
-		'news_global'	=> array('const' => POST_NEWS_GLOBAL, 'lang' => 'POST_NEWS_GLOBAL')]]></action>
-
+<action type="before-add"><![CDATA[		'news'		=> array('const' => POST_NEWS, 'lang' => 'POST_NEWS'),
+		'news_global'	=> array('const' => POST_NEWS_GLOBAL, 'lang' => 'POST_NEWS_GLOBAL'),]]></action>
 </edit>
 
 <edit>
@@ -1277,11 +1541,9 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 </edit>
 
 <edit>
-<comment lang="en">Replace is used to here to ease the install process, please examine these lines if a previous mods altered this code...</comment>
 <find><![CDATA[			'S_TOPIC_TYPE_ANNOUNCE'	=> ($auth->acl_get('f_announce', $forum_id)))]]></find>
-<action type="replace-with"><![CDATA[			'S_TOPIC_TYPE_ANNOUNCE'	=> ($auth->acl_get('f_announce', $forum_id)),
-			'S_TOPIC_TYPE_NEWS'		=> ($auth->acl_get('f_announce', $forum_id)),
-			'S_TOPIC_TYPE_NEWS_GLOBAL'	=> ($auth->acl_get('f_announce', $forum_id)))]]></action>
+<action type="before-add"><![CDATA[			'S_TOPIC_TYPE_NEWS'		=> ($auth->acl_get('f_announce', $forum_id)),
+			'S_TOPIC_TYPE_NEWS_GLOBAL'	=> ($auth->acl_get('f_announce', $forum_id)),]]></action>
 </edit>
 
 <edit>
@@ -1422,7 +1684,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 					$errors[] = $user->lang['FORUM_PASSWORD_OLD'];
 				}]]></find>
 <action type="after-add"><![CDATA[
-// Start mod list forum_images Michaelo copyright 2007 phpbbireland.com //
+				// Start mod list forum_images Michaelo copyright 2007 phpbbireland.com //
 				$dirslist=' ';
 
 				if(!file_exists('./../images/forum_icons'))
@@ -1534,7 +1796,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 
 <div id="page-footer">]]></find>
 <action type="before-add"><![CDATA[<!-- INCLUDE portal_footer.html -->
-<div id="footer"><!-- PUT FOOTER BLOCKS HERE --></div>]]></action>
+<div id="p_footer"><!-- PUT FOOTER BLOCKS HERE --></div>]]></action>
 </edit>
 <edit>
 <find><![CDATA[			<li class="icon-home"><a href="{U_INDEX}" accesskey="h">{L_INDEX}</a></li>
@@ -1553,7 +1815,9 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <edit>
 <find><![CDATA[</body>
 </html>]]></find>
-<action type="before-add"><![CDATA[<!-- IF STARGATE--></div><!-- ENDIF -->]]></action>
+<action type="before-add"><![CDATA[<!-- IF STARGATE -->
+</div><!-- stylewidth -->
+<!-- ENDIF -->]]></action>
 </edit>
 </open>
 
@@ -1576,13 +1840,19 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <edit>
 <comment lang="en">Line ~102</comment>
 <find><![CDATA[</head>]]></find>
-<action type="before-add"><![CDATA[<!-- IF STARGATE --><!-- INCLUDE portal_scripts.html --><!-- ENDIF -->]]></action>
+<action type="before-add"><![CDATA[
+<!-- IF STARGATE -->
+<!-- INCLUDE set-width.html -->
+<!-- INCLUDE portal_scripts.html -->
+<!-- ENDIF -->]]></action>
 </edit>
 
 <edit>
 <comment lang="en">Line ~104</comment>
 <find><![CDATA[<body id="phpbb" class="section-{SCRIPT_NAME} {S_CONTENT_DIRECTION}">]]></find>
-<action type="after-add"><![CDATA[<!-- IF STARGATE --><div class="stylewidth"><!-- ENDIF -->]]></action>
+<action type="after-add"><![CDATA[<!-- IF STARGATE -->
+<div id="page-width" class="stylewidth">
+<!-- ENDIF -->]]></action>
 </edit>
 
 <edit>
@@ -1612,13 +1882,14 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <find><![CDATA[				<li class="rightside"><a href="#" onclick="fontsizeup(); return false;" onkeypress="return fontsizeup(event);" class="fontsize" title="{L_CHANGE_FONT_SIZE}">{L_CHANGE_FONT_SIZE}</a></li>]]></find>
 <action type="after-add"><![CDATA[				<!-- IF STARGATE -->
 					<li class="rightside">
+						<!-- INCLUDE style_change_width.html -->
 						<!-- IF S_ARRANGE -->
 						<span style="display:inline;" id="OFF_">
-							<a href="{U_PORTAL}" onclick="ShowHide('ON_'); ShowHide('OFF_');" style="float:left" title="{L_ARRANGE_OFF}"><img src="{T_PORTAL_THEME_PATH}/images/save_changes.png" width="15" height="15" alt=" {L_ARRANGE_OFF}" title="{L_ARRANGE_OFF}" /></a>
+							&nbsp;<a href="{U_PORTAL}" onclick="ShowHide('ON_'); ShowHide('OFF_');" style="float:left" title="{L_ARRANGE_OFF}"><img src="{T_PORTAL_THEME_PATH}/images/save_changes.png" width="15" height="15" alt=" {L_ARRANGE_OFF}" title="{L_ARRANGE_OFF}" /></a>
 						</span>
 						<!-- ELSE -->
 						<span style="display:inline;" id="ON_">
-							<a href="{U_PORTAL_ARRANGE}" onclick="ShowHide('OFF_'); ShowHide('ON_'); " style="float:left" title="{L_ARRANGE_ON}"><img src="{T_PORTAL_THEME_PATH}/images/arrange.png" width="15" height="15" alt=" {L_ARRANGE_ON}" title="{L_ARRANGE_ON}" /></a>
+							&nbsp;<a href="{U_PORTAL_ARRANGE}" onclick="ShowHide('OFF_'); ShowHide('ON_'); " style="float:left" title="{L_ARRANGE_ON}"><img src="{T_PORTAL_THEME_PATH}/images/arrange.png" width="15" height="15" alt=" {L_ARRANGE_ON}" title="{L_ARRANGE_ON}" /></a>
 						</span>
 						<!-- ENDIF -->
 					</li>
@@ -1799,14 +2070,10 @@ img_news_unread_locked_mine	= news_unread_locked_mine.gif*27*27</action>
 
 <php-installer><![CDATA[portal/index.php]]></php-installer>
 <diy-instructions lang="en-gb">
-Point your browser to: your_site/portal/ and follow the onscreen instructions...
-Note! If you browse to root (index) at this point you will receive a template error... Ignore it and browse to: your_site/portal/
-
-Go to ACP > PERMISSIONS > Admin roles > Full Admin.... 
-Click Portal Tab, set all options to yes... Set others permissions as desired...
-
 Refresh prosilver Templates/Themes/Imagesets...
 Refresh subsilver 2 Templates/Themes/Imagesets if you completed the subsilver 2 installation...
+
+Set permissions for Menu items and Blocks
 
 Purge the cache...
 

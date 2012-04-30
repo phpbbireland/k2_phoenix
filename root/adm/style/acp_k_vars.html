@@ -7,9 +7,8 @@
 <h1>{L_VARS_FOUND}: {S_SWITCH}</h1>
 <p>{L_TITLE_EXPLAIN_BLOCK}</p>
 
-
-
 <div style="display:<!-- IF S_SWITCH == 'k_announce_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_announce_vars.html --></div>
+<div style="display:<!-- IF S_SWITCH == 'k_bot_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_bot_vars.html --></div>
 <div style="display:<!-- IF S_SWITCH == 'k_last_online_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_last_online_vars.html --></div>
 <div style="display:<!-- IF S_SWITCH == 'k_links_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_links_vars.html --></div>
 <div style="display:<!-- IF S_SWITCH == 'k_news_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_news_vars.html --></div>
@@ -18,19 +17,29 @@
 <div style="display:<!-- IF S_SWITCH == 'k_top_posters_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_top_posters_vars.html --></div>
 <div style="display:<!-- IF S_SWITCH == 'k_top_topics_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_top_topics_vars.html --></div>
 <div style="display:<!-- IF S_SWITCH == 'k_link_convert_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_link_convert_vars.html --></div>
-
+<div style="display:<!-- IF S_SWITCH == 'k_user_information_vars.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_user_information_vars.html --></div>
 <div style="display:<!-- IF S_SWITCH == 'k_none.html' -->inline<!-- ELSE -->none<!-- ENDIF -->"><!-- INCLUDE /k_block_vars/k_none.html --></div>
 <div style="display:<!-- IF S_SWITCH == '' -->inline<!-- ELSE -->none<!-- ENDIF -->">
 
 <!-- INCLUDE /k_block_vars/k_qr_vars.html -->
 
 <fieldset>
+	<legend>{L_ACRONYMS}</legend>
+	<dl>
+		<dt><label for="k_allow_acronyms">{L_ALLOW_ACRONYMS}:</label><br /><span>{L_ALLOW_ACRONYMS_EXPLAIN}</span></dt>
+		<dd>
+		<label><input type="radio" class="radio" name="k_allow_acronyms" value="1"<!-- IF S_K_ALLOW_ACRONYMS --> checked="checked" id="k_allow_acronyms"<!-- ENDIF --> />{L_YES}</label>
+		<label><input type="radio" class="radio" name="k_allow_acronyms" value="0"<!-- IF not S_K_ALLOW_ACRONYMS --> checked="checked" id="k_allow_acronyms"<!-- ENDIF --> />{L_NO}</label>
+		</dd>
+	</dl>
+</fieldset>
+<fieldset>
 	<legend>{L_FOOTER_IMAGES}</legend>
 	<dl>
 		<dt><label for="k_footer_images_allow">{L_K_FOOTER_IMAGES_ALLOW}:</label><br /><span>{L_K_FOOTER_IMAGES_ALLOW_EXPLAIN}</span></dt>
 		<dd>
-			<label><input type="radio" class="radio" id="k_footer_images_allow" name="k_footer_images_allow" value="1" <!-- IF S_K_FOOTER_IMAGES_ALLOW --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" class="radio" name="k_footer_images_allow" value="0" <!-- IF not S_K_FOOTER_IMAGES_ALLOW --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="k_footer_images_allow" value="1" <!-- IF S_K_FOOTER_IMAGES_ALLOW --> checked="checked" id="k_footer_images_allow"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="k_footer_images_allow" value="0" <!-- IF not S_K_FOOTER_IMAGES_ALLOW --> checked="checked" id="k_footer_images_allow"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 </fieldset>
@@ -40,13 +49,11 @@
 	<dl>
 		<dt><label for="k_blocks_display_globally">{L_K_BLOCKS_DISPLAY_GLOBALLY}:</label><br /><span>{L_K_BLOCKS_DISPLAY_GLOBALLY_EXPLAIN}</span></dt>
 		<dd>
-			<label><input type="radio" class="radio" id="k_blocks_display_globally" name="k_blocks_display_globally" value="1" <!-- IF S_K_BLOCKS_DISPLAY_GLOBALLY --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" class="radio" name="k_blocks_display_globally" value="0" <!-- IF not S_K_BLOCKS_DISPLAY_GLOBALLY --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="k_blocks_display_globally" value="1" <!-- IF S_K_BLOCKS_DISPLAY_GLOBALLY --> checked="checked" id="k_blocks_display_globally"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="k_blocks_display_globally" value="0" <!-- IF not S_K_BLOCKS_DISPLAY_GLOBALLY --> checked="checked" id="k_blocks_display_globally"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 </fieldset>
-
-
 
 <fieldset>
 	<legend>{L_BLOCK_CACHE_TIME_HEAD}</legend>
@@ -64,8 +71,6 @@
 	</dl>
 </fieldset>
 </div>
-
-<div>{L_NO_VARS_FOUND}</div>
 <!-- ENDIF -->
 
 <!-- IF MESSAGE -->

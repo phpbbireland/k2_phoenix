@@ -5,7 +5,7 @@
   <header>
     <license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
 
-    <title lang="en">Subsilver2 update for Kiss Engne (aka Kiss Portal) 1.0.0h</title>
+    <title lang="en">Subsilver2 update for Kiss Portal Engine (Phoenix)</title>
 
 	<description lang="en">Style update (subsilver2) Stargate Portal Mod</description>
 
@@ -14,16 +14,17 @@
 
     <author-group>
 		<author>
+			<username>michaelo</username>
 			<realname>Michael O'Toole</realname>
 			<homepage>http://www.stargate-portal.com/</homepage>
 			<email>o2l@eircom.net</email>
 		</author>
     </author-group>
-    <mod-version>1.0.0h</mod-version>
+    <mod-version>1.0.0n</mod-version>
     <installation>
       <level>intermediate</level>
       <time>2503</time>
-      <target-version>3.0.9</target-version>
+      <target-version>3.0.10</target-version>
     </installation>
     <meta name="generator" content="Phpbb.ModTeam.Tools (c#)" />
   </header>

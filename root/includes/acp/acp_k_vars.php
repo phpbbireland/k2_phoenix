@@ -29,7 +29,7 @@ class acp_k_vars
 	{
 
 		global $db, $user, $auth, $template, $cache;
-		global $k_config, $SID, $phpbb_root_path, $phpbb_admin_path, $phpEx;
+		global $config, $k_config, $SID, $phpbb_root_path, $phpbb_admin_path, $phpEx;
 
 		include($phpbb_root_path . 'includes/sgp_functions.'.$phpEx);
 		include($phpbb_root_path . 'includes/sgp_functions_admin.'.$phpEx);
@@ -86,8 +86,6 @@ class acp_k_vars
 
 		if ($submit && !check_form_key($form_key))
 		{
-			$submit = false;
-			$mode = '';
 			trigger_error($user->lang['FORM_INVALID']);
 		}
 
@@ -152,6 +150,20 @@ class acp_k_vars
 				$k_top_topics_days					= request_var('k_top_topics_days', 7);
 				$k_top_topics_max					= request_var('k_top_topics_max', 5);
 				$k_top_posters_to_display			= request_var('k_top_posters_to_display', 5);
+				$k_allow_acronyms					= request_var('k_allow_acronyms', 0);
+				$k_max_block_avatar_width			= request_var('k_max_block_avatar_width', 0);
+				$k_max_block_avatar_height			= request_var('k_max_block_avatar_height', 0);
+
+				if ($k_max_block_avatar_width == 0 || $k_max_block_avatar_height == 0)
+				{
+					$k_max_block_avatar_width = $config['avatar_max_width'];
+					$k_max_block_avatar_height = $config['avatar_max_height'];
+				}
+				else if ($k_max_block_avatar_width > $config['avatar_max_width'] || $k_max_block_avatar_height > $config['avatar_max_height'])
+				{
+					$k_max_block_avatar_width = $config['avatar_max_width'];
+					$k_max_block_avatar_height = $config['avatar_max_height'];
+				}
 
 				switch($k_announce_type)
 				{
@@ -207,23 +219,27 @@ class acp_k_vars
 				sgp_acp_set_config('k_quick_reply', $k_quick_reply);
 				sgp_acp_set_config('k_block_cache_time_default', $k_block_cache_time_default);
 				sgp_acp_set_config('k_block_cache_time_fast', $k_block_cache_time_fast);
+				sgp_acp_set_config('k_allow_acronyms', $k_allow_acronyms);
+				sgp_acp_set_config('k_max_block_avatar_width', $k_max_block_avatar_width);
+				sgp_acp_set_config('k_max_block_avatar_height', $k_max_block_avatar_height);
 
-				$mode='reset';
+				$mode = 'reset';
 
 				$template->assign_vars(array(
 					'S_OPT' => 'saving',
 					'MESSAGE' => $user->lang['SAVED'],
 				));
 
+				$cache->destroy('_k_config');
 				$cache->destroy('sql', K_BLOCKS_CONFIG_VAR_TABLE);
 
 				if ($block)
 				{
-					meta_refresh (2, append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_vars&amp;mode=config&amp;block=" . $block));
+					meta_refresh (0, append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_vars&amp;mode=config&amp;block=" . $block));
 				}
 				else
 				{
-					meta_refresh (2, append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_vars&amp;mode=config&amp;switch=" . $switch));
+					meta_refresh (0, append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_vars&amp;mode=config&amp;switch=" . $switch));
 				}
 				return;
 			}

@@ -137,8 +137,8 @@ $lang = array_merge($lang, array(
 // Acronyms
 $lang = array_merge($lang, array(
 	'ACRONYMS'					=> 'Acronyms',
-	'ALLOW_ACRONYMS'			=> 'Process acronyms in posts',
-	'ALLOW_ACRONYMS_EXPLAIN' 	=> 'Allow acronyms in posts',
+	'ALLOW_ACRONYMS'			=> 'Process Local Acronyms (built in) in posts',
+	'ALLOW_ACRONYMS_EXPLAIN' 	=> 'Allow local acronyms in posts',
 ));
 
 // IRC Channel(s)
@@ -170,6 +170,7 @@ $lang = array_merge($lang, array(
 	'RSS_FEED_ERROR'			=> 'Or something wrong with RSS feed.',
 	'RSS_LIST_ERROR'			=> 'Could not get RSS list.',
 	'RSS_ERROR'					=> 'RSS Error - Check feed link (above) to confirm.',
+	'LOG_RSS_CACHE_CLEANED'     => 'RSS cache cleared',
 ));
 
 // HTTP Referrals

@@ -25,7 +25,7 @@ class acp_k_resources_info
 		return array(
 			'filename'	=> 'acp_k_resources',
 			'title'		=> 'ACP_K_RESOURCES',
-			'version'	=> '1.0.0h',
+			'version'	=> '1.0.0m',
 			'modes'		=> array(
 				'select'		=> array('title' => 'ACP_K_RESOURCES', 'auth' => 'acl_a_k_tools', 'cat' => array('ACP_K_TOOLS')),
 			),

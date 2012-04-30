@@ -136,8 +136,14 @@ function ShowHideSwap(id1, id2)
 function ShowHide(id1, id2, id3) 
 {
 	var onoff = switch_visibility(id1);
-	if (id2 != '') switch_visibility(id2);
-	if (id3 != '') SetCookie(id3, onoff, exp);
+	if (id2 != '')
+	{
+		switch_visibility(id2);
+	}
+	if (id3 != '')
+	{
+		SetCookie(id3, onoff, exp);
+	}
 }
 	
 function switch_visibility(id) 

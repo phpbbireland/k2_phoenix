@@ -88,9 +88,16 @@
 		$menu_view_groups = $portal_sub_menus[$i]['view_groups'];
 		$menu_item_view_all = $portal_sub_menus[$i]['view_all'];
 
-		$process_menu_item = false;
+		if ($menu_item_view_all == 1)
+		{
+			$process_menu_item = true;
+		}
+		else
+		{
+			$process_menu_item = false;
+		}
 
-		if ($menu_item_view_all != 0)
+		if(!$process_menu_item)
 		{
 			$grps = explode(",", $menu_view_groups);
 
@@ -115,10 +122,6 @@
 				}
 			}
 		}
-		else
-		{
-			$process_menu_item = false;
-		}
 
 		if ($portal_sub_menus[$i]['append_uid'] == 1)							// do we need to pass user id //
 		{
@@ -138,6 +141,20 @@
 
 		if ($process_menu_item)
 		{
+			switch($portal_sub_menus[$i]['extern'])
+			{
+				case 1:
+					$link_option = 'rel="external"';
+				break;
+
+				case 2:
+					$link_option = ' onclick="window.open(this.href); return false;"';
+				break;
+
+				default:
+					 $link_option = '';
+				break;
+			}
 
 			if (strstr($portal_sub_menus[$i]['link_to'], 'http'))
 			{
@@ -145,13 +162,20 @@
 			}
 			else
 			{
-				$link = ($portal_sub_menus[$i]['link_to']) ? append_sid("{$phpbb_root_path}" . $portal_sub_menus[$i]['link_to'] . $u_id) : '';
+				if($portal_sub_menus[$i]['append_sid'])
+				{
+					$link = ($portal_sub_menus[$i]['link_to']) ? append_sid("{$phpbb_root_path}{$portal_sub_menus[$i]['link_to']}", '', '', $user->session_id) : '';
+				}
+				else
+				{
+					$link = ($portal_sub_menus[$i]['link_to']) ? append_sid("{$phpbb_root_path}" . $portal_sub_menus[$i]['link_to'] . $u_id) : '';
+				}
 			}
 
 			$is_sub_heading = ($portal_sub_menus[$i]['sub_heading']) ? true : false;
 
 			$template->assign_block_vars('portal_sub_menus_row', array(
-				'EXTERN'					=> $portal_sub_menus[$i]['extern'],
+				'LINK_OPTION'               => $link_option,
 				'PORTAL_SUB_MENU_HEAD_NAME'	=> ($is_sub_heading) ? $name : '',
 				'PORTAL_SUB_MENU_NAME'		=> ($is_sub_heading) ? '' : $name,
 				'U_PORTAL_SUB_MENU_LINK'	=> ($is_sub_heading) ? '' : $link,

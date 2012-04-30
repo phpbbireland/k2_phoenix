@@ -4,7 +4,7 @@
 * @package Kiss Portal Engine (acp_k_config) (English)
 *
 * @package language
-* @version $Id:$ 1.0.0h
+* @version $Id:$ 1.0.0m
 * @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -90,7 +90,7 @@ $lang = array_merge($lang, array(
 	'PORTAL_SET_LAYOUT_NEW'			=> '*Set Block Layout/Style for Welcome Page (New Optional)',
 	'PORTAL_SET_LAYOUT_NEW_EXPLAIN'	=> 'New layout for News/Welcome page',
 	'PORTAL_VERSION'				=> 'Portal Version',
-	'PORTAL_VERSION_EXPLAIN'		=> 'Version also set in phpBB config',
+	//'PORTAL_VERSION_EXPLAIN'		=> 'Version also set in phpBB config',
 
 	'TITLE' 						=> 'Portal default configuration',
 	'TITLE_EXPLAIN'					=> 'Here you can set the portal block default. Items marked with <strong>*</strong> are under construction or for future development.',

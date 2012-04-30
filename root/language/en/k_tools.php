@@ -4,7 +4,7 @@
 * @author Original Author Michael O'Toole @www.stargate-portal.com
 *
 * @package ucp {k_tools.php}
-* @version $Id:$ 1.0.0h
+* @version $Id:$ 1.0.0m
 * @note: Do not remove this copyright. Just append yours if you have modified it,
 *        this is part of the Stargate Portal copyright agreement...
 * @copyright (c) 2005 phpbireland

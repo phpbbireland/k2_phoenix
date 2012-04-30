@@ -64,7 +64,6 @@ $this_page = explode(".", $user->page['page']);
 $user_id = $user->data['user_id'];
 
 // Grab data for this user //
-
 $sql = "SELECT group_id, user_type, user_style, user_avatar, user_avatar_type, username, user_left_blocks, user_center_blocks, user_right_blocks
 	FROM " . USERS_TABLE . "
 	WHERE user_id = $user_id";
@@ -97,7 +96,7 @@ else
 	trigger_error($user->lang['ERROR_USER_TABLE']);
 }
 
-// Process block positions for members //
+// Process block positions for members only //
 if($row['group_id'] != ANONYMOUS)
 {
 	if (isset($_COOKIE[$config['cookie_name'] . '_sgp_left']) || isset($_COOKIE[$config['cookie_name'] . '_sgp_center']) || isset($_COOKIE[$config['cookie_name'] . '_sgp_right']) && $use_block_cookies)
@@ -108,7 +107,6 @@ if($row['group_id'] != ANONYMOUS)
 		$LBA = explode(',', $left);
 
 		$center = request_var($config['cookie_name'] . '_sgp_center', '', false, true);
-		//$center = str_replace("center[]=&amp;", "", $center);
 		$center = str_replace("center[]=", "", $center);
 		$center = str_replace("&amp;", ',', $center);
 		$CBA = explode(',', $center);
@@ -122,10 +120,9 @@ if($row['group_id'] != ANONYMOUS)
 		if(!empty($left))
 		{
 			$sql = 'UPDATE ' . USERS_TABLE . '
-				SET user_left_blocks = ' . "'" . $left . "'" . ', user_center_blocks = ' . "'" . $center . "'" . ', user_right_blocks = ' . "'" . $right . "'" . '
-				WHERE user_id = ' . $user->data['user_id'];
+				SET user_left_blocks = ' . "'" . $db->sql_escape($left) . "'" . ', user_center_blocks = ' . "'" . $db->sql_escape($center) . "'" . ', user_right_blocks = ' . "'" . $db->sql_escape($right) . "'" . '
+				WHERE user_id = ' . (int)$user->data['user_id'];
 			$db->sql_query($sql);
-
 			// set switch clear cookies now that we have them stored (we use javascript)//
 			$template->assign_vars(array(
 				'S_CLEAR_CACHE' => true

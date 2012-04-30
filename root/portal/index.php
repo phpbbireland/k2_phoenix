@@ -4,7 +4,7 @@
 * @author michaelo phpbbireland@gmail.com - http://www.phpbbireland.com
 *
 * @package sgp
-* @version 1.0.0h
+* @version 1.0.0m
 * @copyright (c) 2005-2011 Michael O'Toole (phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -43,8 +43,8 @@ include($phpbb_root_path . 'portal/sql_data.' . $phpEx);
 
 $versions = array(
 
-	// Version 1.0.0 (1.0.0a)
-	'1.0.0' => array(
+	// Version 1.0.0a
+	'1.0.0a' => array(
 	),
 	// Version 1.0.0b
 	'1.0.0b' => array(
@@ -61,12 +61,32 @@ $versions = array(
 	// Version 1.0.0f
 	'1.0.0f' => array(
 	),
+	// Version 1.0.0g
+	'1.0.0g' => array(
+	),
 	// Version 1.0.0h
 	'1.0.0h' => array(
 	),
-
-	// Version 1.0.0h
-	'1.0.0h'	=> array(
+	// Version 1.0.0i
+	'1.0.0i' => array(
+	),
+	// Version 1.0.0j
+	'1.0.0j' => array(
+	),
+	// Version 1.0.0k
+	'1.0.0k' => array(
+	),
+	// Version 1.0.0l
+	'1.0.0l' => array(
+	),
+	// Version 1.0.0m
+	'1.0.0l' => array(
+	),
+	// Version 1.0.0n
+	'1.0.0l' => array(
+	),
+	// Version 1.0.0o
+	'1.0.0o'	=> array(
 		'permission_add' => array(
 			array('a_k_portal', 1),
 			array('a_k_tools', 1),
@@ -80,9 +100,9 @@ $versions = array(
 
 		'config_add' => array(
 			array('portal_enabled', 1),
-			array('portal_build', '308-400'),
+			array('portal_build', '310-015'),
 			array('blocks_enabled', 1),
-			array('blocks_width', '170'),
+			array('blocks_width', '190'),
 			array('force_default_if_style_missing', 1),
 		),
 
@@ -215,6 +235,9 @@ $versions = array(
 					'module_basename' => 'k_pages',
 				),
 			),
+
+
+			array('acp', 'ACP_CAT_PORTAL', 'ACP_K_TOOLS'),
 
 			array('ucp', '0', 'UCP_K_BLOCKS'),
 			array('ucp', 'UCP_K_BLOCKS', array(

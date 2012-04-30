@@ -65,7 +65,7 @@ $lang = array_merge($lang, array(
 	'UCP_K_INFO_INFO'		=> 'Some basic portal information here......',
 	'UCP_K_INFO_WIDTH'		=> '<br />If your style support it, click on these images below to set the overall page width',
 
-	'UCP_K_LINK'			=> '<a href="%s>" Arrange Blocks</a>',
+	'UCP_K_LINK'			=> '<a href="%s"> Arrange Blocks</a>',
 	'UCP_K_NOT_SAVED'		=> 'Block data could not be saved!',
 	'UCP_K_RESET'			=> 'Blocks reset to default positions... refreshing page... <br />',
 	'UCP_K_SAVED'			=> 'Your layout has been updated... <br />',

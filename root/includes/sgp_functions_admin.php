@@ -79,4 +79,19 @@ if (!function_exists('get_all_groups'))
 		$db->sql_freeresult($result);
 	}
 }
+
+/***
+* phpbb pregs quote reused
+*/
+
+if (!function_exists('phpbb_preg_quote'))
+{
+	function phpbb_preg_quote($str, $delimiter)
+	{
+		$text = preg_quote($str);
+		$text = str_replace($delimiter, '\\' . $delimiter, $text);
+
+		return $text;
+	}
+}
 ?>

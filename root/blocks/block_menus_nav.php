@@ -34,7 +34,7 @@
 
 	include($phpbb_root_path . 'includes/sgp_functions.'. $phpEx );
 
-	global $db, $user, $_SID, $_EXTRA_URL, $k_groups, $k_blocks;
+	global $db, $user, $k_groups, $k_blocks;
 
 	foreach ($k_blocks as $blk)
 	{
@@ -86,10 +86,17 @@
 		$menu_view_groups = $portal_menus[$i]['view_groups'];
 		$menu_item_view_all = $portal_menus[$i]['view_all'];
 
-		$process_menu_item = false;
-
 		// skip process if everyone can view this menus //
-		if ($menu_item_view_all == 0)
+		if ($menu_item_view_all == 1)
+		{
+			$process_menu_item = true;
+		}
+		else
+		{
+			$process_menu_item = false;
+		}
+
+		if(!$process_menu_item)
 		{
 			$grps = explode(",", $menu_view_groups);
 
@@ -106,10 +113,6 @@
 					}
 				}
 			}
-		}
-		else
-		{
-			$process_menu_item = true;
 		}
 
 		if ($portal_menus[$i]['append_uid'] == 1)
@@ -141,7 +144,15 @@
 			}
 			else
 			{
-				$link = ($portal_menus[$i]['link_to']) ? append_sid("{$phpbb_root_path}" . $portal_menus[$i]['link_to'] . $u_id) : '';
+				if($portal_menus[$i]['append_sid'])
+				{
+					//$link = ($portal_menus[$i]['link_to']) ? append_sid("{$phpbb_root_path}{$portal_menus[$i]['link_to']}", false, true, $user->session_id) : '';
+					$link = ($auth->acl_get('a_') && !empty($user->data['is_registered'])) ? append_sid("{$phpbb_root_path}{$portal_menus[$i]['link_to']}", false, true, $user->session_id) : '';
+				}
+				else
+				{
+					$link = ($portal_menus[$i]['link_to']) ? append_sid("{$phpbb_root_path}" . $portal_menus[$i]['link_to'] . $u_id) : '';
+				}
 			}
 
 			$is_sub_heading = ($portal_menus[$i]['sub_heading']) ? true : false;
@@ -149,8 +160,7 @@
 			switch($portal_menus[$i]['extern'])
 			{
 				case 1:
-					//$link_option = ' target="_blank"';
-					$link_option = '';
+					$link_option = 'rel="external"';
 				break;
 
 				case 2:
@@ -163,7 +173,7 @@
 			}
 
 			$template->assign_block_vars('portal_menus_row', array(
-				'EXTERN'				=> $link_option,
+				'LINK_OPTION'			=> $link_option,
 				'PORTAL_MENU_HEAD_NAME'	=> ($is_sub_heading) ? $name : '',
 				'PORTAL_MENU_NAME' 		=> $name,
 				'PORTAL_MENU_ICON'		=> ($portal_menus[$i]['menu_icon']) ? '<img src="' . $phpbb_root_path . 'images/block_images/menu/' . $portal_menus[$i]['menu_icon'] . '" height="16" width="16" alt="" />' : '<img src="' . $phpbb_root_path . 'images/block_images/menu/spacer.gif" height="15px" width="15px" alt="" />',

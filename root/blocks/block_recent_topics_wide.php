@@ -11,7 +11,7 @@
 *        this is part of the Stargate Portal copyright agreement...
 *
 * @version $Id$
-* 28 July 2011 06:23
+* 26 April 2012 12:49
 */
 
 /**
@@ -252,10 +252,19 @@ for ($i = 0; $i < $display_this_many; $i++)
 	$last_forum = $row[$i]['forum_id'];
 }
 
+if($i > 1)
+{
+	$post_or_posts = strtolower($user->lang['TOPICS']);
+}
+else
+{
+	$post_or_posts = strtolower($user->lang['TOPIC']);
+}
+
 $template->assign_vars(array(
 	'S_COUNT_RECENT'	=> ($i > 0) ? true : false,
 	'SEARCH_TYPE'		=> (!$k_recent_search_days) ? $user->lang['FULL_SEARCH'] : $user->lang['K_RECENT_SEARCH_DAYS'] . $k_recent_search_days,
-	'SEARCH_LIMIT'		=> $user->lang['T_LIMITS'] . $k_recent_topics_per_forum . $user->lang['TOPICS_PER_FORUM_DISPLAY'] . $display_this_many . ' ' . $user->lang['POSTS'],
+	'SEARCH_LIMIT'		=> $user->lang['T_LIMITS'] . $k_recent_topics_per_forum . $user->lang['TOPICS_PER_FORUM_DISPLAY'] . $display_this_many . ' ' . $post_or_posts,
 
 	'RECENT_TOPICS_WIDE_DEBUG'	=> sprintf($user->lang['PORTAL_DEBUG_QUERIES'], ($queries) ? $queries : '0', ($cached_queries) ? $cached_queries : '0', ($total_queries) ? $total_queries : '0'),
 ));

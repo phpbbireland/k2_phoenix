@@ -7,7 +7,7 @@
 				<object type="application/x-shockwave-flash" style="width:416px; height:337px" data="http://www.youtube.com/{VIDEO_PATH}{video_loop_row.VIDEO_LINK}{S_AUTOPLAY}">
 					<param name="movie" value="{VIDEO_PATH}{video_loop_row.VIDEO_LINK}" />
 				</object>
-			</div><a href="javascript:ShowHide('_{video_loop_row.VIDEO_LINK}');"><img style="float:right;" src="js/highslide/graphics/close.png" title="{L_CLOSE_VIDEO}" alt="" /></a>
+			</div><a href="javascript:ShowHide('_{video_loop_row.VIDEO_LINK}');"><img style="float:right;" src="{ROOT_PATH}js/images/close.png" title="{L_CLOSE_VIDEO}" alt="" /></a>
 		</div>
 	</div>
 
@@ -17,11 +17,11 @@
 	<!-- BEGIN video_loop_row -->
 		<!-- IF video_loop_row.S_ROW_COUNT == 0 -->
 		<div class="trow">
-			<span class="tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:25%;"><strong>{L_TITLE}</strong></span>
-			<span class="tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:25%;"><strong>{L_VIDEO_WHO}</strong></span>
-			<span class="tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:22%;"><strong>{L_CATEGORY}</strong></span>
-			<span class="tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:22%;"><strong>{L_POSTER}</strong></span>
-			<span class="tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:6%;"><strong>{L_RATING}</strong></span>
+			<span class="tleft youtube1" style="width:25%;"><strong>{L_TITLE}</strong></span>
+			<span class="tleft youtube1" style="width:25%;"><strong>{L_VIDEO_WHO}</strong></span>
+			<span class="tleft youtube1" style="width:22%;"><strong>{L_CATEGORY}</strong></span>
+			<span class="tleft youtube1" style="width:22%;"><strong>{L_POSTER}</strong></span>
+			<span class="tleft youtube1" style="width:6%;"><strong>{L_RATING}</strong></span>
 		</div>
 		<!-- ENDIF -->
 
@@ -39,13 +39,13 @@
 
 		<!-- IF video_loop_row.S_ROW_COUNT is even -->
 		<div class="trow">
-			<span class="tleft bg2" style="width:25%; padding:1px; padding-top:6px;">
+			<span class="tleft bg2 youtube2" style="width:25%;">
 				<a href="javascript: ShowHide('{video_loop_row.VIDEO_LINK}'); ShowHide('image_hide');" title="">{video_loop_row.VIDEO_TITLE}</a>
 			</span>
-			<span class="tleft bg2" style="width:24%; padding:1px; padding-top:6px;">{video_loop_row.VIDEO_WHO} </span>
-			<span class="tleft bg2" style="width:22%; padding:1px; padding-top:6px;">{video_loop_row.VIDEO_CAT}</span>
-			<span class="tleft bg2" style="width:22%; padding:1px; padding-top:6px;">{video_loop_row.VIDEO_POSTER}</span>
-			<span class="tleft bg2" style="width: 6%; padding:1px; padding-top:6px;">{video_loop_row.VIDEO_RATING}</span>
+			<span class="tleft bg2 youtube2" style="width:24%;">{video_loop_row.VIDEO_WHO} </span>
+			<span class="tleft bg2 youtube2" style="width:22%;">{video_loop_row.VIDEO_CAT}</span>
+			<span class="tleft bg2 youtube2" style="width:22%;">{video_loop_row.VIDEO_POSTER}</span>
+			<span class="tleft bg2 youtube2" style="width: 6%;">{video_loop_row.VIDEO_RATING}</span>
 			<span class="tleft bg2 ximg" style="width: auto; height: 15px; padding:1px; text-align:right">
 				<a href="javascript: ShowHide('{video_loop_row.VIDEO_LINK}'); ShowHide('image_hide');" title="{video_loop_row.VIDEO_WHO}: {video_loop_row.VIDEO_TITLE}">
 					<img src="http://img.youtube.com/vi/{video_loop_row.VIDEO_LINK}/default.jpg" alt="" width="15" height="15" />
@@ -58,7 +58,7 @@
 		</div>
 		<div class="tcontainer">
 			<div class="tleft bg2" style="width:100%; padding:1px;">
-				<span class="tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:99%;"><strong>{video_loop_row.VIDEO_COMMENT}</strong></span>
+				<span class="tleft youtube1" style="width:99%;"><strong>{video_loop_row.VIDEO_COMMENT}</strong></span>
 			</div>
 		</div>
 		<div class="tcontainer">
@@ -67,13 +67,13 @@
 
 		<!-- ELSE -->
 		<div class="trow">
-			<span class="tleft bg1" style="width:25%; padding:1px; padding-top:6px;">
+			<span class="tleft bg1 youtube2" style="width:25%;">
 				<a href="javascript: ShowHide('{video_loop_row.VIDEO_LINK}'); ShowHide('image_hide');" title="">{video_loop_row.VIDEO_TITLE}</a>
 			</span>
-			<span class="tleft bg1" style="width:24%; padding:1px; padding-top:6px;">{video_loop_row.VIDEO_WHO} </span>
-			<span class="tleft bg1" style="width:22%; padding:1px; padding-top:6px;">{video_loop_row.VIDEO_CAT}</span>
-			<span class="tleft bg1" style="width:22%; padding:1px; padding-top:6px;">{video_loop_row.VIDEO_POSTER}</span>
-			<span class="tleft bg1" style="width: 6%; padding:1px; padding-top:6px;">{video_loop_row.VIDEO_RATING} </span>
+			<span class="tleft bg1 youtube2" style="width:24%;">{video_loop_row.VIDEO_WHO} </span>
+			<span class="tleft bg1 youtube2" style="width:22%;">{video_loop_row.VIDEO_CAT}</span>
+			<span class="tleft bg1 youtube2" style="width:22%;">{video_loop_row.VIDEO_POSTER}</span>
+			<span class="tleft bg1 youtube2" style="width: 6%;">{video_loop_row.VIDEO_RATING} </span>
 			<span class="tleft bg1 ximg" style="width: auto; height: 15px; padding:1px; text-align:right">
 				<a href="javascript: ShowHide('{video_loop_row.VIDEO_LINK}'); ShowHide('image_hide');" title="{video_loop_row.VIDEO_WHO}: {video_loop_row.VIDEO_TITLE}">
 					<img src="http://img.youtube.com/vi/{video_loop_row.VIDEO_LINK}/default.jpg" alt="" width="15" height="15" />
@@ -86,7 +86,7 @@
 		</div>
 		<div class="tcontainer">
 			<div class="tleft bg1" style="width:100%; padding:1px;">
-				<span class="tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:99%;"><strong>{video_loop_row.VIDEO_COMMENT}</strong></span>
+				<span class="tleft youtube1" style="width:99%;"><strong>{video_loop_row.VIDEO_COMMENT}</strong></span>
 			</div>
 		</div>
 		<div class="tcontainer">

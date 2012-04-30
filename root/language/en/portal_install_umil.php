@@ -2,7 +2,7 @@
 /**
 *
 * @package install
-* @version $Id: portal_install.php 1.0.0h
+* @version $Id: portal_install.php 1.0.0m
 * @copyright (c) 2005 phpbBB Group
 * @copyright (c) 2005 phpbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
@@ -37,7 +37,6 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 
-	'INSTALL_IMAGE' 			=> '<img src="./../portal/portal_install.png" alt="" border="none">',
 	'KISS_PORTAL_ENGINE' 		=> 'Kiss Portal Engine',
 	'STARGATE_PORTAL_EXPLAIN' 	=> 'Simplified version of Stargate Portal for phpBB3 with a basic features all of which are configurable via the ACP.',
 

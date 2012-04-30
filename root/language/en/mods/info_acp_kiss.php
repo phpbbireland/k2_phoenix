@@ -64,6 +64,7 @@ $lang = array_merge($lang, array(
 	'ACP_K_PAGE_CERTRE_BLOCKS'		=> 'Manage Centre Blocks',
 	'ACP_K_PAGE_RIGHT_BLOCKS'		=> 'Manage Right Blocks',
 	'ACP_K_BLOCKS_REINDEX'			=> 'Reindex Blocks',
+	'ACP_K_BLOCKS_RESET'			=> 'Reset user block layouts',
 
 // Menus
 	'ACP_K_MENUS'					=> 'Menus',
@@ -106,8 +107,12 @@ $lang = array_merge($lang, array(
 	'ACP_K_WEB_PAGES_PORTAL'		=> 'Manage Portal pages',
 
 // phpBB Pages
+	'ACP_K_PAGES'           => 'Manage phpBB pages',
 	'ACP_K_PAGES_ADD'		=> 'Add page',
 	'ACP_K_PAGES_DELETE'	=> 'Delete page',
+
+// acronyms
+	'ACP_K_ACRONYMS'        => 'Manage Acronyms',
 
 // Modules Variables
 	'ACP_K_VARS'				=> 'Portal Variables',

@@ -87,8 +87,8 @@ while($row = $db->sql_fetchrow($result))
 	}
 
 	$template->assign_vars(array(
-		'VIDEO_PATH'	=> $k_config['k_yourtube_link'],
-		'S_AUTOPLAY'	=> ($k_config['k_yourtube_auto']) ? '&amp;autoplay=1' : '',
+		'VIDEO_PATH'  => $k_config['k_yourtube_link'],
+		'S_AUTOPLAY'  => ($k_config['k_yourtube_auto']) ? '&amp;autoplay=1' : '',
 	));
 
 	if ($row['video_category'] != $emp)

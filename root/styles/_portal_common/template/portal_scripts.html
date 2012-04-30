@@ -1,6 +1,28 @@
 <script type="text/javascript">
 // <![CDATA[
-	// initialise scroll blocks here //
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	}
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	}
+
 	onload_functions.push('init_scrollers()');
 // ]]>
 </script>
@@ -8,7 +30,6 @@
 <link rel="shortcut icon" href="favicon.ico" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-<script type="text/javascript" src="{ROOT_PATH}js/sdmenu.js"></script>
 <script type="text/javascript" src="{ROOT_PATH}js/scroller.js"></script>
 
 <!-- IF S_IS_PORTAL and S_ARRANGE -->
@@ -59,12 +80,12 @@
 <link rel="stylesheet" href="{T_STYLESHEET_PORTAL_COMMON}" type="text/css" />
 <link rel="stylesheet" href="{T_STYLESHEET_PORTAL_OVERLOAD}" type="text/css" />
 
-<script type="text/javascript" src="{ROOT_PATH}js/jquery/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/jquery/jquery-1.7.1.min.js"></script>
 
 <script type="text/javascript">
 //<![CDATA[
 
-	var $css_file_append = '';
+	var $css_file_append = 'fix_ff.css';
 
 	if (/MSIE (\d+\.\d+);/.test(navigator.userAgent))
 	{
@@ -91,7 +112,6 @@
 	jQuery(document).ready(function(){
 		jQuery('<link rel="stylesheet" href="{T_THEME_PATH}/' + $css_file_append + '" type="text/css" />').appendTo('head');
 	});
-
 
 //]]>
 </script>
@@ -145,6 +165,11 @@
 		jQuery('#T'+this.id).delay(600);
 		});
 	});
+
+	jQuery(function(){
+		jQuery('a[rel="external"]').attr('target','_blank');
+	});
+
 //]]>
 </script>
 

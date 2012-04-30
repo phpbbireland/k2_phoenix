@@ -92,7 +92,7 @@ class ucp_k_blocks
 				$template->assign_vars(array(
 					'CKECKBOX'			=> 1,
 					'L_SWITCH_INFO'		=> $user->lang['UCP_K_INFO_INFO'],
-					'PORTAL_SITE'		=> $user->lang['DEV_SITE'] . 'http://www.stargate-portal.com',
+					'PORTAL_SITE'		=> $user->lang['DEV_SITE'] . 'http://www.phpbbireland.com',
 					'PORTAL_VERSION'	=> $config['portal_version'],
 					'PORTAL_BUILD'		=> $config['portal_build'],
 				));
@@ -128,7 +128,7 @@ class ucp_k_blocks
 					SET user_left_blocks = '" . $db->sql_escape($user_left_blocks) . "',
 						user_center_blocks = '" . $db->sql_escape($user_center_blocks) . "',
 						user_right_blocks = '" . $db->sql_escape($user_right_blocks) . "'
-					WHERE user_id = '" . $user->data['user_id'] . "'";
+					WHERE user_id =  " . $user->data['user_id'];
 
 				$result = $db->sql_query_limit($sql, 1);
 

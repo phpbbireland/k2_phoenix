@@ -124,22 +124,22 @@
 	<dl>
 		<dt><label for="menu_type">{L_MENU_TYPE}:</label><br /><span>{L_MENU_TYPE_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" name="menu_type" value="0"<!-- IF S_MENU_TYPE == '0' --> checked="checked"<!-- ENDIF --> /> {L_MENU_TYPE_HEADER}</label>
-			<label><input type="radio" class="radio" name="menu_type" id="menu_type" value="1"<!-- IF S_MENU_TYPE == '1' --> checked="checked"<!-- ENDIF --> /> {L_MENU_TYPE_NAV} </label>
-			<label><input type="radio" class="radio" name="menu_type" value="2"<!-- IF S_MENU_TYPE == '2' --> checked="checked"<!-- ENDIF --> /> {L_MENU_TYPE_SUB}</label>
-			<label><input type="radio" class="radio" name="menu_type" value="3"<!-- IF S_MENU_TYPE == '3' --> checked="checked"<!-- ENDIF --> /> {L_MENU_TYPE_FOOTER}</label>
-			<label><input type="radio" class="radio" name="menu_type" value="4"<!-- IF S_MENU_TYPE == '4' --> checked="checked"<!-- ENDIF --> /> {L_MENU_TYPE_LINKS}</label>
+			<label><input type="radio" class="radio" name="menu_type" value="0" <!-- IF S_MENU_TYPE == '0' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_HEADER}</label>
+			<label><input type="radio" class="radio" name="menu_type" value="1" <!-- IF S_MENU_TYPE == '1' or S_MENU_TYPE == '' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_NAV} </label>
+			<label><input type="radio" class="radio" name="menu_type" value="2" <!-- IF S_MENU_TYPE == '2' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_SUB}</label>
+			<label><input type="radio" class="radio" name="menu_type" value="3" <!-- IF S_MENU_TYPE == '3' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_FOOTER}</label>
+			<label><input type="radio" class="radio" name="menu_type" value="4" <!-- IF S_MENU_TYPE == '4' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_LINKS}</label>
 		</dd>
 	</dl>
 	<dl>
-		<dt><label>{L_MENU_ITEM_NAME}:</label><br /><span>{L_MENU_ITEM_NAME_EXPLAIN}</span></dt>
+		<dt><label for="name">{L_MENU_ITEM_NAME}:</label><br /><span>{L_MENU_ITEM_NAME_EXPLAIN}</span></dt>
 		<dd>
-			<input type="text" maxlength="255" size="50" name="name" value="{S_MENU_ITEM_NAME}" class="post" />
+			<input type="text" maxlength="255" size="50" id="name" name="name" value="{S_MENU_ITEM_NAME}" class="post" />
 		</dd>
 	</dl>
 	<dl>
-		<dt><label>{L_MENU_LINK_BIG}:</label><br /><span>{L_MENU_LINK_EXPLAIN}</span></dt>
-		<dd><input type="text" maxlength="255" size="50" value="{S_MENU_LINK}" class="post" /></dd>
+		<dt><label for="link_to">{L_MENU_LINK_BIG}:</label><br /><span>{L_MENU_LINK_EXPLAIN}</span></dt>
+		<dd><input type="text" maxlength="255" size="60" id="link_to" name="link_to" value="{S_MENU_LINK}" class="post" /></dd>
 	</dl>
 
 	<dl>
@@ -154,7 +154,7 @@
 		</dd>
 	</dl>
 	<dl>
-		<dt><label>{L_MENU_ICONS}:</label><br />{L_MENU_ICONS_L}</dt>
+		<dt><strong>{L_MENU_ICONS}:</strong><br />{L_MENU_ICONS_L}</dt>
 		<dd>
 			<div class="imageline" style="padding:5px; border: solid 1px #D7D7D7;">
 			<!-- BEGIN menuicons -->
@@ -171,44 +171,44 @@
 	<dl>
 		<dt><label for="append_sid">{L_MENU_APPEND_SID_BIG}:</label><br /><span>{L_MENU_APPEND_SID_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" id="append_sid" name="append_sid" value="1"<!-- IF S_MENU_APPEND_SID --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" class="radio" name="append_sid" value="0"<!-- IF not S_MENU_APPEND_SID --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="append_sid" value="1"<!-- IF S_MENU_APPEND_SID --> checked="checked" id="append_sid"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="append_sid" value="0"<!-- IF not S_MENU_APPEND_SID --> checked="checked" id="append_sid"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<dl>
 		<dt><label for="append_uid">{L_MENU_APPEND_UID_BIG}:</label><br /><span>{L_MENU_APPEND_UID_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" id="append_uid" name="append_uid" value="1"<!-- IF S_MENU_APPEND_UID --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" class="radio" name="append_uid" value="0"<!-- IF not S_MENU_APPEND_UID --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="append_uid" value="1"<!-- IF S_MENU_APPEND_UID --> checked="checked" id="append_uid"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="append_uid" value="0"<!-- IF not S_MENU_APPEND_UID --> checked="checked" id="append_uid"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<dl>
 		<dt><label for="extern">{L_MENU_EXTERN}:</label><br /><span>{L_MENU_EXTERN_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" id="extern" name="extern" value="1"<!-- IF S_MENU_EXTERN --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" class="radio" name="extern" value="0"<!-- IF not S_MENU_EXTERN --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="extern" value="1"<!-- IF S_MENU_EXTERN --> checked="checked" id="extern"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="extern" value="0"<!-- IF not S_MENU_EXTERN --> checked="checked" id="extern"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<dl>
 		<dt><label for="sub_heading">{L_SUB_HEADING}:</label><br /><span>{L_SUB_HEADING_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" id="sub_heading" name="sub_heading" value="1"<!-- IF S_SUB_HEADING --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" class="radio" name="sub_heading" value="0"<!-- IF not S_SUB_HEADING --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="sub_heading" value="1"<!-- IF S_SUB_HEADING --> checked="checked" id="sub_heading"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="sub_heading" value="0"<!-- IF not S_SUB_HEADING --> checked="checked" id="sub_heading"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<dl>
 		<dt><label for="soft_hr">{L_SOFT_HR}:</label><br /><span>{L_SOFT_HR_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" id="soft_hr" name="soft_hr" value="1"<!-- IF S_SOFT_HR --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" class="radio" name="soft_hr" value="0"<!-- IF not S_SOFT_HR --> checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+			<label><input type="radio" class="radio" name="soft_hr" value="1"<!-- IF S_SOFT_HR --> checked="checked" id="soft_hr"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="soft_hr" value="0"<!-- IF not S_SOFT_HR --> checked="checked" id="soft_hr"<!-- ENDIF --> /> {L_NO}</label></dd>
 	</dl>
 	<hr />
 	<dl>
-		<dt><label>{L_MENU_VIEW_GROUPS}:</label><br /><span>{L_MENU_VIEW_GROUPS_EXPLAIN}</span></dt>
+		<dt><label for="view_groups">{L_MENU_VIEW_GROUPS}:</label><br /><span>{L_MENU_VIEW_GROUPS_EXPLAIN}</span></dt>
 		<dd><br /><input class="post" size="26" maxlength="100" id="view_groups" name="view_groups" value="{S_VIEW_GROUPS}" type="text" /></dd>
 	</dl>
 	<dl>
-		<dt><label>{L_MENU_VIEW_BY}:</label><br /><span>{L_MENU_VIEW_BY_EXPLAIN}</span></dt>
+		<dt><label for="view_by">{L_MENU_VIEW_BY}:</label><br /><span>{L_MENU_VIEW_BY_EXPLAIN}</span></dt>
 		<dd><br />
 			<select name="view_by" id="view_by" class="post" onchange="set_ids(this.options[this.selectedIndex].value, 'view_groups');">
 			<!-- BEGIN groups -->
@@ -220,8 +220,8 @@
 	<dl>
 		<dt><label for="view_all">{L_MENU_VIEW_ALL}:</label><br /><span>{L_MENU_VIEW_ALL_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" name="view_all" id="view_all" value="1" <!-- IF S_VIEW_ALL -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" name="view_all" value="0" <!-- IF not S_VIEW_ALL -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" name="view_all" value="1" <!-- IF S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" name="view_all" value="0" <!-- IF not S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 </fieldset>
@@ -236,22 +236,22 @@
 		<dd>{S_MENUID}</dd>
 	</dl>
 	<dl>
-		<dt><label>{L_MENU_NDX}:</label><span>{L_MENU_NDX_BIG}</span></dt>
+		<dt><label for="ndx">{L_MENU_NDX}:</label><span>{L_MENU_NDX_BIG}</span></dt>
 		<dd><input type="text" maxlength="2" size="5" name="ndx" id="ndx" value="{S_MENU_NDX}" class="post" /></dd>
 	</dl>
 	<dl>
 		<dt><label for="menu_type">{L_MENU_TYPE}:</label><br /><span>{L_MENU_TYPE_EXPLAIN}</span></dt>
 		<dd><br />
-		<label><input type="radio" class="radio" name="menu_type" value="0"<!-- IF S_MENU_TYPE == '0' --> checked="checked"<!-- ENDIF --> /> {L_MENU_TYPE_HEADER}</label>
-		<label><input id="menu_type" type="radio" class="radio" name="menu_type" value="1"<!-- IF S_MENU_TYPE == '1' --> checked="checked"<!-- ENDIF --> /> {L_MENU_TYPE_NAV} </label>
-		<label><input type="radio" class="radio" name="menu_type" value="2"<!-- IF S_MENU_TYPE == '2' --> checked="checked"<!-- ENDIF --> /> {L_MENU_TYPE_SUB}</label>
-		<label><input type="radio" class="radio" name="menu_type" value="3"<!-- IF S_MENU_TYPE == '3' --> checked="checked"<!-- ENDIF --> /> {L_MENU_TYPE_FOOTER}</label>
-		<label><input type="radio" class="radio" name="menu_type" value="4"<!-- IF S_MENU_TYPE == '4' --> checked="checked"<!-- ENDIF --> /> {L_MENU_TYPE_LINKS}</label>
+		<label><input type="radio" class="radio" name="menu_type" value="0"<!-- IF S_MENU_TYPE == '0' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_HEADER}</label>
+		<label><input type="radio" class="radio" name="menu_type" value="1"<!-- IF S_MENU_TYPE == '1' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_NAV} </label>
+		<label><input type="radio" class="radio" name="menu_type" value="2"<!-- IF S_MENU_TYPE == '2' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_SUB}</label>
+		<label><input type="radio" class="radio" name="menu_type" value="3"<!-- IF S_MENU_TYPE == '3' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_FOOTER}</label>
+		<label><input type="radio" class="radio" name="menu_type" value="4"<!-- IF S_MENU_TYPE == '4' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_LINKS}</label>
 		</dd>
 	</dl>
 	<dl>
-		<dt><label>{L_MENU_ITEM_NAME}:</label><br /><span>{L_MENU_ITEM_NAME_EXPLAIN}</span></dt>
-		<dd><input type="text" maxlength="255" size="50" name="name" value="{S_MENU_ITEM_NAME}" class="post" /></dd>
+		<dt><label for="name">{L_MENU_ITEM_NAME}:</label><br /><span>{L_MENU_ITEM_NAME_EXPLAIN}</span></dt>
+		<dd><input type="text" maxlength="255" size="50" id="name" name="name" value="{S_MENU_ITEM_NAME}" class="post" /></dd>
 	</dl>
 	<dl>
 		<dt><label for="menu_icon">{L_MENU_ICON}:</label></dt>
@@ -265,7 +265,7 @@
 		</dd>
 	</dl>
 	<dl>
-		<dt><label>{L_MENU_ICONS}:</label><br />{L_MENU_ICONS_L}</dt>
+		<dt><strong>{L_MENU_ICONS}:</strong><br />{L_MENU_ICONS_L}</dt>
 		<dd>
 			<div class="imageline" style="padding:5px; border: solid 1px #D7D7D7;">
 			<!-- BEGIN menuicons -->
@@ -279,49 +279,49 @@
 		</dd>
 	</dl>
 	<dl>
-		<dt><label>{L_MENU_LINK_BIG}:</label><br /><span>{L_MENU_LINK_EXPLAIN}</span></dt>
-		<dd><br /><input type="text" maxlength="255" size="60" name="link_to" value="{S_MENU_LINK}" class="post" /></dd>
+		<dt><label for="link_to">{L_MENU_LINK_BIG}:</label><br /><span>{L_MENU_LINK_EXPLAIN}</span></dt>
+		<dd><br /><input type="text" maxlength="255" size="60" id="link_to" name="link_to" value="{S_MENU_LINK}" class="post" /></dd>
 	</dl>
 	<hr />
 	<dl>
 		<dt><label for="append_sid">{L_MENU_APPEND_SID_BIG}:</label><br /><span>{L_MENU_APPEND_SID_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" name="append_sid" id="append_sid" value="1"<!-- IF S_MENU_APPEND_SID --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" class="radio" name="append_sid" value="0"<!-- IF not S_MENU_APPEND_SID --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="append_sid" value="1"<!-- IF S_MENU_APPEND_SID --> checked="checked" id="append_sid"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="append_sid" value="0"<!-- IF not S_MENU_APPEND_SID --> checked="checked" id="append_sid"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<dl>
 		<dt><label for="append_uid">{L_MENU_APPEND_UID_BIG}:</label><br /><span>{L_MENU_APPEND_UID_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" name="append_uid" id="append_uid" value="1"<!-- IF S_MENU_APPEND_UID --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" class="radio" name="append_uid" value="0"<!-- IF not S_MENU_APPEND_UID --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="append_uid" <!-- IF S_MENU_APPEND_UID -->id="append_uid"<!-- ENDIF --> value="1"<!-- IF S_MENU_APPEND_UID --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="append_uid" <!-- IF not S_MENU_APPEND_UID -->id="append_uid"<!-- ENDIF --> value="0"<!-- IF not S_MENU_APPEND_UID --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<dl>
 		<dt><label for="extern">{L_MENU_EXTERN}:</label><br /><span>{L_MENU_EXTERN_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" name="extern" id="extern" value="1"<!-- IF S_MENU_EXTERN == '1' --> checked="checked"<!-- ENDIF --> /> {L_MENU_EXTERN_TAB}</label>
-			<label><input type="radio" class="radio" name="extern" value="2"<!-- IF S_MENU_EXTERN == '2' --> checked="checked"<!-- ENDIF --> /> {L_MENU_EXTERN_WINDOW}</label>
-			<label><input type="radio" class="radio" name="extern" value="0"<!-- IF S_MENU_EXTERN == '0' --> checked="checked"<!-- ENDIF --> /> {L_MENU_EXTERN_NORMAL}</label>
+			<label><input type="radio" class="radio" name="extern" value="1"<!-- IF S_MENU_EXTERN == '1' --> checked="checked" id="extern"<!-- ENDIF --> /> {L_MENU_EXTERN_TAB}</label>
+			<label><input type="radio" class="radio" name="extern" value="2"<!-- IF S_MENU_EXTERN == '2' --> checked="checked" id="extern"<!-- ENDIF --> /> {L_MENU_EXTERN_WINDOW}</label>
+			<label><input type="radio" class="radio" name="extern" value="0"<!-- IF S_MENU_EXTERN == '0' --> checked="checked" id="extern"<!-- ENDIF --> /> {L_MENU_EXTERN_NORMAL}</label>
 		</dd>
 	</dl>
 	<dl>
 		<dt><label for="soft_hr">{L_SOFT_HR}:</label><br /><span>{L_SOFT_HR_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" name="soft_hr" id="soft_hr" value="1"<!-- IF S_SOFT_HR --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" class="radio" name="soft_hr" value="0"<!-- IF not S_SOFT_HR --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="soft_hr" value="1"<!-- IF S_SOFT_HR --> checked="checked" id="soft_hr"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="soft_hr" value="0"<!-- IF not S_SOFT_HR --> checked="checked" id="soft_hr"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<dl>
 		<dt><label for="sub_heading">{L_SUB_HEADING}:</label><br /><span>{L_SUB_HEADING_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" name="sub_heading" id="sub_heading" value="1"<!-- IF S_SUB_HEADING --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" class="radio" name="sub_heading" value="0"<!-- IF not S_SUB_HEADING --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="sub_heading" value="1" <!-- IF S_SUB_HEADING --> checked="checked" id="sub_heading"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="sub_heading" value="0"<!-- IF not S_SUB_HEADING --> checked="checked" id="sub_heading"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<hr />
 	<dl>
-		<dt><label>{L_MENU_VIEW_GROUPS}:</label><br /><span>{L_MENU_VIEW_GROUPS_EXPLAIN}</span></dt>
+		<dt><label for="view_groups">{L_MENU_VIEW_GROUPS}:</label><br /><span>{L_MENU_VIEW_GROUPS_EXPLAIN}</span></dt>
 		<dd><br />
 			<input class="post" size="60" maxlength="100" id="view_groups" name="view_groups" value="{S_VIEW_GROUPS}" type="text" />
 		</dd>
@@ -339,8 +339,8 @@
 	<dl>
 		<dt><label for="view_all">{L_MENU_VIEW_ALL}:</label><br /><span>{L_MENU_VIEW_ALL_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" name="view_all" id="view_all" value="1" <!-- IF S_VIEW_ALL -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" name="view_all" value="0" <!-- IF not S_VIEW_ALL -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" name="view_all" value="1" <!-- IF S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" name="view_all" value="0" <!-- IF not S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 </fieldset>

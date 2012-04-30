@@ -235,7 +235,10 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		parse_attachments($row['forum_id'], $message, $attachments[$row['post_id']], $update_count);
 	}
 
-	$message = sgp_local_acronyms($message);
+	if ($k_config['k_allow_acronyms'])
+	{
+		$message = sgp_local_acronyms($message);
+	}
 
 	$postrow = array(
 		'ALLOW_REPLY'	=> ($auth->acl_get('f_reply', $row['forum_id']) && $row['topic_status'] != '1') ? TRUE : FALSE,
