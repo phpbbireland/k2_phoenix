@@ -92,7 +92,6 @@ if ($result = $db->sql_query($sql))
 }
 else
 {
-	//trigger_error($user->lang['ERROR_USER_TABLE'] . ': ' . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 	trigger_error($user->lang['ERROR_USER_TABLE']);
 }
 
@@ -214,18 +213,18 @@ if ($active_blocks)
 			$block_position		= 'R';
 		}
 
-		$block_id			= $row['id'];
-		$block_ndx			= $row['ndx'];
-		$block_title		= $row['title'];
-		$block_active		= $row['active'];
-		$block_type			= $row['type'];
-		$block_view_groups	= $row['view_groups'];
-		$block_view_all		= $row['view_all'];
-		$block_scroll		= $row['scroll'];
-		$block_height		= $row['block_height'];
-		$html_file_name		= $row['html_file_name'];
-		$img_file_name		= $row['img_file_name'];
-		$view_pages			= $row['view_pages'];
+		$block_id           = $row['id'];
+		$block_ndx          = $row['ndx'];
+		$block_title        = $row['title'];
+		$block_active       = $row['active'];
+		$block_type         = $row['type'];
+		$block_view_groups  = $row['view_groups'];
+		$block_view_all     = $row['view_all'];
+		$block_scroll       = $row['scroll'];
+		$block_height       = $row['block_height'];
+		$html_file_name     = $row['html_file_name'];
+		$img_file_name      = $row['img_file_name'];
+		$view_pages         = $row['view_pages'];
 
 		$arr = explode(',', $view_pages);
 		$grps = explode(",", $block_view_groups);
@@ -264,35 +263,35 @@ if ($active_blocks)
 			switch($block_position)
 			{
 				case 'L':
-						$left_block_ary[$L]		= $html_file_name;
-						$left_block_id[$L]		= $block_id;
-						$left_block_ndx[$L]		= $block_ndx;
-						$left_block_title[$L]	= $block_title;
-						$left_block_img[$L]		= $img_file_name;
-						$left_block_scroll[$L]	= $block_scroll;
-						$left_block_height[$L]	= $block_height;
+						$left_block_ary[$L]    = $html_file_name;
+						$left_block_id[$L]     = $block_id;
+						$left_block_ndx[$L]    = $block_ndx;
+						$left_block_title[$L]  = $block_title;
+						$left_block_img[$L]    = $img_file_name;
+						$left_block_scroll[$L] = $block_scroll;
+						$left_block_height[$L] = $block_height;
 						$L++;
 						$show_left = true;//show_blocks($this_page_name, $block_position);
 				break;
 				case 'C':
-						$center_block_ary[$C]		= $html_file_name;
-						$center_block_id[$C]		= $block_id;
-						$center_block_ndx[$C]		= $block_ndx;
-						$center_block_title[$C]		= $block_title;
-						$center_block_img[$C]		= $img_file_name;
-						$center_block_scroll[$C]	= $block_scroll;
-						$center_block_height[$C]	= $block_height;
+						$center_block_ary[$C]    = $html_file_name;
+						$center_block_id[$C]     = $block_id;
+						$center_block_ndx[$C]    = $block_ndx;
+						$center_block_title[$C]  = $block_title;
+						$center_block_img[$C]    = $img_file_name;
+						$center_block_scroll[$C] = $block_scroll;
+						$center_block_height[$C] = $block_height;
 						$C++;
 						$show_center = true;//show_blocks($this_page_name, $block_position);
 				break;
 				case 'R':
-						$right_block_ary[$R]	= $html_file_name;
-						$right_block_id[$R] 	= $block_id;
-						$right_block_ndx[$R] 	= $block_ndx;
-						$right_block_title[$R]	= $block_title;
-						$right_block_img[$R]	= $img_file_name;
-						$right_block_scroll[$R]	= $block_scroll;
-						$right_block_height[$R]	= $block_height;
+						$right_block_ary[$R]    = $html_file_name;
+						$right_block_id[$R]     = $block_id;
+						$right_block_ndx[$R]    = $block_ndx;
+						$right_block_title[$R]  = $block_title;
+						$right_block_img[$R]    = $img_file_name;
+						$right_block_scroll[$R] = $block_scroll;
+						$right_block_height[$R] = $block_height;
 						$R++;
 						$show_right = true;//show_blocks($this_page_name, $block_position);
 				break;
@@ -308,15 +307,15 @@ if (isset($left_block_ary) && $show_left)
 	foreach ($left_block_ary as $block => $value)
 	{
 		$template->assign_block_vars('left_block_files', array(
-			'LEFT_BLOCKS'			=> portal_block_template($value),
-			'LEFT_BLOCK_ID'			=> 'L_' .$left_block_id[$block],
-			'LEFT_BLOCK_TITLE'		=> $left_block_title[$block],
-			'LEFT_BLOCK_SCROLL'		=> $left_block_scroll[$block],
-			'LEFT_BLOCK_HEIGHT'		=> $left_block_height[$block],
-			'LEFT_BLOCK_IMG'		=> ($left_block_img[$block]) ? $block_image_path . $left_block_img[$block] : $block_image_path . 'none.gif',
-			'LEFT_BLOCK_IMG_2'		=> (file_exists($big_image_path . $left_block_img[$block])) ? $big_image_path  . $left_block_img[$block] : $big_image_path . 'none.png',
-			'S_CONTENT_FLOW_BEGIN'	=> ($user->lang['DIRECTION'] == 'ltr') ? 'left' : 'right',
-			'S_CONTENT_FLOW_END'	=> ($user->lang['DIRECTION'] == 'ltr') ? 'right' : 'left',
+			'LEFT_BLOCKS'           => portal_block_template($value),
+			'LEFT_BLOCK_ID'         => 'L_' .$left_block_id[$block],
+			'LEFT_BLOCK_TITLE'      => $left_block_title[$block],
+			'LEFT_BLOCK_SCROLL'     => $left_block_scroll[$block],
+			'LEFT_BLOCK_HEIGHT'     => $left_block_height[$block],
+			'LEFT_BLOCK_IMG'        => ($left_block_img[$block]) ? $block_image_path . $left_block_img[$block] : $block_image_path . 'none.gif',
+			'LEFT_BLOCK_IMG_2'      => (file_exists($big_image_path . $left_block_img[$block])) ? $big_image_path  . $left_block_img[$block] : $big_image_path . 'none.png',
+			'S_CONTENT_FLOW_BEGIN'  => ($user->lang['DIRECTION'] == 'ltr') ? 'left' : 'right',
+			'S_CONTENT_FLOW_END'    => ($user->lang['DIRECTION'] == 'ltr') ? 'right' : 'left',
 		));
 	}
 }
@@ -326,16 +325,16 @@ if (isset($right_block_ary) && $show_right)
 	foreach ($right_block_ary as $block => $value)
 	{
 		$template->assign_block_vars('right_block_files', array(
-			'RIGHT_BLOCKS'			=> portal_block_template($value),
-			'RIGHT_BLOCK_ID'		=> 'R_' .$right_block_id[$block],
-			'RIGHT_BLOCK_TITLE'		=> $right_block_title[$block],
-			'RIGHT_BLOCK_SCROLL'	=> $right_block_scroll[$block],
-			'RIGHT_BLOCK_HEIGHT'	=> $right_block_height[$block],
-			'RIGHT_BLOCK_IMG'		=> ($right_block_img[$block]) ? $block_image_path . $right_block_img[$block] : $block_image_path . 'none.gif',
-			'RIGHT_BLOCK_IMG_2'		=> (file_exists($big_image_path . $right_block_img[$block])) ? $big_image_path  . $right_block_img[$block] : $big_image_path . 'none.png',
+			'RIGHT_BLOCKS'          => portal_block_template($value),
+			'RIGHT_BLOCK_ID'        => 'R_' .$right_block_id[$block],
+			'RIGHT_BLOCK_TITLE'     => $right_block_title[$block],
+			'RIGHT_BLOCK_SCROLL'    => $right_block_scroll[$block],
+			'RIGHT_BLOCK_HEIGHT'    => $right_block_height[$block],
+			'RIGHT_BLOCK_IMG'       => ($right_block_img[$block]) ? $block_image_path . $right_block_img[$block] : $block_image_path . 'none.gif',
+			'RIGHT_BLOCK_IMG_2'     => (file_exists($big_image_path . $right_block_img[$block])) ? $big_image_path  . $right_block_img[$block] : $big_image_path . 'none.png',
 
-			'S_CONTENT_FLOW_BEGIN'	=> ($user->lang['DIRECTION'] == 'ltr') ? 'left' : 'right',
-			'S_CONTENT_FLOW_END'	=> ($user->lang['DIRECTION'] == 'ltr') ? 'right' : 'left',
+			'S_CONTENT_FLOW_BEGIN'  => ($user->lang['DIRECTION'] == 'ltr') ? 'left' : 'right',
+			'S_CONTENT_FLOW_END'    => ($user->lang['DIRECTION'] == 'ltr') ? 'right' : 'left',
 		));
 	}
 }
@@ -365,16 +364,16 @@ if (isset($center_block_ary) && $show_center)
 		}
 
 		$template->assign_block_vars('center_block_files', array(
-			'CENTER_BLOCKS'			=> portal_block_template($value),
-			'CENTER_BLOCK_ID'		=> 'C_' .$center_block_id[$block],
-			'CENTER_BLOCK_TITLE'	=> $center_block_title[$block],
-			'CENTER_BLOCK_SCROLL'	=> $center_block_scroll[$block],
-			'CENTER_BLOCK_HEIGHT'	=> $center_block_height[$block],
-			'CENTER_BLOCK_IMG'		=> ($center_block_img[$block]) ? $block_image_path . $center_block_img[$block] : $block_image_path . 'none.gif',
-			'CENTER_BLOCK_IMG_2'	=> (file_exists($big_image_path . $center_block_img[$block])) ? $big_image_path  . $center_block_img[$block] : $big_image_path . 'none.png',
+			'CENTER_BLOCKS'        => portal_block_template($value),
+			'CENTER_BLOCK_ID'      => 'C_' .$center_block_id[$block],
+			'CENTER_BLOCK_TITLE'   => $center_block_title[$block],
+			'CENTER_BLOCK_SCROLL'  => $center_block_scroll[$block],
+			'CENTER_BLOCK_HEIGHT'  => $center_block_height[$block],
+			'CENTER_BLOCK_IMG'     => ($center_block_img[$block]) ? $block_image_path . $center_block_img[$block] : $block_image_path . 'none.gif',
+			'CENTER_BLOCK_IMG_2'   => (file_exists($big_image_path . $center_block_img[$block])) ? $big_image_path  . $center_block_img[$block] : $big_image_path . 'none.png',
 
-			'S_CONTENT_FLOW_BEGIN'	=> ($user->lang['DIRECTION'] == 'ltr') ? 'left' : 'right',
-			'S_CONTENT_FLOW_END'	=> ($user->lang['DIRECTION'] == 'ltr') ? 'right' : 'left',
+			'S_CONTENT_FLOW_BEGIN' => ($user->lang['DIRECTION'] == 'ltr') ? 'left' : 'right',
+			'S_CONTENT_FLOW_END'   => ($user->lang['DIRECTION'] == 'ltr') ? 'right' : 'left',
 		));
 	}
 }
@@ -383,31 +382,31 @@ $template->assign_vars(array(
 	'AVATAR'			=> get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], $user->data['user_avatar_width'], $user->data['user_avatar_height']),
 	'BLOCK_WIDTH'		=> $blocks_width . 'px',
 
-	'PORTAL_ACTIVE'		=> $config['portal_enabled'],
-	'PORTAL_BUILD'		=> $config['portal_build'],
-	'PORTAL_VERSION'	=> $config['portal_version'],
-	'READ_ARTICLE_IMG'	=> $user->img('btn_read_article', 'READ_ARTICLE'),
-	'POST_COMMENTS_IMG'	=> $user->img('btn_post_comments', 'POST_COMMENTS'),
-	'VIEW_COMMENTS_IMG'	=> $user->img('btn_view_comments', 'VIEW_COMMENTS'),
+	'PORTAL_ACTIVE'     => $config['portal_enabled'],
+	'PORTAL_BUILD'      => $config['portal_build'],
+	'PORTAL_VERSION'    => $config['portal_version'],
+	'READ_ARTICLE_IMG'  => $user->img('btn_read_article', 'READ_ARTICLE'),
+	'POST_COMMENTS_IMG' => $user->img('btn_post_comments', 'POST_COMMENTS'),
+	'VIEW_COMMENTS_IMG' => $user->img('btn_view_comments', 'VIEW_COMMENTS'),
 
-	'SITE_NAME'				=> $config['sitename'],
-	'S_USER_LOGGED_IN'		=> ($user->data['user_id'] != ANONYMOUS) ? true : false,
+	'SITE_NAME'         => $config['sitename'],
+	'S_USER_LOGGED_IN'  => ($user->data['user_id'] != ANONYMOUS) ? true : false,
 
-	'S_SHOW_LEFT_BLOCKS'	=> $show_left,
-	'S_SHOW_RIGHT_BLOCKS'	=> $show_right,
+	'S_SHOW_LEFT_BLOCKS'  => $show_left,
+	'S_SHOW_RIGHT_BLOCKS' => $show_right,
 
-	'S_BLOCKS_ENABLED' 			=> $blocks_enabled,
-	'S_K_FOOTER_IMAGES_ALLOW'	=> ($k_config['k_footer_images_allow']) ? true : false,
-	'S_CONTENT_FLOW_BEGIN'		=> ($user->lang['DIRECTION'] == 'ltr') ? 'left' : 'right',
-	'S_CONTENT_FLOW_END'		=> ($user->lang['DIRECTION'] == 'ltr') ? 'right' : 'left',
+	'S_BLOCKS_ENABLED'        => $blocks_enabled,
+	'S_K_FOOTER_IMAGES_ALLOW' => ($k_config['k_footer_images_allow']) ? true : false,
+	'S_CONTENT_FLOW_BEGIN'    => ($user->lang['DIRECTION'] == 'ltr') ? 'left' : 'right',
+	'S_CONTENT_FLOW_END'      => ($user->lang['DIRECTION'] == 'ltr') ? 'right' : 'left',
 
-	'USER_NAME'		 => $user->data['username'],
-	'USERNAME_FULL'		=> get_username_string('full', $user->data['user_id'], $user->data['username'], $user->data['user_colour']),
-	'U_INDEX'			=> append_sid("{$phpbb_root_path}index.$phpEx"),
-	'U_PORTAL'			=> append_sid("{$phpbb_root_path}portal.$phpEx"),
-	'U_PORTAL_ARRANGE'	=> append_sid("{$phpbb_root_path}portal.$phpEx", "arrange=1"),
-	'U_STAFF'			=> append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=leaders'),
-	'U_SEARCH_BOOKMARKS'=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=main&mode=bookmarks'),
+	'USER_NAME'          => $user->data['username'],
+	'USERNAME_FULL'      => get_username_string('full', $user->data['user_id'], $user->data['username'], $user->data['user_colour']),
+	'U_INDEX'            => append_sid("{$phpbb_root_path}index.$phpEx"),
+	'U_PORTAL'           => append_sid("{$phpbb_root_path}portal.$phpEx"),
+	'U_PORTAL_ARRANGE'   => append_sid("{$phpbb_root_path}portal.$phpEx", "arrange=1"),
+	'U_STAFF'            => append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=leaders'),
+	'U_SEARCH_BOOKMARKS' => append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=main&mode=bookmarks'),
 ));
 
 // process common data here //
@@ -429,36 +428,35 @@ if ($this_page[0] == 'viewtopic')
 	}
 
 	// HTML, BBCode, Smilies, Images and Flash status amended version
-	$bbcode_status		= ($config['allow_bbcode'] && $auth->acl_get('f_bbcode', $forum_id)) ? true : false;
-	$smilies_status		= ($bbcode_status && $config['allow_smilies'] && $auth->acl_get('f_smilies', $forum_id)) ? true : false;
-	$img_status			= ($bbcode_status && $auth->acl_get('f_img', $forum_id)) ? true : false;
-	$url_status			= ($config['allow_post_links']) ? true : false;
-	$quote_status		= ($auth->acl_get('f_reply', $forum_id)) ? true : false;
-	$subscribe_topic	= ($config['allow_topic_notify'] && $user->data['is_registered'] && $user->data['user_notify']) ? true : false;
-	$flash_status		= ($bbcode_status && $auth->acl_get('f_flash', $forum_id)) ? true : false;
-	$enable_sig			= ($config['allow_sig'] && $user->optionget('attachsig')) ? true: false;
+	$bbcode_status    = ($config['allow_bbcode'] && $auth->acl_get('f_bbcode', $forum_id)) ? true : false;
+	$smilies_status   = ($bbcode_status && $config['allow_smilies'] && $auth->acl_get('f_smilies', $forum_id)) ? true : false;
+	$img_status       = ($bbcode_status && $auth->acl_get('f_img', $forum_id)) ? true : false;
+	$url_status       = ($config['allow_post_links']) ? true : false;
+	$quote_status     = ($auth->acl_get('f_reply', $forum_id)) ? true : false;
+	$subscribe_topic  = ($config['allow_topic_notify'] && $user->data['is_registered'] && $user->data['user_notify']) ? true : false;
+	$flash_status     = ($bbcode_status && $auth->acl_get('f_flash', $forum_id)) ? true : false;
+	$enable_sig       = ($config['allow_sig'] && $user->optionget('attachsig')) ? true: false;
 
 	add_form_key('posting');
 
 	$template->assign_vars(array(
-		'STARGATE'				=> true,
-		'MESSAGE'				=> '',
-		'L_QUICK_TITLE'			=> $user->lang['K_QUICK_REPLY'],
-		'S_QUICK_TITLE'			=> 'Re: ' . $topic_data['topic_title'],
-		'S_SMILIES_ALLOWED'		=> $smilies_status,
-		'S_LINKS_ALLOWED'		=> $url_status,
-		'S_SIG_ALLOWED'			=> ($auth->acl_get('f_sigs', $forum_id) && $config['allow_sig'] && $user->data['is_registered']) ? true : false,
-		'S_SIGNATURE_CHECKED'	=> ($enable_sig) ? ' checked="checked"' : '',
-		'S_SUBSCRIBE' 			=> $subscribe_topic,
-		'S_BBCODE_QUOTE'		=> $quote_status,
-		'S_BBCODE_IMG'			=> $img_status,
-		'S_BBCODE_FLASH'		=> $flash_status,
-		'U_MORE_SMILIES' 		=> append_sid("{$phpbb_root_path}posting.$phpEx", 'mode=smilies&amp;f=' . $forum_id),
-		'S_USER_LOGGED_IN'		=> ($user->data['user_id'] != ANONYMOUS) ? true : false,
-		'S_K_SHOW_SMILES'		=> $k_config['k_smilies_show'],
-		'QUOTE_IMG' 			=> $user->img('icon_post_quote', 'REPLY_WITH_QUOTE'),
-		)
-	);
+		'STARGATE'            => true,
+		'MESSAGE'             => '',
+		'L_QUICK_TITLE'       => $user->lang['K_QUICK_REPLY'],
+		'S_QUICK_TITLE'       => 'Re: ' . $topic_data['topic_title'],
+		'S_SMILIES_ALLOWED'   => $smilies_status,
+		'S_LINKS_ALLOWED'     => $url_status,
+		'S_SIG_ALLOWED'       => ($auth->acl_get('f_sigs', $forum_id) && $config['allow_sig'] && $user->data['is_registered']) ? true : false,
+		'S_SIGNATURE_CHECKED' => ($enable_sig) ? ' checked="checked"' : '',
+		'S_SUBSCRIBE'         => $subscribe_topic,
+		'S_BBCODE_QUOTE'      => $quote_status,
+		'S_BBCODE_IMG'        => $img_status,
+		'S_BBCODE_FLASH'      => $flash_status,
+		'U_MORE_SMILIES'      => append_sid("{$phpbb_root_path}posting.$phpEx", 'mode=smilies&amp;f=' . $forum_id),
+		'S_USER_LOGGED_IN'    => ($user->data['user_id'] != ANONYMOUS) ? true : false,
+		'S_K_SHOW_SMILES'     => $k_config['k_smilies_show'],
+		'QUOTE_IMG'           => $user->img('icon_post_quote', 'REPLY_WITH_QUOTE'),
+	));
 }
 
 ?>
