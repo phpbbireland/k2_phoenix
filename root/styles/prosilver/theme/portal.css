@@ -79,6 +79,10 @@ clear:both;
  text-transform: uppercase;
  font-weight: bold;
 }
+
+.block_title a:link, .block_title a:visited, .block_title a:hover, .block_title a:active { color: #FFF; text-decoration: none; }
+.block_title a:hover { color: #CCC; text-decoration: underline; }
+
 .block_data {
  padding:0px;
 }
