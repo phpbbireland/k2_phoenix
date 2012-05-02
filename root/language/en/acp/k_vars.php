@@ -58,52 +58,52 @@ $lang = array_merge($lang, array(
 	'TITLE_EXPLAIN_BLOCK'	=> 'Blocks can contain variables, normally stored in the K_BLOCKS_CONFIG_VAR_TABLE, associated html file (to display the variables) are located in adm/style/k_block_vars folder.<br />
 	If you add your own block variables, you need to include the html file to display and edit these variables.',
 
-	'NEWS_SETTINGS'		=> 'News Settings',
+	'NEWS_SETTINGS'         => 'News Settings',
 
-	'K_NEWS_TYPE'			=> 'News Type',
-	'K_NEWS_TYPE_EXPLAIN'	=> 'Local, Global or Both.',
+	'K_NEWS_TYPE'           => 'News Type',
+	'K_NEWS_TYPE_EXPLAIN'   => 'Local, Global or Both.',
 
-	'LOCAL_ANNOUNCE'	=> 'Local Announcement ',
-	'GLOBAL_ANNOUNCE'	=> 'Global Announcement',
-	'LOCAL_NEWS'		=> 'Local News',
-	'GLOBAL_NEWS'		=> 'Global News',
-	'BOTH'				=> 'Both types',
+	'LOCAL_ANNOUNCE'    => 'Local Announcement ',
+	'GLOBAL_ANNOUNCE'   => 'Global Announcement',
+	'LOCAL_NEWS'        => 'Local News',
+	'GLOBAL_NEWS'       => 'Global News',
+	'BOTH'              => 'Both types',
 
-	'RECENT_TOPICS_SETTINGS' 				=> 'Recent Topics Settings',
-	'K_RECENT_TOPICS_TO_DISPLAY' 			=> 'Number of recent topics to display if block data is static',
-	'K_RECENT_TOPICS_TO_DISPLAY_EXPLAIN' 	=> 'Note: If you allow scrolling, all recent posts will be displayed.',
+	'RECENT_TOPICS_SETTINGS'                => 'Recent Topics Settings',
+	'K_RECENT_TOPICS_TO_DISPLAY'            => 'Number of recent topics to display if block data is static',
+	'K_RECENT_TOPICS_TO_DISPLAY_EXPLAIN'    => 'Note: If you allow scrolling, all recent posts will be displayed.',
 
-	'K_RECENT_SEARCH_DAYS'					=> 'How many days will we search?',
-	'K_RECENT_SEARCH_DAYS_EXPLAIN'			=> 'Limit the number of days we search back to reduce database load.',
+	'K_RECENT_SEARCH_DAYS'                  => 'How many days will we search?',
+	'K_RECENT_SEARCH_DAYS_EXPLAIN'          => 'Limit the number of days we search back to reduce database load.',
 
-	'POSTS_TYPES'					=> 'Include all post types',
-	'POSTS_TYPES_EXPLAIN'			=> 'No will display normal post only, Yes will display all post types...',
+	'POSTS_TYPES'                           => 'Include all post types',
+	'POSTS_TYPES_EXPLAIN'                  => 'No will display normal post only, Yes will display all post types...',
 
-	'K_NEWS_ITEMS_TO_DISPLAY' 			=> 'Number of news item to display',
-	'K_NEWS_ITEMS_TO_DISPLAY_EXPLAIN' 	=> 'The number of news items shown on portal page.',
+	'K_NEWS_ITEMS_TO_DISPLAY'           => 'Number of news item to display',
+	'K_NEWS_ITEMS_TO_DISPLAY_EXPLAIN'   => 'The number of news items shown on portal page.',
 
-	'K_RECENT_TOPICS_PER_FORUM' 		=> 'Number of topics per forum',
+	'K_RECENT_TOPICS_PER_FORUM'         => 'Number of topics per forum',
 	'K_RECENT_TOPICS_PER_FORUM_EXPLAIN' => 'The maximum number of topics returned from each forum.',
 
 
-	'K_NEWS_ITEM_MAX_LENGTH' 			=> 'Length of news item',
-	'K_NEWS_ITEM_MAX_LENGTH_EXPLAIN' 	=> 'Maximum length to display for each news item, 0 to show full article.',
-	'K_NEWS_ALLOW' 						=> 'Allow news to be displayed',
-	'K_NEWS_ALLOW_EXPLAIN' 				=> 'Allow News to be displayed in portal page.',
+	'K_NEWS_ITEM_MAX_LENGTH'            => 'Length of news item',
+	'K_NEWS_ITEM_MAX_LENGTH_EXPLAIN'    => 'Maximum length to display for each news item, 0 to show full article.',
+	'K_NEWS_ALLOW'                      => 'Allow news to be displayed',
+	'K_NEWS_ALLOW_EXPLAIN'              => 'Allow News to be displayed in portal page.',
 
-	'ANNOUNCE_SETTINGS'					=> 'Announcement Settings',
-	'ANNOUNCE_FORUM_ID' 				=> 'Announcements Forum ID',
-	'ANNOUNCE_FORUM_ID_EXPLAIN' 		=> 'The ID of the announcement forum.',
-	'K_ANNOUNCE_TO_DISPLAY' 			=> 'Number of announcements to display',
-	'K_ANNOUNCE_TO_DISPLAY_EXPLAIN' 	=> 'The number of announcements to show on portal page.',
-	'K_ANNOUNCE_ITEM_MAX_LENGTH' 		=> 'Length of announcements',
-	'K_ANNOUNCE_ITEM_MAX_LENGTH_EXPLAIN'	=> 'Maximum length of each announcement to display, 0 to show full article.',
-	'K_ANNOUNCE_ALLOW' 					=> 'Allow Announcements',
-	'K_ANNOUNCE_ALLOW_EXPLAIN' 			=> 'Allow announcements to be displayed on portal.',
+	'ANNOUNCE_SETTINGS'                  => 'Announcement Settings',
+	'ANNOUNCE_FORUM_ID'                  => 'Announcements Forum ID',
+	'ANNOUNCE_FORUM_ID_EXPLAIN'          => 'The ID of the announcement forum.',
+	'K_ANNOUNCE_TO_DISPLAY'              => 'Number of announcements to display',
+	'K_ANNOUNCE_TO_DISPLAY_EXPLAIN'      => 'The number of announcements to show on portal page.',
+	'K_ANNOUNCE_ITEM_MAX_LENGTH'         => 'Length of announcements',
+	'K_ANNOUNCE_ITEM_MAX_LENGTH_EXPLAIN' => 'Maximum length of each announcement to display, 0 to show full article.',
+	'K_ANNOUNCE_ALLOW'                   => 'Allow Announcements',
+	'K_ANNOUNCE_ALLOW_EXPLAIN'           => 'Allow announcements to be displayed on portal.',
 
-	'BOT_SETTINGS'						=> 'Bot Settings',
-	'K_BOT_DISPLAY_ALLOW' 				=> 'Allow bot report',
-	'K_BOT_DISPLAY_ALLOW_EXPLAIN' 		=> 'Enable/Disable bot report.',
+	'BOT_SETTINGS'                      => 'Bot Settings',
+	'K_BOT_DISPLAY_ALLOW'               => 'Allow bot report',
+	'K_BOT_DISPLAY_ALLOW_EXPLAIN'       => 'Enable/Disable bot report.',
 	'K_BOTS_TO_DISPLAY' 				=> 'Number of bots to display',
 	'K_BOTS_TO_DISPLAY_EXPLAIN'			=> 'You can determine the number of bots to display.',
 
@@ -332,24 +332,23 @@ $lang = array_merge($lang, array(
 	'ACRONYM'				=> 'Acronym',
 	'ACRONYM_EXPLAIN'		=> 'From this control panel you can add, edit, and remove acronyms that will be automatically added to posts on your forums.',
 
-	'ACRONYMS'					=> 'Acronyms',
+	'ACRONYMS'               => 'Acronyms',
+	'ALLOW_ACRONYMS'         => 'Process Local Acronyms (built in) in posts',
+	'ALLOW_ACRONYMS_EXPLAIN' => 'Local Acronyms in post will not be processed if disable here...',
 
-	'ALLOW_ACRONYMS'			=> 'Process Local Acronyms (built in) in posts',
-	'ALLOW_ACRONYMS_EXPLAIN'	=> 'Local Acronyms in post will not be processed if disable here...',
+	'ADD_ACRONYM'            => 'Add Acronym',
+	'EDIT_ACRONYM'           => 'Edit acronym',
+	'EDIT_ACRONYM_EXPLAIN'   => 'Edit the meaning for the acronym:',
+	'ACRONYM_MEANING'        => 'Enter the full meaning',
+	'CONFIG_ACRONYMS'        => 'Configure',
 
-	'ADD_ACRONYM'				=> 'Add Acronym',
-	'EDIT_ACRONYM'				=> 'Edit acronym',
-	'EDIT_ACRONYM_EXPLAIN'		=> 'Edit the meaning for the acronym:',
-	'ACRONYM_MEANING'			=> 'Enter the full meaning',
-	'CONFIG_ACRONYMS'			=> 'Configure',
-
-	'RESERVED'				=> 'Reserved words.',
-	'RESERVED_EXPLAIN'		=> 'These words cannot be used as an acronym, they are in the reserved word list...',
-	'RESERVED_WORD_LIST'	=> 'Manage reserved words',
-	'DELETE'				=> 'To delete words, simply remove them',
-	'DELETE_CURRENT'		=> 'Remove',
-	'ADD_NEW_WORD'			=> 'Add word',
-	'NEW_WORD'				=> 'Add new reserved word.',
+	'RESERVED'            => 'Reserved words.',
+	'RESERVED_EXPLAIN'    => 'These words cannot be used as an acronym, they are in the reserved word list...',
+	'RESERVED_WORD_LIST'  => 'Manage reserved words',
+	'DELETE'              => 'To delete words, simply remove them',
+	'DELETE_CURRENT'      => 'Remove',
+	'ADD_NEW_WORD'        => 'Add word',
+	'NEW_WORD'            => 'Add new reserved word.',
 
 ));
 
@@ -364,13 +363,13 @@ $lang = array_merge($lang, array(
 
 // Age Ranges
 $lang = array_merge($lang, array(
-	'AGE_RANGES'				=> 'Age Ranges',
-	'AGE_INTERVAL'				=> 'Age interval',
-	'AGE_INTERVAL_EXPLAIN'		=> 'The interval to use in the age groups.',
-	'AGE_START' 				=> 'Age start',
-	'AGE_START_EXPLAIN'			=> 'The age to start the first group with.',
-	'AGE_LIMIT' 				=> 'Age upper limit',
-	'AGE_LIMIT_EXPLAIN'			=> 'The upper age limit to show. NOTE: If you want to show up to for example 100: put in 101 here. (Last group end value + 1)',
+	'AGE_RANGES'           => 'Age Ranges',
+	'AGE_INTERVAL'         => 'Age interval',
+	'AGE_INTERVAL_EXPLAIN' => 'The interval to use in the age groups.',
+	'AGE_START'            => 'Age start',
+	'AGE_START_EXPLAIN'    => 'The age to start the first group with.',
+	'AGE_LIMIT'            => 'Age upper limit',
+	'AGE_LIMIT_EXPLAIN'    => 'The upper age limit to show. NOTE: If you want to show up to for example 100: put in 101 here. (Last group end value + 1)',
 ));
 
 // Cloud
