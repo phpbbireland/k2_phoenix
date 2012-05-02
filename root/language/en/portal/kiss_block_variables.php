@@ -170,7 +170,7 @@ $lang = array_merge($lang, array(
 	'RSS_FEED_ERROR'			=> 'Or something wrong with RSS feed.',
 	'RSS_LIST_ERROR'			=> 'Could not get RSS list.',
 	'RSS_ERROR'					=> 'RSS Error - Check feed link (above) to confirm.',
-	'LOG_RSS_CACHE_CLEANED'     => 'RSS cache cleared',
+	'LOG_RSS_CACHE_CLEANED'			=> 'RSS cache cleared',
 ));
 
 // HTTP Referrals
