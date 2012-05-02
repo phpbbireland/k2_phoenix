@@ -104,7 +104,7 @@ $lang = array_merge($lang, array(
 	'BOT_SETTINGS'						=> 'Bot Settings',
 	'K_BOT_DISPLAY_ALLOW' 				=> 'Allow bot report',
 	'K_BOT_DISPLAY_ALLOW_EXPLAIN' 		=> 'Enable/Disable bot report.',
-	'K_BOTS_TO_DISPLAy' 				=> 'Number of bots to display',
+	'K_BOTS_TO_DISPLAY' 				=> 'Number of bots to display',
 	'K_BOTS_TO_DISPLAY_EXPLAIN'			=> 'You can determine the number of bots to display.',
 
 	'LINKS_SETTINGS' 					=> 'Link Block Settings',
@@ -463,11 +463,11 @@ $lang = array_merge($lang, array(
 
 // SGP Teams Block 15 March 2011
 $lang = array_merge($lang, array(
-	'K_TEAMS'			=> 'These teams will be displayed',
-	'K_TEAMS_EXPLAIN'	=> '(ID of teams in comma separated list).',
-	'K_BLOCK_TEAMS'		=> 'Select teams to display in block',
-	'K_TEAMS_EXPLAIN'	=> 'This dropdown is reusable, each selection will update the list.<br />Selecting <strong>none</strong> will reset the list.',
-	'THE_TEAM_SETTINGS_2'	=> 'Limit to members'
+	'K_TEAMS'               => 'These teams will be displayed',
+	'K_TEAMS_EXPLAIN'       => '(ID of teams in comma separated list).',
+	'K_BLOCK_TEAMS'         => 'Select teams to display in block',
+	'K_BLOCK_TEAMS_EXPLAIN' => 'This dropdown is reusable, each selection will update the list.<br />Selecting <strong>none</strong> will reset the list.',
+	'THE_TEAM_SETTINGS_2'   => 'Limit to members'
 ));
 
 
