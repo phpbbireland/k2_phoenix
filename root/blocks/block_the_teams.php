@@ -10,8 +10,8 @@
 * @note: Do not remove this copyright. Just append yours if you have modified it,
 *        this is part of the Stargate Portal copyright agreement...
 *
-* @version $Id: block_the_team.php 297 2008-12-30 18:40:30Z JohnnyTheOne $
-* Updated: 29 July 2008
+* @version $Id: block_the_team.php
+* Updated: 02 May 2012
 *
 */
 
@@ -85,6 +85,8 @@ while ($row = $db->sql_fetchrow($result))
 		}
 	}
 
+	// get language vars for group name
+	$group_name = $user->lang(strtoupper('G_'.$group_name));
 
 	// conver to proper case and remove underscores //
 	$group_name = mb_convert_case($group_name, MB_CASE_TITLE, "UTF-8");
