@@ -100,7 +100,7 @@ class ucp_k_blocks
 
 			case 'width':
 				$template->assign_vars(array(
-					'CKECKBOX'       => 1,
+					'CHECKBOX'       => 1,
 					'L_SWITCH_INFO'  => $user->lang['UCP_K_INFO_WIDTH'],
 				));
 			break;
