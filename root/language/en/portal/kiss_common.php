@@ -439,6 +439,7 @@ $lang = array_merge($lang, array(
 
 	'SHOW_BLOCKS'				=> 'Show blocks*',
 	'HIDE_BLOCKS'               => 'Hide blocks*',
+	'SHOW_ON_MAP'				=> 'Click to show on google maps',
 ));
 //- stargate aka Kiss portal engine lang definitions -//
 

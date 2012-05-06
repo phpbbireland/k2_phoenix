@@ -168,7 +168,7 @@ class ucp_k_blocks
 		$template->assign_vars(array(
 			'SWITCH'           => $mode,
 			'MESSAGE'          => $message,
-			'CKECKBOX'         => ($mode == 'delete') ? 1 : 0,
+			'CHECKBOX'         => ($mode == 'delete') ? 1 : 0,
 			'DATA_LEFT'        => $dataleft,
 			'DATA_CENTER'      => $datacenter,
 			'DATA_RIGHT'       => $dataright,
