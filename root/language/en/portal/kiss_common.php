@@ -426,7 +426,7 @@ $lang = array_merge($lang, array(
 	'ACRO_3'			=> 'Probably the best forum software ever...',
 
 	// Use this version to display debug info //
-	//'WELCOME_MESSAGE'			=> "Welcome back [you]...<br /><br /><strong>{SITENAME} </strong> is powered by <strong>phpBB</strong> {VERSION} and <strong> the Kiss Portal Engine </strong>{PORTAL_VERSION}."
+	//'WELCOME_MESSAGE'		=> "Welcome back [you]...<br /><br /><strong>{SITENAME} </strong> is powered by <strong>phpBB</strong> {VERSION} and <strong> the Kiss Portal Engine </strong>{PORTAL_VERSION}."
 
 	// production, note {...} are process later //
 	'WELCOME_MESSAGE'		=> "Welcome back [you]...<br /><br /><strong>{SITENAME} </strong> is powered by <strong>phpBB3</strong> and <strong> the Kiss Portal Engine </strong>.",
