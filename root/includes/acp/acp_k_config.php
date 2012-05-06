@@ -47,8 +47,6 @@ class acp_k_config
 
 		if ($submit && !check_form_key($form_key))
 		{
-			//$submit = false;
-			//$mode = '';
 			trigger_error($user->lang['FORM_INVALID']);
 		}
 
