@@ -2,7 +2,7 @@
 /**
 *
 * @package acp Stargate Portal
-* @version $Id: acp_k_config.php 312 2009-01-02 02:51:12Z Michealo $
+* @version $Id: acp_k_config.php Edited: 08 May 2012
 * @copyright (c) 2007 Michael O'Toole aka michaelo
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -42,7 +42,7 @@ class acp_k_config
 
 		$submit = (isset($_POST['submit'])) ? true : false;
 
-		$forum_id	= request_var('f', 0);
+		$forum_id = request_var('f', 0);
 		$forum_data = $errors = array();
 
 		if ($submit && !check_form_key($form_key))
@@ -86,6 +86,7 @@ class acp_k_config
 
 				set_config('blocks_width', $blocks_width);
 				set_config('blocks_enabled', $blocks_enabled);
+				//only allow automod to update this field
 				//set_config('portal_version', $portal_version);
 				set_config('portal_build', $portal_build);
 
