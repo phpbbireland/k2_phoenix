@@ -81,12 +81,12 @@ class acp_k_config
 
 				$blocks_width    = request_var('blocks_width', '');
 				$blocks_enabled  = request_var('blocks_enabled', '');
-				$portal_version  = request_var('portal_version', '');
+				//$portal_version  = request_var('portal_version', '');
 				$portal_build    = request_var('portal_build', '');
 
 				set_config('blocks_width', $blocks_width);
 				set_config('blocks_enabled', $blocks_enabled);
-				set_config('portal_version', $portal_version);
+				//set_config('portal_version', $portal_version);
 				set_config('portal_build', $portal_build);
 
 				$mode='reset';
