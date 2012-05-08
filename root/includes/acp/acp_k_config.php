@@ -86,7 +86,7 @@ class acp_k_config
 
 				set_config('blocks_width', $blocks_width);
 				set_config('blocks_enabled', $blocks_enabled);
-				set_config('portal_version', $portal_version);
+				//set_config('portal_version', $portal_version);
 				set_config('portal_build', $portal_build);
 
 				$mode='reset';
