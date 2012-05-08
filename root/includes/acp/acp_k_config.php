@@ -42,7 +42,7 @@ class acp_k_config
 
 		$submit = (isset($_POST['submit'])) ? true : false;
 
-		$forum_id	= request_var('f', 0);
+		$forum_id = request_var('f', 0);
 		$forum_data = $errors = array();
 
 		if ($submit && !check_form_key($form_key))
