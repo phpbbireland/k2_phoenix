@@ -2,7 +2,7 @@
 /**
 *
 * @package acp Stargate Portal
-* @version $Id: acp_k_config.php 312 2009-01-02 02:51:12Z Michealo $
+* @version $Id: acp_k_config.php 08 May 2012
 * @copyright (c) 2007 Michael O'Toole aka michaelo
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
