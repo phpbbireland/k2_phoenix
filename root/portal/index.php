@@ -4,7 +4,7 @@
 * @author michaelo phpbbireland@gmail.com - http://www.phpbbireland.com
 *
 * @package sgp
-* @version 1.0.0m
+* @version 1.0.0o
 * @copyright (c) 2005-2011 Michael O'Toole (phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -80,10 +80,10 @@ $versions = array(
 	'1.0.0l' => array(
 	),
 	// Version 1.0.0m
-	'1.0.0l' => array(
+	'1.0.0m' => array(
 	),
 	// Version 1.0.0n
-	'1.0.0l' => array(
+	'1.0.0n' => array(
 	),
 	// Version 1.0.0o
 	'1.0.0o'	=> array(
