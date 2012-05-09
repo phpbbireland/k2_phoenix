@@ -252,7 +252,7 @@ for ($i = 0; $i < $display_this_many; $i++)
 	$last_forum = $row[$i]['forum_id'];
 }
 
-if($i > 1)
+if ($i > 1)
 {
 	$post_or_posts = strtolower($user->lang['TOPICS']);
 }
