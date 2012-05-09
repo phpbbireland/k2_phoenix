@@ -100,7 +100,7 @@ class ucp_k_blocks
 
 			case 'width':
 				$template->assign_vars(array(
-					'CKECKBOX'       => 1,
+					'CHECKBOX'       => 1,
 					'L_SWITCH_INFO'  => $user->lang['UCP_K_INFO_WIDTH'],
 				));
 			break;
@@ -168,7 +168,7 @@ class ucp_k_blocks
 		$template->assign_vars(array(
 			'SWITCH'           => $mode,
 			'MESSAGE'          => $message,
-			'CKECKBOX'         => ($mode == 'delete') ? 1 : 0,
+			'CHECKBOX'         => ($mode == 'delete') ? 1 : 0,
 			'DATA_LEFT'        => $dataleft,
 			'DATA_CENTER'      => $datacenter,
 			'DATA_RIGHT'       => $dataright,
