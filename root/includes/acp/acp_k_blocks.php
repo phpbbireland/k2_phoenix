@@ -157,13 +157,11 @@ class acp_k_blocks
 						'BLOCK_REPORT'   => $user->lang['BLOCKS_AUTO_REINDEXED'],
 					));
 
-
 					$cache->destroy('sql', K_BLOCKS_TABLE);
 
 					meta_refresh(3, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_blocks&amp;mode='. $mode));
 					return;
 				}
-
 
 				$to_move = $move_to = array();
 
