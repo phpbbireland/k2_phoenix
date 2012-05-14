@@ -30,7 +30,7 @@ $queries = $cached_queries = $total_queries = 0;
 
 
 /***
-* Validation notes, version: 1.0.0m (Dec 2011)
+* Validation notes, version: 1.0.15 (Dec 2011)
 *
 * As this block's data can be obtained from block_build.php (which processes
 * the phpBB core for use by the portal page), we do not need to reinvent the
