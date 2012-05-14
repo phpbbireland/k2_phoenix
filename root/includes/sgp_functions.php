@@ -494,4 +494,27 @@ if (!function_exists('s_get_vars'))
 	}
 }
 
+if (!function_exists('get_link_from_image_name'))
+{
+	function get_link_from_image_name($image)
+	{
+		if (strpos($image, '.gif'))
+		{
+			$lnk = explode(".gif", $image);
+		}
+		else if (strpos($image, '.png'))
+		{
+			$lnk = explode(".png", $image);
+		}
+		else if (strpos($image, '.jpg'))
+		{
+			$lnk = explode(".jpg", $image);
+		}
+
+		$lnk = str_replace('+','/', $lnk);
+		$lnk = str_replace('@','?', $lnk);
+		$lnk = str_replace('£','+', $lnk);
+		return($lnk);
+	}
+}
 ?>
