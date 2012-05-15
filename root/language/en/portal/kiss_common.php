@@ -169,7 +169,7 @@ $lang = array_merge($lang, array(
 	'ERROR_PORTAL_WORDS'		=> 'Error! Words table...',
 	'ERROR_SMILIES_DATA'		=> 'Error! Could not get smilies data',
 	'ERROR_USER_TABLE'		=> 'Error! Could not retrieve user table data',
-	'EXAMPLE'			=> 'Example codde here',
+	'EXAMPLE'			=> 'Example code here',
 
 	'FLAG'			=> 'Flag',
 	'FLASH_IS_OFF'		=> '[flash] is <em>OFF</em>',

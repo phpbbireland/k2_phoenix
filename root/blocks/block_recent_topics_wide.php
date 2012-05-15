@@ -42,27 +42,27 @@ foreach ($k_blocks as $blk)
 $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k_block_cache_time_default']);
 
 
-if(!defined('POST_TOPIC_URL'))
+if (!defined('POST_TOPIC_URL'))
 {
 	define('POST_TOPIC_URL' , 't');
 }
-if(!defined('POST_CAT_URL'))
+if (!defined('POST_CAT_URL'))
 {
 	define('POST_CAT_URL', 'c');
 }
-if(!defined('POST_FORUM_URL'))
+if (!defined('POST_FORUM_URL'))
 {
 	define('POST_FORUM_URL', 'f');
 }
-if(!defined('POST_USERS_URL'))
+if (!defined('POST_USERS_URL'))
 {
 	define('POST_USERS_URL', 'u');
 }
-if(!defined('POST_POST_URL'))
+if (!defined('POST_POST_URL'))
 {
 	define('POST_POST_URL', 'p');
 }
-if(!defined('POST_GROUPS_URL'))
+if (!defined('POST_GROUPS_URL'))
 {
 	define('POST_GROUPS_URL', 'g');
 }
@@ -109,7 +109,7 @@ $except_forum_ids = explode(",", $except_forum_id);
 
 while ($row = $db->sql_fetchrow($result))
 {
-	if(!in_array($row['forum_id'], $except_forum_ids))
+	if (!in_array($row['forum_id'], $except_forum_ids))
 	{
 		$forum_data[] = $row;
 		$forum_count++;
@@ -174,7 +174,7 @@ Note as this affects scrolling it is read by the portal.html page...
 // Don't scroll recent-topics(RT) if less that 5 posts returned. //
 if ($scroll)
 {
-	if($row_count > 5)
+	if ($row_count > 5)
 	{
 		$template->assign_vars(array(
 			'DISABLE_RT_SCROLL'	=> false,
@@ -252,7 +252,7 @@ for ($i = 0; $i < $display_this_many; $i++)
 	$last_forum = $row[$i]['forum_id'];
 }
 
-if($i > 1)
+if ($i > 1)
 {
 	$post_or_posts = strtolower($user->lang['TOPICS']);
 }
