@@ -299,7 +299,7 @@
 		<dd><br />
 			<select id="view_by" name="view_by" class="post" onchange="set_ids(this.options[this.selectedIndex].value, 'view_groups'); ">
 			<!-- BEGIN groups -->
-				<option value="{groups.GROUP_ID}" <!-- IF groups.GROUP_ID == S_VIEW_BY -->selected="selected" <!-- ENDIF -->>{groups.GROUP_ID} ({groups.GROUP_NAME})</option>
+				<option value="{groups.GROUP_ID}" <!-- IF groups.GROUP_ID == S_VIEW_GROUPS -->selected="selected" <!-- ENDIF -->>{groups.GROUP_ID} ({groups.GROUP_NAME})</option>
 			<!-- END groups -->
 			</select>
 		</dd>
