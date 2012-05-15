@@ -19,14 +19,26 @@
 * @ignore
 */
 
-if (!defined('IN_PHPBB'))
-{
-	exit;
-}
+	if (!defined('IN_PHPBB'))
+	{
+		exit;
+	}
+
+	global $php_root_path, $db, $user, $config, $k_config, $k_blocks;
 
 	$queries = $cached_queries = 0;
 
-	global $db, $user, $k_config, $k_blocks;
+	$welcome_image	= 'welcome.png';
+
+	if (file_exists($php_root_path . 'images/' . $welcome_image))
+	{
+		$block_link = 'portal.php';
+	}
+	else
+	{
+		$welcome_image = '';
+		$block_link = '';
+	}
 
 	foreach ($k_blocks as $blk)
 	{
@@ -40,8 +52,6 @@ if (!defined('IN_PHPBB'))
 	include($phpbb_root_path . 'includes/sgp_functions.' . $phpEx);
 
 	$block_name		= (isset($user->lang['WELCOME']) ? $user->lang['WELCOME'] : '{L_NO_LANG_VALUE}');
-	$block_image	= 'logo_portal_red.png';
-	$block_link		= 'http://www.phpbbireland.com/kiss2/portal.php';
 
 	$block_details	= $user->lang['WELCOME_MESSAGE'];
 	$block_details	= process_for_vars($block_details, true);
@@ -49,7 +59,7 @@ if (!defined('IN_PHPBB'))
 
 	$template->assign_vars( array(
 		'W_TITLE'	=> $block_name,
-		'W_IMAGE'	=> ($block_image) ? $block_image : '',
+		'W_IMAGE'	=> $welcome_image,
 		'U_LINK'	=> $block_link,
 		'W_MESSAGE'	=> htmlspecialchars_decode($block_details),
 

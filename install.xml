@@ -34,7 +34,7 @@
 		</author>
 	</author-group>
 
-	<mod-version>1.0.0o</mod-version>
+	<mod-version>1.0.15</mod-version>
 
 	<installation>
 		<level>intermediate</level>
@@ -45,8 +45,9 @@
 	<history>
 		<entry>
 			<date>2012-04-25</date>
-			<rev-version>1.0.0o</rev-version>
+			<rev-version>1.0.15</rev-version>
 			<changelog lang="en">
+				<change>Changed version from 1.0.0a...z as automod doesn't like characters.</change>
 				<change>Validation fixes.</change>
 			</changelog>
 		</entry>

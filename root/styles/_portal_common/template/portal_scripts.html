@@ -173,7 +173,31 @@
 //]]>
 </script>
 
+<script type="text/javascript">
+// <![CDATA[
 
+	jQuery.noConflict();
+	jQuery(document).ready(function($){
+		jQuery('.ximg').imgbubbles({factor:5});
+	})
+
+	jQuery.noConflict();
+	jQuery(document).ready(function(){
+	jQuery(".vido").click(function () {
+		jQuery("#vdo").hide("slide", {}, 1000);
+		});
+	});
+
+	jQuery.noConflict();
+	jQuery(document).ready(function(){
+		jQuery('.accordion').click(function() {
+			$(this).next().toggle('slow');
+			return false;
+		}).next().hide();
+	});
+
+//]]>
+</script>
 
 <!-- IF RESIZE -->
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>

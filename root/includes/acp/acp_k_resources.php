@@ -50,18 +50,7 @@ class acp_k_resources
 		//			[ MAIN PROCESS ]
 		// ======================================================
 
-/*
-		$delete		= ( isset($_POST['delete']) ) ? TRUE : 0;
-		$delete_all	= ( isset($_POST['deleteall']) ) ? TRUE : 0;
-
-		$delete		= request_var('delete', 0);
-		$switch		= request_var('switch', '');
-*/
 		$add		= request_var('add', '');
-
-
-		//request_var('id_list', array('' => 0))
-		//request_var('id_list', array(0))
 
 		$id_list = (( isset($_POST['id_list']) ) ? request_var('id_list', array(0)) : ( (isset($_GET['id_list'])) ? request_var('id_list', array(0)) : array()));
 

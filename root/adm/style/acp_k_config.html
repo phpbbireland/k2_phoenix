@@ -13,7 +13,10 @@
 	<legend>{L_BLOCKS_CONFIGURE}</legend>
 	<dl>
 		<dt><strong>{L_PORTAL_VERSION}:</strong> </dt>
-		<dd>{S_PORTAL_VERSION}</dd>
+		<dd>
+			<!--<input class="post" size="10" maxlength="10" name="portal_version" value="{S_PORTAL_VERSION}" type="text" />-->
+			{S_PORTAL_VERSION}
+		</dd>
 	</dl>
 	<dl>
 		<dt><label for="portal_build">{L_PORTAL_BUILD}:</label><br /><span>{L_PORTAL_BUILD_EXPLAIN}</span></dt>
@@ -31,7 +34,10 @@
 		</dd>
 	</dl>
 </fieldset>
+
 <!-- ENDIF -->
+
+
 
 <!-- IF S_OPT == 'save'-->
 	<b>{L_CONFIG_SAVED}<br /></b>
