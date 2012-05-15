@@ -79,11 +79,11 @@ $versions = array(
 	// Version 1.0.0l
 	'1.0.0l' => array(
 	),
-	// Version 1.0.15
-	'1.0.0l' => array(
+	// Version 1.0.0m
+	'1.0.0m' => array(
 	),
 	// Version 1.0.0n
-	'1.0.0l' => array(
+	'1.0.0n' => array(
 	),
 	// Version 1.0.15
 	'1.0.15'	=> array(
