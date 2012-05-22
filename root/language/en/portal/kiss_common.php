@@ -49,8 +49,8 @@ $lang = array_merge($lang, array(
 	'ACP_FILE_BACKUP'		=> 'Backup files',
 	'ACP_MINI'			=> 'Admin',
 	'ACP_SMALL'			=> 'ACP',
-	'ACRO_1'			=> 'Stargate Portal (aka Kiss Portal), the original phpBB3 portal &copy; Michael Oâ€™Toole 2005-2011',
-	'ACRO_2'			=> 'Kiss Portal Engine (Stargate Portal without frills)... &copy; Michael Oâ€™Toole 2011',
+	'ACRO_1'			=> 'Stargate Portal (aka Kiss Portal), the original phpBB3 portal &copy; Michael O’Toole 2005-2011',
+	'ACRO_2'			=> 'Kiss Portal Engine (Stargate Portal without frills)... &copy; Michael O’Toole 2011',
 	'ACRO_3'			=> 'Probably the best forum software ever...',
 	'ADD_SMILIES'			=> 'Add smilies',
 	'ADVANCED_SEARCH'		=> 'Advanced Search',
@@ -138,7 +138,7 @@ $lang = array_merge($lang, array(
 	'DEV_VERSION'		=> 'Version (RC)',
 
 	'DISABLE_BBCODE'	=> 'Disable BBCode',
-	'DISABLE_MAGIC_URL'	=> 'Donâ€™t automatically parse URLs',
+	'DISABLE_MAGIC_URL'	=> 'Don’t automatically parse URLs',
 	'DISABLE_SMILIES'	=> 'Disable smilies',
 	'DONT_HAVE_ACCOUNT' 	=> 'We are a free and open<br />community, all are welcome.<br />',
 
@@ -276,7 +276,7 @@ $lang = array_merge($lang, array(
 	'PLURAL'		=> 'S',
 	'POSTED_BY'		=> 'Posted by',
 	'POST_COMMENTS'		=> 'Post Comments',
-	'POSTERS_COMMENT'	=> '%1$sâ€™s comments: %2$s.',
+	'POSTERS_COMMENT'	=> '%1$s’s comments: %2$s.',
 	'PORTAL_DEVELOPMENT'	=> 'Portal Development',
 	'PHP_SUPPORT_SITES' 	=> 'php Support Sites',
 	'PORTAL'		=> 'Portal',
@@ -347,7 +347,7 @@ $lang = array_merge($lang, array(
 
 	'SCROLLING_BLOCKS_DISABLED'	=> 'Scrolling blocks are disabled during the arrange blocks process',
 	'SELECT_STYLE_EXPLAINED'	=> '<br /><strong>Dropdown Legend</strong><br /><span class="green"><strong>Released</strong></span><br /><span class="orange"><strong>RC Style</strong></span><br /><span class="gray"><strong>Beta Style</strong></span><br /><span class="red"><strong>Alpha Style</strong></span><hr />',
-	'SGP_IN_DEVELOPMENT'		=> 'Stargate-Portalâ€™s youtube web-pages (in development)',
+	'SGP_IN_DEVELOPMENT'		=> 'Stargate-Portal’s youtube web-pages (in development)',
 	'SGP_IRC_POPUP'			=> 'Stargate Portal IRC Popup',
 	'SGP_REFRESH_ALL'		=> 'SGP Refresh All - version',
 	'SGP_TOOLS'			=> 'Stargate Tools',
