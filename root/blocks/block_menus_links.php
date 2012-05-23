@@ -94,7 +94,7 @@
 			$process_menu_item = false;
 		}
 
-		if(!$process_menu_item)
+		if (!$process_menu_item)
 		{
 			$grps = explode(",", $menu_view_groups);
 
@@ -131,7 +131,7 @@
 
 		if ($process_menu_item)
 		{
-			switch($portal_link_menus[$i]['extern'])
+			switch ($portal_link_menus[$i]['extern'])
 			{
 				case 1:
 					$link_option = 'rel="external"';

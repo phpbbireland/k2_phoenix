@@ -64,13 +64,13 @@
 
 	$portal_menus = array();
 
-	while( $row = $db->sql_fetchrow($result) )
+	while ($row = $db->sql_fetchrow($result))
 	{
 		$portal_menus[] = $row;
 	}
 	$db->sql_freeresult($result);
 
-	if(!function_exists('group_memberships'))
+	if (!function_exists('group_memberships'))
 	{
 		include($phpbb_root_path . 'includes/functions_user.'. $phpEx);
 	}
@@ -148,7 +148,7 @@
 
 			$is_sub_heading = ($portal_menus[$i]['sub_heading']) ? true : false;
 
-			switch($portal_menus[$i]['extern'])
+			switch ($portal_menus[$i]['extern'])
 			{
 				case 1:
 					//$link_option = ' target="_blank"'; // not xhtml

@@ -71,7 +71,7 @@ while ($row = $db->sql_fetchrow($result))
 	$group_img = str_replace(' ' , '_', $group_img);
 
 	// Use the code below to check for team images in the user style... If they don’t exist use default in ./image/teams //
-	if(file_exists($phpbb_root_path . 'styles/' . $user->theme['theme_path'] . '/theme/images/teams/' . $group_img . '.png'))
+	if (file_exists($phpbb_root_path . 'styles/' . $user->theme['theme_path'] . '/theme/images/teams/' . $group_img . '.png'))
 	{
 		$group_image_path = $phpbb_root_path . 'styles/' . $user->theme['theme_path'] . '/theme/images/teams/';
 	}
@@ -92,7 +92,7 @@ while ($row = $db->sql_fetchrow($result))
 	$group_name = mb_convert_case($group_name, MB_CASE_TITLE, "UTF-8");
 	$group_name	= str_replace('_' , ' ', $group_name);
 
-	if($store != $group_name)
+	if ($store != $group_name)
 	{
 		$change = true;
 		$team_count = 0;
@@ -103,7 +103,7 @@ while ($row = $db->sql_fetchrow($result))
 		$team_count = $team_count + 1;
 	}
 
-	if($team_count < $team_max_count || $team_max_count == 0)
+	if ($team_count < $team_max_count || $team_max_count == 0)
 	{
 		$template->assign_block_vars('loop', array(
 			'FIRST'				=> $i++,

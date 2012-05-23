@@ -33,7 +33,7 @@ if (!$result = $db->sql_query($sql))
 
 $result = $db->sql_query_limit($sql, $k_video_max, 0, $block_cache_time);
 
-while($row = $db->sql_fetchrow($result))
+while ($row = $db->sql_fetchrow($result))
 {
 	$unique = ($row['video_category'] == $last_cat) ? false : true;
 
@@ -42,7 +42,7 @@ while($row = $db->sql_fetchrow($result))
 		$row['video_rating'] = 0;
 	}
 
-	switch($row['video_rating'])
+	switch ($row['video_rating'])
 	{
 		case 0: $rating = '';
 		break;

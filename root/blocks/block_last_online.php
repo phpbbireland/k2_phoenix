@@ -63,7 +63,7 @@ if ($auth->acl_gets('u_viewprofile'))
 	$result = $db->sql_query_limit($sql, $k_last_online_max, 0, $block_cache_time);
 
 	$session_times = array();
-	while($row = $db->sql_fetchrow($result))
+	while ($row = $db->sql_fetchrow($result))
 	{
 		if (!$row['username'])
 		{

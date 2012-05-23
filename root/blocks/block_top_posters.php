@@ -48,7 +48,7 @@ $sql = 'SELECT user_id, username, user_posts, user_colour, user_type, group_id, 
 
 $result = $db->sql_query_limit($sql, $k_top_posters_to_display, 0, $block_cache_time);
 
-while($row = $db->sql_fetchrow($result))
+while ($row = $db->sql_fetchrow($result))
 {
     if (!$row['username'])
     {
@@ -69,4 +69,5 @@ while($row = $db->sql_fetchrow($result))
 	));
 }
 $db->sql_freeresult($result);
+
 ?>
