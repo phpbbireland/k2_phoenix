@@ -94,7 +94,7 @@ class acp_k_vars
 
 		$result = $db->sql_query($sql);
 
-		while($row = $db->sql_fetchrow($result))
+		while ($row = $db->sql_fetchrow($result))
 		{
 			$k_config[$row['config_name']] = $row['config_value'];
 
@@ -165,7 +165,7 @@ class acp_k_vars
 					$k_max_block_avatar_height = $config['avatar_max_height'];
 				}
 
-				switch($k_announce_type)
+				switch ($k_announce_type)
 				{
 					case 2:  $k_announce_type = POST_ANNOUNCE;
 					break;
@@ -176,7 +176,7 @@ class acp_k_vars
 					default: $k_announce_type = 0;
 					break;
 				}
-				switch($k_news_type)
+				switch ($k_news_type)
 				{
 					case 4:  $k_news_type = POST_NEWS;
 					break;

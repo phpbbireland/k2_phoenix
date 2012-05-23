@@ -60,7 +60,7 @@ class ucp_k_blocks
 
 		$reset_blocks = request_var('reset_blocks', false);
 
-		switch($mode)
+		switch ($mode)
 		{
 			case 'arrange':
 				$template->assign_vars(array(
@@ -146,7 +146,7 @@ class ucp_k_blocks
 
 			if ($mode == 'delete')
 			{
-				if($reset_blocks)
+				if ($reset_blocks)
 				{
 					$sql = "UPDATE " . USERS_TABLE . "
 						SET user_left_blocks = '', user_center_blocks = '', user_right_blocks = ''
@@ -221,7 +221,7 @@ function get_default_block_layout($id)
 				{
 //					$count = count($row['view_pages']);
 
-					if(strpos($existing['user_left_blocks'], $row['id']))
+					if (strpos($existing['user_left_blocks'], $row['id']))
 					{
 						$dataleft .= $row['id'] . ',';
 					}
@@ -234,7 +234,7 @@ function get_default_block_layout($id)
 				}
 				else if ($row['position'] == 'C')
 				{
-					if(!strpos($existing['user_center_blocks'], $row['id']))
+					if (!strpos($existing['user_center_blocks'], $row['id']))
 					{
 						$datacenter .= '<strong>';
 						$datacenter .= $row['id'];
@@ -247,7 +247,7 @@ function get_default_block_layout($id)
 				}
 				else if ($row['position'] == 'R')
 				{
-					if(!strpos($existing['user_right_blocks'], $row['id']))
+					if (!strpos($existing['user_right_blocks'], $row['id']))
 					{
 						$dataright .= '<strong>';
 						$dataright .= $row['id'];

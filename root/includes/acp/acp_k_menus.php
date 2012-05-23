@@ -148,7 +148,7 @@ class acp_k_menus
 
 					$cache->destroy('sql', K_MENUS_TABLE);
 
-					switch($menu_type)
+					switch ($menu_type)
 					{
 						case 1: $mode = 'nav';
 						break;
@@ -540,8 +540,7 @@ function get_menu_item($item)
 		'S_MENU_EXTERN'     => $row['extern'],
 		'S_SOFT_HR'         => $row['soft_hr'],
 		'S_SUB_HEADING'     => $row['sub_heading'],
-		)
-	);
+		));
 	$db->sql_freeresult($result);
 }
 

@@ -333,7 +333,7 @@ if (!function_exists('get_user_data'))
 		$row = $db->sql_fetchrow($result);
 		$db->sql_freeresult($result);
 
-		switch($what)
+		switch ($what)
 		{
 			case 'name':
 				return($row['username']);

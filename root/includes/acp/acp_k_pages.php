@@ -57,7 +57,7 @@ class acp_k_pages
 			$mode = 'add';
 		}
 
-		switch($action)
+		switch ($action)
 		{
 			case 'config':
 				$template->assign_var('MESSAGE', $user->lang['SWITCHING']);
@@ -146,7 +146,7 @@ class acp_k_pages
 
 					$sql_array = array(
 						'page_name'	=> $tag_id,
-                    );
+					);
 
 		           $db->sql_query('INSERT INTO ' . K_PAGES_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_array));
 
