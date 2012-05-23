@@ -64,7 +64,7 @@ if ($user->data['is_registered'] && $auth->acl_get('a_') && $user->data['user_ty
 		$no_exeptions = false;
 	}
 
-	while($template_row = $db->sql_fetchrow($result))
+	while ($template_row = $db->sql_fetchrow($result))
 	{
 		$template_refreshed = '';
 
@@ -132,7 +132,7 @@ if ($user->data['is_registered'] && $auth->acl_get('a_') && $user->data['user_ty
 		$no_exeptions = false;
 	}
 
-	while($theme_row = $db->sql_fetchrow($result))
+	while ($theme_row = $db->sql_fetchrow($result))
 	{
 		if (!$theme_row['theme_storedb'])
 		{

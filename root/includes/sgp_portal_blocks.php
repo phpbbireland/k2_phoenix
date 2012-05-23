@@ -96,7 +96,7 @@ else
 }
 
 // Process block positions for members only //
-if($row['group_id'] != ANONYMOUS)
+if ($row['group_id'] != ANONYMOUS)
 {
 	if (isset($_COOKIE[$config['cookie_name'] . '_sgp_left']) || isset($_COOKIE[$config['cookie_name'] . '_sgp_center']) || isset($_COOKIE[$config['cookie_name'] . '_sgp_right']) && $use_block_cookies)
 	{
@@ -116,7 +116,7 @@ if($row['group_id'] != ANONYMOUS)
 		$RBA = explode(',', $right);
 
 		// store cookie data (block positions in user table)
-		if(!empty($left))
+		if (!empty($left))
 		{
 			$sql = 'UPDATE ' . USERS_TABLE . '
 				SET user_left_blocks = ' . "'" . $db->sql_escape($left) . "'" . ', user_center_blocks = ' . "'" . $db->sql_escape($center) . "'" . ', user_right_blocks = ' . "'" . $db->sql_escape($right) . "'" . '
@@ -177,7 +177,7 @@ foreach ($active_blocks as $active_block)
 	{
 		$page_id = get_page_id($this_page_name);
 
-		if(in_array($page_id, $arr[$active_block['id']]))
+		if (in_array($page_id, $arr[$active_block['id']]))
 		{
 			include($phpbb_root_path . 'blocks/' . $filename . '.' . $phpEx);
 		}
@@ -185,7 +185,7 @@ foreach ($active_blocks as $active_block)
 }
 $db->sql_freeresult($result);
 
-if(!function_exists('group_memberships'))
+if (!function_exists('group_memberships'))
 {
 	include($phpbb_root_path . 'includes/functions_user.'. $phpEx);
 }
@@ -258,9 +258,9 @@ if ($active_blocks)
 
 		$page_id = get_page_id($this_page_name);
 
-		if($process_block && in_array($page_id, $arr))
+		if ($process_block && in_array($page_id, $arr))
 		{
-			switch($block_position)
+			switch ($block_position)
 			{
 				case 'L':
 						$left_block_ary[$L]    = $html_file_name;
@@ -349,7 +349,7 @@ if (isset($center_block_ary) && $show_center)
 		$my_file_wide = "{$phpbb_root_path}styles/" . $user->theme['template_path'] . '/template/blocks/' . $value;
 		$my_file_wide = str_replace('.html', '_wide.html', $my_file_wide);
 
-		if(file_exists($my_file_wide))
+		if (file_exists($my_file_wide))
 		{
 			$value = str_replace('.html', '_wide.html', $value);
 		}
@@ -357,7 +357,7 @@ if (isset($center_block_ary) && $show_center)
 		{
 			$my_file_wide = "{$phpbb_root_path}styles/_portal_common/template/blocks/" . $value;
 			$my_file_wide = str_replace('.html', '_wide.html', $my_file_wide);
-			if(file_exists($my_file_wide))
+			if (file_exists($my_file_wide))
 			{
 				$value = str_replace('.html', '_wide.html', $value);
 			}
@@ -417,7 +417,7 @@ if ($this_page[0] == 'viewtopic')
 
 	include($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
 
-	if(!function_exists('get_user_avatar'))
+	if (!function_exists('get_user_avatar'))
 	{
 		include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 	}

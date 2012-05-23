@@ -808,7 +808,7 @@ if (STARGATE)
 			'SUBJECT'				=> 'Re: ' . censor_text($topic_data['topic_title']),
 		));]]></find>
 <action type="after-add"><![CDATA[
-		if(STARGATE)
+		if (STARGATE)
 		{
 			$template->assign_vars(array(
 				'S_K_QUICK_REPLY'		=> ($s_quick_reply and $k_config['k_quick_reply']) ? true : false,
@@ -1316,7 +1316,7 @@ if (!function_exists('bbcode_strip'))
 		}
 		$message = preg_replace($RegEx, ' ', $text );
 
-		if($length > 1)
+		if ($length > 1)
 		{
 			$message = sgp_truncate_message($length);
 		}
@@ -1501,7 +1501,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 		$max_width = $k_config['k_max_block_avatar_width'];
 		$max_height = $k_config['k_max_block_avatar_height'];
 
-		while($avatar_width > $max_width || $avatar_height > $max_height)
+		while ($avatar_width > $max_width || $avatar_height > $max_height)
 		{
 			$avatar_width = $avatar_width - 10;
 			$avatar_height = $avatar_height - 10;
@@ -1617,7 +1617,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 			$store = $missing_file = $this->template->files[$handle];
 
 			// allow for phpBB inheritance //
-			if($user->theme['template_inherits_id'])
+			if ($user->theme['template_inherits_id'])
 			{
 				$style_folder = $user->theme['template_inherit_path'];
 			}
@@ -1646,7 +1646,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <find><![CDATA[		$this->add_lang($lang_set);
 		unset($lang_set);]]></find>
 <action type="after-add"><![CDATA[
-		if(STARGATE)
+		if (STARGATE)
 		{
 			$this->add_lang('portal/kiss_common');
 		}]]></action>
@@ -1688,7 +1688,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 				// Start mod list forum_images Michaelo copyright 2007 phpbbireland.com //
 				$dirslist=' ';
 
-				if(!file_exists('./../images/forum_icons'))
+				if (!file_exists('./../images/forum_icons'))
 				{
 					trigger_error(sprintf($user->lang['MISSING_FILE_OR_FOLDER'], $file));
 				}

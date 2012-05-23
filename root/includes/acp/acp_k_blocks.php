@@ -125,7 +125,7 @@ class acp_k_blocks
 					ORDER BY ndx";
 				$result = $db->sql_query($sql);
 
-				while($row = $db->sql_fetchrow($result))
+				while ($row = $db->sql_fetchrow($result))
 				{
 					$ids[] = (int)$row['id'];
 					$ndxs[] = (int)$row['ndx'];
@@ -793,7 +793,7 @@ class acp_k_blocks
 
 					if ($result = $db->sql_query($sql))
 					{
-						while($row = $db->sql_fetchrow($result))
+						while ($row = $db->sql_fetchrow($result))
 						{
 							$thispos = $row['position'];
 							if ($thispos == $newpos)

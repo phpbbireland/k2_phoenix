@@ -127,7 +127,7 @@ if (!function_exists('correct_truncate_length'))
 		for ($i = 0; $i < $len; $i++)
 		{
 			// not nestled?
-			if($txt[$i] == '<' && $txt[$i + 5] == 's' && $txt[$i + 6] == ':')
+			if ($txt[$i] == '<' && $txt[$i + 5] == 's' && $txt[$i + 6] == ':')
 			{
 				$smile_start = $i;
 				while ($txt[$i] != '>' && $i < $len)
@@ -136,30 +136,30 @@ if (!function_exists('correct_truncate_length'))
 				}
 				$smile_end = $i;
 
-				if($smile_start < $truncate && $smile_end < $truncate) // || $smile_start > $truncate)
+				if ($smile_start < $truncate && $smile_end < $truncate) // || $smile_start > $truncate)
 				{
 					$return_val = $truncate;
 
 				}
-				if($smile_start < $truncate && $smile_end > $truncate)
+				if ($smile_start < $truncate && $smile_end > $truncate)
 				{
 					$return_val = $smile_end;
 				}
 			}
 
 			// find bbcodes & make sure we have enought characters left to check after tag //
-			if($i + 9 < $len)
+			if ($i + 9 < $len)
 			{
-				if($txt[$i] == ':' && $txt[$i + 9] == ']')
+				if ($txt[$i] == ':' && $txt[$i + 9] == ']')
 				{
 					$opening_tag_string = '';
 
-					while($txt[$i] != '[')
+					while ($txt[$i] != '[')
 					{
 						$i--;
 
 						// belt and braces //
-						if($i == 1)
+						if ($i == 1)
 						{
 							break;
 						}
@@ -168,11 +168,11 @@ if (!function_exists('correct_truncate_length'))
 					$tag_start[$ts++] = $i;
 					$uid_start = $i;
 
-					while($txt[$i] != ']')
+					while ($txt[$i] != ']')
 					{
-						if($txt[$i] == '=')
+						if ($txt[$i] == '=')
 						{
-							while($txt[$i] != ':')
+							while ($txt[$i] != ':')
 							{
 								$i++;
 							}
@@ -184,12 +184,12 @@ if (!function_exists('correct_truncate_length'))
 					$tag_data[$td] = $opening_tag_string;
 					$td++;
 
-					while($i < $len)
+					while ($i < $len)
 					{
-						if($txt[$i] == '[' && $txt[$i+1] == '/')
+						if ($txt[$i] == '[' && $txt[$i+1] == '/')
 						{
 							$closing_tag_string = '';
-							while($txt[$i] != ']' && $i < $len)
+							while ($txt[$i] != ']' && $i < $len)
 							{
 								$i++;
 							}
@@ -198,14 +198,14 @@ if (!function_exists('correct_truncate_length'))
 
 							// grab end tag
 							// loop back to get the actual start [ //
-							while($txt[$i] != '[')
+							while ($txt[$i] != '[')
 							{
 								$i--;
 							}
 							// grab closing tag
-							while($txt[$i] != ']')
+							while ($txt[$i] != ']')
 							{
-								if($txt[$i] == '/')
+								if ($txt[$i] == '/')
 								{
 									$i++;
 								}
@@ -213,7 +213,7 @@ if (!function_exists('correct_truncate_length'))
 							}
 							$closing_tag_string .= $txt[$i++];
 
-							if(strpos($tag_data[$ts-1], $closing_tag_string) !== false)
+							if (strpos($tag_data[$ts-1], $closing_tag_string) !== false)
 							{
 								break;
 							}
@@ -222,12 +222,12 @@ if (!function_exists('correct_truncate_length'))
 					}
 					$i++;
 
-					if($uid_start < $truncate && $uid_end < $truncate)
+					if ($uid_start < $truncate && $uid_end < $truncate)
 					{
 						$return_val = $truncate;
 					}
 
-					if($uid_start < $truncate && $uid_end > $truncate)
+					if ($uid_start < $truncate && $uid_end > $truncate)
 					{
 						$return_val = $uid_end;
 					}

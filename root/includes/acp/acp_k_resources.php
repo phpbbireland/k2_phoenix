@@ -54,7 +54,7 @@ class acp_k_resources
 
 		$id_list = (( isset($_POST['id_list']) ) ? request_var('id_list', array(0)) : ( (isset($_GET['id_list'])) ? request_var('id_list', array(0)) : array()));
 
-		switch($action)
+		switch ($action)
 		{
 			case 'add':
 
