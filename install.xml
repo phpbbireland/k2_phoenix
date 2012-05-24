@@ -1202,7 +1202,7 @@ define('K_ACRONYMS_TABLE',			$table_prefix . 'k_acronyms');]]></action>
 	{
 		global $user, $queries, $cached_queries, $total_queries;
 
-		if(!function_exists('get_user_avatar'))
+		if (!function_exists('get_user_avatar'))
 		{
 			include($phpbb_root_path . 'includes/functions_display.'. $phpEx);
 		}
@@ -1489,7 +1489,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <edit>
 <find><![CDATA[	$avatar_img .= $avatar;]]></find>
 <action type="after-add"><![CDATA[
-	if(STARGATE && $ignore_config)
+	if (STARGATE && $ignore_config)
 	{
 		global $k_config;
 
