@@ -67,7 +67,7 @@
 			<th>{L_MENU_LINK}</th>
 			<th>{L_MENU_EXTERN_SHORT}</th>
 			<th>{L_MENU_VIEW_BY_SHORT}</th>
-			<th style="text-align:center">{L_OPTIONS}</th>
+			<th style="text-align:center;">{L_OPTIONS}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -92,7 +92,7 @@
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"><!-- IF not mdata.S_SUB_HEADING --><!-- IF mdata.S_MENU_EXTERN == '0' -->{L_NO}<!-- ELSEIF mdata.S_MENU_EXTERN == '1' -->{L_YES}<!-- ELSEIF mdata.S_MENU_EXTERN == '2' -->{L_YES}<!-- ENDIF --><!-- ENDIF --></td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"><!-- IF mdata.S_VIEW_ALL -->{L_ALL_GROUPS}<!-- ELSEIF mdata.S_VIEW_GROUPS -->{mdata.S_VIEW_GROUPS}<!-- ELSE -->{L_DISABLED}<!-- ENDIF --></td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"  align="center">
-			<div style="text-align:center">
+			<div style="text-align:center;">
 			<!-- IF mdata.S_FIRST_ROW && not mdata.S_LAST_ROW -->
 				{ICON_MOVE_UP_DISABLED}
 				<a href="{mdata.U_DOWN}"><img src="images/icon_down.gif" alt="" /></a>
