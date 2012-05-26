@@ -948,7 +948,7 @@ if (STARGATE)
 					$k_blocks[$row['id']]['title']			= $row['title'];
 					$k_blocks[$row['id']]['position']		= $row['position'];
 					$k_blocks[$row['id']]['type']			= $row['type'];
-					$k_blocks[$row['id']]['view_by']		= $row['view_by'];
+					$k_blocks[$row['id']]['view_groups']		= $row['view_groups'];
 					$k_blocks[$row['id']]['scroll']			= $row['scroll'];
 					$k_blocks[$row['id']]['block_height']	= $row['block_height'];
 					$k_blocks[$row['id']]['html_file_name']	= $row['html_file_name'];
@@ -978,7 +978,7 @@ if (STARGATE)
 					$k_cached_blocks[$row['id']]['position']		= $row['position'];
 					$k_cached_blocks[$row['id']]['active']			= $row['active'];
 					$k_cached_blocks[$row['id']]['type']			= $row['type'];
-					$k_cached_blocks[$row['id']]['view_by']			= $row['view_by'];
+					$k_cached_blocks[$row['id']]['view_groups']			= $row['view_groups'];
 					$k_cached_blocks[$row['id']]['scroll']			= $row['scroll'];
 					$k_cached_blocks[$row['id']]['block_height']	= $row['block_height'];
 					$k_cached_blocks[$row['id']]['html_file_name']	= $row['html_file_name'];
@@ -990,7 +990,7 @@ if (STARGATE)
 				$k_blocks[$row['id']]['title']			= $row['title'];
 				$k_blocks[$row['id']]['position']		= $row['position'];
 				$k_blocks[$row['id']]['type']			= $row['type'];
-				$k_blocks[$row['id']]['view_by']		= $row['view_by'];
+				$k_blocks[$row['id']]['view_groups']		= $row['view_groups'];
 				$k_blocks[$row['id']]['scroll']			= $row['scroll'];
 				$k_blocks[$row['id']]['block_height']	= $row['block_height'];
 				$k_blocks[$row['id']]['html_file_name']	= $row['html_file_name'];
