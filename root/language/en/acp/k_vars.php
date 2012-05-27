@@ -4,7 +4,7 @@
 * @package Kiss Portal Engine (acp_k_vars) (English)
 *
 * @package language
-* @version $Id:$ 1.0.0m
+* @version $Id:$ 1.0.15
 * @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -211,7 +211,7 @@ $lang = array_merge($lang, array(
 	'MEMBERS'          => 'Members',
 	'PORTAL'           => 'Portal',
 	'RATINGS'          => 'Latest Ratings',
-	'RULES'            => 'Portal Rules',
+	'RULES'            => 'Site Rules',
 	'SITE_NAVIGATOR'   => 'Navigator',
 	'STATISTICS'       => 'Statistics',
 	'SITE_RULES'       => 'Site Rules',
