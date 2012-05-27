@@ -68,7 +68,7 @@
 	}
 	$db->sql_freeresult($result);
 
-	if(!function_exists('group_memberships'))
+	if (!function_exists('group_memberships'))
 	{
 		include($phpbb_root_path . 'includes/functions_user.'. $phpEx);
 	}
@@ -97,7 +97,7 @@
 			$process_menu_item = false;
 		}
 
-		if(!$process_menu_item)
+		if (!$process_menu_item)
 		{
 			$grps = explode(",", $menu_view_groups);
 
@@ -141,7 +141,7 @@
 
 		if ($process_menu_item)
 		{
-			switch($portal_sub_menus[$i]['extern'])
+			switch ($portal_sub_menus[$i]['extern'])
 			{
 				case 1:
 					$link_option = 'rel="external"';
@@ -162,7 +162,7 @@
 			}
 			else
 			{
-				if($portal_sub_menus[$i]['append_sid'])
+				if ($portal_sub_menus[$i]['append_sid'])
 				{
 					$link = ($portal_sub_menus[$i]['link_to']) ? append_sid("{$phpbb_root_path}{$portal_sub_menus[$i]['link_to']}", '', '', $user->session_id) : '';
 				}

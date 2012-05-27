@@ -948,7 +948,7 @@ if (STARGATE)
 					$k_blocks[$row['id']]['title']			= $row['title'];
 					$k_blocks[$row['id']]['position']		= $row['position'];
 					$k_blocks[$row['id']]['type']			= $row['type'];
-					$k_blocks[$row['id']]['view_by']		= $row['view_by'];
+					$k_blocks[$row['id']]['view_groups']		= $row['view_groups'];
 					$k_blocks[$row['id']]['scroll']			= $row['scroll'];
 					$k_blocks[$row['id']]['block_height']	= $row['block_height'];
 					$k_blocks[$row['id']]['html_file_name']	= $row['html_file_name'];
@@ -978,7 +978,7 @@ if (STARGATE)
 					$k_cached_blocks[$row['id']]['position']		= $row['position'];
 					$k_cached_blocks[$row['id']]['active']			= $row['active'];
 					$k_cached_blocks[$row['id']]['type']			= $row['type'];
-					$k_cached_blocks[$row['id']]['view_by']			= $row['view_by'];
+					$k_cached_blocks[$row['id']]['view_groups']			= $row['view_groups'];
 					$k_cached_blocks[$row['id']]['scroll']			= $row['scroll'];
 					$k_cached_blocks[$row['id']]['block_height']	= $row['block_height'];
 					$k_cached_blocks[$row['id']]['html_file_name']	= $row['html_file_name'];
@@ -990,7 +990,7 @@ if (STARGATE)
 				$k_blocks[$row['id']]['title']			= $row['title'];
 				$k_blocks[$row['id']]['position']		= $row['position'];
 				$k_blocks[$row['id']]['type']			= $row['type'];
-				$k_blocks[$row['id']]['view_by']		= $row['view_by'];
+				$k_blocks[$row['id']]['view_groups']		= $row['view_groups'];
 				$k_blocks[$row['id']]['scroll']			= $row['scroll'];
 				$k_blocks[$row['id']]['block_height']	= $row['block_height'];
 				$k_blocks[$row['id']]['html_file_name']	= $row['html_file_name'];
@@ -1202,7 +1202,7 @@ define('K_ACRONYMS_TABLE',			$table_prefix . 'k_acronyms');]]></action>
 	{
 		global $user, $queries, $cached_queries, $total_queries;
 
-		if(!function_exists('get_user_avatar'))
+		if (!function_exists('get_user_avatar'))
 		{
 			include($phpbb_root_path . 'includes/functions_display.'. $phpEx);
 		}
@@ -1489,7 +1489,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <edit>
 <find><![CDATA[	$avatar_img .= $avatar;]]></find>
 <action type="after-add"><![CDATA[
-	if(STARGATE && $ignore_config)
+	if (STARGATE && $ignore_config)
 	{
 		global $k_config;
 

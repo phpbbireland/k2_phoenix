@@ -53,7 +53,7 @@ $sql = 'SELECT topic_id, topic_title, topic_replies, forum_id
 
 $result = $db->sql_query_limit($sql, $k_top_topics_max, 0, $block_cache_time);
 
-while($row = $db->sql_fetchrow($result))
+while ($row = $db->sql_fetchrow($result))
 {
 
     if (!$row['topic_title'])

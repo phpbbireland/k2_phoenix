@@ -44,7 +44,7 @@
 	// retrieve portal config variables
 	$k_links_to_display = $k_config['k_links_to_display'];
 
-	if($k_links_to_display > 0 && $k_links_to_display < 6)
+	if ($k_links_to_display > 0 && $k_links_to_display < 6)
 	{
 		$show_all_links = false;
 	}

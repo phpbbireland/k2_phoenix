@@ -122,9 +122,9 @@
 			<th>{L_BLOCK_TITLE}</th>
 			<th>{L_BLOCK_POSITION}</th>
 			<th>{L_BLOCK_FNAME_H}</th>
-			<th><div style="text-align:center">{L_BLOCK_FNAME_I}</div></th>
-			<th><div style="text-align:center">{L_BLOCK_VIEW_BY_SHORT}</div></th>
-			<th><div style="text-align:center">{L_OPTIONS}</div></th>
+			<th><div style="text-align:center;">{L_BLOCK_FNAME_I}</div></th>
+			<th><div style="text-align:center;">{L_BLOCK_VIEW_BY_SHORT}</div></th>
+			<th><div style="text-align:center;">{L_OPTIONS}</div></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -142,10 +142,10 @@
 				<!-- IF bdata.S_POSITION === "r" -->{L_RIGHT_OF_CENTRE}<!-- ENDIF -->
 			</td>
 			<td align="left" class="<!-- IF bdata.S_POSITION == 'L' -->row4<!-- ELSEIF bdata.S_POSITION == 'C' -->row5<!-- ELSE -->row6<!-- ENDIF -->" > {bdata.S_FNAME_H}</td>
-			<td class="<!-- IF bdata.S_POSITION == 'L' -->row4<!-- ELSEIF bdata.S_POSITION == 'C' -->row5<!-- ELSE -->row6<!-- ENDIF -->"><div style="text-align:center"><img src="./../images/block_images/block/{bdata.S_FNAME_I}" alt="" /></div></td>
-			<td class="<!-- IF bdata.S_POSITION == 'L' -->row4<!-- ELSEIF bdata.S_POSITION == 'C' -->row5<!-- ELSE -->row6<!-- ENDIF -->" ><div style="text-align:center"><!-- IF bdata.S_VIEW_ALL -->{L_ALL_GROUPS}<!-- ELSEIF bdata.S_VIEW_GROUPS -->{bdata.S_VIEW_GROUPS}<!-- ELSE -->{L_DISABLED}<!-- ENDIF --></div></td>
+			<td class="<!-- IF bdata.S_POSITION == 'L' -->row4<!-- ELSEIF bdata.S_POSITION == 'C' -->row5<!-- ELSE -->row6<!-- ENDIF -->"><div style="text-align:center;"><img src="./../images/block_images/block/{bdata.S_FNAME_I}" alt="" /></div></td>
+			<td class="<!-- IF bdata.S_POSITION == 'L' -->row4<!-- ELSEIF bdata.S_POSITION == 'C' -->row5<!-- ELSE -->row6<!-- ENDIF -->" ><div style="text-align:center;"><!-- IF bdata.S_VIEW_ALL -->{L_ALL_GROUPS}<!-- ELSEIF bdata.S_VIEW_GROUPS -->{bdata.S_VIEW_GROUPS}<!-- ELSE -->{L_DISABLED}<!-- ENDIF --></div></td>
 			<td align="center" class="<!-- IF bdata.S_POSITION == 'L' -->row4<!-- ELSEIF bdata.S_POSITION == 'C' -->row5<!-- ELSE -->row6<!-- ENDIF -->" colspan="5">
-				<div style="text-align:center">
+				<div style="text-align:center;">
 					<!-- IF bdata.S_FIRST_ROW or bdata.S_NDX == '1' -->
 						{ICON_MOVE_UP_DISABLED}
 						<a href="{bdata.U_DOWN}"><img src="images/icon_down.gif" title="{L_MOVE_DOWN}" alt="{L_BLOCK_DOWN}" /></a>
@@ -274,7 +274,7 @@
 		<dt><label for="view_page_id[]">{L_VIEW_PAGE2}</label><br />{L_VIEW_PAGE_EXPLAIN2}</dt>
 		<dd>
 			<!-- BEGIN pages -->
-				<input type="checkbox" style="cursor:pointer" name="view_page_id[]" id="view_page_id[]" value="{pages.PAGE_ID}" <!-- IF pages.IS_CHECKED -->checked="checked" <!-- ENDIF --> /> ({pages.PAGE_ID}) {pages.PAGE_NAME} <br />
+				<input type="checkbox" style="cursor:pointer;" name="view_page_id[]" id="view_page_id[]" value="{pages.PAGE_ID}" <!-- IF pages.IS_CHECKED -->checked="checked" <!-- ENDIF --> /> ({pages.PAGE_ID}) {pages.PAGE_NAME} <br />
 				<!-- IF pages.PAGE_ID == 11 || pages.PAGE_ID == 21 --><hr/><!-- ENDIF -->
 			<!-- END pages -->
 		</dd>
@@ -319,7 +319,7 @@
 			<label><input onclick="ShowHide('vars');" type="radio" <!-- IF not S_HAS_VARS -->id="has_vars"<!-- ENDIF --> name="has_vars" value="0" <!-- IF not S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
-	<div style="display:<!-- IF not S_HAS_VARS -->none<!-- ELSE -->block<!-- ENDIF -->" id="vars">
+	<div style="display:<!-- IF not S_HAS_VARS -->none<!-- ELSE -->block<!-- ENDIF -->;" id="vars">
  	<dl>
 		<dt>{L_BLOCK_VAR_FILE}:{L_BLOCK_VAR_FILE_EXPLAIN}</dt>
 		<dd>
@@ -452,7 +452,7 @@
 		<dt><label for="view_page_id[]">{L_VIEW_PAGE2}</label><br />{L_VIEW_PAGE_EXPLAIN2}</dt>
 		<dd>
 			<!-- BEGIN pages -->
-				<input type="checkbox" style="cursor:pointer" name="view_page_id[]" id="view_page_id[]" value="{pages.PAGE_ID}" <!-- IF pages.IS_CHECKED -->checked="checked" <!-- ENDIF --> /> ({pages.PAGE_ID}) {pages.PAGE_NAME} <br />
+				<input type="checkbox" style="cursor:pointer;" name="view_page_id[]" id="view_page_id[]" value="{pages.PAGE_ID}" <!-- IF pages.IS_CHECKED -->checked="checked" <!-- ENDIF --> /> ({pages.PAGE_ID}) {pages.PAGE_NAME} <br />
 				<!-- IF pages.PAGE_ID == 11 || pages.PAGE_ID == 21 --><hr/><!-- ENDIF -->
 			<!-- END pages -->
 		</dd>
@@ -473,7 +473,7 @@
 			<label><input onclick="ShowHide('vars');" type="radio" <!-- IF not S_HAS_VARS -->id="has_vars"<!-- ENDIF --> name="has_vars" value="0" <!-- IF not S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
-	<div style="display:<!-- IF not S_HAS_VARS -->none<!-- ELSE -->block<!-- ENDIF -->" id="vars">
+	<div style="display:<!-- IF not S_HAS_VARS -->none<!-- ELSE -->block<!-- ENDIF -->;" id="vars">
  	<dl>
 		<dt>{L_BLOCK_VAR_FILE}:{L_BLOCK_VAR_FILE_EXPLAIN}</dt>
 		<dd>

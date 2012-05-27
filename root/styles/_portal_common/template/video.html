@@ -1,9 +1,9 @@
 <div class="wrapper">
 	<!-- BEGIN video_loop_row -->
 	<div id="_{video_loop_row.VIDEO_LINK}" class="mini-panel sections" style="width: 420px; text-align:center; margin: 0 auto; padding-top:1px;">
-		<div class="tleft bg2" style="display:none; width:auto; text-align:center" id="{video_loop_row.VIDEO_LINK}">
+		<div class="tleft bg2" style="display:none; width:auto; text-align:center;" id="{video_loop_row.VIDEO_LINK}">
 			<div id="vid_{video_loop_row.VIDEO_LINK}" style="margin: 0 auto; padding:8px;">
-				<object type="application/x-shockwave-flash" style="width:416px; height:337px" data="http://www.youtube.com/{VIDEO_PATH}{video_loop_row.VIDEO_LINK}{S_AUTOPLAY}">
+				<object type="application/x-shockwave-flash" style="width:416px; height:337px;" data="http://www.youtube.com/{VIDEO_PATH}{video_loop_row.VIDEO_LINK}{S_AUTOPLAY}">
 					<param name="movie" value="{VIDEO_PATH}{video_loop_row.VIDEO_LINK}" />
 				</object>
 			</div><a href="javascript:ShowHide('_{video_loop_row.VIDEO_LINK}');"><img style="float:right;" src="js/highslide/graphics/close.png" title="{L_CLOSE_VIDEO}" alt="" /></a>
@@ -44,7 +44,7 @@
 			<span class="tleft bg2" style="width:22%; padding:1px; padding-top:6px;">{video_loop_row.VIDEO_CAT}</span>
 			<span class="tleft bg2" style="width:22%; padding:1px; padding-top:6px;">{video_loop_row.VIDEO_POSTER}</span>
 			<span class="tleft bg2" style="width: 6%; padding:1px; padding-top:6px;">{video_loop_row.VIDEO_RATING}</span>
-			<span class="tleft bg2 ximg" style="width: auto; height: 15px; padding:1px; text-align:right">
+			<span class="tleft bg2 ximg" style="width: auto; height: 15px; padding:1px; text-align:right;">
 				<a href="javascript: ShowHide('{video_loop_row.VIDEO_LINK}'); ShowHide('image_hide');" title="{video_loop_row.VIDEO_WHO}: {video_loop_row.VIDEO_TITLE}">
 					<img src="http://img.youtube.com/vi/{video_loop_row.VIDEO_LINK}/default.jpg" alt="" width="15" height="15" />
 				</a>
@@ -72,7 +72,7 @@
 			<span class="tleft bg1" style="width:22%; padding:1px; padding-top:6px;">{video_loop_row.VIDEO_CAT}</span>
 			<span class="tleft bg1" style="width:22%; padding:1px; padding-top:6px;">{video_loop_row.VIDEO_POSTER}</span>
 			<span class="tleft bg1" style="width: 6%; padding:1px; padding-top:6px;">{video_loop_row.VIDEO_RATING} </span>
-			<span class="tleft bg1 ximg" style="width: auto; height: 15px; padding:1px; text-align:right">
+			<span class="tleft bg1 ximg" style="width: auto; height: 15px; padding:1px; text-align:right;">
 				<a href="javascript: ShowHide('{video_loop_row.VIDEO_LINK}'); ShowHide('image_hide');" title="{video_loop_row.VIDEO_WHO}: {video_loop_row.VIDEO_TITLE}">
 					<img src="http://img.youtube.com/vi/{video_loop_row.VIDEO_LINK}/default.jpg" alt="" width="15" height="15" />
 				</a>
@@ -98,7 +98,7 @@
 	<div class="mini-panel sections" style="width: 420px; text-align:center; margin: 0 auto; padding-top:8px;">
 	</div>
 
-	<div style="text-align:center"><!-- IF S_AUTOPLAY -->{L_AUTOPLAY_ON}<!-- ELSE -->{L_AUTOPLAY_OFF}<!-- ENDIF --> {video_loop_row.L_YOUTUBE_LIMIT}</div>
+	<div style="text-align:center;"><!-- IF S_AUTOPLAY -->{L_AUTOPLAY_ON}<!-- ELSE -->{L_AUTOPLAY_OFF}<!-- ENDIF --> {video_loop_row.L_YOUTUBE_LIMIT}</div>
 
 </div>
 <!-- IDTAG block_web_utube ends 11 November 2009 -->
