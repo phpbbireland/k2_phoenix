@@ -1962,7 +1962,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <find><![CDATA[				<dt<!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="{topicrow.TOPIC_FOLDER_IMG_ALT}"><!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>]]></find>
 <inline-edit>
 <inline-find><![CDATA[<a href="{topicrow.U_VIEW_TOPIC}"]]></inline-find>
-<inline-action type="after-add"><![CDATA[ <!-- IF STARGATE -->title="{topicrow.TOOLTIP}"<!-- ENDIF --> ]]></inline-action>
+<inline-action type="after-add"><![CDATA[ <!-- IF STARGATE -->title="{topicrow.TOOLTIP}"<!-- ENDIF -->]]></inline-action>
 </inline-edit>
 </edit>
 </open>
