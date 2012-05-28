@@ -11,7 +11,7 @@
 *        this is part of the Stargate Portal copyright agreement...
 *
 * @version $Id: sgp_refresh.php 315 2009-01-10 05:43:06Z nexur $
-* Updated: SGP Refres ALL
+* Updated: SGP Refresh ALL
 * A rework of Stu's remove calendar mod by Martin (NeXur)
 * Last modified: 25 November 2008 by NeXur
 */
