@@ -4,7 +4,7 @@
 * @author michaelo phpbbireland@gmail.com - http://www.phpbbireland.com
 *
 * @package sgp
-* @version 1.0.15
+* @version 1.0.16
 * @copyright (c) 2005-2011 Michael O'Toole (phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -86,7 +86,10 @@ $versions = array(
 	'1.0.0n' => array(
 	),
 	// Version 1.0.15
-	'1.0.15'	=> array(
+	'1.0.15' => array(
+	),
+	// Version 1.0.16
+	'1.0.16'	=> array(
 		'permission_add' => array(
 			array('a_k_portal', 1),
 			array('a_k_tools', 1),

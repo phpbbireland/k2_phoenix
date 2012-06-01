@@ -5,7 +5,7 @@
 * @www.stargate-portal.com
 *
 * @package Kiss Portal Engine
-* @version $Id:$ 1.0.15 (beta)
+* @version $Id:$ 1.0.16 (beta)
 *
 * @note: Do not remove this copyright. Just append yours if you have modified it,
 *        this is part of the Stargate Portal copyright agreement...
