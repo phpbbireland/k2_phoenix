@@ -1807,7 +1807,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 </edit>
 
 <edit>
-<find><![CDATA[	<div class="copyright">Powered by <a href="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
+<find><![CDATA[	<div class="copyright">{CREDIT_LINE}
 ]]></find>
 <action type="after-add"><![CDATA[		<!-- IF STARGATE --><!-- INCLUDE portal_copyright.html --><!-- ENDIF -->
 ]]></action>
