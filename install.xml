@@ -1216,12 +1216,12 @@ define('K_ACRONYMS_TABLE',			$table_prefix . 'k_acronyms');]]></action>
 				   To return to the portal page form all logins, remove the comments below...
 				*/
 
-				if($redirect === "index.$phpEx")
+				if ($redirect === "index.$phpEx")
 				{
 					$redirect = "portal.$phpEx";
 				}
 				/*
-				else if($redirect === "index.$phpEx?")
+				else if ($redirect === "index.$phpEx?")
 				{
 					$redirect = "portal.$phpEx?";
 				}

@@ -24,7 +24,7 @@
     <installation>
       <level>intermediate</level>
       <time>2503</time>
-      <target-version>3.0.10</target-version>
+      <target-version>3.0.11RC1</target-version>
     </installation>
     <meta name="generator" content="Phpbb.ModTeam.Tools (c#)" />
   </header>
