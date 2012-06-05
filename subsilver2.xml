@@ -50,7 +50,7 @@
 </edit>
 
 <edit>
-<find><![CDATA[	<span class="copyright">{CREDIT_LINE}
+<find><![CDATA[	<span class="copyright">Powered by <a href="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
 ]]></find>
 <action type="after-add"><![CDATA[		<!-- IF STARGATE --><br /><!-- INCLUDE portal_copyright.html --><!-- ENDIF -->]]></action>
 <comment lang="en"></comment>
