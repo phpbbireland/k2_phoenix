@@ -211,15 +211,15 @@
 	<dl>
 		<dt><label for="active">{L_BLOCK_ACTIVE_BIG}:</label></dt>
 		<dd>
-			<label><input type="radio" id="active" name="active" value="1" <!-- IF S_ACTIVE -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" name="active" value="0" <!-- IF not S_ACTIVE -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" id="active" name="active" value="1" <!-- IF S_ACTIVE -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="active" value="0" <!-- IF not S_ACTIVE -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<dl>
 		<dt><label for="type">{L_BLOCK_TYPE_BIG}:</label></dt>
 		<dd>
-			<label><input type="radio" id="type" name="type" value="1" <!-- IF S_TYPE -->checked="checked" <!-- ENDIF --> /> {L_HTML}</label>
-			<label><input type="radio" name="type" value="0" <!-- IF not S_TYPE -->checked="checked" <!-- ENDIF --> /> {L_BBCODE}</label>
+			<label><input type="radio" class="radio" id="type" name="type" value="1" <!-- IF S_TYPE -->checked="checked" <!-- ENDIF --> /> {L_HTML}</label>
+			<label><input type="radio" class="radio" name="type" value="0" <!-- IF not S_TYPE -->checked="checked" <!-- ENDIF --> /> {L_BBCODE}</label>
 		</dd>
 	</dl>
 	<dl>
@@ -261,8 +261,8 @@
 	<dl>
 		<dt><label for="scroll">{L_BLOCK_SCROLL_BIG}:</label><br /><span>{L_BLOCK_SCROLL_BIG_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" name="scroll" value="1" <!-- IF S_SCROLL -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" name="scroll" id="scroll" value="0" <!-- IF not S_SCROLL -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="scroll" value="1" <!-- IF S_SCROLL -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="scroll" id="scroll" value="0" <!-- IF not S_SCROLL -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<hr />
@@ -307,16 +307,16 @@
 	<dl>
 		<dt><label for="view_all">{L_BLOCK_VIEW_ALL}:</label><br /><span>{L_BLOCK_VIEW_ALL_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" name="view_all" value="1" <!-- IF S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" name="view_all" value="0" <!-- IF not S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="view_all" value="1" <!-- IF S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="view_all" value="0" <!-- IF not S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<hr />
 	<dl>
 		<dt><label for="has_vars">{L_HAS_VARS}:</label><br />{L_HAS_VARS_EXPLAIN}</dt>
 		<dd>
-			<label><input onclick="ShowHide('vars');" type="radio" <!-- IF S_HAS_VARS -->id="has_vars"<!-- ENDIF --> name="has_vars" value="1" <!-- IF S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
-			<label><input onclick="ShowHide('vars');" type="radio" <!-- IF not S_HAS_VARS -->id="has_vars"<!-- ENDIF --> name="has_vars" value="0" <!-- IF not S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
+			<label><input onclick="ShowHide('vars');" type="radio" class="radio" <!-- IF S_HAS_VARS -->id="has_vars"<!-- ENDIF --> name="has_vars" value="1" <!-- IF S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
+			<label><input onclick="ShowHide('vars');" type="radio" class="radio" <!-- IF not S_HAS_VARS -->id="has_vars"<!-- ENDIF --> name="has_vars" value="0" <!-- IF not S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<div style="display:<!-- IF not S_HAS_VARS -->none<!-- ELSE -->block<!-- ENDIF -->;" id="vars">
@@ -362,15 +362,15 @@
 	<dl>
 		<dt><label for="active" >{L_BLOCK_ACTIVE_BIG}:</label></dt>
 		<dd>
-			<label><input type="radio" name="active" value="1" <!-- IF S_ACTIVE -->checked="checked" id="active"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" name="active" value="0" <!-- IF not S_ACTIVE -->checked="checked" id="active"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="active" value="1" <!-- IF S_ACTIVE -->checked="checked" id="active"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="active" value="0" <!-- IF not S_ACTIVE -->checked="checked" id="active"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<dl>
 		<dt><label for="type">{L_BLOCK_TYPE_BIG}:</label></dt>
 		<dd>
-			<label><input type="radio" name="type" value="1" <!-- IF S_TYPE -->checked="checked" id="type"<!-- ENDIF --> /> {L_HTML}</label>
-			<label><input type="radio" name="type" value="0" <!-- IF not S_TYPE -->checked="checked" id="type"<!-- ENDIF --> /> {L_BBCODE}</label>
+			<label><input type="radio" class="radio" name="type" value="1" <!-- IF S_TYPE -->checked="checked" id="type"<!-- ENDIF --> /> {L_HTML}</label>
+			<label><input type="radio" class="radio" name="type" value="0" <!-- IF not S_TYPE -->checked="checked" id="type"<!-- ENDIF --> /> {L_BBCODE}</label>
 		</dd>
 	</dl>
 	<dl>
@@ -429,8 +429,8 @@
 	<dl>
 		<dt><label for="view_all">{L_BLOCK_VIEW_ALL}:</label><br /><span>{L_BLOCK_VIEW_ALL_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input name="view_all" type="radio" value="1" <!-- IF S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input name="view_all" type="radio" value="0" <!-- IF not S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input name="view_all" type="radio" class="radio" value="1" <!-- IF S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input name="view_all" type="radio" class="radio" value="0" <!-- IF not S_VIEW_ALL -->checked="checked" id="view_all"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 
@@ -438,8 +438,8 @@
 	<dl>
 		<dt><label for="scroll">{L_BLOCK_SCROLL_BIG}:</label><span>{L_BLOCK_SCROLL_BIG_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" name="scroll" value="1" <!-- IF S_SCROLL -->checked="checked" id="scroll"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" name="scroll" value="0" <!-- IF not S_SCROLL -->checked="checked" id="scroll"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="scroll" value="1" <!-- IF S_SCROLL -->checked="checked" id="scroll"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="scroll" value="0" <!-- IF not S_SCROLL -->checked="checked" id="scroll"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 
@@ -469,8 +469,8 @@
 	<dl>
 		<dt><label for="has_vars">{L_HAS_VARS}:</label><br />{L_HAS_VARS_EXPLAIN}</dt>
 		<dd>
-			<label><input onclick="ShowHide('vars');" type="radio" <!-- IF S_HAS_VARS -->id="has_vars"<!-- ENDIF --> name="has_vars" value="1" <!-- IF S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
-			<label><input onclick="ShowHide('vars');" type="radio" <!-- IF not S_HAS_VARS -->id="has_vars"<!-- ENDIF --> name="has_vars" value="0" <!-- IF not S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
+			<label><input onclick="ShowHide('vars');" type="radio" class="radio" <!-- IF S_HAS_VARS -->id="has_vars"<!-- ENDIF --> name="has_vars" value="1" <!-- IF S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
+			<label><input onclick="ShowHide('vars');" type="radio" class="radio" <!-- IF not S_HAS_VARS -->id="has_vars"<!-- ENDIF --> name="has_vars" value="0" <!-- IF not S_HAS_VARS -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<div style="display:<!-- IF not S_HAS_VARS -->none<!-- ELSE -->block<!-- ENDIF -->;" id="vars">
