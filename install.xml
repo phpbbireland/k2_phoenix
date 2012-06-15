@@ -764,16 +764,16 @@ if (STARGATE)
 <open src="viewtopic.php">
 
 <edit>
-<find><![CDATA[$auth->acl($user->data);]]></find>
-<action type="after-add"><![CDATA[$user->add_lang('portal/kiss_viewtopic');]]></action>
-</edit>
-
-<edit>
 <find><![CDATA[if (($topic_data['topic_type'] == POST_STICKY || $topic_data['topic_type'] == POST_ANNOUNCE) && $topic_data['topic_time_limit'] && ($topic_data['topic_time'] + $topic_data['topic_time_limit']) < time())]]></find>
 <inline-edit>
 <inline-find>$topic_data['topic_type'] == POST_ANNOUNCE</inline-find>
 <inline-action type="after-add"> || $topic_data['topic_type'] == POST_NEWS || $topic_data['topic_type'] == POST_NEWS_GLOBAL</inline-action>
 </inline-edit>
+</edit>
+
+<edit>
+<find><![CDATA[$user->setup('viewtopic', $topic_data['forum_style']);]]></find>
+<action type="after-add"><![CDATA[$user->add_lang('portal/kiss_viewtopic');]]></action>
 </edit>
 
 <edit>
