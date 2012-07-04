@@ -77,11 +77,11 @@
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">{mdata.S_MENUID}</td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">{mdata.S_MENU_NDX}</td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">
-			<!-- IF mdata.S_MENU_TYPE == '1' --> {L_NAV}
+			<!-- IF mdata.S_MENU_TYPE == '0' --> {L_HEAD}
+			<!-- ELSEIF mdata.S_MENU_TYPE == '1' --> {L_NAV}
 			<!-- ELSEIF mdata.S_MENU_TYPE == '2' --> {L_SUB}
-			<!-- ELSEIF mdata.S_MENU_TYPE == '3' --> {L_HEAD}
-			<!-- ELSEIF mdata.S_MENU_TYPE == '4' --> {L_FOOT}
-			<!-- ELSEIF mdata.S_MENU_TYPE == '5' --> {L_LINKS}
+			<!-- ELSEIF mdata.S_MENU_TYPE == '3' --> {L_FOOT}
+			<!-- ELSEIF mdata.S_MENU_TYPE == '4' --> {L_LINKS}
 			<!-- ENDIF -->
 		</td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">{mdata.S_MENU_APPEND_SID}</td>
