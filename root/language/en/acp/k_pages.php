@@ -52,7 +52,7 @@ $lang = array_merge($lang, array(
 	'DELETE_FROM_LIST'			=> 'Delete this page from list?',
 	'ERROR_PORTAL_PAGES'		=> 'Error! deleting this page from database list',
 	'ID'						=> 'ID',
-	'LAND'                      => ' = the page to load after login...',
+	'LAND'                      => 'Set the default page to load after login.',
 	'LANDING_PAGE'				=> 'Landing page',
 	'LANDING_PAGE_EXPLAIN'		=> 'Return to this page after successful login.',
 	'LANDING_PAGE_SET'			=> 'Landing page set',
