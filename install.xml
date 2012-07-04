@@ -34,7 +34,7 @@
 		</author>
 	</author-group>
 
-	<mod-version>1.0.15</mod-version>
+	<mod-version>1.0.16</mod-version>
 
 	<installation>
 		<level>intermediate</level>
@@ -43,6 +43,14 @@
 	</installation>
 
 	<history>
+		<entry>
+			<date>2012-07-04</date>
+			<rev-version>1.0.16</rev-version>
+			<changelog lang="en">
+				<change>Simplified some code.</change>
+				<change>Validation fixes.</change>
+			</changelog>
+		</entry>
 		<entry>
 			<date>2012-04-25</date>
 			<rev-version>1.0.15</rev-version>
@@ -217,112 +225,50 @@
 ]]></action>
 
 	</edit>
-	</open>
+</open>
 
-	<open src="adm/style/acp_forums.html"><edit>
-
+<open src="adm/style/acp_forums.html"><edit>
 <find><![CDATA[<!-- INCLUDE overall_header.html -->]]></find>
-<action type="after-add"><![CDATA[
-<!-- Start: Edit #1 : Small mod to show all available icon images in images/forum_images directory, copyright 2007 phpbbireland.com Mike -->
-<script type="text/javascript">
-// <![CDATA[
-function set_image(data)
-{
-	var path = 'images/forum_icons/' + data;
-	document.getElementById('forum_image').value=path;
-}
-
-function ShowHide(id1, id2, id3)
-{
-	var onoff = expMenu(id1);
-	if (id2 != '')
+	<action type="after-add"><![CDATA[
+	<!-- Start: Edit #1 forum_icons_mod -->
+	<script type="text/javascript">
+	// <![CDATA[
+	function set_image(data)
 	{
-		expMenu(id2);
-	}
-	if (id3 != '')
-	{
-		SetCookie(id3, onoff, expire);
-	}
-}
-
-function expMenu(id)
-{
-	var element = null;
-	if (document.getElementById)
-	{
-		element = document.getElementById(id);
-	}
-	else if (document.all)
-	{
-		element = document.all[id];
-	}
-	else if (document.layers)
-	{
-		element = document.layers[id];
+		var path = 'images/forum_icons/' + data;
+		document.getElementById('forum_image').value=path;
+		document.getElementById("fimg").innerHTML = "<img alt='' height='48' width='48' src='./../" + path + "' />"
 	}
 
-	if (!element)
-	{
-		// do nothing
-	}
-	else if (element.style)
-	{
-		if (element.style.display == "none")
-		{
-			element.style.display = "";
-			return 1;
-		}
-		else
-		{
-			element.style.display = "none";
-			return 2;
-		}
-	}
-	else
-	{
-		element.visibility = "show";
-		return 1;
-	}
-}
-// ]]&gt;
-</script>
-<!-- END: Edit #1 -->]]></action>
+	// ]]&gt;
+	</script>
+	<!-- END: Edit #1 -->]]></action>
+
 </edit>
 
-<edit>
-<find><![CDATA[		<!-- IF FORUM_IMAGE_SRC -->
-			<dd><img src="{FORUM_IMAGE_SRC}" alt="{L_FORUM_IMAGE}" /></dd>
-		<!-- ENDIF -->
-	</dl>]]></find>
-<action type="after-add"><![CDATA[	<!-- Start: Edit #2 -->
-	<div style="position:absolute; top:0; right:0; width:0px; visibility: hidden"><input id="namex" type="text"><input id="pw" type="password"></div>
+	<edit>
+	<find><![CDATA[		<!-- IF FORUM_IMAGE_SRC -->
+			<dd><img src="{FORUM_IMAGE_SRC}" alt="{L_FORUM_IMAGE}" /></dd>]]></find>
+	<action type="after-add"><![CDATA[		<!-- ELSE -->
+			<dd id="fimg"><img src="{FORUM_IMAGE_SRC}" alt="{L_FORUM_IMAGE}" /></dd>]]></action>
+	</edit>
+
+	<edit>
+	<find><![CDATA[	<dl>
+		<dt><label for="forum_password">{L_FORUM_PASSWORD}:</label><br /><span>{L_FORUM_PASSWORD_EXPLAIN}</span></dt>]]></find>
+	<action type="before-add"><![CDATA[
+	<!-- Start: Edit #2 forum_icons_mod -->
 	<dl>
 		<dt><label for="forum_images">{L_AVAILABLE_FORUM_IMAGE}:</label><br /><span>{L_AVAILABLE_FORUM_IMAGE_EXPLAIN}</span></dt>
-
-		<div style="display:" id="show">
-			<div class="k_show_images_yes-icon">
-				&nbsp;<a href="#" onclick="ShowHide('side'); ShowHide('hide'); ShowHide('show'); return(false);"><span>{L_SHOW_FORUM_IMAGES}</span></a>
-			</div>
-		</div>
-		<div style="display:none" id="hide">
-			<div class="k_show_images_no-icon">
-				&nbsp;<a href="#" onclick="ShowHide('side'); ShowHide('show'); ShowHide('hide'); return(false);"><span>{L_SHOW_FORUM_IMAGES}</span></a>
-			</div>
-		</div>
-		<div align="left" style="display: none;" id="side">
-			<span class="imageline"><br /><br /><br />
+		<dd class="imageline" id="side">
 			<!-- BEGIN forum_img_file_name -->
 				<!-- IF forum_img_file_name.FORUM_IMAGE_OPT -->
-					<!--<img src='{FORUM_IMAGE_SRC_PATH}{forum_img_file_name.FORUM_IMAGE_OPT}' title="{FORUM_IMAGE_PATH}{forum_img_file_name.FORUM_IMAGE_OPT}">-->
-					<a href="#" onclick="set_image('{forum_img_file_name.FORUM_IMAGE_OPT}', true, true); return false;"><img src='{FORUM_IMAGE_SRC_PATH}{forum_img_file_name.FORUM_IMAGE_OPT}' title="{FORUM_IMAGE_PATH}{forum_img_file_name.FORUM_IMAGE_OPT}"></a>
+					<a href="#" onclick="set_image('{forum_img_file_name.FORUM_IMAGE_OPT}', true, true); return false;"><img src='{FORUM_IMAGE_SRC_PATH}{forum_img_file_name.FORUM_IMAGE_OPT}' title="{FORUM_IMAGE_PATH}{forum_img_file_name.FORUM_IMAGE_OPT}" width="25" height="25"  /></a>
 				<!-- ENDIF -->
 			<!-- END forum_img_file_name -->
-			<br /><br /><br />
-			</span>
-		</div>
+		</dd>
 	</dl>
 	<!-- END: Edit #2 -->]]></action>
-
 	</edit></open>
 
 	<open src="adm/style/admin.css"><edit>
@@ -334,11 +280,11 @@ function expMenu(id)
 /* Added by Stargate Portal
 ---------------------------------------- */
 .imageline { 
-	width:auto; 
-	height:auto; 
+	height:190px;
+	overflow-y:scroll;
 	border:none; 
-	float:left; 
-	padding-top: 5px;
+	margin-top: 5px;
+	padding: 5px;
 }
 .row5 { background-color: #F9EDBD; }
 .row6 { background-color: #E8DFC0; }
@@ -668,6 +614,25 @@ if (STARGATE)
 </edit>
 </open>
 
+
+<open src="ucp.php">
+<edit>
+<find><![CDATA[		$message = $message . '<br /><br />' . sprintf($user->lang['RETURN_INDEX'], '<a href="' . append_sid("{$phpbb_root_path}index.$phpEx") . '">', '</a> ');]]></find>
+<action type="replace-with"><![CDATA[		if (STARGATE)
+		{
+			meta_refresh(3, append_sid("{$phpbb_root_path}portal.$phpEx"));
+			$message = $message . '<br /><br />' . sprintf($user->lang['RETURN_PORTAL'], '<a href="' . append_sid("{$phpbb_root_path}portal.$phpEx") . '">', '</a> ');
+		}
+		else
+		{
+			meta_refresh(3, append_sid("{$phpbb_root_path}index.$phpEx"));
+			$message = $message . '<br /><br />' . sprintf($user->lang['RETURN_INDEX'], '<a href="' . append_sid("{$phpbb_root_path}index.$phpEx") . '">', '</a> ');
+		}]]></action>
+</edit>
+</open>
+
+
+
 <open src="viewforum.php">
 <edit>
 <find><![CDATA[	'U_MARK_TOPICS'		=> ($user->data['is_registered'] || $config['load_anon_lastread']) ? append_sid("{$phpbb_root_path}viewforum.$phpEx", 'hash=' . generate_link_hash('global') . "&amp;f=$forum_id&amp;mark=topics") : '',]]></find>
@@ -685,7 +650,7 @@ if (STARGATE)
 {
 	// move to databse in next revision //
 	$k_config['tooltips_active'] = true;
-	$k_config['tooltips_which'] = 'last';
+	$k_config['tooltips_which'] = 'first';
 
 	// Improved sql thank to Rich McGirr and his Topic Text Hover Mod //
 	if ($k_config['tooltips_active'])
@@ -773,6 +738,7 @@ if (STARGATE)
 <find><![CDATA[$user->setup('viewtopic', $topic_data['forum_style']);]]></find>
 <action type="after-add"><![CDATA[$user->add_lang('portal/kiss_viewtopic');]]></action>
 </edit>
+
 
 <edit>
 <find><![CDATA[$topic_mod .= ($allow_change_type && $auth->acl_get('f_announce', $forum_id) && $topic_data['topic_type'] != POST_GLOBAL) ? '<option value="make_global">' . $user->lang['MAKE_GLOBAL'] . '</option>' : '';]]></find>
@@ -1215,6 +1181,8 @@ define('K_ACRONYMS_TABLE',			$table_prefix . 'k_acronyms');]]></action>
 				$l_redirect = ($admin) ? $user->lang['PROCEED_TO_ACP'] : (($redirect === "{$phpbb_root_path}index.$phpEx" || $redirect === "index.$phpEx") ? $user->lang['RETURN_INDEX'] : $user->lang['RETURN_PAGE']);
 			}]]></action>
 </edit>
+
+
 
 <edit>
 <find><![CDATA[	global $db, $config, $template, $SID, $_SID, $_EXTRA_URL, $user, $auth, $phpEx, $phpbb_root_path;]]></find>
@@ -1718,7 +1686,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 					$errors[] = $user->lang['FORUM_PASSWORD_OLD'];
 				}]]></find>
 <action type="after-add"><![CDATA[
-				// Start mod list forum_images Michaelo copyright 2007 phpbbireland.com //
+				// Start mod list forum_images from kiss engine copyright 2007 phpbbireland.com //
 				$dirslist=' ';
 
 				if (!file_exists('./../images/forum_icons'))
@@ -1755,7 +1723,6 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 					'FORUM_IMAGE_PATH'			=> 'images/forum_icons/',]]></action>
 </edit>
 </open>
-
 
 <open src="includes/acp/acp_styles.php">
 <edit>
