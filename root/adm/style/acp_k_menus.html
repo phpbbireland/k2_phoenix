@@ -77,18 +77,18 @@
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">{mdata.S_MENUID}</td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">{mdata.S_MENU_NDX}</td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">
-			<!-- IF mdata.S_MENU_TYPE == '0' --> {L_HEAD}
-			<!-- ELSEIF mdata.S_MENU_TYPE == '1' --> {L_NAV}
+			<!-- IF mdata.S_MENU_TYPE == '1' --> {L_NAV}
 			<!-- ELSEIF mdata.S_MENU_TYPE == '2' --> {L_SUB}
-			<!-- ELSEIF mdata.S_MENU_TYPE == '3' --> {L_FOOT}
-			<!-- ELSEIF mdata.S_MENU_TYPE == '4' --> {L_LINKS}
+			<!-- ELSEIF mdata.S_MENU_TYPE == '3' --> {L_HEAD}
+			<!-- ELSEIF mdata.S_MENU_TYPE == '4' --> {L_FOOT}
+			<!-- ELSEIF mdata.S_MENU_TYPE == '5' --> {L_LINKS}
 			<!-- ENDIF -->
 		</td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">{mdata.S_MENU_APPEND_SID}</td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">{mdata.S_MENU_APPEND_UID}</td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"><img src='./../images/block_images/menu/{mdata.S_MENU_ICON}' alt="" /></td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">{mdata.S_MENU_ITEM_NAME}</td>
-		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"><div style="max-width:200px; overflow:auto;"><!-- IF mdata.S_SUB_HEADING == '1' -->{L_SUB_HEADING}<!-- ELSE -->{mdata.S_MENU_LINK}<!-- ENDIF --></div></td>
+		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"><!-- IF mdata.S_SUB_HEADING == '1' -->{L_SUB_HEADING}<!-- ELSE -->{mdata.S_MENU_LINK}<!-- ENDIF --></td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"><!-- IF not mdata.S_SUB_HEADING --><!-- IF mdata.S_MENU_EXTERN == '0' -->{L_NO}<!-- ELSEIF mdata.S_MENU_EXTERN == '1' -->{L_YES}<!-- ELSEIF mdata.S_MENU_EXTERN == '2' -->{L_YES}<!-- ENDIF --><!-- ENDIF --></td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"><!-- IF mdata.S_VIEW_ALL -->{L_ALL_GROUPS}<!-- ELSEIF mdata.S_VIEW_GROUPS -->{mdata.S_VIEW_GROUPS}<!-- ELSE -->{L_DISABLED}<!-- ENDIF --></td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"  align="center">

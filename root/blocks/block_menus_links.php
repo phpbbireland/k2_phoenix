@@ -51,13 +51,12 @@
 	$my_names = array();
 
 	$sql = "SELECT * FROM ". K_MENUS_TABLE . "
-		WHERE menu_type = " . FOOT_MENUS . "
+		WHERE menu_type = " . LINKS_MENUS . "
 		ORDER BY ndx ASC";
 
 	if (!$result = $db->sql_query($sql, $block_cache_time))
 	{
-		//trigger_error($user->lang['ERROR_PORTAL_SUB_MENU'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
-		trigger_error($user->lang['ERROR_PORTAL_SUB_MENU']);
+		trigger_error($user->lang['ERROR_PORTAL_LINKS_MENU']);
 	}
 
 	$portal_link_menus = array();

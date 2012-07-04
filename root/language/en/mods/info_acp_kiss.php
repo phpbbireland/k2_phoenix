@@ -253,6 +253,11 @@ $lang = array_merge($lang, array(
 	'TOOLS'					=> 'Tools',
 	'TOOLS_1'				=> 'Tools moved to independant Porgram. Contact Site Admin for details',
 	'TOOLS_2'				=> 'Tools include: Block Builder, Style and CSS Builder',
-));
 
+
+// teams block
+	'TEAMPAGE_DISP_ALL'     => 'Show users in all groups where they are a member.',
+	'TEAMPAGE_DISP_DEFAULT' => 'Show users in their default group only.',
+	'TEAMPAGE_MEMBERSHIPS'  => 'Group membership display options',
+));
 ?>

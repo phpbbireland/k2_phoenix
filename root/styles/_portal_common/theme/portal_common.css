@@ -218,7 +218,7 @@ button {border: solid 3px;}
 .video_back {
   margin: 0 auto;
   text-align:center;
-  width:430px; height:356px;
+  width:640px; height:390px;
   background: url(images/one_video.png) top left repeat;
 
   -moz-border-radius: 10px;
@@ -556,6 +556,9 @@ div.scroll_inner {
 .news li, .news ol, .news ul {
   margin: 0 0 0 1em;
 }
+.announce li, .announce ol, .announce ul {
+  margin: 0 0 0 1em;
+}
 
 dl.codebox {
   width: auto; 
@@ -732,3 +735,5 @@ table.table1 .flag { text-align: center; width: 30px; }
 	margin: 0 auto;
 }
 .link_images {margin: 0px auto;}
+
+.phpbb .codebox {max-width: inherit}

@@ -29,7 +29,7 @@ class acp_k_pages
 	function main($page_id, $mode)
 	{
 		global $db, $user, $auth, $template, $cache;
-		global $config, $SID, $phpbb_root_path, $phpbb_admin_path, $phpEx;
+		global $k_config, $config, $SID, $phpbb_root_path, $phpbb_admin_path, $phpEx;
 
 		$current_pages = array();
 
@@ -81,12 +81,15 @@ class acp_k_pages
 			'U_ADD'     => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=add"),
 			'U_MANAGE'  => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=manage"),
 			'S_OPT'     => 'S_MANAGE',
+			'S_PAGE'	=> isset($k_config['k_landing_page']) ? $k_config['k_landing_page'] : 'portal',
 		));
 
 		switch ($mode)
 		{
 			case 'delete':
+
 				$page_name = get_page_filename($page_id);
+
 				if (confirm_box(true))
 				{
 					$sql = 'DELETE FROM ' . K_PAGES_TABLE . '
@@ -146,7 +149,7 @@ class acp_k_pages
 
 					$sql_array = array(
 						'page_name'	=> $tag_id,
-					);
+                    );
 
 		           $db->sql_query('INSERT INTO ' . K_PAGES_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_array));
 
@@ -160,6 +163,23 @@ class acp_k_pages
 					$cache->destroy('sql', K_PAGES_TABLE);
 					break;
 				}
+			break;
+
+			case 'land':
+
+				$page_name = get_page_filename($page_id);
+
+				sgp_acp_set_config('k_landing_page', $page_name, 1);
+
+				$template->assign_vars(array(
+					'S_OPTION' => 'processing',
+					'MESSAGE'  => $user->lang['LANDING_PAGE_SET'] . ': '. $page_name,
+				));
+
+				$cache->destroy('k_config');
+				$cache->destroy('sql', K_BLOCKS_CONFIG_VAR_TABLE);
+
+				meta_refresh(1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_pages&amp;mode=manage'));
 			break;
 
 			case 'config':
@@ -197,6 +217,7 @@ function get_pages_data()
 			'S_PAGE_NAME'   => $row['page_name'],
 			'U_EDIT'        => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=edit&amp;page_id=" . $row['page_id']),
 			'U_DELETE'      => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=delete&amp;page_id=" . $row['page_id']),
+			'U_LAND'        => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=land&amp;page_id=" . $row['page_id']),
 		));
 	}
 	$db->sql_freeresult($result);
@@ -205,7 +226,7 @@ function get_pages_data()
 }
 
 /**
-* get all pages not used so far...
+* get all pages
 * don't include code files, only include pages...
 */
 function get_all_available_files()
@@ -293,7 +314,6 @@ function get_all_available_files()
 		'S_PHPBB_FILES' => $phpbb_files,
 		'S_FILES_FOUND' => $files_found,
 	));
-
 }
 
 /**
@@ -301,7 +321,7 @@ function get_all_available_files()
 **/
 function get_page_filename($page_id)
 {
-	global $db, $template;//, $s_hidden_fields;
+	global $db, $template;
 
 	$sql = 'SELECT *
 		FROM ' . K_PAGES_TABLE . '

@@ -170,6 +170,7 @@ $lang = array_merge($lang, array(
 	'ERROR_PORTAL_STYLE_STATUS'		=> 'Error! Could not query styles status information',
 	'ERROR_PORTAL_VIDEO'			=> 'Error! Portal youtube video table',
 	'ERROR_PORTAL_SUB_MENU'			=> 'Error! Could not query portal sub menus information',
+	'ERROR_PORTAL_LINKS_MENU'		=> 'Error! Could not query portal links menus information',
 	'ERROR_PORTAL_WEB_TABLE'		=> 'Error! Portal Web Table',
 	'ERROR_PORTAL_WELCOME'			=> 'Error! Could not query messages (Welcome etc...)',
 	'ERROR_PORTAL_WORDS'			=> 'Error! Words table...',

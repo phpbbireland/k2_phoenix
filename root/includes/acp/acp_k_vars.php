@@ -153,6 +153,7 @@ class acp_k_vars
 				$k_allow_acronyms                = request_var('k_allow_acronyms', 0);
 				$k_max_block_avatar_width        = request_var('k_max_block_avatar_width', 0);
 				$k_max_block_avatar_height       = request_var('k_max_block_avatar_height', 0);
+				$k_teampage_memberships          = request_var('k_teampage_memberships', 0);
 
 				if ($k_max_block_avatar_width == 0 || $k_max_block_avatar_height == 0)
 				{
@@ -222,6 +223,7 @@ class acp_k_vars
 				sgp_acp_set_config('k_allow_acronyms', $k_allow_acronyms);
 				sgp_acp_set_config('k_max_block_avatar_width', $k_max_block_avatar_width);
 				sgp_acp_set_config('k_max_block_avatar_height', $k_max_block_avatar_height);
+				sgp_acp_set_config('k_teampage_memberships', $k_teampage_memberships);
 
 				$mode = 'reset';
 

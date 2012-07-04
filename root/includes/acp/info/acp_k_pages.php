@@ -29,6 +29,7 @@ class acp_k_pages_info
 			'modes'    => array(
 				'add'    => array('title' => 'ACP_K_PAGES_ADD',	   'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_PAGES'), 'display' => false),
 				'delete' => array('title' => 'ACP_K_PAGES_DELETE', 'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_PAGES'), 'display' => false),
+			    'land'   => array('title' => 'ACP_K_PAGES_LAND',   'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_PAGES'), 'display' => false),
 				'manage' => array('title' => 'ACP_K_PAGES_MANAGE', 'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_PAGES'))
 			),
 		);
