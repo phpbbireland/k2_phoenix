@@ -43,46 +43,46 @@ include($phpbb_root_path . 'portal/sql_data.' . $phpEx);
 
 $versions = array(
 
-	// Version 1.0.0a
+	// Version 1.0.1
 	'1.0.0a' => array(
 	),
-	// Version 1.0.0b
+	// Version 1.0.2
 	'1.0.0b' => array(
 	),
-	// Version 1.0.0c
+	// Version 1.0.3
 	'1.0.0c' => array(
 	),
-	// Version 1.0.0d
+	// Version 1.0.4
 	'1.0.0d' => array(
 	),
-	// Version 1.0.0e
+	// Version 1.0.5
 	'1.0.0e' => array(
 	),
-	// Version 1.0.0f
+	// Version 1.0.6
 	'1.0.0f' => array(
 	),
-	// Version 1.0.0g
+	// Version 1.0.7
 	'1.0.0g' => array(
 	),
-	// Version 1.0.0h
+	// Version 1.0.8
 	'1.0.0h' => array(
 	),
-	// Version 1.0.0i
+	// Version 1.0.9
 	'1.0.0i' => array(
 	),
-	// Version 1.0.0j
+	// Version 1.0.10
 	'1.0.0j' => array(
 	),
-	// Version 1.0.0k
+	// Version 1.0.11
 	'1.0.0k' => array(
 	),
-	// Version 1.0.0l
+	// Version 1.0.12
 	'1.0.0l' => array(
 	),
-	// Version 1.0.0m
+	// Version 1.0.13
 	'1.0.0m' => array(
 	),
-	// Version 1.0.0n
+	// Version 1.0.14
 	'1.0.0n' => array(
 	),
 	// Version 1.0.15
@@ -118,23 +118,23 @@ $versions = array(
 		'table_add' => array(
 			array('phpbb_k_blocks', array(
 					'COLUMNS' => array(
-						'id'			=> array('UINT', NULL, 'auto_increment'),
-						'ndx'			=> array('UINT', '0'),
-						'title'			=> array('VCHAR:50', ''),
-						'position'		=> array('CHAR:1', 'L'),
-						'type'			=> array('CHAR:1', 'H'),
-						'active'		=> array('BOOL', '1'),
+						'id'				=> array('UINT', NULL, 'auto_increment'),
+						'ndx'				=> array('UINT', '0'),
+						'title'				=> array('VCHAR:50', ''),
+						'position'			=> array('CHAR:1', 'L'),
+						'type'				=> array('CHAR:1', 'H'),
+						'active'			=> array('BOOL', '1'),
 						'html_file_name'	=> array('VCHAR', ''),
 						'var_file_name'		=> array('VCHAR', 'none.gif'),
 						'img_file_name'		=> array('VCHAR', 'none.gif'),
-						'view_all'		=> array('BOOL', '1'),
+						'view_all'			=> array('BOOL', '1'),
 						'view_groups'		=> array('VCHAR:100', ''),
 						'view_pages'		=> array('VCHAR:100', ''),
-						'groups'		=> array('UINT', '0'),
-						'scroll'		=> array('BOOL', '0'),
+						'groups'			=> array('UINT', '0'),
+						'scroll'			=> array('BOOL', '0'),
 						'block_height'		=> array('USINT', '0'),
-						'has_vars'		=> array('BOOL', '0'),
-						'is_static'		=> array('BOOL', '0'),
+						'has_vars'			=> array('BOOL', '0'),
+						'is_static'			=> array('BOOL', '0'),
 						'minimod_based'		=> array('BOOL', '0'),
 						'mod_block_id'		=> array('UINT', '0'),
 						'block_cache_time'	=> array('UINT', '600'),
@@ -145,18 +145,18 @@ $versions = array(
 
 			array('phpbb_k_menus', array(
 					'COLUMNS'	=> array(
-						'm_id'		=> array('UINT', NULL, 'auto_increment'),
-						'ndx'		=> array('UINT', '0'),
-						'menu_type'	=> array('USINT', '0'),
-						'name'		=> array('VCHAR:50', ''),
-						'link_to'	=> array('VCHAR', ''),
-						'extern'	=> array('BOOL', '0'),
-						'menu_icon'	=> array('VCHAR:30', 'none.gif'),
+						'm_id'			=> array('UINT', NULL, 'auto_increment'),
+						'ndx'			=> array('UINT', '0'),
+						'menu_type'		=> array('USINT', '0'),
+						'name'			=> array('VCHAR:50', ''),
+						'link_to'		=> array('VCHAR', ''),
+						'extern'		=> array('BOOL', '0'),
+						'menu_icon'		=> array('VCHAR:30', 'none.gif'),
 						'append_sid'	=> array('BOOL', '1'),
 						'append_uid'	=> array('BOOL', '0'),
-						'view_all'	=> array('BOOL', '1'),
+						'view_all'		=> array('BOOL', '1'),
 						'view_groups'	=> array('VCHAR:100', ''),
-						'soft_hr'	=> array('BOOL', '0'),
+						'soft_hr'		=> array('BOOL', '0'),
 						'sub_heading'	=> array('BOOL', '0'),
 					),
 					'PRIMARY_KEY'	=> 'm_id',
@@ -165,11 +165,11 @@ $versions = array(
 
 			array('phpbb_k_blocks_config', array(
 					'COLUMNS'	=> array(
-						'id'			=> array('USINT', NULL, 'auto_increment'),
+						'id'					=> array('USINT', NULL, 'auto_increment'),
 						'use_external_files'	=> array('BOOL', '0'),
-						'update_files'		=> array('BOOL', '0'),
-						'layout_default'	=> array('BOOL', '2'),
-						'portal_config'		=> array('VCHAR:10', 'Site'),
+						'update_files'			=> array('BOOL', '0'),
+						'layout_default'		=> array('BOOL', '2'),
+						'portal_config'			=> array('VCHAR:10', 'Site'),
 					),
 				'PRIMARY_KEY'	=> 'id',
 				),
@@ -245,7 +245,7 @@ $versions = array(
 			array('ucp', '0', 'UCP_K_BLOCKS'),
 			array('ucp', 'UCP_K_BLOCKS', array(
 					'module_basename'	=> 'k_blocks',
-					'modes'			=> array('info', 'arrange', 'edit', 'delete', 'width'),
+					'modes'				=> array('info', 'arrange', 'edit', 'delete', 'width'),
 					'module_auth'		=> 'u_k_tools',
 				),
 			),

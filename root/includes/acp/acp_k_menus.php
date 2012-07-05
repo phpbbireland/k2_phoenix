@@ -82,9 +82,9 @@ class acp_k_menus
 
 		switch ($mode)
 		{
-			case 'head':     get_menu(HEAD_MENUS);    $template->assign_var('S_OPTIONS', 'head'); break;
 			case 'nav':      get_menu(NAV_MENUS);     $template->assign_var('S_OPTIONS', 'nav');  break;
 			case 'sub':      get_menu(SUB_MENUS);     $template->assign_var('S_OPTIONS', 'sub');  break;
+			case 'head':     get_menu(HEAD_MENUS);    $template->assign_var('S_OPTIONS', 'head'); break;
 			case 'foot':     get_menu(FOOT_MENUS);    $template->assign_var('S_OPTIONS', 'foot'); break;
 			case 'link':     get_menu(LINKS_MENUS);   $template->assign_var('S_OPTIONS', 'link'); break;
 			case 'all':      get_menu(ALL_MENUS);     $template->assign_var('S_OPTIONS', 'all');  break;
@@ -327,11 +327,25 @@ class acp_k_menus
 					'S_OPTIONS' => 'updn',
 				));
 
-				$mode ='nav';
-
 				$cache->destroy('sql', K_MENUS_TABLE);
 
-				meta_refresh (1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_menus&amp;mode=nav'));
+				switch ($type)
+				{
+					case NAV_MENUS:	$current_menu_type = 'nav';
+					break;
+					case SUB_MENUS:	$current_menu_type = 'sub';
+					break;
+					case HEAD_MENUS: $current_menu_type = 'head';
+					break;
+					case FOOT_MENUS: $current_menu_type = 'foot';
+					break;
+					case LINKS_MENUS: $current_menu_type = 'links';
+					break;
+					default: $current_menu_type = 'nav';
+					break;
+				}
+
+				meta_refresh (1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_menus&amp;mode=' . $current_menu_type));
 
 				break;
 			}
@@ -540,7 +554,7 @@ function get_menu_item($item)
 		'S_MENU_EXTERN'     => $row['extern'],
 		'S_SOFT_HR'         => $row['soft_hr'],
 		'S_SUB_HEADING'     => $row['sub_heading'],
-		));
+	));
 	$db->sql_freeresult($result);
 }
 

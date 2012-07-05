@@ -53,9 +53,18 @@ foreach ($k_blocks as $blk)
 }
 $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k_block_cache_time_default']);
 
+if ($k_config['k_teampage_memberships'] == 0)
+{
+	$sql_refine = 'and u.group_id = g.group_id';
+}
+else
+{
+	$sql_refine = '';
+}
+
 $sql = 'SELECT DISTINCT u.user_id, u.group_id, u.username, u.user_colour, u.username_clean, g.group_id, g.group_name, g.group_colour, g.group_type, ug.group_id
 		FROM ' . USERS_TABLE . ' u, ' . GROUPS_TABLE . ' g, ' . USER_GROUP_TABLE . ' ug
-			WHERE ug.group_id = g.group_id and u.user_id = ug.user_id
+			WHERE ug.group_id = g.group_id and u.user_id = ug.user_id ' . $sql_refine . '
 				AND ' . $db->sql_in_set('g.group_id', $sql_in) . '
 				ORDER BY g.group_name ASC, u.group_id ASC, u.username_clean ASC';
 
@@ -86,7 +95,8 @@ while ($row = $db->sql_fetchrow($result))
 	}
 
 	// get language vars for group name
-	$group_name = $user->lang(strtoupper('G_'.$group_name));
+	//$group_name = $user->lang(strtoupper('G_'.$group_name));
+	$group_name = $user->lang(strtoupper($group_name));
 
 	// conver to proper case and remove underscores //
 	$group_name = mb_convert_case($group_name, MB_CASE_TITLE, "UTF-8");

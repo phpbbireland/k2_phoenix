@@ -81,6 +81,8 @@
 <link rel="stylesheet" href="{T_STYLESHEET_PORTAL_OVERLOAD}" type="text/css" />
 
 <script type="text/javascript" src="{ROOT_PATH}js/jquery/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/jquery/jquery.hoverIntent.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/jquery/imgbubbles.js"></script>
 
 <script type="text/javascript">
 //<![CDATA[
@@ -89,8 +91,8 @@
 
 	if (/MSIE (\d+\.\d+);/.test(navigator.userAgent))
 	{
-		var ieversion=new Number(RegExp.$1)
-		$css_file_append = 'fix_ie.css';
+		var ieversion = new Number(RegExp.$1)
+		$css_file_append = 'fix_ie_' + ieversion + '.css';
 	}
 	else if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent))
 	{
@@ -110,7 +112,7 @@
 
 	jQuery.noConflict();
 	jQuery(document).ready(function(){
-		jQuery('<link rel="stylesheet" href="{T_THEME_PATH}/' + $css_file_append + '" type="text/css" />').appendTo('head');
+		jQuery('<link rel="stylesheet" href="{T_THEME_PATH}/' + $css_file_append + '" type="text/css" />').appendTo('body');
 	});
 
 //]]>
@@ -181,14 +183,12 @@
 		jQuery('.ximg').imgbubbles({factor:5});
 	})
 
-	jQuery.noConflict();
 	jQuery(document).ready(function(){
 	jQuery(".vido").click(function () {
 		jQuery("#vdo").hide("slide", {}, 1000);
 		});
 	});
 
-	jQuery.noConflict();
 	jQuery(document).ready(function(){
 		jQuery('.accordion').click(function() {
 			$(this).next().toggle('slow');
@@ -205,6 +205,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
+// <![CDATA[
+
 var w = 100;
 x = Get_Cookie('stylewidth');
 if(x)
@@ -241,5 +243,6 @@ jQuery(document).ready(function(){
 	});
 
 });
+//]]>
 </script>
 <!-- ENDIF -->

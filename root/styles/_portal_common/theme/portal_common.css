@@ -218,12 +218,8 @@ button {border: solid 3px;}
 .video_back {
   margin: 0 auto;
   text-align:center;
-  width:430px; height:356px;
+  width:640px; height:390px;
   background: url(images/one_video.png) top left repeat;
-
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -khtml-border-radius: 10px;
   border-radius: 10px;
 }
 
@@ -233,9 +229,6 @@ button {border: solid 3px;}
   padding: 5px;
   text-align:center;
   width:430px; height:70px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -khtml-border-radius: 10px;
   border-radius: 10px;
 }
 
@@ -330,47 +323,27 @@ local_acronym{
 /* round corners code
  ---------------------------------------------------------------------- */
 .sgp-corners {
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
-  -khtml-border-radius: 7px;
-  -webkit-border-radius: 7px;
   border-radius: 7px;
 }
 .sgp_corners_tl {
-  -webkit-border-top-left-radius: 6px;
-  -moz-border-radius-topleft: 6px;
   border-top-left-radius: 6px;
 }
 .sgp_corners_tr {
-  -webkit-border-top-right-radius: 6px;
-  -moz-border-radius-topright: 6px;
   border-top-right-radius: 6px;
 }
 .sgp_corners_bl {
-  -webkit-border-bottom-left-radius: 6px;
-  -moz-border-radius-bottomleft: 6px;
   border-bottom-left-radius: 6px;
 }
 .sgp_corners_br {
-  -webkit-border-bottom-right-radius: 6px;
-  -moz-border-radius-bottomright: 6px;
   border-bottom-right-radius: 6px;
 }
 
 .sgp-corners-top {
-  -webkit-border-top-left-radius: 6px;
-  -webkit-border-top-right-radius: 6px;
-  -moz-border-radius-topleft: 6px;
-  -moz-border-radius-topright: 6px;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
 
 .sgp-corners-2 {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   border: solid 1px #000; 
   padding:4px; 
@@ -556,6 +529,9 @@ div.scroll_inner {
 .news li, .news ol, .news ul {
   margin: 0 0 0 1em;
 }
+.announce li, .announce ol, .announce ul {
+  margin: 0 0 0 1em;
+}
 
 dl.codebox {
   width: auto; 
@@ -629,10 +605,6 @@ table.table1 .flag { text-align: center; width: 30px; }
 }
 
 .wrapper {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  -webkit-border-radius: 5px;
   border-radius: 5px;
   border: solid 2px #12A2EA;
   background: #ECF3F7 none repeat-x 0 0;
@@ -689,17 +661,10 @@ table.table1 .flag { text-align: center; width: 30px; }
   padding: 1px 3px;
   color: #2E8B57;
   display: inline;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
 
 .php_highlight {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   border: solid 1px #000; 
   padding:4px; 
@@ -732,3 +697,5 @@ table.table1 .flag { text-align: center; width: 30px; }
 	margin: 0 auto;
 }
 .link_images {margin: 0px auto;}
+
+.phpbb .codebox {max-width: inherit}
