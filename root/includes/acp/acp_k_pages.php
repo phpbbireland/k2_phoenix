@@ -81,7 +81,7 @@ class acp_k_pages
 			'U_ADD'     => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=add"),
 			'U_MANAGE'  => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=manage"),
 			'S_OPT'     => 'S_MANAGE',
-			'S_PAGE'	=> isset($k_config['k_landing_page']) ? $k_config['k_landing_page'] : 'portal',
+			'S_PAGE'    => isset($k_config['k_landing_page']) ? $k_config['k_landing_page'] : 'portal',
 		));
 
 		switch ($mode)
@@ -149,7 +149,7 @@ class acp_k_pages
 
 					$sql_array = array(
 						'page_name'	=> $tag_id,
-                    );
+					);
 
 		           $db->sql_query('INSERT INTO ' . K_PAGES_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_array));
 
