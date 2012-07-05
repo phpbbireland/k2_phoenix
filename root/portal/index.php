@@ -43,47 +43,50 @@ include($phpbb_root_path . 'portal/sql_data.' . $phpEx);
 
 $versions = array(
 
-	// Version 1.0.0a
+	// Version 1.0.1
 	'1.0.0a' => array(
 	),
-	// Version 1.0.0b
+	// Version 1.0.2
 	'1.0.0b' => array(
 	),
-	// Version 1.0.0c
+	// Version 1.0.3
 	'1.0.0c' => array(
 	),
-	// Version 1.0.0d
+	// Version 1.0.4
 	'1.0.0d' => array(
 	),
-	// Version 1.0.0e
+	// Version 1.0.5
 	'1.0.0e' => array(
 	),
-	// Version 1.0.0f
+	// Version 1.0.6
 	'1.0.0f' => array(
 	),
-	// Version 1.0.0g
+	// Version 1.0.7
 	'1.0.0g' => array(
 	),
-	// Version 1.0.0h
+	// Version 1.0.8
 	'1.0.0h' => array(
 	),
-	// Version 1.0.0i
+	// Version 1.0.9
 	'1.0.0i' => array(
 	),
-	// Version 1.0.0j
+	// Version 1.0.10
 	'1.0.0j' => array(
 	),
-	// Version 1.0.0k
+	// Version 1.0.11
 	'1.0.0k' => array(
 	),
-	// Version 1.0.0l
+	// Version 1.0.12
 	'1.0.0l' => array(
 	),
-	// Version 1.0.0m
+	// Version 1.0.13
 	'1.0.0m' => array(
 	),
-	// Version 1.0.0n
+	// Version 1.0.14
 	'1.0.0n' => array(
+	),
+	// Version 1.0.15
+	'1.0.15' => array(
 	),
 	// Version 1.0.16
 	'1.0.16'	=> array(
