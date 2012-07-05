@@ -11,7 +11,7 @@
 *        this is part of the Stargate Portal copyright agreement...
 *
 * @version $Id$
-* 26 April 2012 12:49
+* 20 June 2012 20:22
 */
 
 /**
@@ -138,10 +138,11 @@ else
 
 $post_time_days = time() - 86400 * $k_recent_search_days;
 
-$sql = 'SELECT SQL_CACHE p.post_id, t.topic_id, t.topic_time, t.topic_title, t.topic_replies, t.forum_id, t.topic_last_post_time, t.topic_last_post_id, t.topic_last_poster_id, t.topic_last_poster_name, t.topic_last_poster_colour, t.topic_type, f.forum_name, p.post_edit_time, p.post_subject, p.post_text, p.post_time, p.bbcode_bitfield, p.bbcode_uid, f.forum_desc
+$sql = 'SELECT SQL_CACHE p.post_id, t.topic_id, t.topic_time, t.topic_title, t.topic_replies, t.forum_id, t.topic_last_post_time, t.topic_last_post_id, t.topic_last_poster_id, t.topic_last_poster_name, t.topic_last_poster_colour, t.topic_type, f.forum_name, p.post_edit_time, p.post_subject, p.post_text, p.post_time, p.bbcode_bitfield, p.bbcode_uid, f.forum_desc, u.user_avatar, u.user_avatar_type
 		FROM ' . FORUMS_TABLE . ' f
 			LEFT JOIN ' . TOPICS_TABLE . ' t ON (f.forum_id = t.forum_id)
 			LEFT JOIN ' . POSTS_TABLE . ' p ON (t.topic_id = p.topic_id)
+			LEFT JOIN ' . USERS_TABLE . ' u ON (t.topic_last_poster_id = u.user_id)
 				' . $where_sql . '
 					AND t.topic_approved = 1
 					AND p.post_approved = 1
@@ -232,7 +233,6 @@ for ($i = 0; $i < $display_this_many; $i++)
 		$this_post_time = $user->format_date($row[$i]['topic_last_post_time']);
 	}
 
-
 	$template->assign_block_vars($style_row . 'recent_topic_row', array(
 		'LAST_POST_IMG_W'	=> $user->img('icon_topic_newest', 'VIEW_LATEST_POST'),
 		'LAST_POST_IMG_W'	=> $next_img,
@@ -247,6 +247,8 @@ for ($i = 0; $i < $display_this_many; $i++)
 		'S_TYPE_W'			=> $row[$i]['topic_type'],
 		'TOOLTIP_W'			=> bbcode_strip($row[$i]['post_text']),
 		'TOOLTIP2_W'		=> bbcode_strip($row[$i]['forum_desc']),
+		'REPLIES'			=> $row[$i]['topic_replies'],
+		'AVATAR_SMALL_IMG'	=> get_user_avatar($row[$i]['user_avatar'], $row[$i]['user_avatar_type'], '15', '15'),
 	));
 
 	$last_forum = $row[$i]['forum_id'];
@@ -265,7 +267,7 @@ $template->assign_vars(array(
 	'S_COUNT_RECENT'	=> ($i > 0) ? true : false,
 	'SEARCH_TYPE'		=> (!$k_recent_search_days) ? $user->lang['FULL_SEARCH'] : $user->lang['K_RECENT_SEARCH_DAYS'] . $k_recent_search_days,
 	'SEARCH_LIMIT'		=> $user->lang['T_LIMITS'] . $k_recent_topics_per_forum . $user->lang['TOPICS_PER_FORUM_DISPLAY'] . $display_this_many . ' ' . $post_or_posts,
-
+	'S_FULL_LEGEND'		=> (empty($except_forum_ids)) ? true : false,
 	'RECENT_TOPICS_WIDE_DEBUG'	=> sprintf($user->lang['PORTAL_DEBUG_QUERIES'], ($queries) ? $queries : '0', ($cached_queries) ? $cached_queries : '0', ($total_queries) ? $total_queries : '0'),
 ));
 

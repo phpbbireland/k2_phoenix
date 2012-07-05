@@ -500,8 +500,6 @@ $k_blocks_config_vars_array[] = array(
 	'config_value'	=> '1',
 	'is_dynamic'	=> '0',
 );
-
-
 $k_blocks_config_vars_array[] = array(
 	'config_name'	=> 'k_post_types',
 	'config_value'	=> '1',
@@ -563,7 +561,11 @@ $k_blocks_config_vars_array[] = array(
 	'config_value'	=> '80',
 	'is_dynamic'	=> '0',
 );
-
+$k_blocks_config_vars_array[] = array(
+	'config_name'	=> 'k_teampage_memberships',
+	'config_value'	=> '0',
+	'is_dynamic'	=> '0',
+);
 
 
 $k_menus_table = 'phpbb_k_menus';
@@ -839,7 +841,7 @@ $k_menus_array[] = array(
 
 $k_menus_array[] = array(
 	'ndx'			=> '1',
-	'menu_type'		=> '4',
+	'menu_type'		=> '5',
 	'name'			=> 'Lnks Menu',
 	'link_to'		=> '',
 	'extern'		=> '0',
@@ -853,7 +855,7 @@ $k_menus_array[] = array(
 );
 $k_menus_array[] = array(
 	'ndx'			=> '2',
-	'menu_type'		=> '4',
+	'menu_type'		=> '5',
 	'name'			=> 'Kiss Portal dev. site',
 	'link_to'		=> 'http://www.phpbbireland.com',
 	'extern'		=> '1',
@@ -867,7 +869,7 @@ $k_menus_array[] = array(
 );
 $k_menus_array[] = array(
 	'ndx'			=> '3',
-	'menu_type'		=> '4',
+	'menu_type'		=> '5',
 	'name'			=> 'Stargate Portal',
 	'link_to'		=> 'http://www.stargate-portal.com',
 	'extern'		=> '1',
@@ -881,7 +883,7 @@ $k_menus_array[] = array(
 );
 $k_menus_array[] = array(
 	'ndx'			=> '4',
-	'menu_type'		=> '4',
+	'menu_type'		=> '5',
 	'name'			=> 'phpBB3',
 	'link_to'		=> 'http://www.phpbb.com',
 	'extern'		=> '1',

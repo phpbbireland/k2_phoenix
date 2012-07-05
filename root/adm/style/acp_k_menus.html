@@ -47,9 +47,9 @@
 	<thead>
 		<tr>
 			<th colspan="11" style="text-align:center; color:#FFFF33;">
-			<!-- IF S_OPTIONS == 'head' -->{L_HEADER_MENU}<!-- ENDIF -->
 			<!-- IF S_OPTIONS == 'nav' -->{L_NAV_MENU}<!-- ENDIF -->
 			<!-- IF S_OPTIONS == 'sub' -->{L_SUB_MENU}<!-- ENDIF -->
+			<!-- IF S_OPTIONS == 'head' -->{L_HEADER_MENU}<!-- ENDIF -->
 			<!-- IF S_OPTIONS == 'foot' -->{L_FOOT_MENU}<!-- ENDIF -->
 			<!-- IF S_OPTIONS == 'link' -->{L_LINKS_MENU}<!-- ENDIF -->
 			<!-- IF S_OPTIONS == 'all' -->{L_ALL_MENUS}<!-- ENDIF -->
@@ -77,18 +77,18 @@
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">{mdata.S_MENUID}</td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">{mdata.S_MENU_NDX}</td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">
-			<!-- IF mdata.S_MENU_TYPE == '0' --> {L_HEAD}
-			<!-- ELSEIF mdata.S_MENU_TYPE == '1' --> {L_NAV}
+			<!-- IF mdata.S_MENU_TYPE == '1' --> {L_NAV}
 			<!-- ELSEIF mdata.S_MENU_TYPE == '2' --> {L_SUB}
-			<!-- ELSEIF mdata.S_MENU_TYPE == '3' --> {L_FOOT}
-			<!-- ELSEIF mdata.S_MENU_TYPE == '4' --> {L_LINKS}
+			<!-- ELSEIF mdata.S_MENU_TYPE == '3' --> {L_HEAD}
+			<!-- ELSEIF mdata.S_MENU_TYPE == '4' --> {L_FOOT}
+			<!-- ELSEIF mdata.S_MENU_TYPE == '5' --> {L_LINKS}
 			<!-- ENDIF -->
 		</td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">{mdata.S_MENU_APPEND_SID}</td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">{mdata.S_MENU_APPEND_UID}</td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"><img src='./../images/block_images/menu/{mdata.S_MENU_ICON}' alt="" /></td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->">{mdata.S_MENU_ITEM_NAME}</td>
-		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"><div style="max-width:200px; overflow:auto;"><!-- IF mdata.S_SUB_HEADING == '1' -->{L_SUB_HEADING}<!-- ELSE -->{mdata.S_MENU_LINK}<!-- ENDIF --></div></td>
+		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"><!-- IF mdata.S_SUB_HEADING == '1' -->{L_SUB_HEADING}<!-- ELSE -->{mdata.S_MENU_LINK}<!-- ENDIF --></td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"><!-- IF not mdata.S_SUB_HEADING --><!-- IF mdata.S_MENU_EXTERN == '0' -->{L_NO}<!-- ELSEIF mdata.S_MENU_EXTERN == '1' -->{L_YES}<!-- ELSEIF mdata.S_MENU_EXTERN == '2' -->{L_YES}<!-- ENDIF --><!-- ENDIF --></td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"><!-- IF mdata.S_VIEW_ALL -->{L_ALL_GROUPS}<!-- ELSEIF mdata.S_VIEW_GROUPS -->{mdata.S_VIEW_GROUPS}<!-- ELSE -->{L_DISABLED}<!-- ENDIF --></td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"  align="center">
@@ -124,11 +124,11 @@
 	<dl>
 		<dt><label for="menu_type">{L_MENU_TYPE}:</label><br /><span>{L_MENU_TYPE_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" name="menu_type" value="0" <!-- IF S_MENU_TYPE == '0' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_HEADER}</label>
-			<label><input type="radio" class="radio" name="menu_type" value="1" <!-- IF S_MENU_TYPE == '1' or S_MENU_TYPE == '' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_NAV} </label>
+			<label><input type="radio" class="radio" name="menu_type" value="1" <!-- IF S_MENU_TYPE == '1' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_NAV} </label>
 			<label><input type="radio" class="radio" name="menu_type" value="2" <!-- IF S_MENU_TYPE == '2' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_SUB}</label>
-			<label><input type="radio" class="radio" name="menu_type" value="3" <!-- IF S_MENU_TYPE == '3' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_FOOTER}</label>
-			<label><input type="radio" class="radio" name="menu_type" value="4" <!-- IF S_MENU_TYPE == '4' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_LINKS}</label>
+			<label><input type="radio" class="radio" name="menu_type" value="3" <!-- IF S_MENU_TYPE == '3' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_HEADER}</label>
+			<label><input type="radio" class="radio" name="menu_type" value="4" <!-- IF S_MENU_TYPE == '4' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_FOOTER}</label>
+			<label><input type="radio" class="radio" name="menu_type" value="5" <!-- IF S_MENU_TYPE == '5' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_LINKS}</label>
 		</dd>
 	</dl>
 	<dl>
@@ -242,11 +242,11 @@
 	<dl>
 		<dt><label for="menu_type">{L_MENU_TYPE}:</label><br /><span>{L_MENU_TYPE_EXPLAIN}</span></dt>
 		<dd><br />
-		<label><input type="radio" class="radio" name="menu_type" value="0"<!-- IF S_MENU_TYPE == '0' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_HEADER}</label>
 		<label><input type="radio" class="radio" name="menu_type" value="1"<!-- IF S_MENU_TYPE == '1' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_NAV} </label>
 		<label><input type="radio" class="radio" name="menu_type" value="2"<!-- IF S_MENU_TYPE == '2' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_SUB}</label>
-		<label><input type="radio" class="radio" name="menu_type" value="3"<!-- IF S_MENU_TYPE == '3' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_FOOTER}</label>
-		<label><input type="radio" class="radio" name="menu_type" value="4"<!-- IF S_MENU_TYPE == '4' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_LINKS}</label>
+		<label><input type="radio" class="radio" name="menu_type" value="3"<!-- IF S_MENU_TYPE == '3' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_HEADER}</label>
+		<label><input type="radio" class="radio" name="menu_type" value="4"<!-- IF S_MENU_TYPE == '4' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_FOOTER}</label>
+		<label><input type="radio" class="radio" name="menu_type" value="5"<!-- IF S_MENU_TYPE == '5' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_LINKS}</label>
 		</dd>
 	</dl>
 	<dl>

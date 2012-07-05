@@ -38,6 +38,14 @@ function set_ids(data, view)
 			</label>
 		</dd>
 	</dl>
+	<dl>
+		<dt><label for="k_teampage_memberships">{L_TEAMPAGE_MEMBERSHIPS}:</label></dt>
+		<dd>
+			<label><input type="radio" name="k_teampage_memberships" class="radio" value="0"<!-- IF S_K_TEAMPAGE_MEMBERSHIPS == 0 --> checked="checked"<!-- ENDIF --> id="k_teampage_memberships" /> {L_TEAMPAGE_DISP_DEFAULT}</label><br />
+			<label><input type="radio" name="k_teampage_memberships" class="radio" value="1"<!-- IF S_K_TEAMPAGE_MEMBERSHIPS == 1 --> checked="checked"<!-- ENDIF --> id="k_teampage_memberships" /> {L_TEAMPAGE_DISP_ALL}</label>
+			<!--<label><input type="radio" name="k_teampage_memberships" class="radio" value="2"<!-- IF S_K_TEAMPAGE_MEMBERSHIPS == 2 --> checked="checked"<!-- ENDIF --> id="k_teampage_memberships" /> {L_TEAMPAGE_DISP_FIRST}</label><br />-->
+		</dd>
+	</dl>
 
 </fieldset>
 <fieldset>
