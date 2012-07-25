@@ -132,8 +132,8 @@ class acp_k_vars
 				$k_allow_rotating_logos          = request_var('k_allow_rotating_logos', 1);
 				$k_bots_to_display               = request_var('k_bots_to_display', 10);
 				$k_block_cache_time_default      = request_var('k_block_cache_time_default', 600);
-				$k_block_cache_time_fast         = request_var('k_block_cache_time_fast', 10);
-				$k_blocks_display_globally       = request_var('k_blocks_display_globally', 1);
+				//$k_block_cache_time_fast         = request_var('k_block_cache_time_fast', 10);
+				$k_block_cache_time_short        = request_var('k_block_cache_time_short', 10);
 				$k_bot_display_allow             = request_var('k_bot_display_allow', 1);
 				$k_footer_images_allow           = request_var('k_footer_images_allow', 1);
 				$k_news_allow                    = request_var('k_news_allow', 1);
@@ -154,6 +154,8 @@ class acp_k_vars
 				$k_max_block_avatar_width        = request_var('k_max_block_avatar_width', 0);
 				$k_max_block_avatar_height       = request_var('k_max_block_avatar_height', 0);
 				$k_teampage_memberships          = request_var('k_teampage_memberships', 0);
+				$k_tooltips_active              = request_var('k_tooltips_active', 1);
+				$k_tooltips_which               = request_var('k_tooltips_which', 0);
 
 				if ($k_max_block_avatar_width == 0 || $k_max_block_avatar_height == 0)
 				{
@@ -195,7 +197,6 @@ class acp_k_vars
 				sgp_acp_set_config('k_bot_display_allow', $k_bot_display_allow);
 				sgp_acp_set_config('k_footer_images_allow', $k_footer_images_allow);
 				sgp_acp_set_config('k_announce_type', $k_announce_type);
-				sgp_acp_set_config('k_blocks_display_globally', $k_blocks_display_globally);
 				sgp_acp_set_config('k_smilies_show', $k_smilies_show);
 				sgp_acp_set_config('k_announce_to_display', $k_announce_to_display);
 				sgp_acp_set_config('k_bots_to_display', $k_bots_to_display);
@@ -219,11 +220,14 @@ class acp_k_vars
 				sgp_acp_set_config('k_last_online_max', $k_last_online_max);
 				sgp_acp_set_config('k_quick_reply', $k_quick_reply);
 				sgp_acp_set_config('k_block_cache_time_default', $k_block_cache_time_default);
-				sgp_acp_set_config('k_block_cache_time_fast', $k_block_cache_time_fast);
+				//sgp_acp_set_config('k_block_cache_time_fast', $k_block_cache_time_fast);
+				sgp_acp_set_config('k_block_cache_time_short', $k_block_cache_time_short);
 				sgp_acp_set_config('k_allow_acronyms', $k_allow_acronyms);
 				sgp_acp_set_config('k_max_block_avatar_width', $k_max_block_avatar_width);
 				sgp_acp_set_config('k_max_block_avatar_height', $k_max_block_avatar_height);
 				sgp_acp_set_config('k_teampage_memberships', $k_teampage_memberships);
+				sgp_acp_set_config('k_tooltips_active', $k_tooltips_active);
+				sgp_acp_set_config('k_tooltips_which', $k_tooltips_which);
 
 				$mode = 'reset';
 

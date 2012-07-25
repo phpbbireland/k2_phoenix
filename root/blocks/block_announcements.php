@@ -50,15 +50,15 @@ $k_announce_item_max_length = $k_config['k_announce_item_max_length'];
 
 $bbcode_bitfield = $a_type = '';
 $has_attachments = $display_notice = false;
-
 $attach_array = $attach_list = $post_list = $posts = $attachments = $extensions = array();
 $time_now = time();
 
 // Build sql WHERE clause based on $config['k_announce_type']... //fix stu http://www.phpbbireland.com/phpBB3/viewtopic.php?p=16804
+
 switch ($k_announce_type)
 {
-	case 0:   //both
-		$a_type = "(t.topic_id = p.topic_id AND t.topic_type = 2 AND t.topic_status <> 2 AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now) OR " . "t.topic_id = p.topic_id AND t.topic_type = 3 AND t.topic_status <> 2 AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now) )";
+	case 0:    // both types
+		$a_type = "(t.topic_id = p.topic_id AND t.topic_type = 2 AND t.topic_status <> 2 AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now) OR " . "t.topic_id = p.topic_id AND t.topic_type = 3 AND t.topic_status <> 2 AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now))";
 	break;
 
 	case POST_ANNOUNCE:
@@ -252,7 +252,6 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 
 		'U_VIEW'		=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']),
 		'U_REPLY'		=> append_sid("{$phpbb_root_path}posting.$phpEx", 'mode=reply&amp;t=' . $row['topic_id'] . '&amp;f=' . $row['forum_id']),
-
 		'U_PRINT'		=> ($auth->acl_get('f_print', $row['forum_id'])) ? append_sid("{$phpbb_root_path}viewtopic.$phpEx", "f=" . $row['forum_id'] . "&amp;t=" . $row['topic_id'] . "&amp;view=print") : '',
 
 		'REPLY_IMG'		=> $image_path . 'post_comment.png',

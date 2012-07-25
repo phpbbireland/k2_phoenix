@@ -103,7 +103,7 @@ $versions = array(
 
 		'config_add' => array(
 			array('portal_enabled', 1),
-			array('portal_build', '310-015'),
+			array('portal_build', '310-016'),
 			array('blocks_enabled', 1),
 			array('blocks_width', '190'),
 			array('force_default_if_style_missing', 1),
@@ -270,7 +270,12 @@ $versions = array(
 		),
 	),
 
+	// purge the cache
+	'cache_purge' => array(),
+
 );//version
+
+
 
 include($phpbb_root_path . 'umil/umil_auto.' . $phpEx);
 

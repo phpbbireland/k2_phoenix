@@ -124,11 +124,13 @@
 	<dl>
 		<dt><label for="menu_type">{L_MENU_TYPE}:</label><br /><span>{L_MENU_TYPE_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" name="menu_type" value="1" <!-- IF S_MENU_TYPE == '1' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_NAV} </label>
-			<label><input type="radio" class="radio" name="menu_type" value="2" <!-- IF S_MENU_TYPE == '2' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_SUB}</label>
-			<label><input type="radio" class="radio" name="menu_type" value="3" <!-- IF S_MENU_TYPE == '3' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_HEADER}</label>
-			<label><input type="radio" class="radio" name="menu_type" value="4" <!-- IF S_MENU_TYPE == '4' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_FOOTER}</label>
-			<label><input type="radio" class="radio" name="menu_type" value="5" <!-- IF S_MENU_TYPE == '5' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_LINKS}</label>
+			<label><input type="radio" class="radio" name="menu_type" value="1" <!-- IF S_MENU_TYPE == 'nav' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_NAV} </label>
+			<label><input type="radio" class="radio" name="menu_type" value="2" <!-- IF S_MENU_TYPE == 'sub' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_SUB}</label>
+			<!--
+			<label><input type="radio" class="radio" name="menu_type" value="3" <!-- IF S_MENU_TYPE == 'head' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_HEADER}</label>
+			<label><input type="radio" class="radio" name="menu_type" value="4" <!-- IF S_MENU_TYPE == 'foot' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_FOOTER}</label>
+			-->
+			<label><input type="radio" class="radio" name="menu_type" value="5" <!-- IF S_MENU_TYPE == 'link' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_LINKS}</label>
 		</dd>
 	</dl>
 	<dl>
@@ -156,7 +158,7 @@
 	<dl>
 		<dt><strong>{L_MENU_ICONS}:</strong><br />{L_MENU_ICONS_L}</dt>
 		<dd>
-			<div class="imageline" style="padding:5px; border: solid 1px #D7D7D7;">
+			<div class="imageline block_img" style="padding:5px; border: solid 1px #D7D7D7;">
 			<!-- BEGIN menuicons -->
 				<!-- IF menuicons.S_MENU_ICONS -->
 					<a href="#" onclick="set_image('{menuicons.S_MENU_ICONS}', true, true); return false;">
@@ -267,7 +269,7 @@
 	<dl>
 		<dt><strong>{L_MENU_ICONS}:</strong><br />{L_MENU_ICONS_L}</dt>
 		<dd>
-			<div class="imageline" style="padding:5px; border: solid 1px #D7D7D7;">
+			<div class="imageline block_img" style="padding:5px; border: solid 1px #D7D7D7;">
 			<!-- BEGIN menuicons -->
 				<!-- IF menuicons.S_MENU_ICONS -->
 					<a href="#" onclick="set_image('{menuicons.S_MENU_ICONS}', true, true); return false;">
@@ -385,10 +387,11 @@
 </fieldset>
 <!-- ENDIF -->
 
-<!-- IF S_OPTIONS != 'add' && S_OPTIONS != 'edit' && S_OPTIONS != 'save' && S_OPTIONS != 'icons' && S_OPTIONS != 'updn' -->
+<!-- IF S_OPTIONS == 'nav' || S_OPTIONS == 'sub' || S_OPTIONS == 'link' || S_OPTIONS == 'all' -->
 <p class="quick" style="text-align:center;">
 	<input class="button2" name="add_menu_option" type="submit" value="{L_MENU_ADD_NEW}" />
-	<input type="hidden" name="mode" value="create" />
+	<input type="hidden" name="mode" value="add" />
+	<input type="hidden" name="menutype" value="{S_OPTIONS}" />
 </p>
 <!-- ENDIF -->
 

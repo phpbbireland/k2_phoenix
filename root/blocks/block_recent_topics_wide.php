@@ -127,13 +127,13 @@ for ($i = 0; $i < $forum_count; $i++)
 
 $where_sql = 'WHERE ' . $db->sql_in_set('t.forum_id', $valid_forum_ids);
 
-if ($k_config['k_post_types'])
+if ($k_post_types)
 {
 	$types_sql = '';
 }
 else
 {
-	$types_sql = "AND t.topic_type = " . FORUM_CAT;
+	$types_sql = "AND t.topic_type < " . POST_ANNOUNCE;
 }
 
 $post_time_days = time() - 86400 * $k_recent_search_days;
@@ -149,7 +149,8 @@ $sql = 'SELECT SQL_CACHE p.post_id, t.topic_id, t.topic_time, t.topic_title, t.t
 					' . $types_sql . '
 					AND p.post_id = t.topic_first_post_id
 					AND t.topic_last_post_time >= ' . $post_time_days . '
-		ORDER BY t.forum_id, t.topic_last_post_time DESC';
+						OR p.post_edit_time >= ' . $post_time_days . '
+						ORDER BY t.forum_id, t.topic_last_post_time DESC';
 
 $result = $db->sql_query_limit($sql, $display_this_many, 0, $block_cache_time);
 
@@ -267,7 +268,7 @@ $template->assign_vars(array(
 	'S_COUNT_RECENT'	=> ($i > 0) ? true : false,
 	'SEARCH_TYPE'		=> (!$k_recent_search_days) ? $user->lang['FULL_SEARCH'] : $user->lang['K_RECENT_SEARCH_DAYS'] . $k_recent_search_days,
 	'SEARCH_LIMIT'		=> $user->lang['T_LIMITS'] . $k_recent_topics_per_forum . $user->lang['TOPICS_PER_FORUM_DISPLAY'] . $display_this_many . ' ' . $post_or_posts,
-	'S_FULL_LEGEND'		=> (empty($except_forum_ids)) ? true : false,
+	'S_FULL_LEGEND'		=> ($k_post_types) ? true : false,
 	'RECENT_TOPICS_WIDE_DEBUG'	=> sprintf($user->lang['PORTAL_DEBUG_QUERIES'], ($queries) ? $queries : '0', ($cached_queries) ? $cached_queries : '0', ($total_queries) ? $total_queries : '0'),
 ));
 

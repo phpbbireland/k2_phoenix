@@ -5,10 +5,10 @@
 			<!-- BEGIN scrollwide_recent_topic_row -->
 				<!-- IF scrollwide_recent_topic_row.S_ROW_COUNT_W == 0 -->
 				<div class="trow">
-					<span class="bg2 tleft" style="padding:1px; width:47%;"><strong>{L_TITLE}</strong></span>
-					<span class="bg2 tleft" style="padding:1px; width:2%;"><strong> </strong></span>
-					<span class="bg2 tleft" style="padding:1px; width:25%;"><strong>{L_POSTER}</strong></span>
-					<span class="bg2 tleft" style="padding:1px; width:3%; text-align:right"><strong>{L_REPLIES}</strong></span>
+					<span class="bg2 tleft" style="padding:1px; width:auto;"><strong>{L_TITLE}</strong></span>
+					<span class="bg2 tleft" style="padding:1px; width:20px;"><strong> </strong></span>
+					<span class="bg2 tleft" style="padding:1px; width:auto;"><strong>{L_POSTER}</strong></span>
+					<span class="bg2 tleft" style="padding:1px; width:70px; text-align:right"><strong>{L_REPLIES}</strong></span>
 					<span class="bg2 tleft" style="padding:1px; width:23%; text-align:right"><strong>{L_POSTED}/{L_EDITED}</strong></span>
 				</div>
 				<div class="trow divider_bottom_line" style="width:100%;"></div>
@@ -38,10 +38,10 @@
 			<!-- BEGIN staticwide_recent_topic_row -->
 				<!-- IF staticwide_recent_topic_row.S_ROW_COUNT_W == 0 -->
 				<div class="trow">
-					<span class="bg2x tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:47%;"><strong>{L_TITLE}</strong></span>
-					<span class="bg2x tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:2%;"><strong> </strong></span>
-					<span class="bg2x tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:25%;"><strong>{L_POSTER}</strong></span>
-					<span class="bg2x tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:3%; text-align:right;"><strong>{L_REPLIES}</strong></span>
+					<span class="bg2x tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:auto;"><strong>{L_TITLE}</strong></span>
+					<span class="bg2x tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:20px;"><strong> </strong></span>
+					<span class="bg2x tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:auto;"><strong>{L_POSTER}</strong></span>
+					<span class="bg2x tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:70px; text-align:right;"><strong>{L_REPLIES}</strong></span>
 					<span class="bg2x tleft" style="padding:1px; padding-top:2px; padding-bottom:2px; width:23%; text-align:right;"><strong>{L_POSTED}/{L_EDITED}</strong></span>
 				</div>
 				<!-- ENDIF -->
@@ -66,8 +66,8 @@
 				<div class="trow">
 					<span class="tleft bg1" style="padding:1px;">{staticwide_recent_topic_row.LAST_POST_IMG_W}<a href="{staticwide_recent_topic_row.U_TITLE_W}" title="{staticwide_recent_topic_row.TOOLTIP_W}"><span class="<!-- IF staticwide_recent_topic_row.S_TYPE_W == 2 or staticwide_recent_topic_row.S_TYPE_W == 3 -->red<!-- ELSEIF staticwide_recent_topic_row.S_TYPE_W == 4 or staticwide_recent_topic_row.S_TYPE_W == 5 -->orange<!-- ELSEIF staticwide_recent_topic_row.S_TYPE_W == 1 -->green<!-- ELSE --><!-- ENDIF -->">{staticwide_recent_topic_row.TITLE_W}</span></a>:</span>
 					<span class="tleft bg1" style="padding:1px;">{staticwide_recent_topic_row.AVATAR_SMALL_IMG}</span>
-					<span class="tleft bg2" style="padding:1px;">{staticwide_recent_topic_row.POSTER_FULL_W}</span>
-					<span class="tleft bg2" style="padding:1px; text-align:right; padding-right:2px;">{staticwide_recent_topic_row.REPLIES}</span>
+					<span class="tleft bg1" style="padding:1px;">{staticwide_recent_topic_row.POSTER_FULL_W}</span>
+					<span class="tleft bg1" style="padding:1px; text-align:right; padding-right:2px;">{staticwide_recent_topic_row.REPLIES}</span>
 					<span class="tleft bg1" style="padding:1px; text-align:right; padding-right:2px;">{staticwide_recent_topic_row.POSTTIME_W}</span>
 				</div>
 				<!-- ENDIF -->

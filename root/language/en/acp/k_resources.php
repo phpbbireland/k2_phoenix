@@ -95,7 +95,7 @@ $lang = array_merge($lang, array(
 	'VAR_ADDED'					=> '<strong>%s</strong> added!',
 
 	'TITLE' 		=> 'Portal Variables Manager',
-	'TITLE_EXPLAIN'	=> 'When you add or edit a web page, you can pass additional information in the form of variable data taken from the $config or $k_config tables.<br />Before these variables can be accessed, you must first specify them using this form. The variable name will be replaced with the variable data automatically.<br />Enter the variable name exactly as it appears in the database (normally lower case without spaces). If the variable does not exits it will be ignored....',
+	'TITLE_EXPLAIN'	=> 'Method used to pass variables to pages/web pages...<br />The portal replaces the variables with their values automatically.<br />Only variables from $config and $k_config tables are processed...',
 	'TITLE_ADD'		=> 'Add Variable',
 ));
 

@@ -61,18 +61,16 @@ class acp_k_menus
 			'U_BACK'	=> append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_menus&amp;mode=nav"),
 		));
 
-		// Set up general vars
-		//$action = request_var('action', '');
-
-		$mode		= request_var('mode', '');
-		$menu		= request_var('menu', 0);
-		$menuitem	= request_var('menuitem', '');
+		$mode     = request_var('mode', '');
+		$menu     = request_var('menu', 0);
+		$menuitem = request_var('menuitem', '');
+		$menutype = request_var('menutype', '');
 
 		$u_action = append_sid("{$phpbb_admin_path}index.$phpEx" , "i=$id&amp;mode=$mode");
 
 		if ($mode == '')
 		{
-			$mode = 'head';
+			$mode = 'manage';
 		}
 
 		if ($submit)
@@ -82,10 +80,11 @@ class acp_k_menus
 
 		switch ($mode)
 		{
+			//case 'head':     get_menu(HEAD_MENUS);    $template->assign_var('S_OPTIONS', 'head'); break;
+			//case 'foot':     get_menu(FOOT_MENUS);    $template->assign_var('S_OPTIONS', 'foot'); break;
+
 			case 'nav':      get_menu(NAV_MENUS);     $template->assign_var('S_OPTIONS', 'nav');  break;
 			case 'sub':      get_menu(SUB_MENUS);     $template->assign_var('S_OPTIONS', 'sub');  break;
-			case 'head':     get_menu(HEAD_MENUS);    $template->assign_var('S_OPTIONS', 'head'); break;
-			case 'foot':     get_menu(FOOT_MENUS);    $template->assign_var('S_OPTIONS', 'foot'); break;
 			case 'link':     get_menu(LINKS_MENUS);   $template->assign_var('S_OPTIONS', 'link'); break;
 			case 'all':      get_menu(ALL_MENUS);     $template->assign_var('S_OPTIONS', 'all');  break;
 			case 'unalloc':  get_menu(UNALLOC_MENUS); $template->assign_var('S_OPTIONS', 'unalloc'); break;
@@ -154,9 +153,11 @@ class acp_k_menus
 						break;
 						case 2: $mode = 'sub';
 						break;
+						case 3: $mode= 'head';
+						break;
 						case 3: $mode= 'foot';
 						break;
-						case 4: $mode= 'link';
+						case 5: $mode= 'link';
 						break;
 
 						default: $mode = $mode;
@@ -175,11 +176,6 @@ class acp_k_menus
 				// get all groups and fill array //
 				parse_all_groups();
 
-				// A simple fix to allow delete
-				if ($menu > 99)
-				{
-					$menu = ($menu /100);
-				}
 				if ($submit == 1)
 				{
 					get_menu_item($m_id);
@@ -188,7 +184,6 @@ class acp_k_menus
 				{
 					get_menu_item($menu);
 				}
-
 
 				$template->assign_var('S_OPTIONS', 'edit');
 				get_menu_icons();
@@ -250,7 +245,8 @@ class acp_k_menus
 				$to_move = $move_to = '';
 
 				// get current menu data //
-				$sql = "SELECT m_id, ndx, menu_type FROM " . K_MENUS_TABLE . "
+				$sql = "SELECT m_id, ndx, menu_type
+					FROM " . K_MENUS_TABLE . "
 					WHERE m_id = " . (int)$menu;
 
 				if (!$result = $db->sql_query_limit($sql, 1))
@@ -331,13 +327,15 @@ class acp_k_menus
 
 				switch ($type)
 				{
-					case NAV_MENUS:	$current_menu_type = 'nav';
-					break;
-					case SUB_MENUS:	$current_menu_type = 'sub';
-					break;
+					/*
 					case HEAD_MENUS: $current_menu_type = 'head';
 					break;
 					case FOOT_MENUS: $current_menu_type = 'foot';
+					break;
+					*/
+					case NAV_MENUS:	$current_menu_type = 'nav';
+					break;
+					case SUB_MENUS:	$current_menu_type = 'sub';
 					break;
 					case LINKS_MENUS: $current_menu_type = 'links';
 					break;
@@ -350,7 +348,7 @@ class acp_k_menus
 				break;
 			}
 
-			case 'create':
+			case 'add':
 			{
 				if ($submit)
 				{
@@ -428,6 +426,7 @@ class acp_k_menus
 					$template->assign_vars(array(
 						'S_MENU_ICON' => 'acp.png',
 						'S_OPTIONS'   => 'add',
+						'S_MENU_TYPE' => $menutype,
 					));
 
 					break;
@@ -465,6 +464,7 @@ class acp_k_menus
 			break;
 
 			case 'default':
+			break;
 
 		}
 
@@ -477,7 +477,7 @@ function get_menu($this_one)
 	global $db, $phpbb_root_path, $phpEx, $template;
 	global $phpbb_admin_path, $phpEx;
 
-	if ($this_one > 0 && $this_one < 6) // standard menus defined as 1 to 5 //
+	if ($this_one > UN_ALLOC_MENUS && $this_one < ALL_MENUS) // standard menus defined as 1 to 5 //
 	{
 		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . (int)$this_one . ' ORDER BY ndx ASC';
 	}
@@ -485,7 +485,7 @@ function get_menu($this_one)
 	{
 		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' ORDER BY menu_type, ndx ASC';
 	}
-	else if ($this_one == UNALLOC_MENUS)
+	else if ($this_one == UN_ALLOC_MENUS)
 	{
 		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type = ' . (int)$this_one . ' ORDER BY ndx, menu_type ASC';
 	}
@@ -533,7 +533,9 @@ function get_menu_item($item)
 
 	$m_id = $item;
 
-	$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE m_id=' . (int)$item;
+	$sql = 'SELECT *
+		FROM ' . K_MENUS_TABLE . '
+		WHERE m_id=' . (int)$item;
 
 	if ($result = $db->sql_query($sql))
 	{
@@ -594,7 +596,11 @@ function get_menu_icons()
 function get_next_ndx($type)
 {
 	global $db, $ndx, $user;
-	$sql = "SELECT * FROM " . K_MENUS_TABLE . " WHERE menu_type = '" . (int)$type . "' ORDER by ndx DESC";
+	$sql = "SELECT *
+		FROM " . K_MENUS_TABLE . "
+		WHERE menu_type = '" . (int)$type . "'
+		ORDER by ndx DESC";
+
 	if ($result = $db->sql_query($sql))
 	{
 		$row = $db->sql_fetchrow($result);		// just get last block ndx details	//
@@ -634,25 +640,4 @@ function parse_all_groups()
 	$db->sql_freeresult($result);
 }
 
-/*
-// this is very inefficient... I will update later...
-function get_group_name($data)
-{
-	global $db, $template, $user;
-	$names = array();
-
-	// Get group name by id
-	$sql = 'SELECT group_name
-		FROM ' . GROUPS_TABLE . '
-		WHERE ' . $db->sql_in_set('group_id', $data);
-
-	while ($row = $db->sql_fetchrow($result))
-	{
-		$names[] = $row['group_name'];
-	}
-	$db->sql_freeresult($result);
-
-	return ($names);
-}
-*/
 ?>
