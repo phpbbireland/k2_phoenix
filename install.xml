@@ -263,11 +263,11 @@
 	<action type="before-add"><![CDATA[
 	<!-- Start: Edit #2 forum_icons_mod -->
 	<dl>
-		<dt><label for="forum_images">{L_AVAILABLE_FORUM_IMAGE}:</label><br /><span>{L_AVAILABLE_FORUM_IMAGE_EXPLAIN}</span></dt>
+		<dt><label for="side">{L_AVAILABLE_FORUM_IMAGE}:</label><br /><span>{L_AVAILABLE_FORUM_IMAGE_EXPLAIN}</span></dt>
 		<dd class="imageline" id="side">
 			<!-- BEGIN forum_img_file_name -->
 				<!-- IF forum_img_file_name.FORUM_IMAGE_OPT -->
-					<a href="#" onclick="set_image('{forum_img_file_name.FORUM_IMAGE_OPT}', true, true); return false;"><img src='{FORUM_IMAGE_SRC_PATH}{forum_img_file_name.FORUM_IMAGE_OPT}' title="{FORUM_IMAGE_PATH}{forum_img_file_name.FORUM_IMAGE_OPT}" width="25" height="25"  /></a>
+					<a href="#" onclick="set_image('{forum_img_file_name.FORUM_IMAGE_OPT}', true, true); return false;"><img src='{FORUM_IMAGE_SRC_PATH}{forum_img_file_name.FORUM_IMAGE_OPT}' title="{FORUM_IMAGE_PATH}{forum_img_file_name.FORUM_IMAGE_OPT}" width="25" height="25" alt="{L_FORUM_IMAGE}" /></a>
 				<!-- ENDIF -->
 			<!-- END forum_img_file_name -->
 		</dd>
