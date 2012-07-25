@@ -85,7 +85,8 @@ class acp_k_blocks
 		else
 		{
 			$sql = 'SELECT config_name, config_value
-				FROM ' . K_BLOCKS_CONFIG_VAR_TABLE . " WHERE config_name = 'k_adm_block'";
+				FROM ' . K_BLOCKS_CONFIG_VAR_TABLE . "
+				WHERE config_name = 'k_adm_block'";
 
 			$result = $db->sql_query($sql);
 
@@ -199,7 +200,8 @@ class acp_k_blocks
 
 				// get move_to block data//
 				$sql = "SELECT id, ndx, position FROM " . K_BLOCKS_TABLE . "
-					WHERE ndx =  '" . (int)$temp . "' AND position = '" . $db->sql_escape($position) . "'";
+					WHERE ndx =  '" . (int)$temp . "'
+						AND position = '" . $db->sql_escape($position) . "'";
 
 				if (!$result = $db->sql_query_limit($sql, 1))
 				{
@@ -252,7 +254,8 @@ class acp_k_blocks
 
 					// get move_to block data//
 					$sql = "SELECT id, ndx, position FROM " . K_BLOCKS_TABLE . "
-						WHERE ndx =  '" . (int)$temp . "' AND position = '" . $db->sql_escape($position) . "'";
+						WHERE ndx =  '" . (int)$temp . "'
+							AND position = '" . $db->sql_escape($position) . "'";
 
 					if (!$result = $db->sql_query_limit($sql, 1))
 					{
@@ -536,11 +539,11 @@ class acp_k_blocks
 
 					if ($type == 1)
 					{
-						$type = 'H';
+						$type = 'H'; //html
 					}
 					else
 					{
-						$type = 'B';
+						$type = 'B'; //bbcode
 					}
 
 					if ($view_all)
@@ -942,14 +945,6 @@ class acp_k_blocks
 
 			case 'reset':
 			{
-				/*
-				$sql = "UPDATE phpbb_users SET user_left_blocks = '' WHERE user_left_blocks != '';";
-				$result = $db->sql_query($sql);
-				$sql = "UPDATE phpbb_users SET user_center_blocks = '' WHERE user_center_blocks != '';";
-				$result = $db->sql_query($sql);
-				$sql = "UPDATE phpbb_users SET user_right_blocks = '' WHERE user_right_blocks != '';";
-				*/
-
 				$sql = "UPDATE phpbb_users SET user_left_blocks = '', user_center_blocks = '', user_right_blocks = '';";
 
 				if (!$result = $db->sql_query($sql))

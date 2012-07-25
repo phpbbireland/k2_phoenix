@@ -130,7 +130,7 @@ $lang = array_merge($lang, array(
 	'TRANSLATE'               => 'Translate',
 	'TRANSLATE_SITE'          => '<strong>Translate site to...</strong>',
 	'TRANSLATE_RESET'         => '<strong>Reset to original language</strong>',
-	'ANNOUNCEMENTS_AND_NEWS'  => 'Announcements and News',
+	'ANNOUNCEMENTS_AND_NEWS'  => 'News and Announcements',
 ));
 
 // Acronyms

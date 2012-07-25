@@ -55,6 +55,7 @@ $attach_array = $attach_list = $post_list = $posts = $attachments = $extensions 
 $time_now = time();
 
 // Build sql WHERE clause based on $config['k_news_type']... //fix stu http://www.phpbbireland.com/phpBB3/viewtopic.php?p=16804
+
 switch ($k_news_type)
 {
 	case 0:   // both
@@ -120,7 +121,6 @@ $sql = 'SELECT
 // query the database
 if (!($result = $db->sql_query_limit($sql, (($k_news_items_to_display) ? $k_news_items_to_display : 1), 0, $block_cache_time)))
 {
-	//trigger_error('ERROR_PORTAL_NEWS' . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 	trigger_error('ERROR_PORTAL_NEWS');
 }
 
@@ -232,8 +232,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 	if (($k_news_item_max_length != 0) && (strlen($row['post_text']) > $k_news_item_max_length))
 	{
 		$row['post_text'] = sgp_truncate_message($row['post_text'], $k_news_item_max_length);
-		//$row['post_text'] .= ' <a href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '"><strong>[' . $user->lang['VIEW_FULL_ARTICLE']  . ']</strong></a>';
-		//$row['post_text'] .= append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '">[' . $user->lang['VIEW_FULL_ARTICLE']  . ']';
+		$row['post_text'] .= ' <a href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '"><strong>[' . $user->lang['VIEW_FULL_ARTICLE']  . ']</strong></a>';
 	}
 
 	$message = generate_text_for_display($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield'], $row['bbcode_options']);
@@ -265,15 +264,15 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		'CAT'			=> ($posts[$i]['store'] != 0) ? $row['forum_name'] : '',
 		'ALLOW_REPLY'	=> ($auth->acl_get('f_reply', $row['forum_id']) && $row['topic_status'] != '1') ? TRUE : FALSE,
 		'ALLOW_POST'	=> ($auth->acl_get('f_post', $row['forum_id']) && $row['topic_status'] != '1') ? TRUE : FALSE,
-		//'POSTER'		=> '<span style="color:#' . $row['user_colour'] . ';">' . $row['username'] . '</span>',
+		'POSTER'		=> '<span style="color:#' . $row['user_colour'] . ';">' . $row['username'] . '</span>',
 		'TIME'			=> $row['post_time'],
 		'TITLE'			=> $row['topic_title'],
 		'MESSAGE'		=> $message,
 
 		'U_POSTER'		=> get_username_string('full', $row['poster_id'], $row['username'], $row['user_colour']),
-		'U_VIEW'		=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id).'&amp;t=' . $row['topic_id']),
-		'U_REPLY'		=> append_sid("{$phpbb_root_path}posting.$phpEx", 'mode=reply&amp;t=' . $row['topic_id'].'&amp;f=' . $row['forum_id']),
-		'U_PRINT'		=> ($auth->acl_get('f_print', $row['forum_id'])) ? append_sid("{$phpbb_root_path}viewtopic.$phpEx", "f=" . $row['forum_id'] ."&amp;t=". $row['topic_id']."&amp;view=print") : '',
+		'U_VIEW'		=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']),
+		'U_REPLY'		=> append_sid("{$phpbb_root_path}posting.$phpEx", 'mode=reply&amp;t=' . $row['topic_id'] . '&amp;f=' . $row['forum_id']),
+		'U_PRINT'		=> ($auth->acl_get('f_print', $row['forum_id'])) ? append_sid("{$phpbb_root_path}viewtopic.$phpEx", "f=" . $row['forum_id'] . "&amp;t=" . $row['topic_id'] . "&amp;view=print") : '',
 
 		'REPLY_IMG'		=> $image_path . 'post_comment.png',
 		'PRINT_IMG' 	=> $image_path . 'post_print.png',
