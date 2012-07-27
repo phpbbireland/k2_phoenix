@@ -54,7 +54,8 @@ $lang = array_merge($lang, array(
 	'TITLE_MAIN'   => 'General Portal Variable',
 	'TITLE_BLOCK'  => 'Portal Block Variable',
 	'TITLE_EXPLAIN_MAIN'  => 'Setting for variables used by general portal blocks...',
-	'TITLE_EXPLAIN_BLOCK' => 'Blocks can contain variables, normally stored in the K_BLOCKS_CONFIG_VAR_TABLE, associated html file (to display the variables) are located in adm/style/k_block_vars folder.<br />If you add your own block variables, you need to include the html file to display and edit these variables.',
+	'TITLE_EXPLAIN_BLOCK' => '&bull; Blocks can contain variables (normally stored in the K_BLOCKS_CONFIG_VAR_TABLE).
+	<br />&bull; Each block can have an associated html file (to set the variables), these are located in adm/style/k_block_vars folder.<br />&bull; If you add your own block variables, you need to include the html file to display and edit these variables.',
 
 	'NEWS_SETTINGS'       => 'News Settings',
 	'K_NEWS_TYPE'         => 'News Type',
@@ -73,7 +74,7 @@ $lang = array_merge($lang, array(
 	'K_RECENT_SEARCH_DAYS_EXPLAIN'       => 'Limit the number of days we search back to reduce database load.',
 
 	'POSTS_TYPES'                        => 'Include all post types',
-	'POSTS_TYPES_EXPLAIN'                => 'No will display normal post only, Yes will display all post types...',
+	'POSTS_TYPES_EXPLAIN'                => 'Yes to display all post types, No to display normal and stickies posts only...',
 
 	'K_NEWS_ITEMS_TO_DISPLAY'            => 'Number of news item to display',
 	'K_NEWS_ITEMS_TO_DISPLAY_EXPLAIN'    => 'The number of news items shown on portal page.',
@@ -182,8 +183,6 @@ $lang = array_merge($lang, array(
 	'EXCLUDE'                                    => 'Exclude forums for search',
 	'EXCLUDE_EXPLAIN'                            => 'The ID’s of the forums to exclude from search (comma separated).',
 
-	'K_BLOCK_CACHE_TIME_FAST'          => 'Short cache time',
-	'K_BLOCK_CACHE_TIME_FAST_EXPLAIN'  => 'Used for recent topics etc...',
 	'K_BLOCK_CACHE_TIME_SHORT'         => 'Cache time short',
 	'K_BLOCK_CACHE_TIME_SHORT_EXPLAIN' => 'Use where a short duration is preferred (10)',
 
@@ -194,6 +193,13 @@ $lang = array_merge($lang, array(
 	'K_LINKS_FORUM_ID_EXPLAIN'    => 'Dedicated forum for uploading link images (optional)',
 	'K_LINKS_TO_DISPLAY'          => 'How many link images to display',
 	'K_LINKS_TO_DISPLAY_EXPLAIN'  => 'You can limit the number of images scrolled in the links block',
+
+	// Tooltips
+	'ALLOW_TOOLTIPS'                     => 'Allow tooltips',
+	'TOOLTIPS'                           => 'Tooltips',
+	'K_TOOLTIPS_WHICH'                   => 'Show last/first post in tooltips',
+	'FIRST'                              => 'First',
+	'LAST'                               => 'Last',
 
 ));
 
@@ -251,8 +257,8 @@ $lang = array_merge($lang, array(
 	'GALLERY'                  => 'Gallery',
 	'IRC_CHAT'                 => 'IRC Chat',
 
-	'K_BLOCK_CACHE_TIME_FAST'         => 'Set recent topics cache time.',
-	'K_BLOCK_CACHE_TIME_FAST_EXPLAIN' => 'Default period for recent topics.',
+	//'K_BLOCK_CACHE_TIME_FAST'         => 'Set recent topics cache time.',
+	//'K_BLOCK_CACHE_TIME_FAST_EXPLAIN' => 'Default period for recent topics.',
 	'K_LAST_ONLINE_MAX'               => 'Display this many members in list.',
 	'K_LAST_ONLINE_MAX_EXPLAIN'       => 'The maximum members to display in online list.',
 	'K_MAX_BLOCK_AVATAR_WIDTH'        => 'The maxinum width of the avatar',

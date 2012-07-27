@@ -47,7 +47,11 @@
 			<date>2012-07-04</date>
 			<rev-version>1.0.16</rev-version>
 			<changelog lang="en">
-				<change>Simplified some code.</change>
+				<change>Process some news code if portal disabled.</change>
+				<change>If portal disabled, load a basic lang file.</change>
+				<change>Removed header/footer layouts/menus for the moment.</change>
+				<change>Changed tooltips from hardcoded to admin option.</change>
+				<change>Rearranged Block/Menu menus in ACP.</change>
 				<change>Validation fixes.</change>
 			</changelog>
 		</entry>
@@ -285,6 +289,9 @@
 	border:none; 
 	margin-top: 5px;
 	padding: 5px;
+}
+.block_img {
+	height:100px;
 }
 .row5 { background-color: #F9EDBD; }
 .row6 { background-color: #E8DFC0; }
@@ -536,7 +543,7 @@ if (STARGATE)
 <edit>
 <find><![CDATA[		case 'make_global':]]></find>
 <action type="after-add"><![CDATA[		case 'make_news':
-	    case 'make_news_global':]]></action>
+	 case 'make_news_global':]]></action>
 </edit>
 <edit>
 <find><![CDATA[					AND topic_type NOT IN (" . POST_ANNOUNCE . ', ' . POST_GLOBAL . ")]]></find>
@@ -647,19 +654,15 @@ if (STARGATE)
 }]]></find>
 <action type="after-add"><![CDATA[if (STARGATE)
 {
-	// move to databse in next revision //
-	$k_config['tooltips_active'] = true;
-	$k_config['tooltips_which'] = 'first';
-
 	// Improved sql thank to Rich McGirr and his Topic Text Hover Mod //
-	if ($k_config['tooltips_active'])
+	if ($k_config['k_tooltips_active'])
 	{
-		if ($k_config['tooltips_which'] == 'first')
+		if ($k_config['k_tooltips_which'] == 1)
 		{
 			$sql_array['LEFT_JOIN'][] = array('FROM' => array(POSTS_TABLE => 'ptl'), 'ON' => 'ptl.post_id = t.topic_first_post_id');
 			$sql_array['SELECT'] .= ', ptl.post_text AS message_tooltip';
 		}
-		else if ($k_config['tooltips_which'] == 'last')
+		else if ($k_config['k_tooltips_which'] == 0)
 		{
 			$sql_array['LEFT_JOIN'][] = array('FROM' => array(POSTS_TABLE => 'ptl'), 'ON' => 'ptl.post_id = t.topic_last_post_id');
 			$sql_array['SELECT'] .= ', ptl.post_text AS message_tooltip';
@@ -1124,7 +1127,7 @@ define('POST_NEWS_GLOBAL', 5);</action>
 <![CDATA[
 // Stargate Portal (Kiss II) tables //
 define('WELCOME_MESSAGE', 1);
-define('UN_ALLOC__MENUS', 0);
+define('UN_ALLOC_MENUS', 0);
 define('NAV_MENUS', 1);
 define('SUB_MENUS', 2);
 define('HEAD_MENUS', 3);
@@ -1430,22 +1433,18 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <action type="after-add"><![CDATA[
 
 			case POST_NEWS:
-				if (STARGATE)
-				{
-					$topic_type = $user->lang['VIEW_TOPIC_NEWS'];
-					$folder = 'news_read';
-					$folder_new = 'news_unread';
-				}
+				$topic_type = $user->lang['VIEW_TOPIC_NEWS'];
+				$folder = 'news_read';
+				$folder_new = 'news_unread';
 			break;
 
 			case POST_NEWS_GLOBAL:
-				if (STARGATE)
-				{
-					$topic_type = $user->lang['VIEW_TOPIC_NEWS'];
-					$folder = 'news_read';
-					$folder_new = 'news_unread';
-				}
-			break;]]></action>
+				$topic_type = $user->lang['VIEW_TOPIC_NEWS'];
+				$folder = 'news_read';
+				$folder_new = 'news_unread';
+			break;
+
+]]></action>
 
 </edit>
 <edit>
@@ -1644,9 +1643,15 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <find><![CDATA[		$this->add_lang($lang_set);
 		unset($lang_set);]]></find>
 <action type="after-add"><![CDATA[
+		global $k_config;
 		if (STARGATE)
 		{
 			$this->add_lang('portal/kiss_common');
+		}
+		else if (isset($k_config['k_block_cache_time_default']))
+		{
+			// portal disabled but code present, so load a small common file //
+			$this->add_lang('portal/common');
 		}]]></action>
 </edit>
 
@@ -2065,17 +2070,17 @@ img_news_unread_locked_mine	= news_unread_locked_mine.gif*27*27</action>
 </edit>
 </open>
 
-
 <php-installer><![CDATA[portal/index.php]]></php-installer>
 <diy-instructions lang="en-gb">
+
+Go to ACP > PORTAL tab...
+Under BLOCKS > Manage All Blocks option, click on Re-index blocks button...
+Set permissions for blocks and menus as desired... (note, permissions are set on a group basis)...
+
 Refresh prosilver Templates/Themes/Imagesets...
-Refresh subsilver 2 Templates/Themes/Imagesets if you completed the subsilver 2 installation...
+Refresh subsilver2 Templates/Themes/Imagesets...
 
-Set permissions for Menu items and Blocks
-
-Purge the cache...
-
-Enable 'Create Thumbnail' to take advantage of highslide (assume you installed it)...
+If you have Highslide installed, Enable 'Create Thumbnail' to take full advantage of this mod...
 Delete or rename the portal directory...
 </diy-instructions>
 </action-group>

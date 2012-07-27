@@ -65,7 +65,10 @@ $lang = array_merge($lang, array(
 	'PAGE_NEW_FILENAME_EXPLAIN'	=> 'Select file (page) from the dropdown and hit Submit...',
 	'REMOVING_PAGES'			=> 'Page removed... ',
 	'SWITCHING'					=> 'Switching to k_pages',
-	'TITLE_EXPLAIN_PAGES'		=> 'The portal gives you the facility to display one/many blocks on a page basis.<br />To facilitate this action we provide a method to add additional pages form a list of valid pages in the root.<br />Once a page is added, it will become available in the block layout.<br />Note: Pages must provide necessary code to facilitate blocks (this is easy to add should you desire it)...',
+	'TITLE_EXPLAIN_PAGES'		=> '&bull; Blocks can be displayed on any valid phpBB, any mod pages you care to add, and basic html web pages...<br />
+	&bull; To facilitate this action we provide a method to add additional pages form a list of valid pages in the root/mod folders.<br />
+	&bull; Once a page is added, it will become available in the block layout.<br />
+	<br />Note: Mod pages must provide necessary code to facilitate blocks (this is easy to add should you desire it)...',
 ));
 
 ?>

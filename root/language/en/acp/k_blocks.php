@@ -78,7 +78,7 @@ $lang = array_merge($lang, array(
 	'BLOCK_POSITION'	 		=> 'Position',
 	'BLOCK_POSITION_BIG' 		=> 'Block Position',
 	'BLOCK_SCROLL'				=> 'S',
-	'BLOCK_TITLE' 				=> 'Block Title*',
+	'BLOCK_TITLE' 				=> 'Block Title',
 	'BLOCK_TYPE'				=> 'T',
 	'BLOCK_TYPE_BIG'			=> 'File Type',
 	'BLOCK_UP' 					=> 'Up',
@@ -137,7 +137,7 @@ $lang = array_merge($lang, array(
 	'SET_VARIABLES_IN_MINI-MODULES'	=> 'Set variables in Mini-Modules',
 
 	'TITLE' 					=> 'Block Administration/Management',
-	'TITLE_EXPLAIN'				=> '* Block titles will be replaced by lang var if it exists.<br />&bull; The last edited block is highlighted (bold).',
+	'TITLE_EXPLAIN'				=> '&bull; Block titles will be replaced with user language variables, if none exits, the values show below will be used.<br />&bull; The last edited block is highlighted (bold).',
 	'TITLE_EXPLAIN_EXPAND'		=> '&bull; The NDX indicates position relative to other blocks in the same column.<br />&bull; Block html files are located in: styles/_portal_common/template/blocks folder.',
 
 	'UNKNOWN_ERROR'					=> 'Error not processing saved data<br />',

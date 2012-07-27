@@ -166,6 +166,27 @@ $k_blocks_array[] = array(
 
 $k_blocks_array[] = array(
 	'ndx'			=> '2',
+	'title'			=> 'Welcome',
+	'position'		=> 'C',
+	'type'			=> 'H',
+	'active'		=> '1',
+	'html_file_name'=> 'block_welcome.html',
+	'var_file_name'	=> '',
+	'img_file_name'	=> 'welcome.png',
+	'view_all'		=> '1',
+	'view_groups'	=> '0',
+	'view_pages'	=> '2',
+	'groups'		=> '0',
+	'scroll'		=> '0',
+	'block_height'	=> '0',
+	'has_vars'		=> '1',
+	'minimod_based'	=> '0',
+	'mod_block_id'	=> '0',
+	'is_static'		=> '0',
+	'block_cache_time'	=> '999',
+);
+$k_blocks_array[] = array(
+	'ndx'			=> '3',
 	'title'			=> 'Announcements',
 	'position'		=> 'C',
 	'type'			=> 'H',
@@ -186,7 +207,7 @@ $k_blocks_array[] = array(
 	'block_cache_time'	=> '300',
 );
 $k_blocks_array[] = array(
-	'ndx'			=> '3',
+	'ndx'			=> '4',
 	'title'			=> 'Recent Topics',
 	'position'		=> 'C',
 	'type'			=> 'H',
@@ -207,7 +228,7 @@ $k_blocks_array[] = array(
 	'block_cache_time'	=> '20',
 );
 $k_blocks_array[] = array(
-	'ndx'			=> '4',
+	'ndx'			=> '5',
 	'title'			=> 'News Report',
 	'position'		=> 'C',
 	'type'			=> 'H',

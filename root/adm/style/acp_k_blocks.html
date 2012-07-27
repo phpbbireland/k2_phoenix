@@ -215,13 +215,7 @@
 			<label><input type="radio" class="radio" name="active" value="0" <!-- IF not S_ACTIVE -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
-	<dl>
-		<dt><label for="type">{L_BLOCK_TYPE_BIG}:</label></dt>
-		<dd>
-			<label><input type="radio" class="radio" id="type" name="type" value="1" <!-- IF S_TYPE -->checked="checked" <!-- ENDIF --> /> {L_HTML}</label>
-			<label><input type="radio" class="radio" name="type" value="0" <!-- IF not S_TYPE -->checked="checked" <!-- ENDIF --> /> {L_BBCODE}</label>
-		</dd>
-	</dl>
+
 	<dl>
 		<dt><label for="html_file_name">{L_BLOCK_FNAME_H_BIG}:</label><br />{L_BLOCK_FNAME_EXPLAIN}</dt>
 		<dd>
@@ -244,17 +238,15 @@
 		</dd>
 	</dl>
 	<dl>
-		<dt><strong>{L_BLOCK_FNAME_IS_BIG}:</strong></dt>
-		<dd>
-			<span id="imageline" class="imageline" style="padding:5px; border: solid 1px #D7D7D7;">
+		<dt><strong>{L_BLOCK_FNAME_IS_BIG}:</strong><br />{L_BLOCK_FNAME_IS_BIG2}</dt>
+		<dd class="imageline block_img">
 			<!-- BEGIN img_file_name -->
 				<!-- IF img_file_name.S_BLOCK_FILE_I -->
 					<a href="#" onclick="set_list_image('{img_file_name.S_BLOCK_FILE_I}'); return false;">
-						<img id="{img_file_name.S_BLOCK_FILE_I}" src='./../images/block_images/block/{img_file_name.S_BLOCK_FILE_I}' title='{img_file_name.S_BLOCK_FILE_I}' alt="" />
+						<img id="{img_file_name.S_BLOCK_FILE_I}" src='./../images/block_images/block/{img_file_name.S_BLOCK_FILE_I}' title='{img_file_name.S_BLOCK_FILE_I}' alt="" width="16" height="16" />
 					</a>
 				<!-- ENDIF -->
 			<!-- END img_file_name -->
-			</span>
 		</dd>
 	</dl>
 	<hr />
@@ -268,7 +260,7 @@
 	<hr />
 	<dl>
 		<dt><strong>{L_VIEW_PAGES}:</strong><br /><span>{L_VIEW_PAGES_EXPLAIN}</span></dt>
-		<dd><span class="imageline" style="padding:5px; border: solid 1px #D7D7D7;">{S_VIEW_PAGES}</span></dd>
+		<dd style="padding:5px; min-height: 12px; border: solid 1px #D7D7D7;">{S_VIEW_PAGES}</dd>
 	</dl>
 	<dl>
 		<dt><label for="view_page_id[]">{L_VIEW_PAGE2}</label><br />{L_VIEW_PAGE_EXPLAIN2}</dt>
@@ -366,13 +358,7 @@
 			<label><input type="radio" class="radio" name="active" value="0" <!-- IF not S_ACTIVE -->checked="checked" id="active"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
-	<dl>
-		<dt><label for="type">{L_BLOCK_TYPE_BIG}:</label></dt>
-		<dd>
-			<label><input type="radio" class="radio" name="type" value="1" <!-- IF S_TYPE -->checked="checked" id="type"<!-- ENDIF --> /> {L_HTML}</label>
-			<label><input type="radio" class="radio" name="type" value="0" <!-- IF not S_TYPE -->checked="checked" id="type"<!-- ENDIF --> /> {L_BBCODE}</label>
-		</dd>
-	</dl>
+
 	<dl>
 		<dt><label for="html_file_name">{L_BLOCK_FNAME_H_BIG}:</label></dt>
 		<dd>
@@ -396,16 +382,14 @@
 	</dl>
 	<dl>
 		<dt><strong>{L_BLOCK_FNAME_IS_BIG}:</strong><br />{L_BLOCK_FNAME_IS_BIG2}</dt>
-		<dd>
-			<span class="imageline" style="padding:5px; border: solid 1px #D7D7D7;">
+		<dd class="imageline block_img">
 			<!-- BEGIN img_file_name -->
 				<!-- IF img_file_name.S_BLOCK_FILE_I -->
 					<a href="#" onclick="set_list_image('{img_file_name.S_BLOCK_FILE_I}'); return false;">
-						<img src='./../images/block_images/block/{img_file_name.S_BLOCK_FILE_I}' title='{img_file_name.S_BLOCK_FILE_I}' alt="" />
+						<img src='./../images/block_images/block/{img_file_name.S_BLOCK_FILE_I}' title='{img_file_name.S_BLOCK_FILE_I}' alt="" width="16" height="16" />
 					</a>
 				<!-- ENDIF -->
 			<!-- END img_file_name -->
-			</span>
 		</dd>
 	</dl>
 
@@ -446,7 +430,7 @@
 
 	<dl>
 		<dt><strong>{L_VIEW_PAGES}:</strong><br /><span>{L_VIEW_PAGES_EXPLAIN}</span></dt>
-		<dd><span class="imageline" style="padding:5px; border: solid 1px #D7D7D7;">{S_VIEW_PAGES}</span></dd>
+		<dd style="padding:5px; min-height: 12px; border: solid 1px #D7D7D7;">{S_VIEW_PAGES}</dd>
 	</dl>
 	<dl>
 		<dt><label for="view_page_id[]">{L_VIEW_PAGE2}</label><br />{L_VIEW_PAGE_EXPLAIN2}</dt>

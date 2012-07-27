@@ -47,6 +47,7 @@ $lang = array_merge($lang, array(
 	'ALL_MENUS'                => 'Show All Menu Items',
 	'CONFIRM_OPERATION_MENUS'  => 'Do you wish to delete this Menu?',
 	'CREATE'                   => 'Create Menu',
+	'DELETED'                  => '%s, menu has been deleted<br />',
 	'DO_NOT_EDIT'              => 'Note: Do not edit this value',
 	'FOOT'                     => 'Footer',
 	'FOOT_MENU'                => 'Footer Menu',
@@ -155,8 +156,8 @@ $lang = array_merge($lang, array(
 	'SUB_MENU'                  => 'Sub Menu',
 
 	'TITLE'                 => 'Stargate (aka Kiss) Menu Manager (Administration)',
-	'TITLE_EXPLAIN'         => 'Here you can Add, Edit and Delete Menus. (* indicated the fields cannot be empty).',
-	'TITLE_EXPLAIN_EXPAND'  => 'Fields marked with * cannot be empty.<br />Legend: NDX = Index or sort order, Icon = Menu Icon (each menu item can have a different icon), Alt = Alternative text, Link = Link to whatever... <br />Menu icons are located in images/block_images/menu directory.',
+	'TITLE_EXPLAIN'         => '&bull; The <strong>*</strong> indicated the fields cannot be empty<br />&bull; Menu names will be replaced with user language variables, if none exits, the values show below will be used.',
+	'TITLE_EXPLAIN_EXPAND'  => '&bull; Fields marked with * cannot be empty.<br />Legend: NDX = Index or sort order, Icon = Menu Icon (each menu item can have a different icon), Alt = Alternative text, Link = Link to whatever... <br />Menu icons are located in images/block_images/menu directory.',
 	'TITLE_ICON_EXPLAIN'    => 'Manage Icons',
 
 ));
