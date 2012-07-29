@@ -24,11 +24,7 @@
     <installation>
       <level>intermediate</level>
       <time>2503</time>
-<<<<<<< .merge_file_a04264
       <target-version>3.0.10</target-version>
-=======
-      <target-version>3.0.11RC2</target-version>
->>>>>>> .merge_file_a05812
     </installation>
     <meta name="generator" content="Phpbb.ModTeam.Tools (c#)" />
   </header>

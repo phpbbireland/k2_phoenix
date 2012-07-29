@@ -39,11 +39,7 @@
 	<installation>
 		<level>intermediate</level>
 		<time>2003</time>
-<<<<<<< .merge_file_a33444
 		<target-version>3.0.10</target-version>
-=======
-		<target-version>3.0.11RC2</target-version>
->>>>>>> .merge_file_a06500
 	</installation>
 
 	<history>
