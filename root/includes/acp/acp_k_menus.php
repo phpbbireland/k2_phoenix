@@ -85,7 +85,6 @@ class acp_k_menus
 
 			case 'nav':      get_menu(NAV_MENUS);     $template->assign_var('S_OPTIONS', 'nav');  break;
 			case 'sub':      get_menu(SUB_MENUS);     $template->assign_var('S_OPTIONS', 'sub');  break;
-			case 'head':     get_menu(HEAD_MENUS);    $template->assign_var('S_OPTIONS', 'head'); break;
 			case 'link':     get_menu(LINKS_MENUS);   $template->assign_var('S_OPTIONS', 'link'); break;
 			case 'all':      get_menu(ALL_MENUS);     $template->assign_var('S_OPTIONS', 'all');  break;
 			case 'unalloc':  get_menu(UNALLOC_MENUS); $template->assign_var('S_OPTIONS', 'unalloc'); break;
