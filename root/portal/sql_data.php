@@ -381,10 +381,6 @@ $k_blocks_array[] = array(
 );
 
 
-
-
-
-
 $k_blocks_config_table = 'phpbb_k_blocks_config';
 $k_blocks_config_array = array();
 $k_blocks_config_array[] = array(
@@ -585,6 +581,12 @@ $k_blocks_config_vars_array[] = array(
 $k_blocks_config_vars_array[] = array(
 	'config_name'	=> 'k_teampage_memberships',
 	'config_value'	=> '0',
+	'is_dynamic'	=> '0',
+);
+
+$k_blocks_config_vars_array[] = array(
+	'config_name'	=> 'k_tooltips_active',
+	'config_value'	=> '1',
 	'is_dynamic'	=> '0',
 );
 
