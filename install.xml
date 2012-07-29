@@ -543,7 +543,7 @@ if (STARGATE)
 <edit>
 <find><![CDATA[		case 'make_global':]]></find>
 <action type="after-add"><![CDATA[		case 'make_news':
-	 case 'make_news_global':]]></action>
+		case 'make_news_global':]]></action>
 </edit>
 <edit>
 <find><![CDATA[					AND topic_type NOT IN (" . POST_ANNOUNCE . ', ' . POST_GLOBAL . ")]]></find>
