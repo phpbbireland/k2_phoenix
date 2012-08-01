@@ -268,14 +268,12 @@ $versions = array(
 			array($k_pages_table, $k_pages_array),
 			array($k_resources_table, $k_resources_array),
 		),
+
+		// purge the cache
+		'cache_purge' => array('', 'imageset', 'template', 'theme'),
 	),
 
-	// purge the cache
-	'cache_purge' => array(),
-
-);//version
-
-
+);//versions
 
 include($phpbb_root_path . 'umil/umil_auto.' . $phpEx);
 
