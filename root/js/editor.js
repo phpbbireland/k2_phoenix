@@ -28,8 +28,8 @@ function helpline(help)
 /**
 * Fix a bug involving the TextRange object. From
 * http://www.frostjedi.com/terra/scripts/demo/caretBug.html
-*/
-function initInsertions()
+*/ 
+function initInsertions() 
 {
 	var doc;
 
@@ -37,7 +37,7 @@ function initInsertions()
 	{
 		doc = document;
 	}
-	else
+	else 
 	{
 		doc = opener.document;
 	}
@@ -107,7 +107,7 @@ function bbfontstyle(bbopen, bbclose)
 	
 	//The new position for the cursor after adding the bbcode
 	var caret_pos = getCaretPosition(textarea).start;
-	var new_pos = caret_pos + bbopen.length;
+	var new_pos = caret_pos + bbopen.length;		
 
 	// Open tag
 	insert_text(bbopen + bbclose);
@@ -219,7 +219,7 @@ function addquote(post_id, username, l_wrote)
 
 	// Get text selection - not only the post content :(
 	// IE9 must use the document.selection method but has the *.getSelection so we just force no IE
-	if (window.getSelection && !is_ie)
+	if (window.getSelection && !is_ie && !window.opera)
 	{
 		theSelection = window.getSelection().toString();
 	}
@@ -433,7 +433,7 @@ function getCaretPosition(txtarea)
 	// dirty and slow IE way
 	else if(document.selection)
 	{
-
+	
 		// get current selection
 		var range = document.selection.createRange();
 
@@ -452,7 +452,7 @@ function getCaretPosition(txtarea)
 	
 		// we ignore the end value for IE, this is already dirty enough and we don't need it
 		caretPos.start = txtarea.sel_start;
-		caretPos.end = txtarea.sel_start;
+		caretPos.end = txtarea.sel_start;			
 	}
 
 	return caretPos;
