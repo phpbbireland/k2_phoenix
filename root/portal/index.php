@@ -4,7 +4,7 @@
 * @author michaelo phpbbireland@gmail.com - http://www.phpbbireland.com
 *
 * @package sgp
-* @version 1.0.16
+* @version 1.0.17
 * @copyright (c) 2005-2011 Michael O'Toole (phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -89,7 +89,10 @@ $versions = array(
 	'1.0.15' => array(
 	),
 	// Version 1.0.16
-	'1.0.16'	=> array(
+	'1.0.16' => array(
+	),
+	// Version 1.0.17
+	'1.0.17'	=> array(
 		'permission_add' => array(
 			array('a_k_portal', 1),
 			array('a_k_tools', 1),
@@ -103,7 +106,7 @@ $versions = array(
 
 		'config_add' => array(
 			array('portal_enabled', 1),
-			array('portal_build', '310-016'),
+			array('portal_build', '311-017'),
 			array('blocks_enabled', 1),
 			array('blocks_width', '190'),
 			array('force_default_if_style_missing', 1),
@@ -268,10 +271,20 @@ $versions = array(
 			array($k_pages_table, $k_pages_array),
 			array($k_resources_table, $k_resources_array),
 		),
-	),
 
-	// purge the cache
-	'cache_purge' => array(),
+		// purge all cache
+		'cache_purge' => array(),
+
+		/*
+		// a more specific call would be
+		cache_purge => array(
+			'auth', // auth
+			array('imageset', 1), // imageset (id 1)
+			array('template', 2), // template (id 2)
+			'theme', // all themes
+		),
+		*/
+	),
 
 );//version
 

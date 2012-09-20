@@ -106,7 +106,7 @@
 
 <a name="maincontent"></a>
 <h1>{L_TITLE}</h1>
-<p>{L_TITLE_EXPLAIN}</p>
+<p>{L_BLOCKS_TITLE_EXPLAIN}</p>
 
 <form id="acp_blocks" method="post" action="{U_ACTION}">
 
@@ -116,14 +116,14 @@
 	<thead>
 		<tr><th colspan="13">{L_BLOCKS_HEADER_ADMIN}</th></tr>
 		<tr>
-			<th>{L_BLOCK_ID}</th>
+			<th>{L_ID}</th>
 			<th>{L_BLOCK_NDX}</th>
-			<th>{L_BLOCK_ACTIVE}</th>
+			<th>{L_ACTIVE}</th>
 			<th>{L_BLOCK_TITLE}</th>
-			<th>{L_BLOCK_POSITION}</th>
+			<th>{L_POSITION}</th>
 			<th>{L_BLOCK_FNAME_H}</th>
 			<th><div style="text-align:center;">{L_BLOCK_FNAME_I}</div></th>
-			<th><div style="text-align:center;">{L_BLOCK_VIEW_BY_SHORT}</div></th>
+			<th><div style="text-align:center;">{L_VIEW_BY}</div></th>
 			<th><div style="text-align:center;">{L_OPTIONS}</div></th>
 		</tr>
 	</thead>
@@ -132,7 +132,7 @@
 		<tr <!-- IF bdata.S_ID == ADM_BLOCK -->style="font-weight:bold;"<!-- ENDIF -->>
 			<td align="center" class="<!-- IF bdata.S_POSITION == 'L' -->row4<!-- ELSEIF bdata.S_POSITION == 'C' -->row5<!-- ELSE -->row6<!-- ENDIF -->" >{bdata.S_ID}</td>
 			<td align="center" class="<!-- IF bdata.S_POSITION == 'L' -->row4<!-- ELSEIF bdata.S_POSITION == 'C' -->row5<!-- ELSE -->row6<!-- ENDIF -->" >{bdata.S_NDX}</td>
-			<td align="center" class="<!-- IF bdata.S_POSITION == 'L' -->row4<!-- ELSEIF bdata.S_POSITION == 'C' -->row5<!-- ELSE -->row6<!-- ENDIF -->" ><!-- IF bdata.S_ACTIVE} == 1 -->{L_BLOCK_ACTIVE}<!-- ELSE -->{L_BLOCK_DISABLED}<!-- ENDIF --></td>
+			<td align="center" class="<!-- IF bdata.S_POSITION == 'L' -->row4<!-- ELSEIF bdata.S_POSITION == 'C' -->row5<!-- ELSE -->row6<!-- ENDIF -->" ><!-- IF bdata.S_ACTIVE} == 1 -->{L_ACTIVE}<!-- ELSE -->{L_DISABLED}<!-- ENDIF --></td>
 			<td align="center" class="<!-- IF bdata.S_POSITION == 'L' -->row4<!-- ELSEIF bdata.S_POSITION == 'C' -->row5<!-- ELSE -->row6<!-- ENDIF -->" >{bdata.S_TITLE}</td>
 			<td class="<!-- IF bdata.S_POSITION == 'L' -->row4<!-- ELSEIF bdata.S_POSITION == 'C' -->row5<!-- ELSE -->row6<!-- ENDIF -->">
 				<!-- IF bdata.S_POSITION === "L" -->{L_PAGE_LEFT}<!-- ENDIF -->
@@ -186,7 +186,7 @@
 	<legend>{L_BLOCKS_HEADER_ADMIN}</legend>
 	<input type="hidden" name="id" value="{S_ID}" />
 	<dl>
-		<dt><label for="id">{L_BLOCK_ID}</label>&nbsp; {L_DO_NOT_EDIT}</dt>
+		<dt><label for="id">{L_ID}</label>&nbsp; {L_DO_NOT_EDIT}</dt>
 		<dd><input type="text" maxlength="3" size="5" id="id" name="id" value="{S_ID}" class="post" /></dd>
 	</dl>
 	<dl>
@@ -198,7 +198,7 @@
 		<dd><input type="text" maxlength="60" size="24" id="title" name="title" value="{S_TITLE}" class="post" /></dd>
 	</dl>
 	<dl>
-		<dt><label for="position" >{L_BLOCK_POSITION_BIG}:</label><br /></dt>
+		<dt><label for="position" >{L_POSITION}:</label><br /></dt>
 		<dd><select id="position" name="position" class="post">
 				<option value="L" <!-- IF S_POSITION === "L" -->selected="selected" <!-- ENDIF -->>{L_PAGE_LEFT}</option>
 				<option value="C" <!-- IF S_POSITION === "C" -->selected="selected" <!-- ENDIF -->>{L_PAGE_CENTRE}</option>
@@ -209,7 +209,7 @@
 		</dd>
 	</dl>
 	<dl>
-		<dt><label for="active">{L_BLOCK_ACTIVE_BIG}:</label></dt>
+		<dt><label for="active">{L_BLOCK_ACTIVE}:</label></dt>
 		<dd>
 			<label><input type="radio" class="radio" id="active" name="active" value="1" <!-- IF S_ACTIVE -->checked="checked" <!-- ENDIF --> /> {L_YES}</label>
 			<label><input type="radio" class="radio" name="active" value="0" <!-- IF not S_ACTIVE -->checked="checked" <!-- ENDIF --> /> {L_NO}</label>
@@ -340,7 +340,7 @@
 		<dd><label><input type="text" maxlength="60" size="24" id="title" name="title" value="" class="post" /></label></dd>
 	</dl>
 	<dl>
-		<dt><label for="position">{L_BLOCK_POSITION_BIG}:</label></dt>
+		<dt><label for="position">{L_POSITION}:</label></dt>
 		<dd>
 			<select id="position" name="position" class="post">
 				<option value="L" <!-- IF bdata.S_POSITION === "L" or  bdata.S_POSITION === "" -->selected="selected" id="position"<!-- ENDIF -->>{L_PAGE_LEFT}</option>
@@ -352,7 +352,7 @@
 		</dd>
 	</dl>
 	<dl>
-		<dt><label for="active" >{L_BLOCK_ACTIVE_BIG}:</label></dt>
+		<dt><label for="active" >{L_BLOCK_ACTIVE}:</label></dt>
 		<dd>
 			<label><input type="radio" class="radio" name="active" value="1" <!-- IF S_ACTIVE -->checked="checked" id="active"<!-- ENDIF --> /> {L_YES}</label>
 			<label><input type="radio" class="radio" name="active" value="0" <!-- IF not S_ACTIVE -->checked="checked" id="active"<!-- ENDIF --> /> {L_NO}</label>

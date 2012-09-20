@@ -349,7 +349,7 @@ local_acronym{
   padding:4px; 
   padding-bottom: 0px; 
   padding-top: 0px; 
-  background-color: #fff; 
+  /*background-color: #fff; */
 }
 
 
@@ -699,3 +699,6 @@ table.table1 .flag { text-align: center; width: 30px; }
 .link_images {margin: 0px auto;}
 
 .phpbb .codebox {max-width: inherit}
+
+.l_block_vert_gap { padding-right:15px; }
+.r_block_vert_gap { padding-left:15px; }
