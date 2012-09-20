@@ -18,7 +18,7 @@ class ucp_k_blocks_info
 		return array(
 			'filename'  => 'ucp_k_blocks',
 			'title'     => 'UCP_K_BLOCKS',
-			'version'   => '1.0.16',
+			'version'   => '1.0.17',
 			'modes'     => array(
 				'info'     => array('title' => 'UCP_K_BLOCKS_INFO', 'auth' => '', 'cat' => array('UCP_K_BLOCKS')),
 				'arrange'  => array('title' => 'UCP_K_BLOCKS_ARRANGE', 'auth' => '', 'cat' => array('UCP_K_BLOCKS')),
