@@ -54,24 +54,22 @@ $has_attachments = $display_notice = false;
 $attach_array = $attach_list = $post_list = $posts = $attachments = $extensions = array();
 $time_now = time();
 
-// Build sql WHERE clause based on $config['k_news_type']... //fix stu http://www.phpbbireland.com/phpBB3/viewtopic.php?p=16804
-
 switch ($k_news_type)
 {
-	case 0:   // both
-		$a_type = "(t.topic_id = p.topic_id AND t.topic_type = 4 AND t.topic_status <> 2 AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now) OR " . "t.topic_id = p.topic_id AND t.topic_type = 5 AND t.topic_status <> 2 AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  <  $time_now ))";
+	case 0: // POST_NEWS or POST_NEWS_GLOBAL
+		$a_type = "(t.topic_id = p.topic_id AND (t.topic_type = " . POST_NEWS . " OR t.topic_type = " . POST_NEWS_GLOBAL . ") AND t.topic_status <> " . FORUM_LINK . " AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now))";
 	break;
 
 	case POST_NEWS:
-		$a_type = "(t.topic_id = p.topic_id AND t.topic_type = 4 AND t.topic_status <> 2 AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now))";
+		$a_type = "(t.topic_id = p.topic_id AND t.topic_type = " . POST_NEWS . " AND t.topic_status <> " . FORUM_LINK . " AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now))";
 	break;
 
 	case POST_NEWS_GLOBAL:
-		$a_type = "(t.topic_id = p.topic_id AND t.topic_type = 5 AND t.topic_status <> 2 AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now))";
+		$a_type = "(t.topic_id = p.topic_id AND t.topic_type = " . POST_NEWS_GLOBAL . " AND t.topic_status <> " . FORUM_LINK . " AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now))";
 	break;
 
 	default:
-		$a_type = "(t.topic_id = p.topic_id AND t.topic_type = 5 AND t.topic_status <> 2 AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now))";
+		$a_type = "(t.topic_id = p.topic_id AND t.topic_type = " . POST_NEWS_GLOBAL . " AND t.topic_status <> " . FORUM_LINK . " AND (t.topic_time_limit = 0 OR (t.topic_time + t.topic_time_limit)  >  $time_now))";
 	break;
 }
 
@@ -116,7 +114,8 @@ $sql = 'SELECT
            p.post_time = t.topic_time AND
 			t.forum_id = f.forum_id
 	ORDER BY
-		t.topic_time DESC';
+		t.topic_type DESC, t.topic_time DESC';
+
 
 // query the database
 if (!($result = $db->sql_query_limit($sql, (($k_news_items_to_display) ? $k_news_items_to_display : 1), 0, $block_cache_time)))
