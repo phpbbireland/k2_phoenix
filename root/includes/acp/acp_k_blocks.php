@@ -1211,6 +1211,8 @@ function parse_all_groups()
 		$group_id = $row['group_id'];
 		$group_name = $row['group_name'];
 
+		$group_name = ($user->lang(strtoupper('G_'.$group_name))) ? $user->lang(strtoupper('G_'.$group_name)) : $user->lang(strtoupper($group_name));
+
 		$template->assign_block_vars('groups', array(
 			'GROUP_NAME' => $group_name,
 			'GROUP_ID'   => $group_id,
