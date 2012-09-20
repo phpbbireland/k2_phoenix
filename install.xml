@@ -34,15 +34,25 @@
 		</author>
 	</author-group>
 
-	<mod-version>1.0.16</mod-version>
+	<mod-version>1.0.17</mod-version>
 
 	<installation>
 		<level>intermediate</level>
 		<time>2003</time>
-		<target-version>3.0.10</target-version>
+		<target-version>3.0.11</target-version>
 	</installation>
 
 	<history>
+		<entry>
+			<date>2012-07-04</date>
+			<rev-version>1.0.17</rev-version>
+			<changelog lang="en">
+				<change>Updated for phpBB 3.0.11.</change>
+				<change>Validation fixes (1) mysql.</change>
+				<change>Validation fixes (2) phpbb_root_path.</change>
+				<change>Group select dropdown box, now uses lang values.</change>
+			</changelog>
+		</entry>
 		<entry>
 			<date>2012-07-04</date>
 			<rev-version>1.0.16</rev-version>
@@ -543,7 +553,7 @@ if (STARGATE)
 <edit>
 <find><![CDATA[		case 'make_global':]]></find>
 <action type="after-add"><![CDATA[		case 'make_news':
-	 case 'make_news_global':]]></action>
+		case 'make_news_global':]]></action>
 </edit>
 <edit>
 <find><![CDATA[					AND topic_type NOT IN (" . POST_ANNOUNCE . ', ' . POST_GLOBAL . ")]]></find>
@@ -1689,14 +1699,15 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 				}]]></find>
 <action type="after-add"><![CDATA[
 				// Start mod list forum_images from kiss engine copyright 2007 phpbbireland.com //
-				$dirslist=' ';
+				$dirslist = ' ';
 
-				if (!file_exists('./../images/forum_icons'))
+				if (!file_exists($phpbb_root_path . 'images/forum_icons'))
 				{
 					trigger_error(sprintf($user->lang['MISSING_FILE_OR_FOLDER'], $file));
 				}
 
-				$dirs = dir('./../images/forum_icons');
+				$dirs = dir($phpbb_root_path . 'images/forum_icons');
+
 				while ($file = $dirs->read())
 				{
 					if (stripos($file, ".gif") ||  stripos($file, ".png"))
@@ -1708,14 +1719,14 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 				$dirslist = explode(" ", $dirslist);
 				sort($dirslist);
 
-				for ( $i=0; $i < sizeof($dirslist); $i++ )
+				for ($i=0; $i < sizeof($dirslist); $i++)
 				{
 					if ($dirslist[$i] != '')
 					{
 						$template->assign_block_vars('forum_img_file_name', array('FORUM_IMAGE_OPT' => $dirslist[$i]));
 					}
 				}
-				$dirslist='';
+				$dirslist = '';
 				// End mod list forum_images Michaelo //
 ]]></action>
 </edit>
@@ -1809,8 +1820,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 </edit>
 
 <edit>
-<find><![CDATA[	<div class="copyright">Powered by <a href="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group
-]]></find>
+<find><![CDATA[	<div class="copyright">{CREDIT_LINE}]]></find>
 <action type="after-add"><![CDATA[		<!-- IF STARGATE --><!-- INCLUDE portal_copyright.html --><!-- ENDIF -->
 ]]></action>
 </edit>
