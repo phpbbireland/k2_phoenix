@@ -11,7 +11,7 @@
 *        this is part of the Stargate Portal copyright agreement...
 *
 * @version $Id$
-* 20 June 2012 20:22
+* 17 September 2012
 */
 
 /**
@@ -125,7 +125,8 @@ for ($i = 0; $i < $forum_count; $i++)
 	}
 }
 
-$where_sql = 'WHERE ' . $db->sql_in_set('t.forum_id', $valid_forum_ids);
+//$where_sql = 'WHERE ' . $db->sql_in_set('t.forum_id', $valid_forum_ids);
+$where_sql = $db->sql_in_set('t.forum_id', $valid_forum_ids);
 
 if ($k_post_types)
 {
@@ -138,20 +139,38 @@ else
 
 $post_time_days = time() - 86400 * $k_recent_search_days;
 
-$sql = 'SELECT SQL_CACHE p.post_id, t.topic_id, t.topic_time, t.topic_title, t.topic_replies, t.forum_id, t.topic_last_post_time, t.topic_last_post_id, t.topic_last_poster_id, t.topic_last_poster_name, t.topic_last_poster_colour, t.topic_type, f.forum_name, p.post_edit_time, p.post_subject, p.post_text, p.post_time, p.bbcode_bitfield, p.bbcode_uid, f.forum_desc, u.user_avatar, u.user_avatar_type
-		FROM ' . FORUMS_TABLE . ' f
-			LEFT JOIN ' . TOPICS_TABLE . ' t ON (f.forum_id = t.forum_id)
-			LEFT JOIN ' . POSTS_TABLE . ' p ON (t.topic_id = p.topic_id)
-			LEFT JOIN ' . USERS_TABLE . ' u ON (t.topic_last_poster_id = u.user_id)
-				' . $where_sql . '
-					AND t.topic_approved = 1
-					AND p.post_approved = 1
-					' . $types_sql . '
-					AND p.post_id = t.topic_first_post_id
-					AND t.topic_last_post_time >= ' . $post_time_days . '
-						OR p.post_edit_time >= ' . $post_time_days . '
-						ORDER BY t.forum_id, t.topic_last_post_time DESC';
+// New code //
+$sql_array = array(
+	'SELECT'		=> 'p.post_id, t.topic_id, t.topic_time, t.topic_title, t.topic_replies, t.forum_id, t.topic_last_post_time, t.topic_last_post_id, t.topic_last_poster_id, t.topic_last_poster_name, t.topic_last_poster_colour, t.topic_type, f.forum_name, p.post_edit_time, p.post_subject, p.post_text, p.post_time, p.bbcode_bitfield, p.bbcode_uid, f.forum_desc, u.user_avatar, u.user_avatar_type',
 
+	'FROM'			=> array(FORUMS_TABLE => 'f'),
+
+	'LEFT_JOIN'		=> array(
+		array(
+			'FROM'	=> array(TOPICS_TABLE => 't'),
+			'ON'	=> "f.forum_id = t.forum_id",
+		),
+		array(
+			'FROM'	=> array(POSTS_TABLE => 'p'),
+			'ON'	=> "t.topic_id = p.topic_id",
+		),
+		array(
+			'FROM'	=> array(USERS_TABLE => 'u'),
+			'ON'	=> "t.topic_last_poster_id = u.user_id",
+		),
+	),
+
+	'WHERE'	=> $where_sql . '
+		AND t.topic_approved = 1
+		AND p.post_approved = 1
+		' . $types_sql . '
+		AND p.post_id = t.topic_first_post_id
+		AND t.topic_last_post_time >= ' . $post_time_days . '
+			OR p.post_edit_time >= ' . $post_time_days . '
+			ORDER BY t.forum_id, t.topic_last_post_time DESC'
+);
+
+$sql = $db->sql_build_query('SELECT', $sql_array);
 $result = $db->sql_query_limit($sql, $display_this_many, 0, $block_cache_time);
 
 $row = $db->sql_fetchrowset($result);

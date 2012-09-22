@@ -25,7 +25,7 @@ class acp_k_blocks_info
 		return array(
 			'filename'  => 'acp_k_blocks',
 			'title'     => 'ACP_K_BLOCKS',
-			'version'   => '1.0.16',
+			'version'   => '1.0.17',
 			'modes'     => array(
 				'add'      => array('title' => 'ACP_K_BLOCKS_ADD',         'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_BLOCKS')),
 				'edit'     => array('title' => 'ACP_K_BLOCKS_EDIT',        'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_BLOCKS'), 'display' => false),

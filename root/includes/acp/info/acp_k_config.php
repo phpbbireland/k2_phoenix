@@ -25,7 +25,7 @@ class acp_k_config_info
 		return array(
 			'filename' => 'acp_k_config',
 			'title'    => 'ACP_K_PORTAL_CONFIG',
-			'version'  => '1.0.16',
+			'version'  => '1.0.17',
 			'modes'    => array(
 				'config' => array('title' => 'ACP_K_PORTAL_CONFIG', 'auth' => 'acl_a_k_portal',	'cat' => array('ACP_K_CONFIG')),
 			),

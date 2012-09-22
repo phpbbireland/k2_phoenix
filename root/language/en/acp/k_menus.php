@@ -4,7 +4,7 @@
 * @package Kiss Portal Engine (acp_k_menu) (English)
 *
 * @package language
-* @version $Id:$ 1.0.16
+* @version $Id:$ 1.0.17
 * @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -73,7 +73,7 @@ $lang = array_merge($lang, array(
 	'MENU_APPEND_UID'          => 'UID',
 	'MENU_APPEND_SID_EXPLAIN'  => 'The SID, may be required by code/blocks.',
 	'MENU_APPEND_UID_EXPLAIN'  => 'The user ID may be required by code/blocks.',
-	'MENU_DOWN'                => 'Dn',
+	'MENU_DOWN'                => 'Down',
 	'MENU_DISABLED'            => 'Dis',
 	'MENU_DISABLED_BIG'        => 'MENU is Disabled',
 	'MENU_EDIT'                => 'Edit',

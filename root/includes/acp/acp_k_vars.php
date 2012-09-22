@@ -154,8 +154,8 @@ class acp_k_vars
 				$k_max_block_avatar_width        = request_var('k_max_block_avatar_width', 0);
 				$k_max_block_avatar_height       = request_var('k_max_block_avatar_height', 0);
 				$k_teampage_memberships          = request_var('k_teampage_memberships', 0);
-				$k_tooltips_active              = request_var('k_tooltips_active', 1);
-				$k_tooltips_which               = request_var('k_tooltips_which', 0);
+				$k_tooltips_active               = request_var('k_tooltips_active', 1);
+				$k_tooltips_which                = request_var('k_tooltips_which', 0);
 
 				if ($k_max_block_avatar_width == 0 || $k_max_block_avatar_height == 0)
 				{

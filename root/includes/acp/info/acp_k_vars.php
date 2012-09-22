@@ -25,7 +25,7 @@ class acp_k_vars_info
 		return array(
 			'filename' => 'acp_k_vars',
 			'title'    => 'ACP_K_VARS',
-			'version'  => '1.0.16',
+			'version'  => '1.0.17',
 			'modes'    => array(
 				'config'  => array('title' => 'ACP_K_VARS_CONFIG','auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_TOOLS')),
 			),

@@ -25,7 +25,7 @@ class acp_k_menus_info
 		return array(
 			'filename'  => 'acp_k_menus',
 			'title'     => 'ACP_K_MENUS',
-			'version'   => '1.0.16',
+			'version'   => '1.0.17',
 			'modes' => array(
 				'add'       => array('title' => 'ACP_K_MENU_ADD',         'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_MENUS')),
 				'nav'       => array('title' => 'ACP_K_MENU_MAIN',        'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_MENUS')),
