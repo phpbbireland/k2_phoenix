@@ -286,7 +286,7 @@ $versions = array(
 		*/
 	),
 
-);//version
+);//versions
 
 
 include($phpbb_root_path . 'umil/umil_auto.' . $phpEx);
