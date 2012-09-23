@@ -272,8 +272,8 @@ $versions = array(
 			array($k_resources_table, $k_resources_array),
 		),
 
-		// purge all cache
-		'cache_purge' => array(),
+		// purge the cache
+		'cache_purge' => array('', 'imageset', 'template', 'theme'),
 
 		/*
 		// a more specific call would be
