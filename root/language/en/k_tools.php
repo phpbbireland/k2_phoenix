@@ -43,7 +43,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'LEFT_BLOCKS'			=> 'Left blocks',
-	'LEFT_BLOCKS_EXPLAIN' 	=> 'comma separated string',
+	'LEFT_BLOCKS_EXPLAIN'	=> 'comma separated string',
 
 	'CENTER_BLOCKS'			=> 'Centre blocks',
 	'CENTER_BLOCKS_EXPLAIN' => 'comma separated string',

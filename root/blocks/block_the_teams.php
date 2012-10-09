@@ -97,6 +97,11 @@ while ($row = $db->sql_fetchrow($result))
 	// get language vars for group name
 	$group_name = ($user->lang(strtoupper('G_'.$group_name))) ? $user->lang(strtoupper('G_'.$group_name)) : $user->lang(strtoupper($group_name));
 
+	if ($group_name[0] == 'G' && $group_name[1] == '_')
+	{
+		$group_name = ltrim($group_name, 'G_');
+	}
+
 	// conver to proper case and remove underscores //
 	$group_name = mb_convert_case($group_name, MB_CASE_TITLE, "UTF-8");
 	$group_name	= str_replace('_' , ' ', $group_name);

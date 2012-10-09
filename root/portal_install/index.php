@@ -37,9 +37,9 @@ $mod_name = 'KISS_PORTAL_ENGINE';
 
 $version_config_name = 'portal_version';
 $language_file = 'portal_install_umil';
-$logo_img = 'portal/portal_install.png';
+$logo_img = 'portal_install/portal_install.png';
 
-include($phpbb_root_path . 'portal/sql_data.' . $phpEx);
+include($phpbb_root_path . 'portal_install/sql_data.' . $phpEx);
 
 $versions = array(
 
@@ -286,7 +286,7 @@ $versions = array(
 		*/
 	),
 
-);//versions
+);//version
 
 
 include($phpbb_root_path . 'umil/umil_auto.' . $phpEx);
