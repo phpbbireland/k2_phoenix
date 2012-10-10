@@ -656,7 +656,7 @@ $k_menus_array[] = array(
 );
 $k_menus_array[] = array(
 	'ndx'			=> '5',
-	'menu_type'		=> '1',
+	'menu_type'		=> '99',
 	'name'			=> 'Album',
 	'link_to'		=> 'inprogress.php',
 	'extern'		=> '0',
@@ -684,7 +684,7 @@ $k_menus_array[] = array(
 );
 $k_menus_array[] = array(
 	'ndx'			=> '7',
-	'menu_type'		=> '1',
+	'menu_type'		=> '99',
 	'name'			=> 'Downloads',
 	'link_to'		=> 'inprogress.php',
 	'extern'		=> '0',
@@ -698,7 +698,7 @@ $k_menus_array[] = array(
 );
 $k_menus_array[] = array(
 	'ndx'			=> '8',
-	'menu_type'		=> '1',
+	'menu_type'		=> '99',
 	'name'			=> 'Links',
 	'link_to'		=> 'inprogress.php',
 	'extern'		=> '0',
@@ -726,7 +726,7 @@ $k_menus_array[] = array(
 );
 $k_menus_array[] = array(
 	'ndx'			=> '10',
-	'menu_type'		=> '1',
+	'menu_type'		=> '99',
 	'name'			=> 'Ratings',
 	'link_to'		=> 'index.php',
 	'extern'		=> '0',
@@ -768,7 +768,7 @@ $k_menus_array[] = array(
 );
 $k_menus_array[] = array(
 	'ndx'			=> '13',
-	'menu_type'		=> '1',
+	'menu_type'		=> '99',
 	'name'			=> 'Statistics',
 	'link_to'		=> 'inprogress.php',
 	'extern'		=> '0',
@@ -796,7 +796,7 @@ $k_menus_array[] = array(
 );
 $k_menus_array[] = array(
 	'ndx'			=> '15',
-	'menu_type'		=> '1',
+	'menu_type'		=> '99',
 	'name'			=> 'Chat',
 	'link_to'		=> 'chat/index.php',
 	'extern'		=> '0',
