@@ -7,7 +7,7 @@
 
 	<title lang="en">Kiss Portal Engine (Phoenix)</title>
 
-	<description lang="en">A simplified version of the Stargate Portal (aka Kiss Portal) for phpBB 3.0.10</description>
+	<description lang="en">A simplified version of the Stargate Portal (aka Kiss Portal) for phpBB 3.0.11</description>
 
 	<author-notes lang="en">
 	All unnecessary code has been removed to produce a simplified version for your phpBB3 forum.
@@ -48,11 +48,14 @@
 			<rev-version>1.0.17</rev-version>
 			<changelog lang="en">
 				<change>Updated for phpBB 3.0.11.</change>
-				<change>Validation fixes (1) mysql.</change>
+				<change>Validation fixes (1) re coded 1 mysql query.</change>
 				<change>Validation fixes (2) phpbb_root_path.</change>
 				<change>Emptied .htm file (no content required).</change>
 				<change>Group select dropdown box, now uses lang values.</change>
-				<change>Fixed issue when updating phpBB (STARGATE not defined.</change>
+				<change>Fixed issue when updating phpBB (STARGATE not defined).</change>
+				<change>ACP (menus): Marked disabled menu items to unallocated.</change>
+				<change>ACP (menus): Removed 2 remaining head/footer menu options.</change>
+				<change>Head/Footer menu options will be added in a later revision.</change>
 			</changelog>
 		</entry>
 		<entry>
