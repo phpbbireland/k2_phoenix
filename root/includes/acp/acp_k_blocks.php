@@ -945,7 +945,7 @@ class acp_k_blocks
 
 			case 'reset':
 			{
-				$sql = "UPDATE phpbb_users SET user_left_blocks = '', user_center_blocks = '', user_right_blocks = '';";
+				$sql = "UPDATE " . USERS_TABLE . " SET user_left_blocks = '', user_center_blocks = '', user_right_blocks = '';";
 
 				if (!$result = $db->sql_query($sql))
 				{
