@@ -40,7 +40,7 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'DUMMY'	=> 'dummy',
+	'LOGIN_TO_USE_SEARCH'	=> 'There are no public forums, search has been disabled...',
 ));
 
 ?>

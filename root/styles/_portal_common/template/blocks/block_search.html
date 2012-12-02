@@ -1,4 +1,5 @@
 <!-- IDTAG starts block_search.html 17 March 2008 copyright phpbbireland.com 2007 -->
+<!-- IF S_SEARCH -->
 
 <script type="text/javascript">
 // <![CDATA[
@@ -61,5 +62,7 @@ function url_search()
 		<!-- IF DEBUG_QUERIES --><div class="block_data">{SEARCH_DEBUG}</div><!-- ENDIF -->
 	</div>
 </form>
-
+<!-- ELSE -->
+{L_LOGIN_TO_USE_SEARCH}
+<!-- ENDIF -->
 <!-- IDTAG ends block_search -->

@@ -125,7 +125,12 @@ for ($i = 0; $i < $forum_count; $i++)
 	}
 }
 
-//$where_sql = 'WHERE ' . $db->sql_in_set('t.forum_id', $valid_forum_ids);
+// do we at least one valid forum for this user, if not, don't continue //
+if (count($valid_forum_ids) < 1)
+{
+	return;
+}
+
 $where_sql = $db->sql_in_set('t.forum_id', $valid_forum_ids);
 
 if ($k_post_types)
