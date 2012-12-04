@@ -263,14 +263,13 @@
 		<dd style="padding:5px; min-height: 12px; border: solid 1px #D7D7D7;">{S_VIEW_PAGES}</dd>
 	</dl>
 	<dl>
-		<dt><label for="view_page_id">{L_VIEW_PAGE2}</label><br />{L_VIEW_PAGE_EXPLAIN2}</dt>
+		<dt><label for="view_page_id[]">{L_VIEW_PAGE2}</label><br />{L_VIEW_PAGE_EXPLAIN2}</dt>
 		<dd>
 			<!-- BEGIN pages -->
-				<input type="checkbox" style="cursor:pointer;" name="view_page_id" id="view_page_id" value="{pages.PAGE_ID}" <!-- IF pages.IS_CHECKED -->checked="checked" <!-- ENDIF --> /> ({pages.PAGE_ID}) {pages.PAGE_NAME} <br />
+				<input type="checkbox" style="cursor:pointer;" name="view_page_id[]" id="view_page_id&#91;&#93;" value="{pages.PAGE_ID}" <!-- IF pages.IS_CHECKED -->checked="checked" <!-- ENDIF --> /> ({pages.PAGE_ID}) {pages.PAGE_NAME} <br />
 				<!-- IF pages.PAGE_ID == 11 || pages.PAGE_ID == 21 --><hr/><!-- ENDIF -->
 			<!-- END pages -->
 		</dd>
-
 	</dl>
 	<dl>
 		<dt><a href="{U_MANAGE_PAGES}" type="button" name="allpages" class="button1">{L_MANAGE_PAGES}</a></dt>
@@ -433,10 +432,10 @@
 		<dd style="padding:5px; min-height: 12px; border: solid 1px #D7D7D7;">{S_VIEW_PAGES}</dd>
 	</dl>
 	<dl>
-		<dt><label for="view_page_id">{L_VIEW_PAGE2}</label><br />{L_VIEW_PAGE_EXPLAIN2}</dt>
+		<dt><label for="view_page_id[]">{L_VIEW_PAGE2}</label><br />{L_VIEW_PAGE_EXPLAIN2}</dt>
 		<dd>
 			<!-- BEGIN pages -->
-				<input type="checkbox" style="cursor:pointer;" name="view_page_id" id="view_page_id" value="{pages.PAGE_ID}" <!-- IF pages.IS_CHECKED -->checked="checked" <!-- ENDIF --> /> ({pages.PAGE_ID}) {pages.PAGE_NAME} <br />
+				<input type="checkbox" style="cursor:pointer;" name="view_page_id[]" id="view_page_id&#91;&#93;" value="{pages.PAGE_ID}" <!-- IF pages.IS_CHECKED -->checked="checked" <!-- ENDIF --> /> ({pages.PAGE_ID}) {pages.PAGE_NAME} <br />
 				<!-- IF pages.PAGE_ID == 11 || pages.PAGE_ID == 21 --><hr/><!-- ENDIF -->
 			<!-- END pages -->
 		</dd>
