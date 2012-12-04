@@ -126,6 +126,7 @@ $lang = array_merge($lang, array(
 	'COULD_NOT_EDIT_BLOCK'			=> 'Error! Could not edit block',
 	'COULD_NOT_RETRIEVE_BLOCK'		=> 'Error! Could not retrieve block data',
 	'COULD_NOT_REINDEX_BLOCKS'		=> 'Error! Could not reindex blocks',
+	'COULD_NOT_REINDEX_MENUS'		=> 'Error! Could not reindex menus',
 	'COULD_NOT_QUERY_K_MODULES'		=> 'Error! Could not query portal k_modules table',
 	'COULD_NOT_UPDATE_K_MODULES'	=> 'Error! Could not update k_modules table',
 	'COULD_NOT_RESET_BLOCKS'        => 'Error! Could not reset block positions',

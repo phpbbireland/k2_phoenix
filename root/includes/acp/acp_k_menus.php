@@ -242,80 +242,115 @@ class acp_k_menus
 			case 'up':
 			case 'down':
 			{
-				$to_move = $move_to = '';
+				$current_ndx = $current_id = $first_id = $last_id = $first_ndx = $last_ndx = $prev_ndx = $next_ndx = $col_count = $current_count = $error = 0;
 
-				// get current menu data //
+				$id_array = array();
+				$ndx_array = array();
+
+				// get current menu id //
 				$sql = "SELECT m_id, ndx, menu_type
 					FROM " . K_MENUS_TABLE . "
 					WHERE m_id = " . (int)$menu;
 
-				if (!$result = $db->sql_query_limit($sql, 1))
-				{
-					trigger_error($user->lang['ERROR_PORTAL_MENUS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
-				}
-
+				$result = $db->sql_query_limit($sql, 1);
 				$row = $db->sql_fetchrow($result);
-				$to_move['m_id'] = $row['m_id'];
-				$to_move['ndx']  = $temp = $row['ndx'];
 				$type = $row['menu_type'];
+				$db->sql_freeresult($result);
 
-				if ($mode == 'up')
+				$sql = "SELECT m_id, ndx, menu_type
+					FROM " . K_MENUS_TABLE . "
+					WHERE menu_type = '" . $db->sql_escape($type) . "'" . "
+					ORDER BY ndx";
+				$result = $db->sql_query($sql);
+
+				if ($result = $db->sql_query($sql))
 				{
-					$temp = $temp - 1;
+					while ($row = $db->sql_fetchrow($result))
+					{
+						$id_array[] = $row['m_id'];
+						$ndx_array[] = $row['ndx'];
+
+						if ($menu == $row['m_id'])
+						{
+							$current_ndx = $row['ndx'];
+							$current_id = $row['m_id'];
+							$current_count = $col_count;
+						}
+						$col_count++;
+					}
 				}
-				if ($mode == 'down')
+				$db->sql_freeresult($result);
+
+				$first_ndx = $ndx_array[0];
+				$first_id = $id_array[0];
+				$last_ndx = $ndx_array[$col_count-1];
+				$last_id = $id_array[$col_count-1];
+
+				if ($current_count - 1 > 0)
 				{
-					$temp = $temp + 1;
+					$prev_ndx = $ndx_array[$current_count - 1];
+					$prev_id =  $id_array[$current_count - 1];
+				}
+				else
+				{
+					/* can't happenas we don't allow moving up
+					   if ndx is first (move icon is disabled)
+					   we could move to last... roll around
+				   */
+
+					//$prev_ndx = $ndx_array[$col_count-1];
+					//$prev_id =  $id_array[$col_count-1];
 				}
 
-				// get move_to menu data//
-				$sql = "SELECT m_id, ndx, menu_type FROM " . K_MENUS_TABLE . "
-					WHERE ndx =  $temp
-						AND menu_type = '" . $db->sql_escape($type) . "'";
-
-				if (!$result = $db->sql_query_limit($sql, 1))
+				if ($current_count + 1 < $col_count)
 				{
-					trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
+					$next_ndx = $ndx_array[$current_count + 1];
+					$next_id =  $id_array[$current_count + 1];
 				}
-
-				$row = $db->sql_fetchrow($result);
-				$move_to['m_id'] = $row['m_id'];
-				$move_to['ndx']  = $row['ndx'];
-
-				if ($move_to['ndx'] != $temp )
+				else
 				{
-					trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
+					/* can happen as we don't allow moving down
+					   if ndx is last (move icon is disabled)
+					   we could move to first... roll around
+					*/
+
+					//$next_ndx = $ndx_array[0];
+					//$next_id =  $id_array[0];
 				}
 
 				if ($mode == 'up')
 				{
 					// sql is not duplicated
-					$sql = "UPDATE " . K_MENUS_TABLE . " SET ndx = " . (int)$to_move['ndx'] . " WHERE m_id = " . (int)$move_to['m_id'];
+					$sql = "UPDATE " . K_MENUS_TABLE . " SET ndx = " . (int)$prev_ndx . " WHERE m_id = " . (int)$current_id;
 					if (!$result = $db->sql_query($sql))
 					{
-						trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
+						$error = true;
+					}
+					$sql = "UPDATE " . K_MENUS_TABLE . " SET ndx = " . (int)$current_ndx . " WHERE m_id = " . (int)$prev_id;
+					if (!$result = $db->sql_query($sql))
+					{
+						$error = true;
 					}
 
-					$sql = "UPDATE " . K_MENUS_TABLE . " SET ndx = " . (int)$move_to['ndx'] . " WHERE m_id = " . (int)$to_move['m_id'];
-					if (!$result = $db->sql_query($sql))
-					{
-						trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
-					}
 				}
 				if ($mode == 'down')
 				{
 					// sql is not duplicated
-					$sql = "UPDATE " . K_MENUS_TABLE . " SET ndx = " . (int)$move_to['ndx'] . " WHERE m_id = " . (int)$to_move['m_id'];
+					$sql = "UPDATE " . K_MENUS_TABLE . " SET ndx = " . (int)$next_ndx . " WHERE m_id = " . (int)$current_id;
 					if (!$result = $db->sql_query($sql))
 					{
-						trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
+						$error = true;
 					}
+					$sql = "UPDATE " . K_MENUS_TABLE . " SET ndx = " . (int)$current_ndx . " WHERE m_id = " . (int)$next_id;
+					if (!$result = $db->sql_query($sql))
+					{
+						$error = true;
+					}
+				}
 
-					$sql = "UPDATE " . K_MENUS_TABLE . " SET ndx = " . (int)$to_move['ndx'] . " WHERE m_id = " . (int)$move_to['m_id'];
-					if (!$result = $db->sql_query($sql))
-					{
-						trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
-					}
+				if ($error)
+				{
+					trigger_error($user->lang['MENU_MOVE_ERROR'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 				}
 
 				$template->assign_vars(array(
@@ -337,7 +372,7 @@ class acp_k_menus
 					break;
 					case SUB_MENUS:	$current_menu_type = 'sub';
 					break;
-					case LINKS_MENUS: $current_menu_type = 'links';
+					case LINKS_MENUS: $current_menu_type = 'link';
 					break;
 					default: $current_menu_type = 'nav';
 					break;
@@ -641,5 +676,47 @@ function parse_all_groups()
 	}
 	$db->sql_freeresult($result);
 }
+
+/*
+function reindex_menus($menu_type)
+{
+	global $db, $user;
+
+	$id_array = array();
+	$ndx_array = array();
+
+	$sql = "SELECT m_id, ndx
+		FROM  " . K_MENUS_TABLE . "
+		WHERE menu_type = '" . $db->sql_escape($menu_type) . "'
+		ORDER BY ndx";
+
+	if ($result = $db->sql_query($sql))
+	{
+		while ($row = $db->sql_fetchrow($result))
+		{
+			$id_array[] = $row['m_id'];
+			$ndx_array[] = $row['ndx'];
+		}
+	}
+	$db->sql_freeresult($result);
+
+	for ($i = 0; $i < $numbr = sizeof($id_array); $i++)
+	{
+		$j = $i + 1;
+
+		$sql = "UPDATE " . K_MENUS_TABLE . " SET ndx = " . (int)$j . " WHERE m_id = " . $id_array[$i];
+
+		if ($result = $db->sql_query($sql))
+		{
+			$db->sql_freeresult($result);
+		}
+		else
+		{
+			trigger_error($user->lang['COULD_NOT_REINDEX_MENUS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
+		}
+		$sql = '';
+	}
+}
+*/
 
 ?>
