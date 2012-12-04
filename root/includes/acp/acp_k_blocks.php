@@ -108,7 +108,8 @@ class acp_k_blocks
 				$out_of_wack = false;
 
 				// get current block data using $block var //
-				$sql = "SELECT id, ndx, position FROM " . K_BLOCKS_TABLE . "
+				$sql = "SELECT id, ndx, position
+					FROM " . K_BLOCKS_TABLE . "
 					WHERE id = " . (int)$block;
 
 				$result = $db->sql_query_limit($sql, 1);
@@ -167,7 +168,8 @@ class acp_k_blocks
 				$to_move = $move_to = array();
 
 				// get current block data//
-				$sql = "SELECT id, ndx, position FROM " . K_BLOCKS_TABLE . "
+				$sql = "SELECT id, ndx, position
+					FROM " . K_BLOCKS_TABLE . "
 					WHERE id = " . (int)$block;
 
 				if (!$result = $db->sql_query_limit($sql, 1))
