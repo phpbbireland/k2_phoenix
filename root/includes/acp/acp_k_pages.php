@@ -79,11 +79,10 @@ class acp_k_pages
 		if ($submit)
 		{
 			$mod_pages = request_var('k_mod_folders', '');
-			if ($mod_pages)
-			{
-				// we don't check for valid folders however, later code will skip invalid folders //
-				sgp_acp_set_config('k_mod_folders', $mod_pages);
-			}
+
+			// we don't check for valid folders however, later code will skip invalid folders //
+			sgp_acp_set_config('k_mod_folders', $mod_pages);
+
 		}
 
 		$template->assign_vars(array(
@@ -303,11 +302,35 @@ function get_all_available_files()
 		}
 
 		// Search mod folders using the $mods_folder_array (we only look one folder deep ATM) //
-		if (in_array($file, $mods_folder_array, true) && $file == '.' || $file == '..')
+		if (in_array($file, $mods_folder_array, true) && $file == '.' || $file == '..' && $k_config['k_mod_folders'] != '')
 		{
-			search_sub_directory($mods_folder_array, $arr);
-		}
+			$mods_folder_array = explode(', ', $k_config['k_mod_folders']);
 
+			foreach($mods_folder_array as $folder)
+			{
+				// skip folders that don't exist bound to be some ;) //
+				if (!file_exists($phpbb_root_path . $folder))
+				{
+					continue;
+				}
+				$dirs = dir($phpbb_root_path . $folder);
+
+				while ($file = $dirs->read())
+				{
+					if ($file != '.' && $file != '..' && stripos($file, ".php") && !stripos($file, ".bak") && !in_array($folder .'/'. $file, $arr, true))
+					{
+						$illegal_files_array = array($folder . '/' . 'dummy.' . $phpEx);
+
+						$temp = $folder . '/' . $file;
+
+						if (!in_array($temp, $illegal_files_array, true))
+						{
+							$dirslist .= $temp. " ";
+						}
+					}
+				}
+			}
+		}
 	}
 
 	closedir($dirs->handle);
@@ -363,73 +386,4 @@ function get_page_filename($page_id)
 	return($row['page_name']);
 }
 
-
-/**
-* search mod folders for valid files
-**/
-function search_sub_directory($k_mod_folders, $arr)
-{
-	global $phpbb_root_path, $phpEx, $dirslist;
-
-	foreach($k_mod_folders as $folder)
-	{
-		// skip folders that don't exist bound to be some ;) //
-		if (!file_exists($phpbb_root_path . $folder))
-		{
-			continue;
-		}
-		$dirs = dir($phpbb_root_path . $folder);
-
-		while ($file = $dirs->read())
-		{
-			if ($file != '.' && $file != '..' && stripos($file, ".php") && !stripos($file, ".bak") && !in_array($folder .'/'. $file, $arr, true))
-			{
-				$illegal_files_array = array($folder . '/' . 'dummy.' . $phpEx);
-
-				$temp = $folder . '/' . $file;
-
-				if (!in_array($temp, $illegal_files_array, true))
-				{
-					$dirslist .= $temp. " ";
-				}
-			}
-		}
-	}
-}
-
-/* optional code leave here for reference...
-function getfiles($dir)
-{
-    if($handle = opendir($dir))
-	{
-        $files = Array();
-        $inner_files = Array();
-
-		$skip_arr = array("adm", "blocks", "cache", "docs", "download", "files", "images", "includes", "js", "language", "portal_install", "store", "styles", "umil");
-
-        while($file = readdir($handle))
-		{
-            if($file != "." && $file != ".." && $file[0] != '.' && !in_array($file, $skip_arr, true))
-			{
-                if(is_dir($dir . "/" . $file))
-				{
-                    $inner_files = getfiles($dir . "/" . $file);
-
-                    if(is_array($inner_files))
-					{
-						$files = array_merge($files, $inner_files);
-					}
-                }
-				else
-				{
-                    array_push($files, $dir . "/" . $file);
-                }
-            }
-        }
-
-        closedir($handle);
-        return $files;
-    }
-}
-*/
 ?>
