@@ -51,6 +51,8 @@
 				<change>Fix to search if all forums are private.</change>
 				<change>Fix to recent topics is all forums are private.</change>
 				<change>Fix for database preifx (reset blocks).</change>
+				<change>Fix for moving menu items.</change>
+				<change>Fix/update adding block to mod pages.</change>
 			</changelog>
 		</entry>
 		<entry>
