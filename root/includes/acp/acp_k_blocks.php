@@ -1273,7 +1273,6 @@ function index_column_fix($position)
 			{
 				trigger_error($user->lang['COULD_NOT_REINDEX_BLOCKS'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 			}
-
 		}
 	}
 }

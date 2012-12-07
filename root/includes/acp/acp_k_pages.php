@@ -76,6 +76,16 @@ class acp_k_pages
 			trigger_error($user->lang['FORM_INVALID'] . basename(dirname(__FILE__)) . '/' . basename(__FILE__) . $user->lang['LINE'] . __LINE__);
 		}
 
+		if ($submit)
+		{
+			$mod_pages = request_var('k_mod_folders', '');
+			if ($mod_pages)
+			{
+				// we don't check for valid folders however, later code will skip invalid folders //
+				sgp_acp_set_config('k_mod_folders', $mod_pages);
+			}
+		}
+
 		$template->assign_vars(array(
 			'U_BACK'    => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=manage"),
 			'U_ADD'     => append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=add"),
@@ -151,7 +161,7 @@ class acp_k_pages
 						'page_name'	=> $tag_id,
 					);
 
-		           $db->sql_query('INSERT INTO ' . K_PAGES_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_array));
+					$db->sql_query('INSERT INTO ' . K_PAGES_TABLE . ' ' . $db->sql_build_array('INSERT', $sql_array));
 
 					meta_refresh(1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_pages&amp;mode=manage'));
 
@@ -200,7 +210,7 @@ class acp_k_pages
 
 function get_pages_data()
 {
-	global $db, $template, $phpbb_admin_path, $phpEx;
+	global $db, $template, $phpbb_admin_path, $phpEx, $k_config;
 	global $current_pages;
 
 	$sql = 'SELECT *
@@ -222,7 +232,10 @@ function get_pages_data()
 	}
 	$db->sql_freeresult($result);
 
-	$template->assign_var('S_OPTION', 'manage');
+	$template->assign_vars(array(
+		'S_OPTION'       => 'manage',
+		'K_MOD_FOLDERS'  => $k_config['k_mod_folders'],
+	));
 }
 
 /**
@@ -231,10 +244,18 @@ function get_pages_data()
 */
 function get_all_available_files()
 {
-	global $phpbb_root_path, $phpEx, $template, $dirslist, $db, $user;
+	global $phpbb_root_path, $phpEx, $template, $dirslist, $db, $user, $k_config;
+
+	include($phpbb_root_path.'includes/sgp_functions.php');
 
 	$page_name = '';
 	$i = 0;
+
+
+	if (!isset($k_config['k_mod_folders']))
+	{
+		sgp_acp_set_config('k_mod_folders', '');
+	}
 
 	// --------------- //
 	// For mod authors //
@@ -249,8 +270,7 @@ function get_all_available_files()
 		To prevent the dropdown box from displaying illegal pages add these to the $illegal_files_array below (see line: ~357 )
 	*/
 
-
-	$mods_folder_array = array("a_mod_folder");
+	$mods_folder_array = explode(', ', $k_config['k_mod_folders']);
 
 	$sql = 'SELECT page_name
 		FROM ' . K_PAGES_TABLE . '
@@ -283,7 +303,7 @@ function get_all_available_files()
 		}
 
 		// Search mod folders using the $mods_folder_array (we only look one folder deep ATM) //
-		if (in_array($file, $mods_folder_array, true))
+		if (in_array($file, $mods_folder_array, true) && $file == '.' || $file == '..')
 		{
 			search_sub_directory($mods_folder_array, $arr);
 		}
@@ -346,32 +366,29 @@ function get_page_filename($page_id)
 
 /**
 * search mod folders for valid files
-* the admin must add the mod folder to the $mod array above
 **/
-function search_sub_directory($mod_folders, $arr)
+function search_sub_directory($k_mod_folders, $arr)
 {
 	global $phpbb_root_path, $phpEx, $dirslist;
 
-	foreach($mod_folders as $folder)
+	foreach($k_mod_folders as $folder)
 	{
+		// skip folders that don't exist bound to be some ;) //
+		if (!file_exists($phpbb_root_path . $folder))
+		{
+			continue;
+		}
 		$dirs = dir($phpbb_root_path . $folder);
 
 		while ($file = $dirs->read())
 		{
 			if ($file != '.' && $file != '..' && stripos($file, ".php") && !stripos($file, ".bak") && !in_array($folder .'/'. $file, $arr, true))
 			{
-				// --------------- //
-				// For mod authors //
-				// --------------- //
-
-				// Not all files in a mod folder should be included in the dropdown list... //
-				// To restrict specific files, add them to the $illegal_files array below... //
-
-				$illegal_files_array = array($folder . '/' . 'dummy.$phpEx');
+				$illegal_files_array = array($folder . '/' . 'dummy.' . $phpEx);
 
 				$temp = $folder . '/' . $file;
 
-				if (!in_array($temp, $illegal_files_array))
+				if (!in_array($temp, $illegal_files_array, true))
 				{
 					$dirslist .= $temp. " ";
 				}
@@ -380,4 +397,39 @@ function search_sub_directory($mod_folders, $arr)
 	}
 }
 
+/* optional code leave here for reference...
+function getfiles($dir)
+{
+    if($handle = opendir($dir))
+	{
+        $files = Array();
+        $inner_files = Array();
+
+		$skip_arr = array("adm", "blocks", "cache", "docs", "download", "files", "images", "includes", "js", "language", "portal_install", "store", "styles", "umil");
+
+        while($file = readdir($handle))
+		{
+            if($file != "." && $file != ".." && $file[0] != '.' && !in_array($file, $skip_arr, true))
+			{
+                if(is_dir($dir . "/" . $file))
+				{
+                    $inner_files = getfiles($dir . "/" . $file);
+
+                    if(is_array($inner_files))
+					{
+						$files = array_merge($files, $inner_files);
+					}
+                }
+				else
+				{
+                    array_push($files, $dir . "/" . $file);
+                }
+            }
+        }
+
+        closedir($handle);
+        return $files;
+    }
+}
+*/
 ?>
