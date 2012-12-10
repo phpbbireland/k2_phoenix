@@ -80,9 +80,36 @@ class acp_k_pages
 		{
 			$mod_pages = request_var('k_mod_folders', '');
 
-			// we don't check for valid folders however, later code will skip invalid folders //
-			sgp_acp_set_config('k_mod_folders', $mod_pages);
+			// trap trailing commas in mod pages //
+			if ($mod_pages[strlen($mod_pages) - 1] == ',')
+			{
+				trigger_error($user->lang['TRAILING_COMMA'] . adm_back_link(append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=manage")), E_USER_WARNING);
+			}
 
+			//  We check to see  the mod folder exists, if not return... //
+			$mod_pages = str_replace(' ', '', $mod_pages);
+
+			// has mod folder been updated/modified //
+			if (strcmp($mod_pages, $k_config['k_mod_folders'] != 0))
+			{
+				$mods_folder_array = explode(',', $mod_pages);
+
+				foreach($mods_folder_array as $folder)
+				{
+					if (!file_exists($phpbb_root_path . $folder))
+					{
+						$submit = false;
+						$mod_pages = '';
+						trigger_error($user->lang['NO_MOD_FOLDER'] . $folder . adm_back_link(append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=manage")), E_USER_WARNING);
+					}
+				}
+
+				$template->assign_vars(array(
+					//'MESSAGE'  => $user->lang['FOLDER_ADDED'] . ' ' . $folder,
+					'MESSAGE'  => $user->lang['FOLDER_ADDED'],
+				));
+			}
+			sgp_acp_set_config('k_mod_folders', $mod_pages);
 		}
 
 		$template->assign_vars(array(
@@ -243,33 +270,20 @@ function get_pages_data()
 */
 function get_all_available_files()
 {
-	global $phpbb_root_path, $phpEx, $template, $dirslist, $db, $user, $k_config;
+	global $phpbb_root_path, $phpEx, $template, $dirslist, $db, $user, $k_config, $phpbb_admin_path;
 
 	include($phpbb_root_path.'includes/sgp_functions.php');
 
 	$page_name = '';
-	$i = 0;
+	$dirslist = $store = ' ';
+
+	$illegal_files = array(".htaccess", "common.$phpEx", "report.$phpEx", "feed.$phpEx", "cron.$phpEx", "config.$phpEx", "csv.$phpEx", "style.$phpEx", "sgp_ajax.$phpEx", "sgpical.$phpEx", "rss.$phpEx");
 
 
 	if (!isset($k_config['k_mod_folders']))
 	{
 		sgp_acp_set_config('k_mod_folders', '');
 	}
-
-	// --------------- //
-	// For mod authors //
-	// --------------- //
-
-	/*	Allowing specific mod pages to display block
-		--------------------------------------------
-
-		If your mod uses a dedicated mod folder and you want to allow blocks to be displayed on specific pages, simply add the
-		mod's folder name to the $mods_folder_array below... (we don't know which mods will be installed therefore we can't automate this).
-
-		To prevent the dropdown box from displaying illegal pages add these to the $illegal_files_array below (see line: ~357 )
-	*/
-
-	$mods_folder_array = explode(', ', $k_config['k_mod_folders']);
 
 	$sql = 'SELECT page_name
 		FROM ' . K_PAGES_TABLE . '
@@ -284,35 +298,38 @@ function get_all_available_files()
 
 	$arr = explode(', ', $page_name);
 
+	// grab php files in phpbb_root_path //
 	$dirs = dir($phpbb_root_path);
-
-	$dirslist = ' ';
-
 	while ($file = $dirs->read())
 	{
 		if ($file != '.' && $file != '..' && stripos($file, ".php") && !stripos($file, ".bak") && !in_array($file, $arr, true))
 		{
-			// array of filename we don't process //
-			$illegal_files = array(".htaccess", "common.$phpEx", "report.$phpEx", "feed.$phpEx", "cron.$phpEx", "config.$phpEx", "csv.$phpEx", "style.$phpEx", "sgp_ajax.$phpEx", "sgpical.$phpEx", "rss.$phpEx");
-
 			if (!in_array($file, $illegal_files))
 			{
 				$dirslist .= "$file ";
 			}
 		}
+	}
+	closedir($dirs->handle);
 
-		// Search mod folders using the $mods_folder_array (we only look one folder deep ATM) //
+	// grab files in phpbb_root_path/mod folders //
+	$dirs = dir($phpbb_root_path);
+	$mods_folder_array = explode(',', $k_config['k_mod_folders']);
+
+	while ($file = $dirs->read())
+	{
 		if (in_array($file, $mods_folder_array, true) && $file == '.' || $file == '..' && $k_config['k_mod_folders'] != '')
 		{
-			$mods_folder_array = explode(', ', $k_config['k_mod_folders']);
+			$mods_folder_array = explode(',', $k_config['k_mod_folders']);
 
 			foreach($mods_folder_array as $folder)
 			{
-				// skip folders that don't exist bound to be some ;) //
 				if (!file_exists($phpbb_root_path . $folder))
 				{
-					continue;
+					//continue;
+					trigger_error($user->lang['NO_MOD_FOLDER'] . $folder . adm_back_link(append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=manage")), E_USER_WARNING);
 				}
+
 				$dirs = dir($phpbb_root_path . $folder);
 
 				while ($file = $dirs->read())
@@ -325,18 +342,20 @@ function get_all_available_files()
 
 						if (!in_array($temp, $illegal_files_array, true))
 						{
-							$dirslist .= $temp. " ";
+							$store .= $temp. " ";
 						}
 					}
 				}
 			}
+			$dirslist .= $store;
 		}
+
 	}
 
 	closedir($dirs->handle);
 
 	$dirslist = explode(" ", $dirslist);
-	sort($dirslist);
+	//sort($dirslist);
 
 	$phpbb_files = '';
 	$files_found = 0;

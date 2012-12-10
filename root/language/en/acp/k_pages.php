@@ -51,6 +51,7 @@ $lang = array_merge($lang, array(
 	'CONFIG_PAGES'				=> 'Config pages',
 	'DELETE_FROM_LIST'			=> 'Delete this page from list?',
 	'ERROR_PORTAL_PAGES'		=> 'Error! deleting this page from database list',
+	'FOLDER_ADDED'              => 'Mod directories list updated...',
 	'ID'						=> 'ID',
 	'LAND'                      => 'Set the default page to load after login.',
 	'LANDING_PAGE'				=> 'Landing page',
@@ -58,18 +59,22 @@ $lang = array_merge($lang, array(
 	'LANDING_PAGE_SET'			=> 'Landing page set',
 	'LINE'						=> ', line ',
 	'MANAGE_PAGES'				=> 'Manage pages',
-	'MOD_FOLDERS'               => 'Mod Folders',
-	'MOD_FOLDERS_EXPLAIN'       => 'To add blocks to a mod page, include the mod folder name to the comma separated list... (submit to update dropdown box above)...',
+	'MOD_FOLDERS'               => 'Other mods to search for',
+	'MOD_FOLDERS_EXPLAIN'       => 'Directories in this list will be searched for valid pages...',
 	'NO_FILES_FOUND'			=> 'The dropdown is unavailable as there are no files to add...',
+	'NO_MOD_FOLDER'             => 'The folder you are trying to add could not be found: root/',
 	'PAGE_NAME'					=> 'Current phpBB pages',
 	'PAGE_NAME_EXPLAIN'			=> 'Blocks can be displayed on these pages.',
-	'PAGE_NEW_FILENAME'			=> 'Add this page to the list',
+	'PAGE_NEW_FILENAME'			=> 'Add this file (page) to the list',
 	'PAGE_NEW_FILENAME_EXPLAIN'	=> 'Select file (page) from the dropdown and hit Submit...',
 	'REMOVING_PAGES'			=> 'Page removed... ',
 	'SWITCHING'					=> 'Switching to k_pages',
-	'TITLE_EXPLAIN_PAGES'		=> '&bull; Blocks can be displayed on any valid phpBB, any mod pages you care to add, and basic html web pages...<br />
-	&bull; To facilitate this action we provide a method to add additional pages form a list of valid pages in the root/mod folders.<br />
+	'TRAILING_COMMA'            => 'Removed tailing comma from Mod folder list...',
+	'TITLE_PAGES'               => 'phpBB pages',
+	'TITLE_EXPLAIN_PAGES'		=> '&bull; Blocks can be displayed on valid pages including phpBB, Mod and Web pages...<br />
+	&bull; To facilitate this action we provide a method to add additional pages (files) from root/mod_directory.<br />
 	&bull; Once a page is added, it will become available in the block layout.<br />
+	&bull; Mod pages are saved in a comma separated string (no spaces, no trailing comma)...<br />
 	<br />Note: Mod pages must provide necessary code to facilitate blocks (this is easy to add should you desire it)...',
 ));
 
