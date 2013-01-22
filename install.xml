@@ -704,7 +704,7 @@ if (STARGATE)
 <find><![CDATA[AND t.topic_type IN (' . POST_ANNOUNCE . ', ' . POST_GLOBAL . ')',]]></find>
 <inline-edit>
 <inline-find>')',</inline-find>
-<inline-action type="before-add"><![CDATA[ ', ' . POST_NEWS . ', ' . POST_NEWS_GLOBAL . ]]></inline-action>
+<inline-action type="before-add"><![CDATA[', ' . POST_NEWS . ', ' . POST_NEWS_GLOBAL . ]]></inline-action>
 </inline-edit>
 </edit>
 
