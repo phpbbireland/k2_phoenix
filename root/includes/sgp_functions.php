@@ -60,9 +60,9 @@ if (!function_exists('sgp_get_rand_logo'))
 			return($user->img('site_logo'));
 		}
 
-		while (false!==($file = readdir($handle)))
+		while (false !== ($file = readdir($handle)))
 		{
-			if (stripos($file, ".gif") || stripos($file, ".jpg") || stripos($file, ".png") && stripos($file ,"ogo_"))
+			if (stripos($file, ".gif") || stripos($file, ".jpg") || stripos($file, ".png") && stripos($file ,"ogo_") || stripos($file ,"logo"))
 			{
 				$imglist .= "$file ";
 			}

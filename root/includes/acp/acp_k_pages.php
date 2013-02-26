@@ -96,6 +96,7 @@ class acp_k_pages
 
 				foreach($mods_folder_array as $folder)
 				{
+					$folder = trim($folder);
 					if (!file_exists($phpbb_root_path . $folder))
 					{
 						$submit = false;
@@ -272,7 +273,7 @@ function get_all_available_files()
 {
 	global $phpbb_root_path, $phpEx, $template, $dirslist, $db, $user, $k_config, $phpbb_admin_path;
 
-	include($phpbb_root_path.'includes/sgp_functions.php');
+	include($phpbb_root_path . 'includes/sgp_functions.' . $phpEx);
 
 	$page_name = '';
 	$dirslist = $store = ' ';
@@ -324,9 +325,10 @@ function get_all_available_files()
 
 			foreach($mods_folder_array as $folder)
 			{
+				$folder = trim($folder);
+
 				if (!file_exists($phpbb_root_path . $folder))
 				{
-					//continue;
 					trigger_error($user->lang['NO_MOD_FOLDER'] . $folder . adm_back_link(append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=manage")), E_USER_WARNING);
 				}
 

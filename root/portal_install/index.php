@@ -4,7 +4,7 @@
 * @author michaelo phpbbireland@gmail.com - http://www.phpbbireland.com
 *
 * @package sgp
-* @version 1.0.17
+* @version 1.0.19
 * @copyright (c) 2005-2011 Michael O'Toole (phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -274,19 +274,21 @@ $versions = array(
 
 		// purge the cache
 		'cache_purge' => array('', 'imageset', 'template', 'theme'),
-
-		/*
-		// a more specific call would be
-		cache_purge => array(
-			'auth', // auth
-			array('imageset', 1), // imageset (id 1)
-			array('template', 2), // template (id 2)
-			'theme', // all themes
+	),
+	// Version 1.0.18
+	'1.0.18' => array(
+		'config_update' => array(
+			array('portal_build', '311-018'),
 		),
-		*/
+	),
+	// Version 1.0.19
+	'1.0.19' => array(
+		'config_update' => array(
+			array('portal_build', '311-019'),
+		),
 	),
 
-);//version
+);//versions
 
 
 include($phpbb_root_path . 'umil/umil_auto.' . $phpEx);
