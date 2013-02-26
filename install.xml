@@ -587,7 +587,7 @@ if (STARGATE)
 <find><![CDATA[					AND topic_type NOT IN (" . POST_ANNOUNCE . ', ' . POST_GLOBAL . ")]]></find>
 <inline-edit>
 <inline-find>. POST_GLOBAL .</inline-find>
-<inline-action type="after-add"><![CDATA[ ' , ' . POST_NEWS . ' , ' . POST_NEWS_GLOBAL .]]></inline-action>
+<inline-action type="after-add"><![CDATA[' , ' . POST_NEWS . ' , ' . POST_NEWS_GLOBAL .]]></inline-action>
 </inline-edit>
 </edit>
 </open>
