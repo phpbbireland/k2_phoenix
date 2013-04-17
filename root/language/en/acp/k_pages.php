@@ -4,7 +4,7 @@
 * @package Kiss Portal Engine (acp_k_pages) (English)
 *
 * @package language
-* @version $Id:$ 1.0.17
+* @version $Id:$ 1.0.19
 * @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -59,8 +59,8 @@ $lang = array_merge($lang, array(
 	'LANDING_PAGE_SET'			=> 'Landing page set',
 	'LINE'						=> ', line ',
 	'MANAGE_PAGES'				=> 'Manage pages',
-	'MOD_FOLDERS'               => 'Other mods to search for',
-	'MOD_FOLDERS_EXPLAIN'       => 'Directories in this list will be searched for valid pages...',
+	'MOD_FOLDERS'               => 'Search addition folders',
+	'MOD_FOLDERS_EXPLAIN'       => 'Example: gallery, facebook, other (Submit to add to dropdown)',
 	'NO_FILES_FOUND'			=> 'The dropdown is unavailable as there are no files to add...',
 	'NO_MOD_FOLDER'             => 'The folder you are trying to add could not be found: root/',
 	'PAGE_NAME'					=> 'Current phpBB pages',

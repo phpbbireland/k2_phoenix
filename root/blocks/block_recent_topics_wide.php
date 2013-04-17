@@ -29,8 +29,7 @@ $auth->acl($user->data);
 
 $queries = $cached_queries = 0;
 
-global $user, $forum_id, $phpbb_root_path, $phpEx, $SID, $config, $template, $k_config, $k_blocks, $db;
-global $web_path;
+global $user, $forum_id, $phpbb_root_path, $phpEx, $SID, $config, $template, $k_config, $k_blocks, $db, $web_path;
 
 foreach ($k_blocks as $blk)
 {
@@ -66,6 +65,11 @@ if (!defined('POST_GROUPS_URL'))
 {
 	define('POST_GROUPS_URL', 'g');
 }
+
+/***
+	Could add option to show a simplified listing (without categories or forum grouping)
+	Basically just show most recent topics unsorted... (requested)
+***/
 
 // set up variables used //
 $display_this_many = $k_config['k_recent_topics_to_display'];
@@ -202,15 +206,11 @@ if ($scroll)
 {
 	if ($row_count > 5)
 	{
-		$template->assign_vars(array(
-			'DISABLE_RT_SCROLL'	=> false,
-	    ));
+		$template->assign_var('DISABLE_RT_SCROLL', false);
 	}
 	else
 	{
-		$template->assign_vars(array(
-			'DISABLE_RT_SCROLL'	=> true,
-	    ));
+		$template->assign_var('DISABLE_RT_SCROLL', true);
 	}
 }
 
@@ -259,21 +259,21 @@ for ($i = 0; $i < $display_this_many; $i++)
 	}
 
 	$template->assign_block_vars($style_row . 'recent_topic_row', array(
+		'AVATAR_SMALL_IMG'	=> get_user_avatar($row[$i]['user_avatar'], $row[$i]['user_avatar_type'], '15', '15'),
+		'FORUM_W'			=> $forum_name,
 		'LAST_POST_IMG_W'	=> $user->img('icon_topic_newest', 'VIEW_LATEST_POST'),
 		'LAST_POST_IMG_W'	=> $next_img,
-		'FORUM_W'			=> $forum_name,
-		'U_FORUM_W'			=> append_sid("{$phpbb_root_path}viewforum.$phpEx?" . POST_FORUM_URL . '=' . $row[$i]['forum_id']),
-		'TITLE_W'			=> censor_text($my_title),
-		'U_TITLE_W'			=> $view_topic_url . '&amp;p=' . $row[$i]['topic_last_post_id'] . '#p' . $row[$i]['topic_last_post_id'],
 		'POSTER_FULL_W'		=> get_username_string('full', $row[$i]['topic_last_poster_id'], $row[$i]['topic_last_poster_name'], $row[$i]['topic_last_poster_colour']),
 		'POSTTIME_W'		=> $this_post_time,
+		'REPLIES'			=> $row[$i]['topic_replies'],
+		'U_FORUM_W'			=> append_sid("{$phpbb_root_path}viewforum.$phpEx?" . POST_FORUM_URL . '=' . $row[$i]['forum_id']),
+		'U_TITLE_W'			=> $view_topic_url . '&amp;p=' . $row[$i]['topic_last_post_id'] . '#p' . $row[$i]['topic_last_post_id'],
 		'S_ROW_COUNT_W'		=> $i,
 		'S_UNIQUE_W'		=> $unique,
 		'S_TYPE_W'			=> $row[$i]['topic_type'],
+		'TITLE_W'			=> censor_text($my_title),
 		'TOOLTIP_W'			=> bbcode_strip($row[$i]['post_text']),
 		'TOOLTIP2_W'		=> bbcode_strip($row[$i]['forum_desc']),
-		'REPLIES'			=> $row[$i]['topic_replies'],
-		'AVATAR_SMALL_IMG'	=> get_user_avatar($row[$i]['user_avatar'], $row[$i]['user_avatar_type'], '15', '15'),
 	));
 
 	$last_forum = $row[$i]['forum_id'];

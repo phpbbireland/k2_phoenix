@@ -312,6 +312,7 @@ page_footer();
 			}
 		}
 	}
+
 	/**
 	* Returns an array containing all template filenames for one template that are currently cached.
 	*

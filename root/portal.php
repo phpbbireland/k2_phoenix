@@ -107,15 +107,23 @@ $legend = implode(', ', $legend);
 
 // Generate birthday list if required ...
 $birthday_list = '';
-if ($config['load_birthdays'] && $config['allow_birthdays'])
+if ($config['load_birthdays'] && $config['allow_birthdays'] && $auth->acl_gets('u_viewprofile', 'a_user', 'a_useradd', 'a_userdel'))
 {
-	$now = getdate(time() + $user->timezone + $user->dst - date('Z'));
+	$now = phpbb_gmgetdate(time() + $user->timezone + $user->dst);
+
+	// Display birthdays of 29th february on 28th february in non-leap-years
+	$leap_year_birthdays = '';
+	if ($now['mday'] == 28 && $now['mon'] == 2 && !$user->format_date(time(), 'L'))
+	{
+		$leap_year_birthdays = " OR u.user_birthday LIKE '" . $db->sql_escape(sprintf('%2d-%2d-', 29, 2)) . "%'";
+	}
+
 	$sql = 'SELECT u.user_id, u.username, u.user_colour, u.user_birthday
 		FROM ' . USERS_TABLE . ' u
 		LEFT JOIN ' . BANLIST_TABLE . " b ON (u.user_id = b.ban_userid)
 		WHERE (b.ban_id IS NULL
 			OR b.ban_exclude = 1)
-			AND u.user_birthday LIKE '" . $db->sql_escape(sprintf('%2d-%2d-', $now['mday'], $now['mon'])) . "%'
+			AND (u.user_birthday LIKE '" . $db->sql_escape(sprintf('%2d-%2d-', $now['mday'], $now['mon'])) . "%' $leap_year_birthdays)
 			AND u.user_type IN (" . USER_NORMAL . ', ' . USER_FOUNDER . ')';
 	$result = $db->sql_query($sql);
 
@@ -125,7 +133,7 @@ if ($config['load_birthdays'] && $config['allow_birthdays'])
 
 		if ($age = (int) substr($row['user_birthday'], -4))
 		{
-			$birthday_list .= ' (' . ($now['year'] - $age) . ')';
+			$birthday_list .= ' (' . max(0, $now['year'] - $age) . ')';
 		}
 	}
 	$db->sql_freeresult($result);
@@ -144,21 +152,21 @@ $template->assign_vars(array(
 	'TOTAL_USERS'	=> sprintf($user->lang[$l_total_user_s], $total_users),
 	'NEWEST_USER'	=> sprintf($user->lang['NEWEST_USER'], get_username_string('full', $config['newest_user_id'], $config['newest_username'], $config['newest_user_colour'])),
 
-	'LEGEND'		=> $legend,
+	'LEGEND'        => $legend,
 	'BIRTHDAY_LIST'	=> $birthday_list,
 
-	'FORUM_IMG'					=> $user->img('forum_read', 'NO_UNREAD_POSTS'),
-	'FORUM_UNREAD_IMG'			=> $user->img('forum_unread', 'UNREAD_POSTS'),
-	'FORUM_LOCKED_IMG'			=> $user->img('forum_read_locked', 'NO_UNREAD_POSTS_LOCKED'),
+	'FORUM_IMG'                 => $user->img('forum_read', 'NO_UNREAD_POSTS'),
+	'FORUM_UNREAD_IMG'          => $user->img('forum_unread', 'UNREAD_POSTS'),
+	'FORUM_LOCKED_IMG'          => $user->img('forum_read_locked', 'NO_UNREAD_POSTS_LOCKED'),
 	'FORUM_UNREAD_LOCKED_IMG'	=> $user->img('forum_unread_locked', 'UNREAD_POSTS_LOCKED'),
 
-	'S_IS_PORTAL'				=> true,
-	'S_ARRANGE' 				=> $arrange,
-	'S_LOGIN_ACTION'			=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=login'),
+	'S_IS_PORTAL'               => true,
+	'S_ARRANGE'                 => $arrange,
+	'S_LOGIN_ACTION'            => append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=login'),
 	'S_DISPLAY_BIRTHDAY_LIST'	=> ($config['load_birthdays']) ? true : false,
 
-	'U_MARK_FORUMS'				=> ($user->data['is_registered'] || $config['load_anon_lastread']) ? append_sid("{$phpbb_root_path}index.$phpEx", 'hash=' . generate_link_hash('global') . '&amp;mark=forums') : '',
-	'U_MCP'						=> ($auth->acl_get('m_') || $auth->acl_getf_global('m_')) ? append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=main&amp;mode=front', true, $user->session_id) : '')
+	'U_MARK_FORUMS'             => ($user->data['is_registered'] || $config['load_anon_lastread']) ? append_sid("{$phpbb_root_path}index.$phpEx", 'hash=' . generate_link_hash('global') . '&amp;mark=forums') : '',
+	'U_MCP'                     => ($auth->acl_get('m_') || $auth->acl_getf_global('m_')) ? append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=main&amp;mode=front', true, $user->session_id) : '')
 );
 
 // Output page

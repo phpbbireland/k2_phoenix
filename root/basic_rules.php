@@ -44,8 +44,8 @@ if (!STARGATE)
 $basic_rules = $user->lang['BASIC_RULES'];
 
 $template->assign_block_vars('basic_rules', array(
-	'TO_DAY' => $user->format_date(time(), false, true),
-	'BASIC_RULES' => $basic_rules,
+	'TO_DAY'       => $user->format_date(time(), false, true),
+	'BASIC_RULES'  => $basic_rules,
 ));
 
 // Output page
