@@ -106,7 +106,7 @@ $versions = array(
 
 		'config_add' => array(
 			array('portal_enabled', 1),
-			array('portal_build', '311-017'),
+			array('portal_build', '311-019'),
 			array('blocks_enabled', 1),
 			array('blocks_width', '190'),
 			array('force_default_if_style_missing', 1),
@@ -285,6 +285,12 @@ $versions = array(
 	'1.0.19' => array(
 		'config_update' => array(
 			array('portal_build', '311-019'),
+		),
+	),
+	// Version 1.0.20
+	'1.0.20' => array(
+		'config_update' => array(
+			array('portal_build', '311-020'),
 		),
 	),
 

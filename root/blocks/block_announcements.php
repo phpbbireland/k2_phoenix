@@ -173,7 +173,10 @@ while ($row = $db->sql_fetchrow($result))
 
 			$attach_array[$j++] = $row['post_id'];
 
-			$extensions .= $cache->obtain_attach_extensions($row['forum_id']);
+			if (empty($extensions) || !is_array($extensions))
+			{
+				$extensions = $cache->obtain_attach_extensions($row['forum_id']);
+			}
 		}
 	}
 }

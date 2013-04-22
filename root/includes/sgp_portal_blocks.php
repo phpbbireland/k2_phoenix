@@ -136,7 +136,7 @@ if ($row['group_id'] != ANONYMOUS)
 		$sql = 'SELECT *
 			FROM ' . K_BLOCKS_TABLE . '
 			WHERE active = 1
-				AND (view_pages <> 0)
+				AND (view_pages <> '0')
 				ORDER BY ndx ASC';
 	}
 	else
@@ -144,7 +144,7 @@ if ($row['group_id'] != ANONYMOUS)
 		$sql = 'SELECT *
 			FROM ' . K_BLOCKS_TABLE . '
 			WHERE active = 1
-				AND (view_pages <> 0)
+				AND (view_pages <> '0')
 				AND ' . $db->sql_in_set('id', $LCR) . '
 			ORDER BY find_in_set(id,' . '\'' . $all . '\')';
 	}
@@ -154,7 +154,7 @@ else
 	$sql = 'SELECT *
 		FROM ' . K_BLOCKS_TABLE . '
 		WHERE active = 1
-				AND (view_pages <> 0)
+				AND (view_pages <> '0')
 				ORDER BY ndx ASC';
 }
 

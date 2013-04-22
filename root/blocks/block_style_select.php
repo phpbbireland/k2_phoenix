@@ -25,7 +25,7 @@ if (!defined('IN_PHPBB'))
 }
 
  // Anonymous users can't select a style...
-if ($user->data['username'] == 'Anonymous')
+if ($user->data['user_id'] == ANONYMOUS)
 {
 	return;
 }
@@ -33,8 +33,8 @@ if ($user->data['username'] == 'Anonymous')
 global $user_id, $user, $template, $phpbb_root_path, $phpEx, $db, $k_blocks;
 
 $current_style = $user->data['user_style'];		// the current style
-$new_style = request_var('style', '');			// selected style
-$make_permanent = request_var('y', '');		// make style permanent
+$new_style = request_var('style', 0);			// selected style
+$make_permanent = request_var('y', 0);			// make style permanent
 
 $allow_style_change = ($config['override_user_style']) ? false : true;
 $change_db_style = ($allow_style_change && $make_permanent) ? true : false;

@@ -81,7 +81,7 @@ class acp_k_pages
 			$mod_pages = request_var('k_mod_folders', '');
 
 			// trap trailing commas in mod pages //
-			if ($mod_pages[strlen($mod_pages) - 1] == ',')
+			if ($mod_pages && $mod_pages[strlen($mod_pages) - 1] == ',')
 			{
 				trigger_error($user->lang['TRAILING_COMMA'] . adm_back_link(append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_pages&amp;mode=manage")), E_USER_WARNING);
 			}
