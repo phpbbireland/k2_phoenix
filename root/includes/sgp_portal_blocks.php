@@ -133,29 +133,29 @@ if ($row['group_id'] != ANONYMOUS)
 
 	if (empty($row['user_left_blocks']))
 	{
-		$sql = 'SELECT *
-			FROM ' . K_BLOCKS_TABLE . '
+		$sql = "SELECT *
+			FROM " . K_BLOCKS_TABLE . "
 			WHERE active = 1
 				AND (view_pages <> '0')
-				ORDER BY ndx ASC';
+				ORDER BY ndx ASC";
 	}
 	else
 	{
-		$sql = 'SELECT *
-			FROM ' . K_BLOCKS_TABLE . '
+		$sql = "SELECT *
+			FROM " . K_BLOCKS_TABLE . "
 			WHERE active = 1
 				AND (view_pages <> '0')
-				AND ' . $db->sql_in_set('id', $LCR) . '
-			ORDER BY find_in_set(id,' . '\'' . $all . '\')';
+				AND " . $db->sql_in_set('id', $LCR) . "
+			ORDER BY find_in_set(id,' . '\'' . $all . '\')";
 	}
 }
 else
 {
-	$sql = 'SELECT *
-		FROM ' . K_BLOCKS_TABLE . '
+	$sql = "SELECT *
+		FROM " . K_BLOCKS_TABLE . "
 		WHERE active = 1
 				AND (view_pages <> '0')
-				ORDER BY ndx ASC';
+				ORDER BY ndx ASC";
 }
 
 $result = $db->sql_query($sql, $block_cache_time);
