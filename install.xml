@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
-<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
-<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
-<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/ @version $Id: stargate_041.xml 315 2009-01-10 05:43:06Z michaelo $ -->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 <header>
 	<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
 
-	<title lang="en">Kiss Portal Engine (Phoenix)</title>
+	<title lang="en">Kiss Portal Engine (Phoenix) 1.0.17</title>
 
 	<description lang="en">A simplified version of the Stargate Portal (aka Kiss Portal) for phpBB 3.0.11</description>
 
@@ -35,7 +34,7 @@
 		</author>
 	</author-group>
 
-	<mod-version>1.0.19</mod-version>
+	<mod-version>1.0.17</mod-version>
 
 	<installation>
 		<level>intermediate</level>
@@ -44,26 +43,6 @@
 	</installation>
 
 	<history>
-		<entry>
-			<date>2013-02-02</date>
-			<rev-version>1.0.19</rev-version>
-			<changelog lang="en">
-				<change>Fixed and update tooltips</change>
-				<change>Modx updated</change>
-			</changelog>
-		</entry>
-		<entry>
-			<date>2012-12-02</date>
-			<rev-version>1.0.18</rev-version>
-			<changelog lang="en">
-				<change>UMIL updated</change>
-				<change>Fix to search if all forums are private.</change>
-				<change>Fix to recent topics is all forums are private.</change>
-				<change>Fix for database preifx (reset blocks).</change>
-				<change>Fix for moving menu items.</change>
-				<change>Fix/update adding block to mod pages.</change>
-			</changelog>
-		</entry>
 		<entry>
 			<date>2012-07-04</date>
 			<rev-version>1.0.17</rev-version>
@@ -238,8 +217,6 @@
 
 	<link-group>
 		<link type="template" href="subsilver2.xml" lang="en">subsilver2</link>
-		<link type="contrib" href="contrib/update_1.0.17_to_1.0.18.xml" lang="en">Update 1.0.17 to 1.0.18</link>
-		<link type="contrib" href="contrib/update_1.0.18_to_1.0.19.xml" lang="en">Update 1.0.18 to 1.0.19</link>
 	</link-group>
 
 	<meta name="generator" content="Phpbb.ModTeam.Tools (c#)" />
@@ -587,7 +564,7 @@ if (STARGATE)
 <find><![CDATA[					AND topic_type NOT IN (" . POST_ANNOUNCE . ', ' . POST_GLOBAL . ")]]></find>
 <inline-edit>
 <inline-find>. POST_GLOBAL .</inline-find>
-<inline-action type="after-add"><![CDATA[' , ' . POST_NEWS . ' , ' . POST_NEWS_GLOBAL .]]></inline-action>
+<inline-action type="after-add"><![CDATA[ ' , ' . POST_NEWS . ' , ' . POST_NEWS_GLOBAL .]]></inline-action>
 </inline-edit>
 </edit>
 </open>
@@ -714,7 +691,7 @@ if (STARGATE)
 <find><![CDATA[AND t.topic_type IN (' . POST_ANNOUNCE . ', ' . POST_GLOBAL . ')',]]></find>
 <inline-edit>
 <inline-find> ')',</inline-find>
-<inline-action type="before-add"><![CDATA[ ', ' . POST_NEWS . ', ' . POST_NEWS_GLOBAL .]]></inline-action>
+<inline-action type="before-add"><![CDATA[', ' . POST_NEWS . ', ' . POST_NEWS_GLOBAL . ]]></inline-action>
 </inline-edit>
 </edit>
 
@@ -731,7 +708,7 @@ if (STARGATE)
 		);]]></find>
 <action type="replace-with"><![CDATA[			'S_TOPIC_TYPE_SWITCH'	=> ($s_type_switch == $s_type_switch_test) ? -1 : $s_type_switch_test,
 
-			'TOOLTIP'				=> (STARGATE && isset($row['message_tooltip'])) ? bbcode_strip($row['message_tooltip'], 200) : '',
+			'TOOLTIP'				=> (STARGATE && isset($row['message_tooltip'])) ? bbcode_strip($row['message_tooltip']) : '',
 			'TOPIC_ICON_IMG_GROUP'	=> (!empty($icons[$row['icon_id']])) ? $icons[$row['icon_id']]['group'] : '',
 			'S_POST_NEWS'			=> ($row['topic_type'] == POST_NEWS) ? true : false,
 			'S_POST_NEWS_GLOBAL'	=> ($row['topic_type'] == POST_NEWS_GLOBAL) ? true : false,
@@ -1320,59 +1297,43 @@ define('K_ACRONYMS_TABLE',			$table_prefix . 'k_acronyms');]]></action>
 
 <edit>
 <find><![CDATA[?>]]></find>
-<action type="before-add"><![CDATA[/**
-* This function's RegEx originally written by RMcGirr83 for his Topic Text Hover Mod
-* Modified by Matt Friedman to display smileys as text, strip URLs, custom BBcodes and trim whitespace
-*/
-
+<action type="before-add"><![CDATA[/* From topic_text_hover mod by Rich McGirr copyright 2008 */
+/* strip bbcodes with otional truncate */
 if (!function_exists('bbcode_strip'))
 {
-	function bbcode_strip($text, $len = 0)
+	function bbcode_strip($text, $length = 0)
 	{
-		global $k_config;
-
-		$k_config['topic_strip_bbcodes'] = '';
+		if (!STARGATE)
+		{
+			return;
+		}
 
 		static $RegEx = array();
-		$bbcode_strip = empty($k_config['topic_strip_bbcodes']) ? 'flash' : 'flash|' . trim($k_config['topic_strip_bbcodes']);
-		$text = smiley_text($text, true); // Save the smileys - show them as text :)
+		static $bbcode_strip = 'flash';
+
+		/* html is pretty but it may break the layout of the tooltips...let's
+		remove some common ones from the tip */
+
+		$text_html = array('&quot;','&amp;','&#039;','&lt;','&gt;');
+		$text = str_replace($text_html,'',$text);
 		if (empty($RegEx))
 		{
-			$RegEx = array(
-				'#<a class="postlink[^>]*>(.*<\/a[^>]*>)?#', // Strip magic URLs
-				'#<[^>]*>(.*<[^>]*>)?#Usi', // HTML code
-				'#\[(' . $bbcode_strip . ')[^\[\]]+\].*\[/(' . $bbcode_strip . ')[^\[\]]+\]#Usi', // bbcode to strip
-				'#\[/?[^\[\]]+\]#mi', // Strip all bbcode tags
-				'#(http|https|ftp|mailto)(:|\&\#58;)\/\/[^\s]+#i', // Strip remaining URLs
-				'#"#', // Possible quotes from older board conversions
-				'#[\s]+#' // Multiple spaces
+			$RegEx = array('`<[^>]*>(.*<[^>]*>)?`Usi', // HTML code
+				'`\[(' . $bbcode_strip . ')[^\[\]]+\].*\[/(' . $bbcode_strip . ')[^\[\]]+\]`Usi', // bbcode to strip
+				'`\[/?[^\[\]]+\]`mi', // Strip all bbcode tags
+				'`[\s]+`' // Multiple spaces
 			);
 		}
-		$text = trim(preg_replace($RegEx, ' ', $text));
+		$message = preg_replace($RegEx, ' ', $text );
 
-		if ($len && (strlen($text) > $len))
+		if ($length > 1)
 		{
-			$text = trim_string($text, $len);
+			$message = sgp_truncate_message($length);
 		}
-		return ($text);
+		return($message);
+
 	}
 }
-if (!function_exists('trim_string'))
-{
-	function trim_string($string, $limit)
-	{
-		$text = bbcode_strip($string);
-		if (utf8_strlen($text) >= $limit)
-		{
-			$text = (utf8_strlen($text) > $limit) ? utf8_substr($text, 0, $limit) : $text;
-			// use last space before the character limit as the break-point, if one exists
-			$new_limit = utf8_strrpos($text, ' ') != false ? utf8_strrpos($text, ' ') : $limit;
-			return utf8_substr($text, 0, $new_limit) . '...';
-		}
-		return $text;
-	}
-}
-
 
 /* Stargate functions start... copyright phpbbireland.com 2005-2010 */
 /*
