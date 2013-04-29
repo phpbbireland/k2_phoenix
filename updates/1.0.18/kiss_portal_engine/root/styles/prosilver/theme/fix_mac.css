@@ -1,0 +1,7 @@
+.showhide {
+	float: right; margin-top: -13px; margin-right: 1px;
+}
+.handle { cursor: move; }
+.b_cap-right { margin-top:-51px;}
+.show_in_ie { display:none; }
+.show_in_opera { display:block; }

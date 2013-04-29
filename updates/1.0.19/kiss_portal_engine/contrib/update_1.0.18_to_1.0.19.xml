@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Kiss Portal Engine - Update from 1.0.18 to 1.0.19]]></title>
+		<description lang="en"><![CDATA[Update to 1.0.19]]></description>
+		<author-notes lang="en"><![CDATA[...]]></author-notes>
+		<author-group>
+			<author>
+				<username>michaelo</username>
+				<realname>Michael O'Toole</realname>
+				<homepage>http://www.phpbbreland.com/</homepage>
+				<email>o2l@eircom.net</email>
+			</author>
+		</author-group>
+		<mod-version>1.0.19</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>600</time>
+			<target-version>3.0.11</target-version>
+		</installation>
+		<link-group>
+			<link type="parent" href="../install.xml" lang="en">Main Install Instructions</link>
+		</link-group>
+	</header>
+	<action-group>
+
+		<open src="includes/functions.php">
+			<edit>
+				<find><![CDATA[/* From topic_text_hover mod by Rich McGirr copyright 2008 */
+/* strip bbcodes with otional truncate */
+if (!function_exists('bbcode_strip'))
+{
+	function bbcode_strip($text, $length = 0)
+	{
+		if (!STARGATE)
+		{
+			return;
+		}
+
+		static $RegEx = array();
+		static $bbcode_strip = 'flash';
+
+		/* html is pretty but it may break the layout of the tooltips...let's
+		remove some common ones from the tip */
+
+		$text_html = array('&quot;','&amp;','&#039;','&lt;','&gt;');
+		$text = str_replace($text_html,'',$text);
+		if (empty($RegEx))
+		{
+			$RegEx = array('`<[^>]*>(.*<[^>]*>)?`Usi', // HTML code
+				'`\[(' . $bbcode_strip . ')[^\[\]]+\].*\[/(' . $bbcode_strip . ')[^\[\]]+\]`Usi', // bbcode to strip
+				'`\[/?[^\[\]]+\]`mi', // Strip all bbcode tags
+				'`[\s]+`' // Multiple spaces
+			);
+		}
+		$message = preg_replace($RegEx, ' ', $text );
+
+		if ($length > 1)
+		{
+			$message = sgp_truncate_message($length);
+		}
+		return($message);
+
+	}
+}]]></find>
+				<action type="replace-with"><![CDATA[/**
+* This function's RegEx originally written by RMcGirr83 for his Topic Text Hover Mod
+* Modified by Matt Friedman to display smileys as text, strip URLs, custom BBcodes and trim whitespace
+*/
+
+if (!function_exists('bbcode_strip'))
+{
+	function bbcode_strip($text, $len = 0)
+	{
+		global $k_config;
+
+		$k_config['topic_strip_bbcodes'] = '';
+
+		static $RegEx = array();
+		$bbcode_strip = empty($k_config['topic_strip_bbcodes']) ? 'flash' : 'flash|' . trim($k_config['topic_strip_bbcodes']);
+		$text = smiley_text($text, true); // Save the smileys - show them as text :)
+		if (empty($RegEx))
+		{
+			$RegEx = array(
+				'#<a class="postlink[^>]*>(.*<\/a[^>]*>)?#', // Strip magic URLs
+				'#<[^>]*>(.*<[^>]*>)?#Usi', // HTML code
+				'#\[(' . $bbcode_strip . ')[^\[\]]+\].*\[/(' . $bbcode_strip . ')[^\[\]]+\]#Usi', // bbcode to strip
+				'#\[/?[^\[\]]+\]#mi', // Strip all bbcode tags
+				'#(http|https|ftp|mailto)(:|\&\#58;)\/\/[^\s]+#i', // Strip remaining URLs
+				'#"#', // Possible quotes from older board conversions
+				'#[\s]+#' // Multiple spaces
+			);
+		}
+		$text = trim(preg_replace($RegEx, ' ', $text));
+
+		if ($len && (strlen($text) > $len))
+		{
+			$text = trim_string($text, $len);
+		}
+		return ($text);
+	}
+}
+if (!function_exists('trim_string'))
+{
+	function trim_string($string, $limit)
+	{
+		$text = bbcode_strip($string);
+		if (utf8_strlen($text) >= $limit)
+		{
+			$text = (utf8_strlen($text) > $limit) ? utf8_substr($text, 0, $limit) : $text;
+			// use last space before the character limit as the break-point, if one exists
+			$new_limit = utf8_strrpos($text, ' ') != false ? utf8_strrpos($text, ' ') : $limit;
+			return utf8_substr($text, 0, $new_limit) . '...';
+		}
+		return $text;
+	}
+}]]></action>
+			</edit>
+		</open>
+		<open src="viewforum.php">
+			<edit>
+				<find><![CDATA[			AND t.topic_type IN (' . POST_ANNOUNCE . ', ' . POST_GLOBAL .', ' . POST_NEWS . ', ' . POST_NEWS_GLOBAL .  ')',]]></find>
+				<action type="replace-with"><![CDATA[			AND t.topic_type IN (' . POST_ANNOUNCE . ', ' . POST_GLOBAL . ', ' . POST_NEWS . ', ' . POST_NEWS_GLOBAL . ')',]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[			'TOOLTIP'				=> (STARGATE && isset($row['message_tooltip'])) ? bbcode_strip($row['message_tooltip']) : '',]]></find>
+				<action type="replace-with"><![CDATA[			'TOOLTIP'				=> (STARGATE && isset($row['message_tooltip'])) ? bbcode_strip($row['message_tooltip'], 200) : '',]]></action>
+			</edit>
+		</open>
+		<php-installer><![CDATA[portal_install/index.php]]></php-installer>
+		<diy-instructions lang="en"><![CDATA[Don't forget to make a backup before updating.]]></diy-instructions>
+	</action-group>
+</mod>

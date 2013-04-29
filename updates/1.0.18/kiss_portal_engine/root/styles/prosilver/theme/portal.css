@@ -1,0 +1,116 @@
+/* set/adjust colours for this style
+ ---------------------------------- */
+.list_new_pre_beata
+{
+color: red;
+font-weight: bold;
+font-size:10px;
+}
+.list_pre_beat 
+{
+color: gray;
+font-weight: bold;
+font-size:10px;
+}
+.list_beta 
+{
+color: orange;
+font-weight: bold;
+font-size:10px;
+} 
+.list_pre_release
+{
+color: blue;
+font-weight: bold;
+font-size:10px;
+} 
+.list_release
+{
+color: green;
+font-weight: bold;
+font-size:10px;
+padding:2px;
+}
+.orange {
+color: #D29D00;
+font-weight: bold;
+}
+.green {
+color:#008000;
+font-weight: bold;
+}
+.red {
+ color: #C31818;
+ font-weight: bold;
+}
+.gray 
+{
+color:#BABABA;
+font-weight: bold;
+}
+.blue {
+color:#18609C;
+font-weight: bold;
+}
+.date {
+color:#027AB6;
+font-weight: bold;
+}
+
+
+/* Portal css classes */
+.clear {
+clear:both; 
+}
+
+/* blocks
+ ---------------------------------- */
+.block_header {
+ clear:left;
+ width:100%;
+}
+.block_title {
+ color: #FFFFFF;
+ font-family: Arial,Helvetica,sans-serif;
+ font-size: 1em;
+ padding-bottom: 2px;
+ padding-top: 2px;
+ line-height: 1em;
+ text-transform: uppercase;
+ font-weight: bold;
+}
+
+.block_title a:link, .block_title a:visited, .block_title a:hover, .block_title a:active { color: #FFF; text-decoration: none; }
+.block_title a:hover { color: #CCC; text-decoration: underline; }
+
+.block_data {
+ padding:0px;
+}
+
+.box {
+ background: #ECF3F7 none repeat-x 0 0;
+ background-repeat: repeat;
+ text-align:left;
+ margin-top:5px;
+ padding: 2px 2px 2px 2px;
+ overflow: hidden;
+ width: auto;
+ clear: both;
+ border: solid 1px #E5EDF3;
+}
+
+.bg1a {
+ background-color: #D3E1EB;
+ padding:5px;
+ border: solid 1px #84AAC8;
+}
+.bg2a {
+ background-color: #C8D9E6;
+ padding:5px;
+ border: solid 1px #ABC5D9;
+}
+.bg3a {
+ background-color: #C2D5E4;
+ padding:5px;
+ border: solid 1px #ABC5D9;
+}

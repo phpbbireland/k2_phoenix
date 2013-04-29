@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
+  <header>
+    <license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+
+    <title lang="en">Subsilver2 update for Kiss Portal Engine (Phoenix)</title>
+
+	<description lang="en">Style update (subsilver2) Stargate Portal Mod</description>
+
+    <author-notes lang="en">
+    </author-notes>
+
+    <author-group>
+		<author>
+			<username>michaelo</username>
+			<realname>Michael O'Toole</realname>
+			<homepage>http://www.phpbbreland.com/</homepage>
+			<email>o2l@eircom.net</email>
+		</author>
+    </author-group>
+    <mod-version>1.0.19</mod-version>
+    <installation>
+      <level>intermediate</level>
+      <time>2003</time>
+      <target-version>3.0.11</target-version>
+    </installation>
+    <meta name="generator" content="Phpbb.ModTeam.Tools (c#)" />
+  </header>
+
+<action-group>
+<copy>
+      <file from="root/styles/subsilver2/*.*" to="styles/subsilver2/*.*" />
+</copy>
+
+<open src="styles/subsilver2/template/breadcrumbs.html">
+<edit>
+<find><![CDATA[<p class="breadcrumbs"><a href="{U_INDEX}">{L_INDEX}</a><!-- BEGIN navlinks --> &#187; <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></p>]]></find>
+<action type="replace-with"><![CDATA[			<p class="breadcrumbs"><!-- IF STARGATE --><a href="{U_PORTAL}">{L_PORTAL}</a> &bull; <!-- ENDIF --><a href="{U_INDEX}">{L_INDEX}</a><!-- BEGIN navlinks --> &#187; <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></p>]]></action>
+<comment lang="en"></comment>
+</edit>
+</open>
+
+<open src="styles/subsilver2/template/overall_footer.html">
+<edit>
+<find><![CDATA[	<!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->]]></find>
+<action type="before-add"><![CDATA[	<!-- IF STARGATE --><!-- INCLUDE portal_footer.html --><!-- ENDIF -->]]></action>
+<comment lang="en"></comment>
+</edit>
+
+<edit>
+<find><![CDATA[	<span class="copyright">{CREDIT_LINE}]]></find>
+<action type="after-add"><![CDATA[		<!-- IF STARGATE --><br /><!-- INCLUDE portal_copyright.html --><!-- ENDIF -->]]></action>
+<comment lang="en"></comment>
+</edit>
+
+<edit>
+<find><![CDATA[</body>
+</html>]]></find>
+<action type="before-add"><![CDATA[<!-- IF STARGATE--></div><!-- ENDIF -->]]></action>
+<comment lang="en"></comment>
+</edit>
+</open>
+
+<open src="styles/subsilver2/template/overall_header.html">
+<edit>
+<find><![CDATA[<link rel="stylesheet" href="{T_STYLESHEET_LINK}" type="text/css" />]]></find>
+<action type="after-add"><![CDATA[<link rel="stylesheet" type="text/css" href="{T_THEME_PATH}/style_wide.css" />
+<link rel="alternate stylesheet" type="text/css" media="screen" title="fixed" href="{T_THEME_PATH}/style_fixed.css" />]]></action>
+<comment lang="en"></comment>
+</edit>
+
+<edit>
+<find><![CDATA[</head>]]></find>
+<action type="before-add"><![CDATA[<!-- IF STARGATE --><!-- INCLUDE portal_scripts.html --><!-- ENDIF -->]]></action>
+<comment lang="en"></comment>
+</edit>
+
+<edit>
+<find><![CDATA[<a name="top"></a>]]></find>
+<action type="after-add"><![CDATA[<!-- IF STARGATE --><div class="stylewidth"><!-- ENDIF -->]]></action>
+<comment lang="en"></comment>
+</edit>
+
+<edit>
+<find><![CDATA[			<td><a href="{U_INDEX}">{SITE_LOGO_IMG}</a></td>]]></find>
+<action type="replace-with"><![CDATA[			<td><!-- IF STARGATE --><a href="{U_PORTAL}" title="{L_PORTAL}"><!-- ELSE --><a href="{U_INDEX}"><!-- ENDIF -->{SITE_LOGO_IMG}</a></td>]]></action>
+<comment lang="en"></comment>
+</edit>
+
+<edit>
+<find><![CDATA[						<!-- IF S_DISPLAY_PM --> &nbsp;<a href="{U_PRIVATEMSGS}"><img src="{T_THEME_PATH}/images/icon_mini_message.gif" width="12" height="13" alt="*" /> {PRIVATE_MESSAGE_INFO}<!-- IF PRIVATE_MESSAGE_INFO_UNREAD -->, {PRIVATE_MESSAGE_INFO_UNREAD}<!-- ENDIF --></a><!-- ENDIF -->]]></find>
+<action type="replace-with"><![CDATA[						<!-- IF STARGATE --><!-- IF S_ARRANGE -->
+							<span style="display:inline" id="OFF_">
+							&nbsp; <a href="{U_PORTAL}" class="arrange_off" onclick="ShowHide('ON_'); ShowHide('OFF_'); " title="{L_ARRANGE_OFF}"><img src="{T_PORTAL_THEME_PATH}/images/save_changes.png" height="13" width="13" alt="{L_ARRANGE_OFF}" /> {L_ARRANGE_OFF}</a>
+							</span>
+						<!-- ELSE -->
+							<span style="display: inline" id="ON_">
+							&nbsp; <a href="{U_PORTAL_ARRANGE}" class="arrange_on"  onclick="ShowHide('OFF_'); ShowHide('ON_'); " title="{L_ARRANGE_ON}"><img src="{T_PORTAL_THEME_PATH}/images/arrange.png" height="13" width="13" alt="{L_ARRANGE_ON}" /> {L_ARRANGE_ON}</a>
+							</span>
+						<!-- ENDIF --><!-- ENDIF -->
+						<!-- IF S_DISPLAY_PM --> &nbsp;<a href="{U_PRIVATEMSGS}"><img src="{T_THEME_PATH}/images/icon_mini_message.gif" width="12" height="13" alt="*" /> {PRIVATE_MESSAGE_INFO}<!-- IF PRIVATE_MESSAGE_INFO_UNREAD -->, {PRIVATE_MESSAGE_INFO_UNREAD}<!-- ENDIF --></a><!-- ENDIF -->]]></action>
+<comment lang="en"></comment>
+</edit>
+
+<edit>
+<find><![CDATA[	<!-- INCLUDE breadcrumbs.html -->
+
+	<br />]]></find>
+<action type="after-add"><![CDATA[		<!-- IF STARGATE -->
+			<!-- INCLUDE portal_header.html -->
+		<!-- ENDIF -->]]></action>
+<comment lang="en"></comment>
+</edit>
+</open>
+
+<open src="styles/subsilver2/template/posting_buttons.html">
+<edit>
+<find><![CDATA[		<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></find>
+<action type="replace-with"><![CDATA[		<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>]]></action>
+<comment lang="en"></comment>
+</edit>
+</open>
+
+<open src="styles/subsilver2/template/posting_smilies.html">
+<edit>
+<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></find>
+<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>]]></action>
+<comment lang="en"></comment>
+</edit>
+</open>
+
+<open src="styles/subsilver2/template/search_results.html">
+<edit>
+<find><![CDATA[				{searchresults.ATTACH_ICON_IMG} <a href="{searchresults.U_VIEW_TOPIC}" class="topictitle">{searchresults.TOPIC_TITLE}</a>]]></find>
+<inline-edit>
+<inline-find><![CDATA[class="topictitle"]]></inline-find>
+<inline-action type="after-add"><![CDATA[ title="{searchresults.TOOLTIP}"]]></inline-action>
+</inline-edit>
+<comment lang="en">Line </comment>
+</edit>
+</open>
+
+<open src="styles/subsilver2/template/viewforum_body.html">
+<edit>
+<find><![CDATA[				{topicrow.ATTACH_ICON_IMG} <!-- IF topicrow.S_HAS_POLL or topicrow.S_TOPIC_MOVED --><b>{topicrow.TOPIC_TYPE}</b> <!-- ENDIF --><a title="{L_POSTED}: {topicrow.FIRST_POST_TIME}" href="{topicrow.U_VIEW_TOPIC}"class="topictitle">{topicrow.TOPIC_TITLE}</a>]]></find>
+<inline-edit>
+<inline-find>{topicrow.FIRST_POST_TIME}</inline-find>
+<inline-action type="after-add"><![CDATA[ {topicrow.TOOLTIP}]]></inline-action>
+</inline-edit>
+<comment lang="en">Line 44</comment>
+</edit>
+
+<edit>
+<find><![CDATA[			<!-- IF topicrow.S_TOPIC_TYPE_SWITCH eq 1 -->
+				<tr>
+					<td class="row3" colspan="<!-- IF S_TOPIC_ICONS -->7<!-- ELSE -->6<!-- ENDIF -->"><b class="gensmall">{L_ANNOUNCEMENTS}</b></td>
+				</tr>
+			<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH eq 0 -->
+				<tr>
+					<td class="row3" colspan="<!-- IF S_TOPIC_ICONS -->7<!-- ELSE -->6<!-- ENDIF -->"><b class="gensmall">{L_TOPICS}</b></td>
+				</tr>
+			<!-- ENDIF -->]]></find>
+<action type="replace-with"><![CDATA[			<!-- IF topicrow.S_FIRST_ROW or not topicrow.S_TOPIC_TYPE_SWITCH -->
+         	<!-- IF topicrow.S_TOPIC_TYPE_SWITCH eq 1 -->
+            <tr>
+            	<td class="row3" colspan="<!-- IF S_TOPIC_ICONS -->7<!-- ELSE -->6<!-- ENDIF -->"><b class="gensmall"><!-- IF topicrow.S_TOPIC_TYPE eq 4 or topicrow.S_TOPIC_TYPE eq 5 -->{L_ANNOUNCEMENTS_AND_NEWS}<!-- ELSE -->{L_ANNOUNCEMENTS}<!-- ENDIF --></b></td>
+            </tr>
+         	<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH eq 0 -->
+            <tr>
+            	<td class="row3" colspan="<!-- IF S_TOPIC_ICONS -->7<!-- ELSE -->6<!-- ENDIF -->"><b class="gensmall">{L_TOPICS}</b></td>
+            </tr>
+        	<!-- ENDIF -->
+		<!-- ENDIF -->]]></action>
+<comment lang="en">Line 178</comment>
+</edit>
+
+<edit>
+<find><![CDATA[					{topicrow.ATTACH_ICON_IMG} <!-- IF topicrow.S_HAS_POLL or topicrow.S_TOPIC_MOVED --><b>{topicrow.TOPIC_TYPE}</b> <!-- ENDIF --><a title="{L_POSTED}: {topicrow.FIRST_POST_TIME}" href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>]]></find>
+<inline-edit>
+<inline-find>title="</inline-find>
+<inline-action type="after-add"><![CDATA[{topicrow.TOOLTIP}... ]]></inline-action>
+</inline-edit>
+<comment lang="en">Line 195</comment>
+</edit>
+</open>
+
+<open src="styles/subsilver2/template/viewtopic_body.html">
+<edit>
+<find><![CDATA[			<!-- IF postrow.RANK_TITLE -->]]></find>
+<action type="replace-with"><![CDATA[			<!-- IF postrow.RANK_TITLE and not postrow.RANK_IMG -->]]></action>
+<comment lang="en">~168</comment>
+</edit>
+
+<edit>
+<find><![CDATA[					<td>{postrow.RANK_IMG}</td>]]></find>
+<action type="replace-with"><![CDATA[					<td align="center">{postrow.RANK_IMG}</td>]]></action>
+<comment lang="en">~175</comment>
+</edit>
+
+<edit>
+<find><![CDATA[					<td>{postrow.POSTER_AVATAR}</td>]]></find>
+<action type="replace-with"><![CDATA[					<td align="center">{postrow.POSTER_AVATAR}</td>]]></action>
+<comment lang="en">~180</comment>
+</edit>
+
+<edit>
+<find><![CDATA[	</table>
+	<!-- ENDIF -->
+
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="{S_CONTENT_FLOW_BEGIN}" valign="middle" nowrap="nowrap">
+		<!-- IF not S_IS_BOT -->
+			<!-- IF S_DISPLAY_POST_INFO --><a href="{U_POST_NEW_TOPIC}">{POST_IMG}</a>&nbsp;<!-- ENDIF -->
+			<!-- IF S_DISPLAY_REPLY_INFO --><a href="{U_POST_REPLY_TOPIC}">{REPLY_IMG}</a><!-- ENDIF -->
+		<!-- ENDIF -->
+		</td>]]></find>
+<action type="after-add"><![CDATA[		<!-- IF S_K_QUICK_REPLY -->
+		<td align="{S_CONTENT_FLOW_BEGIN}" valign="middle" nowrap="nowrap">
+			<!-- IF not S_IS_BOT and S_DISPLAY_REPLY_INFO and not S_IS_LOCKED -->
+				<span style="display: inline" id="show">
+					<a class="qreply-icon" href="#" onclick="ShowHide('quickreply'); ShowHide('hide'); ShowHide('show'); return(false);" title="{L_QUICK_REPLY}"><span>{L_QUICK_REPLY}</span></a>
+				</span>
+				<span style="display:none" id="hide">
+					<a class="qreply-icon-no" href="#" onclick="ShowHide('quickreply'); ShowHide('show'); ShowHide('hide'); return(false);" title="{L_QUICK_REPLY_NO}"><span>{L_QUICK_REPLY_NO}</span></a>
+				</span>
+			<!-- ENDIF -->
+		</td>
+		<!-- ENDIF -->]]></action>
+<comment lang="en">Line ~303</comment>
+</edit>
+
+<edit>
+<find><![CDATA[<!-- IF S_QUICK_REPLY -->
+<!-- INCLUDE quickreply_editor.html -->
+<!-- ENDIF -->]]></find>
+<action type="replace-with"><![CDATA[
+<!-- IF S_K_QUICK_REPLY -->
+	<!-- INCLUDE sgp_quickreply_editor_sub.html -->
+<!-- ENDIF -->
+]]></action>
+<comment lang="en"></comment>
+</edit>
+</open>
+
+<open src="styles/subsilver2/imageset/imageset.cfg">
+<edit>
+<find><![CDATA[img_icon_topic_unapproved = icon_topic_unapproved.gif*18*19]]></find>
+<action type="after-add"><![CDATA[
+img_news_read				= news_read.gif*27*27
+img_news_read_mine			= news_read_mine.gif*17*17
+img_news_read_locked		= news_read_locked.gif*17*17
+img_news_read_locked_mine	= news_read_locked_mine.gif*17*17
+img_news_unread				= news_unread.gif*17*17
+img_news_unread_mine		= news_unread_mine.gif*17*17
+img_news_unread_locked		= news_unread_locked.gif*17*17
+img_news_unread_locked_mine	= news_unread_locked_mine.gif*17*17
+]]></action>
+<comment lang="en"></comment>
+</edit>
+</open>
+
+<diy-instructions lang="en-gb">
+Go to ACP...
+PERMISSIONS > Admin roles > Full Admin.... Click Portal Tab, set all options to yes...
+Set others as desired...
+</diy-instructions>
+</action-group>
+</mod>

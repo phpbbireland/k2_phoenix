@@ -1,0 +1,33 @@
+.farbtastic {
+  position: relative;
+}
+.farbtastic * {
+  position: absolute;
+  cursor: crosshair;
+}
+.farbtastic, .farbtastic .wheel {
+  width: 150px;
+  height: 150px;
+}
+.farbtastic .color, .farbtastic .overlay {
+  top: 40px;
+  left: 40px;
+  width: 70px;
+  height: 70px;
+}
+.farbtastic .wheel {
+  background: url(./../images/small_wheel.png) no-repeat;
+  width: 150px;
+  height: 150px;
+}
+.farbtastic .overlay {
+  background: url(./../images/small_mask.png) no-repeat;
+}
+.farbtastic .marker {
+  width: 17px;
+  height: 17px;
+  margin: -5px 0 0 -5px;
+  overflow: hidden; 
+  background: url(./../images/marker.png) no-repeat;
+}
+.pick_box {border: solid 0px #333333; float: right; margin-top: -280px; padding-right: 20px;}

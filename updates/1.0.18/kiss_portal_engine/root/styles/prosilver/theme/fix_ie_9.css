@@ -1,0 +1,32 @@
+/*
+	iefixes.css
+
+	This file is required to fix IE bugs... 
+	Michaelo phpbbireland.com 12 November 2011
+	move blocks not working!!! will not fix!
+*/
+
+/* highslide 02 April 2008 */
+.highslide img	{ max-width:350px; }
+
+/* in search 10 February 2008 */
+input.full	{ width: 99%; }
+
+/* Menu icons not sizing correctly IE bug*/
+div.sdmenu span {
+   padding:1px;
+}
+
+.show_in_ie { display:block; }
+
+.handle { cursor: move; }
+
+/* fix IE9 16 March 2011 */
+ul.topiclist li.row dt a.subforum {
+	white-space: inherit;
+}
+dd label {
+	white-space: inherit;
+}
+
+.blocks_hide_show_gap { margin-top: -9px; margin-bottom:2px }
