@@ -106,7 +106,7 @@ $versions = array(
 
 		'config_add' => array(
 			array('portal_enabled', 1),
-			array('portal_build', '311-019'),
+			array('portal_build', '311-017'),
 			array('blocks_enabled', 1),
 			array('blocks_width', '190'),
 			array('force_default_if_style_missing', 1),

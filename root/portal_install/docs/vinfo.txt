@@ -1,6 +1,2 @@
-<<<<<<< HEAD
 1.0.20
-=======
-1.0.19
->>>>>>> 4c39fde9b2bf9814961674fec317f849e4da572d
 http://www.phpbbireland.com/
