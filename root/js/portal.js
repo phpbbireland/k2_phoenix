@@ -5,7 +5,7 @@
 
 var PreloadFlag = false;
 var expDays = 90;
-var exp = new Date(); 
+var exp = new Date();
 var tmp = '';
 var tmp_counter = 0;
 var tmp_open = 0;
@@ -62,7 +62,7 @@ function GetCookie(name)
 		{
 			break;
 		}
-	} 
+	}
 	return null;
 }
 
@@ -94,8 +94,8 @@ function Show(id)
 		element = document.layers[id];
 	}
 	if (element.style.display == "none")
-	{ 
-		element.style.display = "inline"; 
+	{
+		element.style.display = "inline";
 	}
 	else
 	{
@@ -118,8 +118,8 @@ function Hide(id)
 		element = document.layers[id];
 	}
 	if (element.style.display == "inline")
-	{ 
-		element.style.display = "none"; 
+	{
+		element.style.display = "none";
 	}
 	else
 	{
