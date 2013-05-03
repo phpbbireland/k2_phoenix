@@ -668,7 +668,9 @@ if (STARGATE)
 <open src="ucp.php">
 <edit>
 <find><![CDATA[		$message = $message . '<br /><br />' . sprintf($user->lang['RETURN_INDEX'], '<a href="' . append_sid("{$phpbb_root_path}index.$phpEx") . '">', '</a> ');]]></find>
-<action type="replace-with"><![CDATA[		if (STARGATE)
+<action type="replace-with"><![CDATA[		// redirect to portal on log out? //
+		global $k_config;
+		if (STARGATE && isset($k_config['k_landing_page']) && $k_config['k_landing_page'] == 'portal')
 		{
 			meta_refresh(3, append_sid("{$phpbb_root_path}portal.$phpEx"));
 			$message = $message . '<br /><br />' . sprintf($user->lang['RETURN_PORTAL'], '<a href="' . append_sid("{$phpbb_root_path}portal.$phpEx") . '">', '</a> ');
