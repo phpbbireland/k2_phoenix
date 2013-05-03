@@ -77,7 +77,8 @@ if ($auth->acl_gets('u_viewprofile'))
 
 		$template->assign_block_vars('last_online', array(
 			'USERNAME_FULL'		=> get_username_string('full', $row['user_id'], sgp_checksize($row['username'],15), $row['user_colour']),
-			'ONLINE_TIME'		=> (empty($last_visit)) ? ' - ' : $user->format_date($last_visit),
+			//'ONLINE_TIME'		=> (empty($last_visit)) ? ' - ' : $user->format_date($last_visit),
+			'ONLINE_TIME'      => (empty($last_visit)) ? ' - ' : $user->format_date($last_visit, '|d M Y|, H:i'),
 			'USER_AVATAR_IMG'	=> get_user_avatar($row['user_avatar'], $row['user_avatar_type'], '16', '16'),
 			'U_REGISTER'		=> 'append_sid("{$phpbb_root_path}ucp.$phpEx", mode=register)',
 		));
