@@ -24,7 +24,7 @@ function set_ids(list_index, tag_id)
 <fieldset>
 	<legend>{S_PAGE_NAME}</legend>
 		<strong>{L_PAGE_NAME}:</strong><br />{L_PAGE_NAME_EXPLAIN}<br /><br /><br /><strong>{L_LANDING_PAGE}</strong><br />{L_LAND}
-		<table style="width:55%; float:right; margin-top:-90px;">
+		<table style="width:55%; float:right; margin-top:-125px;">
 			<tr>
 			<th style="width:40%;">{L_FILENAME}</th>
 			<th style="width:20%; text-align:center;">{L_DELETE}</th>
@@ -35,10 +35,12 @@ function set_ids(list_index, tag_id)
 				<td style="text-align:center; padding-top: 0; padding-bottom: 0;"><a href="{phpbbpages.U_DELETE}"><img src="images/icon_delete.gif" title="{L_DELETE_FROM_LIST}" alt="{L_DELETE}" /></a></td>
 				<td style="text-align:center; padding-top: 0; padding-bottom: 0;">
 					<a href="{phpbbpages.U_LAND}">
-						<!-- IF phpbbpages.S_PAGE_NAME == S_PAGE -->
-						<img src="images/icon_landing.gif" title="{L_LANDING_PAGE_EXPLAIN}" alt="{L_LAND}" />
-						<!-- ELSE -->
-						<img src="images/icon_landing_off.gif" title="{L_LANDING_PAGE_EXPLAIN}" alt="{L_LAND}" />
+						<!-- IF phpbbpages.S_PAGE_NAME == 'index'  or phpbbpages.S_PAGE_NAME == 'portal' -->
+							<!-- IF phpbbpages.S_PAGE_NAME == S_PAGE -->
+							<img src="images/icon_landing.gif" title="{L_LANDING_PAGE_EXPLAIN}" alt="{L_LAND}" />
+							<!-- ELSE -->
+							<img src="images/icon_landing_off.gif" title="{L_LANDING_PAGE_EXPLAIN}" alt="{L_LAND}" />
+							<!-- ENDIF -->
 						<!-- ENDIF -->
 					</a>
 				</td>
