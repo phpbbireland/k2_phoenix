@@ -4,7 +4,7 @@
 * @package Kiss Portal Engine (acp_k_resources) (English)
 *
 * @package language
-* @version $Id:$ 1.0.19
+* @version $Id:$ 1.0.20
 * @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
