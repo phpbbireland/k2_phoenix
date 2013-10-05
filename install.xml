@@ -30,7 +30,7 @@
 		<author>
 			<username>michaelo</username>
 			<realname>Michael O'Toole</realname>
-			<homepage>http://www.phpbbreland.com/</homepage>
+			<homepage>http://www.phpbbireland.com/</homepage>
 			<email>o2l@eircom.net</email>
 		</author>
 	</author-group>
@@ -44,6 +44,13 @@
 	</installation>
 
 	<history>
+		<entry>
+			<date>2013-04-29</date>
+			<rev-version>1.0.20</rev-version>
+			<changelog lang="en">
+				<change>1 bug fixed</change>
+			</changelog>
+		</entry>
 		<entry>
 			<date>2013-02-02</date>
 			<rev-version>1.0.19</rev-version>
@@ -238,6 +245,9 @@
 
 	<link-group>
 		<link type="template" href="subsilver2.xml" lang="en">subsilver2</link>
+		<link type="contrib" href="contrib/update_1.0.17_to_1.0.18.xml" lang="en">Update 1.0.17 to 1.0.18</link>
+		<link type="contrib" href="contrib/update_1.0.18_to_1.0.19.xml" lang="en">Update 1.0.18 to 1.0.19</link>
+		<link type="contrib" href="contrib/update_1.0.19_to_1.0.20.xml" lang="en">Update 1.0.19 to 1.0.20</link>
 	</link-group>
 
 	<meta name="generator" content="Phpbb.ModTeam.Tools (c#)" />

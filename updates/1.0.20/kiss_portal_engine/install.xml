@@ -61,7 +61,9 @@
 </header>
 
 <action-group>
-
+<copy>
+	<file from="root/includes/sgp_portal_blocks.php" to="includes/sgp_portal_blocks.php"/>
+</copy>
 <php-installer><![CDATA[portal_install/index.php]]></php-installer>
 <diy-instructions lang="en-gb">
 

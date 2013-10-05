@@ -1,24 +1,17 @@
 <?php
 /**
 *
-* @package Stargate Portal
-* @author  Michael O'Toole - aka Michaelo
-* @begin   Saturday, Jan 22, 2005
-* @copyright (c) 2005-2009 phpbbireland
-* @home	http://www.phpbbireland.com
+* @package Kiss Portal Engine / Stargate Portal
+* @version $Id$
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* @note: Do not remove this copyright. Just append yours if you have modified it,
-*		this is part of the Stargate Portal copyright agreement...
-*
-* @version $Id: sgp_portal_blocks.php 314 23 November 2009 22:02:31Z Michealo $
-* Updated:
 *
 */
+
 
 /**
 * @ignore
 */
-
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -146,7 +139,7 @@ if ($row['group_id'] != ANONYMOUS)
 			WHERE active = 1
 				AND (view_pages <> '0')
 				AND " . $db->sql_in_set('id', $LCR) . "
-			ORDER BY find_in_set(id,' . '\'' . $all . '\')";
+			ORDER BY find_in_set(id,'" . $all . "')";
 	}
 }
 else
