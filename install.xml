@@ -40,7 +40,7 @@
 	<installation>
 		<level>intermediate</level>
 		<time>2003</time>
-		<target-version>3.0.11</target-version>
+		<target-version>3.0.12</target-version>
 	</installation>
 
 	<history>
@@ -1722,7 +1722,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <edit>
 <find><![CDATA[		if (!$this->theme)
 		{
-			trigger_error('Could not get style data', E_USER_ERROR);
+			trigger_error('NO_STYLE_DATA', E_USER_ERROR);
 		}]]></find>
 <action type="replace-with"><![CDATA[		if (!$this->theme)
 		{
@@ -1732,7 +1732,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 			add_log('critical', 'STYLE_MISSING', request_var('style', 0), $user->data['user_id']);
 			redirect(build_url('style') .'?style='. $config['default_style']);
 
-			//trigger_error('Could not get style data', E_USER_ERROR);
+			//trigger_error('NO_STYLE_DATA', E_USER_ERROR);
 		}]]></action>
 </edit>
 </open>
