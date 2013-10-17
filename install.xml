@@ -30,7 +30,7 @@
 		<author>
 			<username>michaelo</username>
 			<realname>Michael O'Toole</realname>
-			<homepage>http://www.phpbbreland.com/</homepage>
+			<homepage>http://www.phpbbireland.com/</homepage>
 			<email>o2l@eircom.net</email>
 		</author>
 	</author-group>
@@ -40,7 +40,7 @@
 	<installation>
 		<level>intermediate</level>
 		<time>2003</time>
-		<target-version>3.0.11</target-version>
+		<target-version>3.0.12</target-version>
 	</installation>
 
 	<history>
@@ -262,6 +262,9 @@
 
 	<link-group>
 		<link type="template" href="subsilver2.xml" lang="en">subsilver2</link>
+		<link type="contrib" href="contrib/update_1.0.17_to_1.0.18.xml" lang="en">Update 1.0.17 to 1.0.18</link>
+		<link type="contrib" href="contrib/update_1.0.18_to_1.0.19.xml" lang="en">Update 1.0.18 to 1.0.19</link>
+		<link type="contrib" href="contrib/update_1.0.19_to_1.0.20.xml" lang="en">Update 1.0.19 to 1.0.20</link>
 	</link-group>
 
 	<meta name="generator" content="Phpbb.ModTeam.Tools (c#)" />
@@ -1784,7 +1787,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <edit>
 <find><![CDATA[		if (!$this->theme)
 		{
-			trigger_error('Could not get style data', E_USER_ERROR);
+			trigger_error('NO_STYLE_DATA', E_USER_ERROR);
 		}]]></find>
 <action type="replace-with"><![CDATA[		if (!$this->theme)
 		{
@@ -1794,7 +1797,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 			add_log('critical', 'STYLE_MISSING', request_var('style', 0), $user->data['user_id']);
 			redirect(build_url('style') .'?style='. $config['default_style']);
 
-			//trigger_error('Could not get style data', E_USER_ERROR);
+			//trigger_error('NO_STYLE_DATA', E_USER_ERROR);
 		}]]></action>
 </edit>
 </open>

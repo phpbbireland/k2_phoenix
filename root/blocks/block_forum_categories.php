@@ -37,7 +37,7 @@ if ($this_page_name == 'viewforum' || $this_page_name == 'viewtopic')
 }
 
 /***
-* Validation notes, version: 1.0.19 (2 February 2013)
+* Validation notes, version: 1.0.20 (22 April 2013)
 *
 * As this block's data can be obtained from block_build.php (which processes
 * the phpBB core for use by the portal page), we do not need to reinvent the
