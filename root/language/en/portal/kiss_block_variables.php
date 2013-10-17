@@ -3,13 +3,11 @@
 *
 * common [English]
 *
-* @package language (Kiss Portal Engine)
-* @version $Id:$
-* @copyright (c) 2005 phpbireland
+* @package language (Kiss Portal Engine / Stargate Portal)
+* @version $Id$
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
-* @note: Do not remove this copyright. Just append yours if you have modified it, this is part of the Kiss Portal Engine copyright
-* @updated 09 May 2011
 */
 
 /**

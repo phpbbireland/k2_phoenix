@@ -1,17 +1,17 @@
 <?php
 /**
 *
-* @package acp Stargate Portal
-* @version $Id: acp_k_blocks.php 312 2009-11-23 02:51:12Z Michealo $
-* @copyright (c) 2005-2009 Michael O'Toole aka michaelo
+* @package acp Kiss Portal Engine
+* @version $Id$
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
 
+
 /**
 * @ignore
 */
-
 if (!defined('IN_PHPBB'))
 {
 	exit;

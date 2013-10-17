@@ -1,9 +1,11 @@
 <?php
 /**
 *
-* @package kiss refresh
+* portal_kiss_refresh [English]
+*
+* @package language (Kiss Portal Engine / Stargate Portal)
 * @version $Id$
-* @copyright (c) 2005 phpbbireland
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -36,7 +38,8 @@ if (empty($lang) || !is_array($lang))
 // Some characters you may want to copy&paste:
 // ’ » “ ” …
 //
-//- stargate aka kiss portal engine lang definitions -//
+//- Stargate/Kiss portal engine lang definitions -//
+
 $lang = array_merge($lang, array(
 	//SGP Refresh ALL
 	'CACHE_PURGED'			=> '<br />&nbsp;&#187;&nbsp;Cache purged!',

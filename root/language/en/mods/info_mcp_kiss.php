@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* mcp [English]
+* info_mcp_kiss [English]
 *
-* @package language
+* @package Kiss Portal Engine / Stargate Portal
 * @version $Id$
-* @copyright (c) 2005 phpBB Group
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */

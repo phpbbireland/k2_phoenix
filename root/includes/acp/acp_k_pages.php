@@ -1,9 +1,9 @@
 <?php
 /**
 *
-* @package acp Stargate Portal
-* @version $Id: acp_k_pages.php 305 2010-01-01 17:23:23Z Michealo $
-* @copyright (c) 2007 Michael O'Toole aka michaelo
+* @package acp Kiss Portal Engine
+* @version $Id$
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -11,7 +11,6 @@
 /**
 * @ignore
 */
-
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -20,10 +19,8 @@ if (!defined('IN_PHPBB'))
 /**
 * @package acp
 */
-
 class acp_k_pages
 {
-
 	var $u_action;
 
 	function main($page_id, $mode)

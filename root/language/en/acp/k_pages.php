@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* @package Kiss Portal Engine (acp_k_pages) (English)
+* acp_k_pages [English]
 *
-* @package language
-* @version $Id:$ 1.0.19
-* @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
+* @package language (Kiss Portal Engine / Stargate Portal)
+* @version $Id$
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
