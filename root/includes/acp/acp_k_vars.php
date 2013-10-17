@@ -1,17 +1,16 @@
 <?php
 /**
 *
-* @package acp Stargate Portal
-* @version $Id: acp_k_vars.php 335 2009-01-18 15:01:12Z Michealo $
-* @copyright (c) 2007 Michael O'Toole aka michaelo
+* @package acp Kiss Portal Engine
+* @version $Id$
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* Last Updated: 31 August 2010 Mike
+*
 */
 
 /**
 * @ignore
 */
-
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -20,14 +19,12 @@ if (!defined('IN_PHPBB'))
 /**
 * @package acp
 */
-
 class acp_k_vars
 {
 	//var $u_action;
 
 	function main($id, $mode)
 	{
-
 		global $db, $user, $auth, $template, $cache;
 		global $config, $k_config, $SID, $phpbb_root_path, $phpbb_admin_path, $phpEx;
 
@@ -68,6 +65,7 @@ class acp_k_vars
 
 			$db->sql_freeresult($result);
 			get_all_groups();
+			get_teams_sort();
 		}
 
 		$block = !empty($block) ? $block : 0;
@@ -123,7 +121,7 @@ class acp_k_vars
 				$k_announce_type                 = request_var('k_announce_type', '');
 				$k_news_type                     = request_var('k_news_type', '');
 				$k_links_forum_id                = request_var('k_links_forum_id', '');
-				$k_teams                         = request_var('k_teams', '');
+
 				$k_recent_topics_search_exclude  = request_var('k_recent_topics_search_exclude', '');
 				$k_post_types                    = request_var('k_post_types', '');
 				$k_announce_allow                = request_var('k_announce_allow', 1);
@@ -132,7 +130,8 @@ class acp_k_vars
 				$k_allow_rotating_logos          = request_var('k_allow_rotating_logos', 1);
 				$k_bots_to_display               = request_var('k_bots_to_display', 10);
 				$k_block_cache_time_default      = request_var('k_block_cache_time_default', 600);
-				//$k_block_cache_time_fast         = request_var('k_block_cache_time_fast', 10);
+				$k_block_cache_time_fast         = request_var('k_block_cache_time_fast', 10);
+				$k_blocks_display_globally       = request_var('k_blocks_display_globally', 1);
 				$k_block_cache_time_short        = request_var('k_block_cache_time_short', 10);
 				$k_bot_display_allow             = request_var('k_bot_display_allow', 1);
 				$k_footer_images_allow           = request_var('k_footer_images_allow', 1);
@@ -146,16 +145,49 @@ class acp_k_vars
 				$k_links_to_display              = request_var('k_links_to_display', 5);
 				$k_quick_reply                   = request_var('k_quick_reply', 1);
 				$k_smilies_show                  = request_var('k_smilies_show', 1);
+
+				$k_teams                         = request_var('k_teams', '');
 				$k_teams_display_this_many       = request_var('k_teams_display_this_many', 1);
+				$k_teams_sort                    = request_var('k_teams_sort', '');
+
 				$k_top_topics_days               = request_var('k_top_topics_days', 7);
 				$k_top_topics_max                = request_var('k_top_topics_max', 5);
 				$k_top_posters_to_display        = request_var('k_top_posters_to_display', 5);
+				$k_yourtube_link                 = request_var('k_yourtube_link', '');
+				$k_yourtube_auto                 = request_var('k_yourtube_auto', 1);
+				$k_yourtube_link_limit           = request_var('k_yourtube_link_limit', 5);
+				$k_referrals_to_display          = request_var('k_referrals_to_display', '');
 				$k_allow_acronyms                = request_var('k_allow_acronyms', 0);
+				$k_max_block_avatar_width        = request_var('k_max_block_avatar_width', 0);
+				$k_max_block_avatar_height       = request_var('k_max_block_avatar_height', 0);
 				$k_max_block_avatar_width        = request_var('k_max_block_avatar_width', 0);
 				$k_max_block_avatar_height       = request_var('k_max_block_avatar_height', 0);
 				$k_teampage_memberships          = request_var('k_teampage_memberships', 0);
 				$k_tooltips_active               = request_var('k_tooltips_active', 1);
 				$k_tooltips_which                = request_var('k_tooltips_which', 0);
+				$k_allow_rand_avatar             = request_var('k_allow_rand_avatar', 0);
+
+				$k_donations_years               = request_var('k_donations_years', '2000');
+				$k_donations_max                 = request_var('k_donations_max', '100');
+
+				$k_top_downloads_to_display      = request_var('k_top_downloads_to_display', 5);
+				$k_top_downloads_search_exclude  = request_var('k_top_downloads_search_exclude', '');
+				$k_top_downloads_search_days     = request_var('k_top_downloads_search_days', 0);
+				$k_top_downloads_per_forum       = request_var('k_top_downloads_per_forum', 0);
+				$k_top_downloads_types           = request_var('k_top_downloads_types', '');
+
+				$k_ma_max_avatars                = request_var('k_ma_max_avatars', '0');
+				$k_ma_columns                    = request_var('k_ma_columns', '5');
+				$k_ma_rows                       = request_var('k_ma_rows', '1');
+				$k_ma_avatar_max_width           = request_var('k_ma_avatar_max_width', '90');
+				$k_ma_display_logged_in_only     = request_var('k_ma_display_logged_in_only', '0');
+				$k_ma_user_has_posted            = request_var('k_ma_user_has_posted', '0');
+				$k_ma_user_active                = request_var('k_ma_user_active', '0');
+
+				if ($k_ma_rows <= 0)
+				{
+					$k_ma_rows = 1;
+				}
 
 				if ($k_max_block_avatar_width == 0 || $k_max_block_avatar_height == 0)
 				{
@@ -197,6 +229,7 @@ class acp_k_vars
 				sgp_acp_set_config('k_bot_display_allow', $k_bot_display_allow);
 				sgp_acp_set_config('k_footer_images_allow', $k_footer_images_allow);
 				sgp_acp_set_config('k_announce_type', $k_announce_type);
+				sgp_acp_set_config('k_blocks_display_globally', $k_blocks_display_globally);
 				sgp_acp_set_config('k_smilies_show', $k_smilies_show);
 				sgp_acp_set_config('k_announce_to_display', $k_announce_to_display);
 				sgp_acp_set_config('k_bots_to_display', $k_bots_to_display);
@@ -214,13 +247,19 @@ class acp_k_vars
 				sgp_acp_set_config('k_recent_search_days', $k_recent_search_days);
 				sgp_acp_set_config('k_teams', $k_teams);
 				sgp_acp_set_config('k_teams_display_this_many', $k_teams_display_this_many);
+				sgp_acp_set_config('k_teams_sort', $k_teams_sort);
+
 				sgp_acp_set_config('k_top_posters_to_display', $k_top_posters_to_display);
 				sgp_acp_set_config('k_top_topics_max', $k_top_topics_max);
 				sgp_acp_set_config('k_top_topics_days', $k_top_topics_days);
+				sgp_acp_set_config('k_referrals_to_display', $k_referrals_to_display);
 				sgp_acp_set_config('k_last_online_max', $k_last_online_max);
 				sgp_acp_set_config('k_quick_reply', $k_quick_reply);
 				sgp_acp_set_config('k_block_cache_time_default', $k_block_cache_time_default);
-				//sgp_acp_set_config('k_block_cache_time_fast', $k_block_cache_time_fast);
+				sgp_acp_set_config('k_block_cache_time_fast', $k_block_cache_time_fast);
+				sgp_acp_set_config('k_yourtube_link', $k_yourtube_link);
+				sgp_acp_set_config('k_yourtube_auto', $k_yourtube_auto);
+				sgp_acp_set_config('k_yourtube_link_limit', $k_yourtube_link_limit);
 				sgp_acp_set_config('k_block_cache_time_short', $k_block_cache_time_short);
 				sgp_acp_set_config('k_allow_acronyms', $k_allow_acronyms);
 				sgp_acp_set_config('k_max_block_avatar_width', $k_max_block_avatar_width);
@@ -228,6 +267,23 @@ class acp_k_vars
 				sgp_acp_set_config('k_teampage_memberships', $k_teampage_memberships);
 				sgp_acp_set_config('k_tooltips_active', $k_tooltips_active);
 				sgp_acp_set_config('k_tooltips_which', $k_tooltips_which);
+				sgp_acp_set_config('k_allow_rand_avatar', $k_allow_rand_avatar);
+				sgp_acp_set_config('k_donations_years', $k_donations_years);
+				sgp_acp_set_config('k_donations_max', $k_donations_max);
+				sgp_acp_set_config('k_top_downloads_to_display', $k_top_downloads_to_display);
+				sgp_acp_set_config('k_top_downloads_search_exclude', $k_top_downloads_search_exclude);
+				sgp_acp_set_config('k_top_downloads_search_days', $k_top_downloads_search_days);
+				sgp_acp_set_config('k_top_downloads_per_forum', $k_top_downloads_per_forum);
+				sgp_acp_set_config('k_top_downloads_types', $k_top_downloads_types);
+
+
+				sgp_acp_set_config('k_ma_max_avatars', $k_ma_max_avatars);
+				sgp_acp_set_config('k_ma_columns', $k_ma_columns);
+				sgp_acp_set_config('k_ma_rows', $k_ma_rows);
+				sgp_acp_set_config('k_ma_avatar_max_width', $k_ma_avatar_max_width);
+				sgp_acp_set_config('k_ma_display_logged_in_only', $k_ma_display_logged_in_only);
+				sgp_acp_set_config('k_ma_user_has_posted', $k_ma_user_has_posted);
+				sgp_acp_set_config('k_ma_user_active', $k_ma_user_active);
 
 				$mode = 'reset';
 
