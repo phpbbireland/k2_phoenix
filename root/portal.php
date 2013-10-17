@@ -1,15 +1,15 @@
 <?php
 /**
 *
-* @package Kiss Portal Engine
+* @package Kiss Portal Engine / Stargate Portal
 * @version $Id$
-* @copyright (c) 2005 phpbbireland
+* @author  Michael O'Toole - aka michaelo
+* @begin   Saturday, Jan 22, 2005
+* @copyright (c) 2005-2013 phpbbireland
+* @home    http://www.phpbbireland.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
-* Updated: 20 February 2009
 *
-* @note: Do not remove this copyright. Just append yours if you have modified it,
-*        this is part of the Stargate Portal copyright agreement...
 */
 
 /**
@@ -20,6 +20,10 @@ $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path . 'common.' . $phpEx);
 include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+
+include_once($phpbb_root_path . 'includes/tools_functions.'. $phpEx);
+//echo tools_gd_version_check();
+
 
 // Start session management
 $user->session_begin();
@@ -46,13 +50,31 @@ $l_total_user_s = ($total_users == 0) ? 'TOTAL_USERS_ZERO' : 'TOTAL_USERS_OTHER'
 $l_total_post_s = ($total_posts == 0) ? 'TOTAL_POSTS_ZERO' : 'TOTAL_POSTS_OTHER';
 $l_total_topic_s = ($total_topics == 0) ? 'TOTAL_TOPICS_ZERO' : 'TOTAL_TOPICS_OTHER';
 
+$wrap = false;
 
 // load wrapper or portal page //
 $page = request_var('page', '');
 
 if ($page)
 {
-	$wrapper = 'wrapper.html';
+	switch ($page)
+	{
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+			redirect(append_sid("{$phpbb_root_path}/pages/" . $page. "/index.htm"));
+		break;
+		case 'index';
+			$no_wrap = true;
+			$wrapper = 'pages/index.html';
+		break;
+		default:
+			$no_wrap = false;
+			$wrapper = 'wrapper.html';
+		break;
+	}
 }
 else
 {
@@ -155,19 +177,20 @@ $template->assign_vars(array(
 	'LEGEND'        => $legend,
 	'BIRTHDAY_LIST'	=> $birthday_list,
 
-	'FORUM_IMG'                 => $user->img('forum_read', 'NO_UNREAD_POSTS'),
-	'FORUM_UNREAD_IMG'          => $user->img('forum_unread', 'UNREAD_POSTS'),
-	'FORUM_LOCKED_IMG'          => $user->img('forum_read_locked', 'NO_UNREAD_POSTS_LOCKED'),
-	'FORUM_UNREAD_LOCKED_IMG'	=> $user->img('forum_unread_locked', 'UNREAD_POSTS_LOCKED'),
+	'FORUM_IMG'               => $user->img('forum_read', 'NO_UNREAD_POSTS'),
+	'FORUM_UNREAD_IMG'        => $user->img('forum_unread', 'UNREAD_POSTS'),
+	'FORUM_LOCKED_IMG0'       => $user->img('forum_read_locked', 'NO_UNREAD_POSTS_LOCKED'),
+	'FORUM_UNREAD_LOCKED_IMG' => $user->img('forum_unread_locked', 'UNREAD_POSTS_LOCKED'),
 
-	'S_IS_PORTAL'               => true,
-	'S_ARRANGE'                 => $arrange,
-	'S_LOGIN_ACTION'            => append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=login'),
-	'S_DISPLAY_BIRTHDAY_LIST'	=> ($config['load_birthdays']) ? true : false,
+	'S_IS_PORTAL'              => true,
+	'S_ARRANGE'                => $arrange,
+	'S_LOGIN_ACTION'           => append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=login'),
+	'S_DISPLAY_BIRTHDAY_LIST'  => ($config['load_birthdays']) ? true : false,
 
-	'U_MARK_FORUMS'             => ($user->data['is_registered'] || $config['load_anon_lastread']) ? append_sid("{$phpbb_root_path}index.$phpEx", 'hash=' . generate_link_hash('global') . '&amp;mark=forums') : '',
-	'U_MCP'                     => ($auth->acl_get('m_') || $auth->acl_getf_global('m_')) ? append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=main&amp;mode=front', true, $user->session_id) : '')
-);
+	'U_MARK_FORUMS'            => ($user->data['is_registered'] || $config['load_anon_lastread']) ? append_sid("{$phpbb_root_path}index.$phpEx", 'hash=' . generate_link_hash('global') . '&amp;mark=forums') : '',
+	'U_MCP'                    => ($auth->acl_get('m_') || $auth->acl_getf_global('m_')) ? append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=main&amp;mode=front', true, $user->session_id) : '',
+	'WRAP'                     => $wrap,
+));
 
 // Output page
 page_header($user->lang['PORTAL']);
