@@ -79,12 +79,13 @@
 <link rel="stylesheet" href="{T_STYLESHEET_PORTAL_COMMON}" type="text/css" />
 <link rel="stylesheet" href="{T_STYLESHEET_PORTAL_OVERLOAD}" type="text/css" />
 
-
-<script type="text/javascript" src="{ROOT_PATH}js/jquery/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="{ROOT_PATH}js/jquery/jquery-migrate-1.1.1.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/jquery/jquery-2.0.2.js"></script>
 
 <script type="text/javascript" src="{ROOT_PATH}js/jquery/jquery.hoverIntent.js"></script>
 <script type="text/javascript" src="{ROOT_PATH}js/jquery/imgbubbles.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/jquery/youtube/jquery.youtubepopup.js"></script>
+
+
 
 <script type="text/javascript">
 //<![CDATA[
@@ -162,18 +163,30 @@
 
 	jQuery.noConflict();
 	jQuery(document).ready(function($){
+
+	var $m = null;
+
 	jQuery(".hidden_part").hide();
 
 	jQuery(".bg1a").mousedown(function(){
-		//jQuery('#T'+this.id).fadeIn(900);
-		jQuery('#T'+this.id).delay(100).toggle(600);
+
+		// accordian effect uncomment
+		if ($m != null)
+		{
+			jQuery(".hidden_part").fadeOut(500);
+			jQuery($m + '>' + '.laro').css({'background' : 'url("{T_THEME_PATH}/images/portal/raro.gif") 0 0 no-repeat'});
+		}
+		else
+		{
+			$m = '#'+this.id;
+			jQuery($m + '>' + '.laro').css({'background' : 'url("{T_THEME_PATH}/images/portal/daro.gif") 0 0 no-repeat'});
+		}
+
+
+		jQuery('#T'+this.id).delay(100).toggle(400);
+
 		}).mouseleave(function(){
-
-		// Option #1: To close expand on mouse out use //
-		//jQuery('#T'+this.id).delay(500).fadeOut(400);
-
-		// Option #2: Leave open on mouseout, close on click //
-		jQuery('#T'+this.id).delay(600);
+		//jQuery('#T'+this.id).delay(600);
 		});
 	});
 
