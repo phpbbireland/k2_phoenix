@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* @package Kiss Portal Engine (acp_k_resources) (English)
+* acp_k_resources [English]
 *
-* @package language
-* @version $Id:$ 1.0.19
-* @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
+* @package language (Kiss Portal Engine / Stargate Portal)
+* @version $Id$
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -40,7 +40,6 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-
 	'ACP_K_RES_WORDS'			=> 'Resources',
 	'ACP_K_ADMIN_REFERRALS'		=> 'Manage Resource words',
 	'ADD_VARIABLE'				=> 'Add Variable',

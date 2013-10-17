@@ -1,15 +1,14 @@
 <?php
 /**
 *
-* @package Kiss Portal Engine (acp_k_vars) (English)
+* acp_k_vars [English]
 *
-* @package language
-* @version $Id:$ 1.0.19
-* @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
+* @package language (Kiss Portal Engine / Stargate Portal)
+* @version $Id$
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
-
 
 /**
 * DO NOT CHANGE
@@ -39,6 +38,7 @@ if (empty($lang) || !is_array($lang))
 // Some characters you may want to copy&paste:
 // ’ » “ ” …
 //
+
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -50,7 +50,6 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-
 	'TITLE_MAIN'   => 'General Portal Variable',
 	'TITLE_BLOCK'  => 'Portal Block Variable',
 	'TITLE_EXPLAIN_MAIN'  => 'Setting for variables used by general portal blocks...',
@@ -200,7 +199,6 @@ $lang = array_merge($lang, array(
 	'K_TOOLTIPS_WHICH'                   => 'Show last/first post in tooltips',
 	'FIRST'                              => 'First',
 	'LAST'                               => 'Last',
-
 ));
 
 // Portal Menu Names + add you menu language variables here! //
@@ -304,6 +302,8 @@ $lang = array_merge($lang, array(
 	'YOUR_PROFILE'             => 'User profile',
 	'YOUTUBE_LINK'             => 'Actual YouTube link (URL)',
 	'YOUTUBE_LINK_EXPLAIN'     => 'Just in case YouTube ever change we best provide an alternate',
+	'YOUTUBE_AUTO'				=> 'Autoplay video',
+	'YOUTUBE_AUTO_EXPLAIN'		=> 'When a video is selected, it will play automatically.',
 	'UNKNOWN_ERROR'            => 'Error not processing saved data<br />',
 	'USER_MAX_AVATAR_SETTINGS' => 'Restrict the size of a user avatar in user information block.',
 	'WELCOME_SITE'             => 'Welcome to<br /><strong>%s</strong>',
@@ -343,7 +343,6 @@ $lang = array_merge($lang, array(
 	'RESERVED_EXPLAIN'       => 'These words cannot be used as an acronym, they are in the reserved word list...',
 	'RESERVED_WORD_LIST'     => 'Manage reserved words',
 	'NEW_WORD'               => 'Add new reserved word.',
-
 ));
 
 // IRC Channel
@@ -430,7 +429,6 @@ $lang = array_merge($lang, array(
 	'CLOUD_SEARCH_ALLOW'         => 'Show Cloud Search Block',
 	'CLOUD_SEARCH_CACHE'         => 'Cache time for this block',
 	'CLOUD_SEARCH_CACHE_EXPLAIN' => ' (cache time in seconds).',
-
 ));
 
 // Mini Mod vars
@@ -451,13 +449,62 @@ $lang = array_merge($lang, array(
 	'SGP_QR_EXPLAIN'   => 'Replace the default quick reply with the portal version.',
 ));
 
-// SGP Teams Block 15 March 2011
+// Random avatars
 $lang = array_merge($lang, array(
-	'K_TEAMS'               => 'These teams will be displayed',
-	'K_TEAMS_EXPLAIN'       => '(ID of teams in comma separated list).',
-	'K_BLOCK_TEAMS'         => 'Select teams to display in block',
-	'K_BLOCK_TEAMS_EXPLAIN' => 'This dropdown is reusable, each selection will update the list.<br />Selecting <strong>none</strong> will reset the list.',
-	'THE_TEAM_SETTINGS_2'   => 'Limit to members'
+	'RANDOM_AVATARS'         => 'Random avatar mod',
+	'ALLOW_ACRONYMS'         => 'Allow random avatars',
+	'ALLOW_ACRONYMS_EXPLAIN' => 'Allow the portal to use a random avatar if user has no avatar and avatars are allowed.',
 ));
 
+// SGP Teams Block 15 March 2011
+$lang = array_merge($lang, array(
+	'K_BLOCK_TEAMS'               => 'Select teams to display in block',
+	'K_BLOCK_TEAMS_EXPLAIN'       => 'This dropdown is reusable, each selection will update the list.<br />Selecting <strong>none</strong> will reset the list.',
+	'K_BLOCK_TEAMS_SORT'          => 'Sort By',
+	'K_BLOCK_TEAMS_SORT_EXPLAIN'  => 'Determines the team sort order.',
+	'K_TEAMS'                     => 'These teams will be displayed',
+	'K_TEAMS_EXPLAIN'             => '(ID of teams in comma separated list).',
+	'THE_TEAM_SETTINGS_2'         => 'Limit to members',
+));
+
+// Top downloads mod 11 July 2013
+$lang = array_merge($lang, array(
+	'K_TOP_DOWNLOADS_PER_FORUM'          => 'Limit attachemnt count in forums to',
+	'K_TOP_DOWNLOADS_SETTINGS'           => 'Top Downloads Mod Settings',
+	'K_TOP_DOWNLOADS_TO_DISPLAY'         => 'Number of attachments to display',
+	'K_TOP_DOWNLOADS_SEARCH_DAYS'        => 'How many days will we search?',
+	'K_TOP_DOWNLOADS_SEARCH_EXPLAIN'     => 'Limit the number of days we search back to reduce database load.',
+	'K_TOP_DOWNLOADS_TYPES'              => 'Attachments to include',
+	'K_TOP_DOWNLOADS_TYPES_EXPLAIN'      => 'Comma separated file extensions to include, example: zip,gif,arc',
+));
+
+// Poll Mods
+$lang = array_merge($lang, array(
+	'POLL_BLOCK_SETTINGS'		=> 'Poll block settings',
+	'POLL_WIDE'			        => 'Display block options',
+	'POLL_VIEW_EXPLAIN'			=> 'This allows tweaking the html code to better suit the display width.',
+
+));
+
+// Member Avatar mod
+$lang = array_merge($lang, array(
+	'MEMBERS_AVATARS_SETTINGS'       => 'Manage members avatars variables',
+	'K_MA_MAX_AVATARS'               => 'The number of avatars to process',
+	'K_MA_MAX_AVATARS_EXPLAIN'       => 'Set this to 0 (zero) to process all avatars',
+	'K_MA_COLUMNS'                   => 'Number of avatars to display per column',
+	'K_MA_ROWS'                      => 'Number of rows to display per page',
+	'K_MA_SHOW_LOGGED_IN_ONLY'       => 'Display avatars for logged in users only',
+	'K_MA_DISPLAY_PER_PAGE'          => 'Number of avatars to display (per page)',
+	'K_MA_DISPLAY_PER_PAGE_EXPLAIN'  => 'Must be greater than 0...',
+	'K_MA_AVATAR_MAX_WIDTH'          => 'Limit avatar width to (px)',
+	'K_MA_USER_ACTIVE'               => 'Display only active members',
+	'K_MA_USER_HAS_POSTED'           => 'Include members with no posts',
+));
+
+// SGP donations
+$lang = array_merge($lang, array(
+	'DONATIONS'        => 'Manage Donations Variables',
+	'DONATIONS_YEARS'  => 'Select year/years (comma separated, no spaces)',
+	'DONATIONS_MAX'    => 'Maximum number of donations to dispaly',
+));
 ?>
