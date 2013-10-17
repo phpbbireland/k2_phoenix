@@ -1,24 +1,19 @@
 <?php
 /**
 *
-* @package Stargate Portal
-* @author  Michael O'Toole - aka Michaelo
-* @begin   Thursday, January 1st, 2006
-* @copyright (c) 2005-2008 phpbbireland
+* @package Kiss Portal Engine
+* @version $Id$
+* @author  Michael O'Toole - aka michaelo
+* @begin   Saturday, Jan 22, 2005
+* @copyright (c) 2005-2013 phpbbireland
 * @home    http://www.phpbbireland.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* @note: Do not remove this copyright. Just append yours if you have modified it,
-*        this is part of the Stargate Portal copyright agreement...
-*
-* @version $Id: block_the_team.php
-* Updated: 02 May 2012
 *
 */
 
 /**
 * @ignore
 */
-
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -36,6 +31,7 @@ global $k_config, $phpbb_root_path, $web_path, $k_blocks, $k_groups;
 $queries = $cached_queries = 0;
 $store = '';
 $change = true;
+$ext = '.png';
 $i = 0;
 $poster_image_icon = '';
 $group_names = array();
@@ -49,9 +45,18 @@ foreach ($k_blocks as $blk)
 	if ($blk['html_file_name'] == 'block_the_team.html')
 	{
 		$block_cache_time = $blk['block_cache_time'];
+		break;
 	}
 }
 $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k_block_cache_time_default']);
+
+$sort_by = isset($k_config['k_teams_sort']) ? $k_config['k_teams_sort'] : 'g.group_name';
+
+if ($sort_by == 'default')
+{
+	$set =
+	$sort_by = 'g.group_name';
+}
 
 if ($k_config['k_teampage_memberships'] == 0)
 {
@@ -66,7 +71,7 @@ $sql = 'SELECT DISTINCT u.user_id, u.group_id, u.username, u.user_colour, u.user
 		FROM ' . USERS_TABLE . ' u, ' . GROUPS_TABLE . ' g, ' . USER_GROUP_TABLE . ' ug
 			WHERE ug.group_id = g.group_id and u.user_id = ug.user_id ' . $sql_refine . '
 				AND ' . $db->sql_in_set('g.group_id', $sql_in) . '
-				ORDER BY g.group_name ASC, u.group_id ASC, u.username_clean ASC';
+				ORDER BY ' . $sort_by . ' ASC, u.group_id ASC, u.username_clean ASC';
 
 $result = $db->sql_query($sql, $block_cache_time);
 
@@ -83,12 +88,26 @@ while ($row = $db->sql_fetchrow($result))
 	if (file_exists($phpbb_root_path . 'styles/' . $user->theme['theme_path'] . '/theme/images/teams/' . $group_img . '.png'))
 	{
 		$group_image_path = $phpbb_root_path . 'styles/' . $user->theme['theme_path'] . '/theme/images/teams/';
+		$ext = '.png';
+	}
+	else if (file_exists($phpbb_root_path . 'styles/' . $user->theme['theme_path'] . '/theme/images/teams/' . $group_img . '.gif'))
+	{
+		$group_image_path = $phpbb_root_path . 'styles/' . $user->theme['theme_path'] . '/theme/images/teams/';
+		$ext = '.gif';
 	}
 	else
 	{
 		$group_image_path = $phpbb_root_path . 'images/teams/';
 
-		if (!file_exists($group_image_path . $group_img . '.png'))
+		if (file_exists($group_image_path . $group_img . '.png'))
+		{
+			$ext = '.png';
+		}
+		else if (file_exists($group_image_path . $group_img . '.gif'))
+		{
+			$ext = '.gif';
+		}
+		else
 		{
 			$group_img = 'default';
 		}
@@ -124,7 +143,7 @@ while ($row = $db->sql_fetchrow($result))
 			'S_CHANGE'			=> $change,
 
 			'GROUP_IMG_PATH'	=> $group_image_path,
-			'GROUP_IMG'			=> $group_img,
+			'GROUP_IMG'			=> $group_img . $ext,
 			'GROUP_NAME'		=> $group_name,
 			'GROUP_COLOR'		=> $row['group_colour'],
 			'USER_ID'			=> $row['user_id'],
