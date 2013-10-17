@@ -1,15 +1,11 @@
 <?php
 /**
 *
-* @author Original Author Michael O'Toole
-* @www.stargate-portal.com
+* portal_kiss_common [English]
 *
-* @package Kiss Portal Engine
-* @version $Id:$ 1.0.19
-*
-* @note: Do not remove this copyright. Just append yours if you have modified it,
-*        this is part of the Stargate Portal copyright agreement...
-* @copyright (c) 2005 phpbbireland
+* @package language (Kiss Portal Engine / Stargate Portal)
+* @version $Id$
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -42,10 +38,9 @@ if (empty($lang) || !is_array($lang))
 // Some characters you may want to copy&paste:
 // ’ » “ ” …
 //
-//- stargate aka kiss portal engine lang definitions -//
+//- Stargate/Kiss portal engine lang definitions -//
 
 $lang = array_merge($lang, array(
-
 	'ACP_FILE_BACKUP'		=> 'Backup files',
 	'ACP_MINI'				=> 'Admin',
 	'ACP_SMALL'				=> 'ACP',
@@ -62,6 +57,11 @@ $lang = array_merge($lang, array(
 	'AUTO_LOGIN'			=> 'Auto Login',
 	'AUTOPLAY_OFF'			=> 'Autoplay is off...',
 	'AUTOPLAY_ON'			=> 'Autoplay is on...',
+	'AVATAR_PAGE'           => 'Members Avatars',
+	'AVATAR_SQL_TYPE'       => 'Type: ',
+
+	'AVA_LOGGED_IN'         => 'Logged in members only.',
+	'AVA_ACTIVE'            => 'Active members only.',
 
 	'BASIC_RULES'			=> "While the administrators and moderators of this forum will attempt to remove or edit any generally objectionable material as quickly as possible, it is impossible to review every message. Therefore you acknowledge that all posts made to these forums express the views and opinions of the author and not the administrators, moderators or webmaster (except for posts by these people) and hence will not be held liable.<br /><br />
 	You agree not to post any abusive, obscene, vulgar, slanderous, hateful, threatening, sexually-oriented or any other material that may violate any applicable laws. Doing so may lead to you being immediately and permanently banned (and your service provider being informed). The IP address of all posts is recorded to aid in enforcing these conditions. You agree that the webmaster, administrator and moderators of this forum have the right to remove, edit, move or close any topic at any time should they see fit. As a user you agree to any information you have entered above being stored in a database. While this information will not be disclosed to any third party without your consent, the webmaster, administrator and moderators cannot be held responsible for any hacking attempt that may lead to the data being compromised.<br /><br />
@@ -76,7 +76,7 @@ $lang = array_merge($lang, array(
 
 	'BASIC_RULES_HEADER'	=> 'Site rules.',
 	'BBCODE_ST_HELP'		=> 'Strike through: [strike]text[/strike]', // More BBCodes
-	'BB_CODE_LINK'					=> '<img scr="./images/bbcode/link.png" />',
+	'BB_CODE_LINK'			=> '<img scr="./images/bbcode/link.png" />',
 
 	'BLOCK_BOT_TRACKER'			=> 'Kiss Portal Bot Tracker',
 	'BLOCK_CALENDAR'			=> 'Kiss Portal Calendar',
@@ -166,7 +166,6 @@ $lang = array_merge($lang, array(
 	'ERROR_USER_TABLE'				=> 'Error! Could not retrieve user table data',
 	'EXAMPLE_CODE'					=> 'Example code here',
 
-
 	'FLASH_IS_OFF'			=> '[flash] is <em>OFF</em>',
 	'FLASH_IS_ON'			=> '[flash] is <em>ON</em>',
 	'FLOOD_ERROR'			=> 'You cannot make another post so soon after your last.',
@@ -185,10 +184,9 @@ $lang = array_merge($lang, array(
 	'FORUM_RULES'			=> 'Forum Rules',
 	'FULL_SEARCH'			=> 'Full Search: ',
 
-	'GOTO_BOTTOM_IMG' 	=> 'Go to Bottom',
-	'GOTO_DEV_SITE'		=> 'Go to Dev Site',
-	'GOTO_TOP_IMG' 		=> 'Go to Top',
-
+	'GOTO_BOTTOM_IMG' 		=> 'Go to Bottom',
+	'GOTO_DEV_SITE'			=> 'Go to Dev Site',
+	'GOTO_TOP_IMG' 			=> 'Go to Top',
 
 	'HIDE_BLOCKS'	=> 'Hide blocks*',
 	'HTTP_HOST'		=> 'Host',
@@ -200,13 +198,14 @@ $lang = array_merge($lang, array(
 
 	'INDEX_OF_FORUMS'		=> 'Index of forums',
 
-
 	'IRC_TITLE'				=> 'Stargate Portal IRC Popup',
 
 	'K_QUICK_REPLY'			=> 'Kiss Simple Quick Reply',
 	'K_RECENT_SEARCH_DAYS'	=> 'Search days: ',
+	'K_TOP_DL_PER_FORUM'	=> '',
 	'LOCAL_TIME'			=> 'Local Time',
 
+	'POST_LIMITED_TO'       => '...<br /><br /><b>[<i>Post limited to: %s characters</i>]</b>',
 
 	'LINKS_FORUM'			=> 'Submit A Link',
 	'LINKS_FORUM_REQU'		=> 'Post your request here... approval required... you must create a forum for links upload!',
@@ -222,17 +221,18 @@ $lang = array_merge($lang, array(
 	'MISSING_BLOCK_DATA'		=> 'You have not entered all the required data!',
 	'MISSING_FILES'				=> ' error:<br /><br />File %1$s or <br />File %2$s does not exist or is empty.',
 	'MISSING_FILE_OR_FOLDER'	=> 'Missing file/folder: %s',
+	'MISSING_FOLDER'			=> 'Could not find the specified directory: (%s)',
 	'MORE_SMILIES'				=> 'View more smilies',
 
 	'MP3_POPUP'			=> 'Popup Player',
 	'MP3_PLAYER'		=> 'SGP MP3 Player',
-
 
 	'NEWS_BREAKING'		=> 'Breaking News... ',
 	'NEWS_FLASH_GLOBAL'	=> 'Global News Flash... ',
 	'NEWS_FLASH_LOCAL'	=> 'Local News Flash... ',
 	'NO_ADMINS'			=> 'No admins assigned.',
 	'NO_ANNOUNCEMENTS'	=> 'No current announcements',
+	'NO_MEMBER_AVATARS' => 'No members avatars found...',
 	'NO_BLOCK_ID'		=> 'Missing ID?',
 	'NO_BOT_DATA'		=> 'No bot data to display',
 	'NO_COMMENTS'		=> 'No comments to display.',
@@ -251,6 +251,8 @@ $lang = array_merge($lang, array(
 	'NO_VIEW_USERS_R'	=> 'You are not authorized to view the online users list.',
 	'NO_VIEW_USERS_A'	=> 'In order to view the online list you have to be registered and logged in.',
 
+	'NO_TOP_DOWNLOADS_TOPICS'    => 'No Attachments found',
+
 	'NOT_PROCESSED_FOR_PAGE'	=> 'Not processed for this page',
 	'NUMBER_OF_FORUMS'			=> 'Number of Forums',
 
@@ -258,7 +260,6 @@ $lang = array_merge($lang, array(
 
 	'ONLINE_USERS'			=> 'Online Users',
 	'ONLINE_USERS_SHOW'		=> '[ View Online List ]',
-
 
 	'PERFORMED_BY'			=> 'Performed by',
 	'PLURAL'				=> 'S',
@@ -270,6 +271,7 @@ $lang = array_merge($lang, array(
 
 	'POST_BY_AUTHOR'		=> 'Author:',
 	'POST_NEWS_UNREAD'		=> 'News unread',
+
 	'POSTED_MINE'			=> 'Posted Mine',
 	'POST_BY_POSTER'		=> 'by',
 	'PORTED_BY'				=> 'Ported by',
@@ -296,6 +298,9 @@ $lang = array_merge($lang, array(
 	'QUICK_STATISTICS'		=> 'Site Statistics',
 	'QUICK_REPLY'			=> 'Quick Reply',
 	'QUICK_REPLY_NO'		=> 'Hide Quick Reply',
+
+	'TOTAL_DOWNLOADS_COUNT' => 'Top total downloads',
+	'SEARCH_TYPE'           => 'Attachment types',
 
 	'UCF_MOD'					=> 'A valid location is required for this Mod',
 	'UCP_SMALL'					=> 'UCP',
@@ -371,6 +376,7 @@ $lang = array_merge($lang, array(
 	'TOOLS_ON'					=> 'Portal Tools',
 	'TOOLS_OFF'					=> 'Save Changes',
 	'TOPICS_PER_FORUM_DISPLAY'	=> ' topics per forum &bull; Display: ',
+	'TOTAL_AVATARS'             => 'Total avatars',
 	'TOTAL_STYLES'				=> 'Total available styles',
 
 	'UNDER_CONSTRUCTION'	=> "<strong>The page you requested is currently under construction...</strong><br /><br />Please use the 'Back' button to return to previous page.",
@@ -404,10 +410,15 @@ $lang = array_merge($lang, array(
 
 	'YOUTUBE'				=> 'Youtube',
 	'YOUTUBE_PAGE'			=> 'Youtube Page',
+	'COMMENT'				=> 'Comment',
+	'VIDEO_WHO'				=> 'Artist',
+	'YOUTUBE_LINK_LIMIT'	=> 'Number of video to display (0 = no limit)',
+	'YOUTUBE_LIMIT'			=> 'limited to %d videos',
+	'AUTOPLAY_ON'			=> 'Autoplay is on...',
+	'AUTOPLAY_OFF'			=> 'Autoplay is off...',
 	'YOUTUBE_LINK_LIMIT'	=> 'Number of video to display (0 = no limit)',
 	'YOUTUBE_LIMIT'			=> 'limited to %d videos',
 ));
-//- stargate aka Kiss portal engine lang definitions -//
 
 // optional style width
 $lang = array_merge($lang, array(
@@ -422,6 +433,7 @@ $lang = array_merge($lang, array(
 	'ACRONYMS'         => 'Acronyms',
 	'ADVANCED_SEARCH'  => 'Advanced Search',
 	'ALBUM'            => 'Album',
+	'AMOUNT'           => 'Amount',
 	'ANNOUNCEMENTS'    => 'Announcements',
 	'AUTHOR'           => 'Author',
 	'BEGIN'            => 'BEGIN',
@@ -438,6 +450,7 @@ $lang = array_merge($lang, array(
 	'BOTTOM'           => 'Bottom',
 	'BY'               => 'By',
 	'CALENDAR'         => 'Calendar',
+	'CHARACTERS'       => 'Characters',
 	'CATEGORIES'       => 'Categories',
 	'CATEGORY'         => 'Category',
 	'CHAT'             => 'Chat',
@@ -446,6 +459,8 @@ $lang = array_merge($lang, array(
 	'COMMENTS'         => 'Comments',
 	'COUNT'            => 'Count',
 	'CURRENT_VERSION'  => 'Current version',
+	'DATE'             => 'Date',
+	'DATE_EX'          => 'Date (01-May-2013)',
 	'DESIGNED_BY'      => 'Designed by',
 	'DEV_VERSION'      => 'Version (RC)',
 	'DISABLE'          => 'Disable',
@@ -464,6 +479,7 @@ $lang = array_merge($lang, array(
 	'HITS'             => 'Hits',
 	'HOME'             => 'Home',
 	'HOST'             => 'Host',
+	'ID'               => 'ID',
 	'INFO'             => 'Info',
 	'IN_PROGRESS'      => 'In Progress',
 	'INTRODUCTION'     => 'Introduction',
@@ -494,6 +510,7 @@ $lang = array_merge($lang, array(
 	'POSTER'           => 'Poster',
 	'PROGRESS'         => 'Progress',
 	'PROGRESS_BAR'     => 'progress bar',
+	'R_TOTAL'          => 'Total',
 	'RATING'           => 'Rating',
 	'REPORT_INSTALLED' => 'The mod in already installed',
 	'RESET_FEED'       => 'Reset',
@@ -519,6 +536,7 @@ $lang = array_merge($lang, array(
 	'TEAM'             => 'Team',
 	'THE_TEAM'         => 'The Team',
 	'TITLE'            => 'Title',
+	'TOTAL'            => 'Total',
 	'TRANSLATE'        => 'Translate',
 	'UCP'              => 'User CP',
 	'UNRESOLVED'       => 'Unresolved',
@@ -539,6 +557,8 @@ $lang = array_merge($lang, array(
 	'VERSION_OUT_OF_DATE'    => 'Your version of the mod is not up to date. Please continue the update process.',
 	'VERSION_CANT_RETRIEVE'  => 'Cannot retrieve version info...',
 
+	// donations
+	'TOTAL_DONATIONS'  => 'Total donations for %s are $%01.2f',
 ));
 
 ?>
