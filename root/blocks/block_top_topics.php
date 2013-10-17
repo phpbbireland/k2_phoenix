@@ -1,24 +1,19 @@
 <?php
 /**
 *
-* @package Stargate Portal
+* @package Kiss Portal Engine
+* @version $Id$
 * @author  Martin Larsson - aka NeXur
 * @begin   Thursday, 28 October, 2008
-* @copyright (c) 2008 Martin Larsson - aka NeXur
+* @copyright (c) 2005-2013 phpbbireland
 * @home    http://www.phpbbireland.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* @note: Do not remove this copyright. Just append yours if you have modified it,
-*        this is part of the Stargate Portal copyright agreement...
-*
-* @version $Id: block_top_topics.php 297 2008-12-30 18:40:30Z JohnnyTheOne $
-* Updated: 4 November 2008
 *
 */
 
 /**
 * @ignore
 */
-
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -35,6 +30,7 @@ foreach ($k_blocks as $blk)
 	if ($blk['html_file_name'] == 'block_top_topics.html')
 	{
 		$block_cache_time = $blk['block_cache_time'];
+		break;
 	}
 }
 $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k_block_cache_time_default']);
