@@ -9,9 +9,9 @@
 // <![CDATA[
 function switchMarks(status)
 {
-	for( var i=0; i < document.acp_k_words.length; i++ )
+	for (var i=0; i < document.acp_k_words.length; i++)
 	{
-		if( document.acp_k_words.elements[i].type == 'checkbox' )
+		if (document.acp_k_words.elements[i].type == 'checkbox')
 		{
 			document.acp_k_words.elements[i].checked = status;
 		}
@@ -19,9 +19,9 @@ function switchMarks(status)
 }
 function IsMarked()
 {
-	for( var i=0; i < document.acp_k_words.length; i++ )
+	for (var i=0; i < document.acp_k_words.length; i++)
 	{
-		if( document.acp_k_words.elements[i].type == 'checkbox' && document.acp_k_words.elements[i].checked )
+		if (document.acp_k_words.elements[i].type == 'checkbox' && document.acp_k_words.elements[i].checked)
 		{
 			return true;
 		}
@@ -31,37 +31,37 @@ function IsMarked()
 }
 function confirmOperation()
 {
-	return( IsMarked() && confirm("{LA_PLEASE_CONFIRM_DELETE}") );
+	return(IsMarked() && confirm("{LA_PLEASE_CONFIRM_DELETE}"));
 }
 function confirmAdd()
 {
-	return( confirm("{LA_PLEASE_CONFIRM_ADD}") );
+	return(confirm("{LA_PLEASE_CONFIRM_ADD}"));
 }
 function confirmUpdate()
 {
-	return( confirm("{LA_PLEASE_CONFIRM_UPDATE}") );
+	return(confirm("{LA_PLEASE_CONFIRM_UPDATE}"));
 }
 // ]]>
 </script>
 
 
-<form id="acp_k_words" method="post" action="{U_ACTION_COLUMN}">
+<form id="acp_k_words" name="acp_k_words" method="post" action="{U_ACTION_COLUMN}">
 
 <table width="100%" cellpadding="4" cellspacing="1" border="0" class="forumline">
 	<tr>
 		<th class="thHead" colspan="6">{L_TITLE}</th>
 	</tr>
 	<tr>
-		<td class="row2" align="center" valign="middle"><span class="gen"><b>{L_ID}</b></span></td>
-		<td class="row2" align="center" valign="middle"><span class="gen"><b>{L_VAR}</b></span></td>
-		<td class="row2" align="center" valign="middle"><span class="gen"><b>{L_VAR_NAME}</b></span></td>
-		<td class="row2" align="center" valign="middle"><span class="gen"><b>{L_VALUE}</b></span></td>
-		<td class="row2" align="center" valign="middle"><span class="gen"><b>{L_TABLE}</b></span></td>
-		<td class="row2" align="center" valign="middle"><span class="gen"><b>{L_DELETE}</b></span></td>
+		<td class="row2" align="center" valign="middle"><span class="gen"><strong>{L_ID}</strong></span></td>
+		<td class="row2" align="center" valign="middle"><span class="gen"><strong>{L_VAR}</strong></span></td>
+		<td class="row2" align="center" valign="middle"><span class="gen"><strong>{L_VAR_NAME}</strong></span></td>
+		<td class="row2" align="center" valign="middle"><span class="gen"><strong>{L_VALUE}</strong></span></td>
+		<td class="row2" align="center" valign="middle"><span class="gen"><strong>{L_TABLE}</strong></span></td>
+		<td class="row2" align="center" valign="middle"><span class="gen"><strong>{L_DELETE}</strong></span></td>
 	</tr>
 	<!-- BEGIN wordrow -->
 	<tr>
-		<td class="row3" align="left"  valign="middle"><span class="genmed">{wordrow.ID}</span></td>
+		<td class="row3" align="left" valign="middle"><span class="genmed">{wordrow.ID}</span></td>
 		<td class="row3" align="center" valign="middle"><span class="genmed"><input type="text" maxlength="255" size="30" name="word" value="{wordrow.WORD}" class="post" /></span></td>
 		<td class="row3" align="center" valign="middle"><span class="genmed">{wordrow.NAME}</span></td>
 		<td class="row3" align="center" valign="middle"><span class="genmed">{wordrow.VALUE}</span></td>
@@ -89,9 +89,9 @@ function confirmUpdate()
 		<th class="thHead" colspan="3">{L_TITLE_ADD}</th>
 	</tr>
 	<tr>
-		<td class="row2" align="center" valign="middle"><span class="gen"><b>{L_ID}</b></span></td>
-		<td class="row2" align="center" valign="middle"><span class="gen"><b>{L_VAR}</b></span></td>
-		<td class="row2" align="right" valign="middle"><span class="gen"><b>{L_OPTION}</b></span></td>
+		<td class="row2" align="center" valign="middle"><span class="gen"><strong>{L_ID}</strong></span></td>
+		<td class="row2" align="center" valign="middle"><span class="gen"><strong>{L_VAR}</strong></span></td>
+		<td class="row2" align="right" valign="middle"><span class="gen"><strong>{L_OPTION}</strong></span></td>
 	</tr>
 	<tr>
 		<td class="row3">&nbsp;</td>
