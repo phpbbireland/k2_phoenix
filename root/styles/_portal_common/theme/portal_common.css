@@ -246,7 +246,6 @@ button {border: solid 3px;}
 
 abbr, acronym, local_acronym {
   font-weight: bold;
-/*  text-decoration: overline;*/
   cursor: help;
 }
 
@@ -349,7 +348,6 @@ local_acronym{
   padding:4px; 
   padding-bottom: 0px; 
   padding-top: 0px; 
-  /*background-color: #fff; */
 }
 
 
@@ -702,3 +700,88 @@ table.table1 .flag { text-align: center; width: 30px; }
 
 .l_block_vert_gap { padding-right:15px; }
 .r_block_vert_gap { padding-left:15px; }
+
+/*
+@font-face {
+	font-family: 'ArbatDi';
+	src: url('index_htm_files/arbat.eot');
+	src: local('arbat Regular'), local('arbat'), url('index_htm_files/arbat.ttf') format('truetype');
+}
+*/
+@font-face {
+   font-family: ArbatDi;
+   font-style:  normal;
+   font-weight: normal;
+   src: url('fonts/ARBATDI1.eot');
+}
+
+
+
+/*
+@media screen and (max-width:480px)
+{
+	* { max-width: 480px; }
+	body { overflow-x:hidden;}
+
+	#pcontainer_ { width: 480px; }
+
+	.headerbar img {max-width: 100px;}
+	
+	#search-box
+	{
+		display: none;
+	}
+
+	#wrap
+	{
+		padding:0;
+		margin:0;
+		margin-left: auto;
+		margin-right: auto;
+		min-width: 440px;
+	}
+
+	#left
+	{
+		float: left;
+		min-width: 440px;
+		padding-left:10px;
+
+		margin: 0;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	#center
+	{
+		float: left;
+		width: 440px;
+		padding-left:10px;
+
+		margin:0;
+		margin-left: auto;
+		margin-right: auto;
+
+	}
+
+	#right
+	{
+		float: left;
+		min-width: 440px;
+		padding-left:10px;
+
+		margin: 0;
+		margin-left: auto;
+		margin-right: auto;
+
+	}
+
+	.l_block_vert_gap { padding-right: 0; padding-left: 0; }
+	.r_block_vert_gap { padding-right: 0; padding-left: 0; }
+
+	img  { max-width: 300px; }
+}
+
+
+
+*/
