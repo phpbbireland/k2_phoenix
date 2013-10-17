@@ -1,17 +1,13 @@
 <?php
 /**
 *
-* @package Stargate Portal
-* @author  Michael O'Toole - aka Michaelo
-* @begin   Saturday, 31st May, 2008
-* @copyright (c) 2005-2008 phpbbireland
+* @package Kiss Portal Engine
+* @version $Id$
+* @author  Michael O'Toole - aka michaelo
+* @begin   Saturday, Jan 22, 2005
+* @copyright (c) 2005-2013 phpbbireland
 * @home    http://www.phpbbireland.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* @note: Do not remove this copyright. Just append yours if you have modified it,
-*        this is part of the Stargate Portal copyright agreement...
-*
-* @version $Id: block_news_advanced.php 307 2009-01-01 16:05:35Z Michealo $
-* Updated: 28 July 2011 00:03
 *
 */
 
@@ -36,6 +32,7 @@ foreach ($k_blocks as $blk)
 	if ($blk['html_file_name'] == 'block_news.html')
 	{
 		$block_cache_time = $blk['block_cache_time'];
+		break;
 	}
 }
 $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k_block_cache_time_default']);
@@ -115,7 +112,6 @@ $sql = 'SELECT
 			t.forum_id = f.forum_id
 	ORDER BY
 		t.topic_type DESC, t.topic_time DESC';
-
 
 // query the database
 if (!($result = $db->sql_query_limit($sql, (($k_news_items_to_display) ? $k_news_items_to_display : 1), 0, $block_cache_time)))
@@ -201,7 +197,7 @@ if (sizeof($attach_list))
 			ORDER BY filetime DESC';
 		$result = $db->sql_query($sql, $block_cache_time);
 
-		while($row = $db->sql_fetchrow($result))
+		while ($row = $db->sql_fetchrow($result))
 		{
 			$attachments[$row['post_msg_id']][] = $row;
 		}
@@ -230,11 +226,20 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 
 	$row =& $rowset[$post_list[$i]];
 
-	// Size the message to max length
 	if (($k_news_item_max_length != 0) && (strlen($row['post_text']) > $k_news_item_max_length))
 	{
-		$row['post_text'] = sgp_truncate_message($row['post_text'], $k_news_item_max_length);
-		$row['post_text'] .= ' <a href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '"><strong>[' . $user->lang['VIEW_FULL_ARTICLE']  . ']</strong></a>';
+		$len = strlen($row['post_text']);
+
+		$row['post_text'] = truncate_post($row['post_text'], $k_news_item_max_length, $row['bbcode_uid']);
+
+		if (strlen($row['post_text']) < $len)
+		{
+			$row['post_text'] .= ' <a href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '"><strong>[' . $user->lang['VIEW_FULL_ARTICLE']  . ']</strong></a>';
+		}
+		else
+		{
+			$row['post_text'] .= ' <a href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '"></a>';
+		}
 	}
 
 	$message = generate_text_for_display($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield'], $row['bbcode_options']);
@@ -319,4 +324,5 @@ $template->assign_vars(array(
 ));
 
 // END: Fetch News //
+
 ?>
