@@ -1,6 +1,4 @@
-.farbtastic {
-	position: relative;
-}
+.farbtastic { position: relative; }
 .farbtastic * {
 	position: absolute;
 	cursor: crosshair;
@@ -20,9 +18,7 @@
 	width: 150px;
 	height: 150px;
 }
-.farbtastic .overlay {
-	background: url(./../images/small_mask.png) no-repeat;
-}
+.farbtastic .overlay { background: url(./../images/small_mask.png) no-repeat; }
 .farbtastic .marker {
 	width: 17px;
 	height: 17px;

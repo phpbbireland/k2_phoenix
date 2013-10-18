@@ -10,10 +10,10 @@
 					<!-- IF portal_link_menus_row.PORTAL_LINK_MENU_ICON -->{portal_link_menus_row.PORTAL_LINK_MENU_ICON}<!-- ENDIF -->
 						<a href="{portal_link_menus_row.U_PORTAL_LINK_MENU_LINK}" {portal_link_menus_row.LINK_OPTION} >{portal_link_menus_row.PORTAL_LINK_MENU_NAME}</a>
 					</span>
-					<!-- IF portal_link_menus_row.S_SOFT_HR == 1 --></div> <br /><img src="./images/soft_hr.gif" /><!-- ENDIF -->
+					<!-- IF portal_link_menus_row.S_SOFT_HR == 1 --></div> <br /><img src="{ROOT_PATH}images/soft_hr.gif" alt="" /><!-- ENDIF -->
 				<!-- ENDIF -->
 			<!-- BEGINELSE -->
-				<div style="text-align:center;">{L_NO_MENU}</div>
+				<div style="text-align: center;">{L_NO_MENU}</div>
 			<!-- END portal_link_menus_row -->
 		</div>
 	</div>

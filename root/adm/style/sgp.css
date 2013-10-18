@@ -7,9 +7,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-bold:hover {
-	background-position: 0px -23px;
-}
+.bbb-bold:hover { background-position: 0px -23px; }
 .bbb-quote, .bbb-italic, .bbb-italic a {
 	background: transparent;
 	border: none;
@@ -17,9 +15,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-italic:hover {
-	background-position: 0px -23px;
-}
+.bbb-italic:hover { background-position: 0px -23px; }
 .bbb-quote, .bbb-quote a {
 	background: transparent;
 	border: none;
@@ -27,9 +23,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-quote:hover {
-	background-position: 0px -23px;
-}
+.bbb-quote:hover { background-position: 0px -23px; }
 .bbb-code, .bbb-code a {
 	background: transparent;
 	border: none;
@@ -37,9 +31,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-code:hover {
-	background-position: 0px -23px;
-}
+.bbb-code:hover { background-position: 0px -23px; }
 .bbb-list, .bbb-list a {
 	background: transparent;
 	border: none;
@@ -47,9 +39,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-list:hover {
-	background-position: 0px -23px;
-}
+.bbb-list:hover { background-position: 0px -23px; }
 .bbb-flash, .bbb-flash a {
 	background: transparent;
 	border: none;
@@ -57,9 +47,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-flash:hover {
-	background-position: 0px -23px;
-}
+.bbb-flash:hover { background-position: 0px -23px; }
 .bbb-image, .bbb-image a {
 	background: transparent;
 	border: none;
@@ -67,9 +55,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-image:hover {
-	background-position: 0px -23px;
-}
+.bbb-image:hover { background-position: 0px -23px; }
 .bbb-url, .bbb-url a {
 	background: transparent;
 	border: none;
@@ -77,9 +63,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-url:hover {
-	background-position: 0px -23px;
-}
+.bbb-url:hover { background-position: 0px -23px; }
 .bbb-under_line, .bbb-under_line a {
 	background: transparent;
 	border: none;
@@ -87,9 +71,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-under_line:hover {
-	background-position: 0px -23px;
-}
+.bbb-under_line:hover { background-position: 0px -23px; }
 .bbb-align_center, .bbb-align_center a {
 	background: transparent;
 	border: none;
@@ -97,9 +79,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-align_center:hover {
-	background-position: 0px -23px;
-}
+.bbb-align_center:hover { background-position: 0px -23px; }
 .bbb-align_left, .bbb-align_left a {
 	background: transparent;
 	border: none;
@@ -107,9 +87,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-align_left:hover {
-	background-position: 0px -23px;
-}
+.bbb-align_left:hover { background-position: 0px -23px; }
 .bbb-align_right, .bbb-align_right a {
 	background: transparent;
 	border: none;
@@ -117,9 +95,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-align_right:hover {
-	background-position: 0px -23px;
-}
+.bbb-align_right:hover { background-position: 0px -23px; }
 .bbb-ordered_list, .bbb-ordered_list a {
 	background: transparent;
 	border: none;
@@ -127,9 +103,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-ordered_list:hover {
-	background-position: 0px -23px;
-}
+.bbb-ordered_list:hover { background-position: 0px -23px; }
 .bbb-add_list_item, .bbb-add_list_item a {
 	background: transparent;
 	border: none;
@@ -137,9 +111,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-add_list_item:hover {
-	background-position: 0px -23px;
-}
+.bbb-add_list_item:hover { background-position: 0px -23px; }
 .bbb-note, .bbb-note a {
 	background: transparent;
 	border: none;
@@ -147,9 +119,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-note:hover {
-	background-position: 0px -23px;
-}
+.bbb-note:hover { background-position: 0px -23px; }
 .bbb-spoiler, .bbb-spoiler a {
 	background: transparent;
 	border: none;
@@ -157,9 +127,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-spoiler:hover {
-	background-position: 0px -23px;
-}
+.bbb-spoiler:hover { background-position: 0px -23px; }
 .bbb-tab, .bbb-tab a {
 	background: transparent;
 	border: none;
@@ -167,9 +135,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-tab:hover {
-	background-position: 0px -23px;
-}
+.bbb-tab:hover { background-position: 0px -23px; }
 .bbb-sup, .bbb-sup a {
 	background: transparent;
 	border: none;
@@ -177,9 +143,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-sup:hover {
-	background-position: 0px -23px;
-}
+.bbb-sup:hover { background-position: 0px -23px; }
 .bbb-sub, .bbb-sub a {
 	background: transparent;
 	border: none;
@@ -187,9 +151,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-sub:hover {
-	background-position: 0px -23px;
-}
+.bbb-sub:hover { background-position: 0px -23px; }
 .bbb-strike, .bbb-strike a {
 	background: transparent;
 	border: none;
@@ -197,9 +159,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-strike:hover {
-	background-position: 0px -23px;
-}
+.bbb-strike:hover { background-position: 0px -23px; }
 .bbb-link, .bbb-link a {
 	background: transparent;
 	border: none;
@@ -207,16 +167,12 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-link:hover {
-	background-position: 0px -23px;
-}
+.bbb-link:hover { background-position: 0px -23px; }
 .rollover, .rollover a {
 	display: inline;
 	float: left;
 }
-.rollover a:hover {
-	background-position: 0 -23px;
-}
+.rollover a:hover { background-position: 0 -23px; }
 .bbb-icon-spacer {
 	background: transparent;
 	border: none;

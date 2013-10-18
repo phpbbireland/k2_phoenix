@@ -18,10 +18,10 @@ function postform_check()
 </script>
 
 <!-- IF MODE == 'post' -->
-<div id="thisform" style="display:none; width:auto; margin-left:auto; margin-right:auto; margin-top:10px; border-radius: 5px;" class="post bg1">
+<div id="thisform" style="display: none; width: auto; margin-left: auto; margin-right: auto; margin-top: 10px; border-radius: 5px;" class="post bg1">
 
-	<div  style="width:auto; margin-left:auto; margin-right:auto; margin-top:10px; margin-bottom:10px; border-radius: 5px; text-align:left; padding: 5px" class="post bg1">
-		<p style="text-align:center"><span class="mandatory">*</span> {L_MANDATORY}</p>
+	<div  style="width: auto; margin-left: auto; margin-right: auto; margin-top: 10px; margin-bottom: 10px; border-radius: 5px; text-align: left; padding: 5px" class="post bg1">
+		<p style="text-align: center;"><span class="mandatory">*</span> {L_MANDATORY}</p>
 		<fieldset class="fields2" style="border-radius: 5px;">
 			<!-- BEGIN form_apptemplate -->
 			<dl>
@@ -32,11 +32,11 @@ function postform_check()
 		</fieldset>
 	</div>
 
-	<div style="width:auto; margin-left:auto; margin-right:auto; margin-top:10px; margin-bottom:10px; border-radius: 5px; text-align:center; padding: 5px" class="post bg1">
+	<div style="width: auto; margin-left: auto; margin-right: auto; margin-top: 10px; margin-bottom: 10px; border-radius: 5px; text-align: center; padding: 5px" class="post bg1">
 		{L_CHECKBOX_MSG}<br />{L_MOREINFO_MSG}
 	</div>
 
-	<div style="width:auto; margin-left:auto; margin-right:auto; margin-top:10px; margin-bottom:10px; border-radius: 5px; text-align:left;" class="post bg1">
+	<div style="width: auto; margin-left: auto; margin-right: auto; margin-top: 10px; margin-bottom: 10px; border-radius: 5px; text-align: left;" class="post bg1">
 		<fieldset class="submit-buttons">
 			<input type="submit" tabindex="5" title="{L_FORM_MOD_PREVIEW}" name="preview" value="{L_PREVIEW}" class="button1"<!-- IF not S_PRIVMSGS --> onclick="document.getElementById('postform').action += '#preview';"<!-- ENDIF --> />&nbsp;
 			<input type="submit" accesskey="s" title="{L_FORM_MOD_SUBMIT}" name="post" value="{L_SUBMIT}" class="button1 default-submit-action" onclick="return postform_check();" />&nbsp;

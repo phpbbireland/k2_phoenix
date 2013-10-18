@@ -28,6 +28,8 @@ class lastRSS
 	var $items_limit = 0;
 	var $stripHTML = true;
 	var $date_format = 'U';
+	var $cache_dir = '';
+	var $type = '';
 
 	// -------------------------------------------------------------------
 	// Private variables

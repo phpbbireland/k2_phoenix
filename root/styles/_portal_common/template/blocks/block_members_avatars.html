@@ -1,34 +1,34 @@
 <!-- IDTAG block_members_avatars.html start 13 September 2007 -->
-<div class="block_data" style="width:100%; padding: 0;  overflow: auto;">
-	<div class="tcontainer" style="padding:1px; margin: 0px; margin-left: auto; margin-right: auto; width:{PAGE_WIDTH}px;">
+<div class="block_data" style="width: 100%; padding: 0; overflow: auto;">
+	<div class="tcontainer" style="padding: 1px; margin: 0px; margin-left: auto; margin-right: auto; width: {PAGE_WIDTH}px;">
 
-		<div class="trow" style="width:100%; text-align:center; ">
-			<span class="tleft bg2" style="text-align:center; padding: 5px;">
+		<div class="trow" style="width: 100%; text-align: center;">
+			<span class="tleft bg2" style="text-align: center; padding: 5px;">
 			{REPORT}<br />
 
 				<!-- BEGIN members_avatars -->
 
-				<span class="tleft bg2" style="text-align:center; vertical-align:bottom; padding: 5px; width:{MAX_WIDTH}px;">
+				<span class="tleft bg2" style="text-align: center; vertical-align: bottom; padding: 5px; width: {MAX_WIDTH}px;">
 					{members_avatars.MEMBER_AVATAR_IMG}<br />
 
 					<span>
 					<!-- IF members_avatars.IS_ONLINE -->
-						<img src="./images/green_led_on.gif" width="{members_avatars.AVA_WIDTH}" height="10" alt="" title="{L_ONLINE}" />
+						<img src="{ROOT_PATH}images/green_led_on.gif" width="{members_avatars.AVA_WIDTH}" height="10" alt="" title="{L_ONLINE}" />
 					<!-- ELSE -->
-						<img src="./images/green_led_off.gif" width="10" height="10" alt="" title="{L_OFFLINE}" />
+						<img src="{ROOT_PATH}images/green_led_off.gif" width="10" height="10" alt="" title="{L_OFFLINE}" />
 					<!-- ENDIF -->
 					</span>
 
-					<span style="margin-top:3px;">{members_avatars.USERNAME_FULL}</span>
+					<span style="margin-top: 3px;">{members_avatars.USERNAME_FULL}</span>
 				</span>
 
-					<!-- IF members_avatars.COL_COUNT == WRAP_AVATARS --></span></div><div class="trow" style="width:100%; text-align:center;"><span class="tleft bg2" style="text-align:center; padding: 5px;"><!-- ENDIF -->
+					<!-- IF members_avatars.COL_COUNT == WRAP_AVATARS --></span></div><div class="trow" style="width: 100%; text-align: center;"><span class="tleft bg2" style="text-align: center; padding: 5px;"><!-- ENDIF -->
 
 				<!-- END members_avatars -->
 			</span>
 		</div>
 
-		<div style="width:100%;">
+		<div style="width: 100%;">
 			<!-- BEGIN avatars_pages -->
 				<!-- IF PAGES -->
 				<a href="{avatars_pages.U_PAGES}">
@@ -42,12 +42,10 @@
 			<!-- END avatars_pages -->
 			{L_TOTAL_AVATARS}: {AV_TOTAL} &nbsp;
 
-			<span style="float:right;">
+			<span style="float: right;">
 				{AVATAR_SQL_TYPE}
 			</span>
-
 		</div>
-
 
 	</div>
 </div>

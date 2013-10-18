@@ -33,18 +33,18 @@ function url_search()
 
 <form method="get" id="search_block" action="{U_SEARCH}" onsubmit="return url_search()">
 	<div class="block_data">
-		<div style="text-align:center;">
+		<div style="text-align: center;">
 			<input class="inputbox search" type="text" name="keywords" size="21" />{S_HIDDEN_FIELDS}
 		</div>
-		<div style="padding-top:5px; width:99%;"></div>
-		<div style="text-align:center;">
-			<select class="inputbox full" style="font-size:11px; padding:2px; cursor: pointer;" name="search_engine">
+		<div style="padding-top: 5px; width: 99%;"></div>
+		<div style="text-align: center;">
+			<select class="inputbox full" style="font-size: 11px; padding: 2px; cursor: pointer;" name="search_engine">
                 <optgroup label="{SITE_NAME}">
-					<option value="site" style="font-size:11px;" >{SITE_NAME}</option>
+					<option value="site" style="font-size: 11px;">{SITE_NAME}</option>
 					<option value="site">{L_POSTS}</option>
 					<option value="advanced">{L_ADVANCED_SEARCH}</option>
 			    </optgroup>
-                <optgroup style="font-size:12px;" label="Search Engine">
+                <optgroup style="font-size: 12px;" label="Search Engine">
 		            <option value="google">Google</option>
 			        <option value="yahoo">Yahoo</option>
 			        <option value="lycos">Lycos</option>
@@ -52,7 +52,7 @@ function url_search()
 			</select>
 		</div>
 		<br />
-		<div style="text-align:center;">
+		<div style="text-align: center;">
 			<input type="hidden" name="search_fields" value="all" />
 			<input type="hidden" name="show_results" value="topics" />
 			<input class="button1" type="submit" value="{L_SEARCH}" />

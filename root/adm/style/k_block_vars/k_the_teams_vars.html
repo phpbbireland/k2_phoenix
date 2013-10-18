@@ -24,7 +24,6 @@
 	alert(data);
 		document.getElementById('teams_sort').value=data;
 	}
-
 // ]]>
 </script>
 
@@ -59,7 +58,7 @@
 		<dd><label><br />
 			<select name="k_teams_sort" id="k_teams_sort" class="post" onchange="set_list_item(this.options[this.selectedIndex].value, 'k_teams_sort';)">{S_TEAMS_SORT}
 			<!-- BEGIN teams_sort -->
-				<option value="{teams_sort.SORT_OPTION}" <!-- IF teams_sort.SORT_OPTION == S_K_TEAMS_SORT -->selected="selected" <!-- ENDIF -->>{teams_sort.SORT_OPTION}</option>
+				<option value="{teams_sort.SORT_OPTION}"<!-- IF teams_sort.SORT_OPTION == S_K_TEAMS_SORT --> selected="selected"<!-- ENDIF -->>{teams_sort.SORT_OPTION}</option>
 			<!-- END teams_sort -->
 			</select>
 			</label>

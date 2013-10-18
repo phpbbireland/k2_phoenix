@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* acp_k_newsfeeds [English]
+* k_newsfeeds [English]
 *
 * @package language (Kiss Portal Engine / Stargate Portal)
 * @version $Id$
@@ -97,8 +97,6 @@ $lang = array_merge($lang, array(
 	'FEED_URL_EXPLAIN'          => 'Full URL address, starting with http://...',
 
 	'FEED_VISIT_FEED'           => 'Subscribe to feed',
-
-
 ));
 
 ?>

@@ -33,7 +33,7 @@ include($phpbb_root_path . 'includes/sgp_lastrss.'.$phpEx);
 
 global $k_config;
 
-if(!$k_config['rss_feeds_enabled'])
+if (!$k_config['rss_feeds_enabled'])
 {
 	$template->assign_var('S_RSS_ENABLED', false);
 	return;
@@ -47,7 +47,6 @@ function ShowRSSdesc($url)
 	// Create lastRSS object
 	$rss = new lastRSS;
 
-
 	// portal globals/cache
 	global $k_config;
 
@@ -59,7 +58,7 @@ function ShowRSSdesc($url)
 	$rss->items_limit = $k_config['rss_feeds_items_limit']; //number of news
 	$rss->type = $k_config['rss_feeds_type']; // connection type (fopen / curl)
 
-    if ($rs = $rss->get($url))
+	if ($rs = $rss->get($url))
 	{
 		$msg= '<span class="gensmall"><strong>' . $rs['description'] . "</strong></span><hr />";
 		$msg.= "";
@@ -68,7 +67,7 @@ function ShowRSSdesc($url)
 		{
 			$msg.= '<li class="gensmall">' . $user->lang['NO_CURL'] . '</li>';
 		}
-		if(ini_get("allow_url_fopen") == false && $rss->type == 'fopen')
+		if (ini_get("allow_url_fopen") == false && $rss->type == 'fopen')
 		{
 			//fopen not installed. throw error
 			$msg.= '<li class="gensmall">' . $user->lang['NO_FOPEN'] . '</li>';
@@ -103,7 +102,6 @@ function ShowRSSnodesc($url)
 	// Create lastRSS object
 	$rss = new lastRSS;
 
-
 	// Set cache dir, cache interval and character encoding
 	$rss->cache_dir = './cache';
 	$rss->cache_time = $k_config['rss_feeds_cache_time']; // Maximum age of the cache file for feed before it is updated, in seconds.
@@ -112,7 +110,7 @@ function ShowRSSnodesc($url)
 	$rss->items_limit = $k_config['rss_feeds_items_limit']; //number of news
 	$rss->type = $k_config['rss_feeds_type']; // connection type (fopen / curl)
 
-    if ($rs = $rss->get($url))
+	if ($rs = $rss->get($url))
 	{
 		$msg= "<hr />";
 		// check if fopen or curl is installed
@@ -161,19 +159,19 @@ foreach ($k_blocks as $blk)
 $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['block_cache_time_default']);
 
 $sql = 'SELECT *
-   FROM ' . K_NEWSFEEDS_TABLE . '
-   WHERE feed_show = 1
-   ORDER BY feed_id DESC';
+	FROM ' . K_NEWSFEEDS_TABLE . '
+	WHERE feed_show = 1
+	ORDER BY feed_id DESC';
 $result = $db->sql_query_limit($sql, $rss_feeds_random_limit, 0, $block_cache_time);
 
-if(!($result = $db->sql_query($sql, $block_cache_time)))
+if (!($result = $db->sql_query($sql, $block_cache_time)))
 {
 	trigger_error('RSS_LIST_ERROR');
 }
 else
 {
    	$i = 0;
-   	while($row = $db->sql_fetchrow($result))
+   	while ($row = $db->sql_fetchrow($result))
    	{
 		$feeds[$i]['title'] = $row['feed_title'];
 		$feeds[$i]['id'] = $row['feed_id'];
@@ -269,4 +267,5 @@ for ($i = 0; isset($feeds[$i]['id']); $i++)
 	));
 
 }
+
 ?>
