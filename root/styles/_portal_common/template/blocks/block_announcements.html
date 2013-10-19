@@ -25,13 +25,11 @@
 					<div class="news_body">
 						<div class="news" style="width: 100%;">
 							<div class="announce_box">
-
-						<!-- IF announce_row.S_TOPIC_TYPE == 3 -->
-							<img src="{T_IMAGESET_LANG_PATH}/news/announcement.png" alt="" />
-						<!-- ELSE -->
-							<img src="{T_IMAGESET_LANG_PATH}/news/announcement2.png" alt="" />
-						<!-- ENDIF -->
-
+							<!-- IF announce_row.S_TOPIC_TYPE == 3 -->
+								<img src="{T_IMAGESET_LANG_PATH}/news/announcement.png" alt="" />
+							<!-- ELSE -->
+								<img src="{T_IMAGESET_LANG_PATH}/news/announcement2.png" alt="" />
+							<!-- ENDIF -->
 							</div>
 							<div class="contents">{announce_row.MESSAGE}</div>
 							<!-- IF announce_row.S_HAS_ATTACHMENTS -->
@@ -50,12 +48,12 @@
 					<div class="news_footer" style="width: 100%;">
 						<span class="news_poster" style="width: 50%;"> {L_POSTED_BY}: {announce_row.U_POSTER}</span>
 						<span class="news_reply" style="width: 50%;">
-							<a href="{announce_row.U_VIEW}"> <img src="{announce_row.VIEW_IMG}" alt="{L_VIEW_FULL_ARTICLE}" title="{L_VIEW_FULL_ARTICLE}" /></a>
-							<a href="{announce_row.U_PRINT}"> <img src="{announce_row.PRINT_IMG}" alt="{L_PRINT_IT}" title="{L_PRINT_IT}" /></a>
+							<a href="{announce_row.U_VIEW}"><img src="{announce_row.VIEW_IMG}" alt="{L_VIEW_FULL_ARTICLE}" title="{L_VIEW_FULL_ARTICLE}" /></a>
+							<a href="{announce_row.U_PRINT}"><img src="{announce_row.PRINT_IMG}" alt="{L_PRINT_IT}" title="{L_PRINT_IT}" /></a>
 							<!-- IF announce_row.ALLOW_REPLY -->
-								<a href="{announce_row.U_REPLY}"> <img src="{announce_row.REPLY_IMG}" alt="{L_POST_COMMENTS}" title="{L_POST_COMMENTS}" /></a>
+								<a href="{announce_row.U_REPLY}"><img src="{announce_row.REPLY_IMG}" alt="{L_POST_COMMENTS}" title="{L_POST_COMMENTS}" /></a>
 							<!-- ENDIF -->
-							<a href="#start" title="Top"><img src="{T_IMAGESET_PATH}/portal/icon_back_top.png" width="14" height="14" alt="Top" /></a>
+							<a href="#start"><img src="{T_IMAGESET_PATH}/portal/icon_back_top.png" width="14" height="14" alt="{L_BACK_TO_TOP}" title="{L_BACK_TO_TOP}" /></a>
 						</span>
 					</div>
 					<br class="clear" />
