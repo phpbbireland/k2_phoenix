@@ -226,14 +226,14 @@ button { border: solid 3px; }
    If the classes are not defines, we use this default code...
  ---------------------------------------------------------------------- */
 
-abbr, acronym, local_acronym {
+abbr {
 	font-weight: bold;
 	cursor: help;
 }
 
 .acronym { background:#FFFFCC }
 
-acronym, local_acronym {
+acronym {
 	font-style: italic;
 	font-weight: bold;
 	border-bottom: 1px #BD5121 dashed;
