@@ -1601,8 +1601,9 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 </edit>
 <edit>
 <find><![CDATA[		'global'	=> array('const' => POST_GLOBAL, 'lang' => 'POST_GLOBAL')]]></find>
-<action type="before-add"><![CDATA[		'news'		=> array('const' => POST_NEWS, 'lang' => 'POST_NEWS'),
-		'news_global'	=> array('const' => POST_NEWS_GLOBAL, 'lang' => 'POST_NEWS_GLOBAL'),]]></action>
+<action type="replace-with"><![CDATA[		'global'	=> array('const' => POST_GLOBAL, 'lang' => 'POST_GLOBAL'),
+		'news'		=> array('const' => POST_NEWS, 'lang' => 'POST_NEWS'),
+		'news_global'	=> array('const' => POST_NEWS_GLOBAL, 'lang' => 'POST_NEWS_GLOBAL')]]></action>
 </edit>
 
 <edit>
