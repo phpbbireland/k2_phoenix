@@ -52,7 +52,7 @@
 
 <edit>
 <find><![CDATA[	<span class="copyright">{CREDIT_LINE}]]></find>
-<action type="after-add"><![CDATA[		<!-- IF STARGATE --><br /><!-- INCLUDE portal_copyright.html --><!-- ENDIF -->]]></action>
+<action type="after-add"><![CDATA[	<!-- IF STARGATE --><br /><!-- INCLUDE portal_copyright.html --><!-- ENDIF -->]]></action>
 <comment lang="en"></comment>
 </edit>
 
@@ -112,22 +112,6 @@
 <action type="after-add"><![CDATA[		<!-- IF STARGATE -->
 			<!-- INCLUDE portal_header.html -->
 		<!-- ENDIF -->]]></action>
-<comment lang="en"></comment>
-</edit>
-</open>
-
-<open src="styles/subsilver2/template/posting_buttons.html">
-<edit>
-<find><![CDATA[		<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></find>
-<action type="replace-with"><![CDATA[		<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>]]></action>
-<comment lang="en"></comment>
-</edit>
-</open>
-
-<open src="styles/subsilver2/template/posting_smilies.html">
-<edit>
-<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></find>
-<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>]]></action>
 <comment lang="en"></comment>
 </edit>
 </open>
