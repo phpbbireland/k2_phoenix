@@ -1,11 +1,13 @@
 <?php
 /**
 *
-* k_tools [English]
+* @author Original Author Michael O'Toole @www.stargate-portal.com
 *
-* @package language (Kiss Portal Engine)
-* @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @package ucp {k_tools.php}
+* @version $Id:$ 1.0.20
+* @note: Do not remove this copyright. Just append yours if you have modified it,
+*        this is part of the Stargate Portal copyright agreement...
+* @copyright (c) 2005 phpbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -48,6 +50,7 @@ $lang = array_merge($lang, array(
 
 	'RIGHT_BLOCKS'			=> 'Right blocks',
 	'RIGHT_BLOCKS_EXPLAIN' 	=> 'comma separated string',
+
 ));
 
 ?>

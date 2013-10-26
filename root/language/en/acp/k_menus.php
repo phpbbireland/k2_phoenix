@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* acp_k_menus [English]
+* @package Kiss Portal Engine (acp_k_menu) (English)
 *
-* @package language (Kiss Portal Engine / Stargate Portal)
-* @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @package language
+* @version $Id:$ 1.0.20
+* @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -40,6 +40,7 @@ if (empty($lang) || !is_array($lang))
 //
 // phpbbportal profile fields
 $lang = array_merge($lang, array(
+
 	'ACP_MENUS'                => 'Menus',
 	'ADD_ICON'                 => 'Add new icon',
 	'ALL_GROUPS'               => 'All Groups',
@@ -159,8 +160,8 @@ $lang = array_merge($lang, array(
 	'TITLE_EXPLAIN'         => '&bull; The <strong>*</strong> indicated the fields cannot be empty<br />&bull; Menu names will be replaced with user language variables, if none exits, the values show below will be used.',
 	'TITLE_EXPLAIN_EXPAND'  => '&bull; Fields marked with * cannot be empty.<br />Legend: NDX = Index or sort order, Icon = Menu Icon (each menu item can have a different icon), Alt = Alternative text, Link = Link to whatever... <br />Menu icons are located in images/block_images/menu directory.',
 	'TITLE_ICON_EXPLAIN'    => 'Manage Icons',
-));
 
+));
 // Message Settings
 $lang = array_merge($lang, array(
 	'ACP_MESSAGE_SETTINGS_EXPLAIN'  => 'Here you can set all default settings for private messaging',

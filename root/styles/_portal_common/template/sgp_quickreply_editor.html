@@ -34,16 +34,16 @@
 
 					<fieldset class="fields1">
 						<!-- INCLUDE quickreply_buttons.html -->
-						<div style="float: right; text-align: center; width: 20%;"><strong style="padding: 8px;">{L_SMILIES}</strong></div>
-						<div style="width: 100%;">
-							<div style="clear: left; width: 75%; float: left; margin-top: 4px;">
-								<label style="float: left; width: 15%;" for="subject">{L_SUBJECT}:</label>
-								<input style="float: left; width: 60%;" type="text" name="subject" id="subject" size="50" maxlength="64" tabindex="2" value="{SUBJECT}" class="inputbox autowidth" />
+						<div style="float:right; text-align:center; width:20%;"><strong style="padding:8px;">{L_SMILIES}</strong></div>
+						<div style="width:100%;">
+							<div style="clear: left; width:75%; float:left; margin-top:4px;">
+								<label style="float:left; width:15%;" for="subject">{L_SUBJECT}:</label>
+								<input style="float:left; width:60%;" type="text" name="subject" id="subject" size="50" maxlength="64" tabindex="2" value="{SUBJECT}" class="inputbox autowidth" />
 							</div>
-							<span style="width: 20%; min-height: 160px; float: right; text-align: center; padding: 8px; border-left: solid 1px #B4BAC0;">
+							<span style="width:20%; min-height: 160px; float:right; text-align:center; padding:8px; border-left: solid 1px #B4BAC0;">
 								<!-- INCLUDE quickreply_smilies.html -->
 							</span>
-							<span id="message-box" style="width: 75%; float: left;">
+							<span id="message-box" style="width:75%; float:left;">
 								<textarea style="height: 9em;" name="message" rows="7" cols="76" tabindex="3" class="inputbox"></textarea>
 							</span>
 						</div>
@@ -61,7 +61,6 @@
 		</div>
 	</form>
 	<script type="text/javascript">
-	// <![CDATA[
 		var form_name = 'postform';
 		var text_name = <!-- IF $SIG_EDIT -->'signature'<!-- ELSE -->'message'<!-- ENDIF -->;
 		var load_draft = false;
@@ -86,7 +85,7 @@
 			a: '{LA_BBCODE_A_HELP}',
 			s: '{LA_BBCODE_S_HELP}',
 			f: '{LA_BBCODE_F_HELP}',
-			y: '{LA_BBCODE_Y_HELP}',
+			e: '{LA_BBCODE_E_HELP}',
 			d: '{LA_BBCODE_D_HELP}'
 			<!-- BEGIN custom_tags -->
 				,cb_{custom_tags.BBCODE_ID}: '{custom_tags.A_BBCODE_HELPLINE}'
@@ -113,7 +112,6 @@
 
 		var panels = new Array('options-panel', 'attach-panel', 'poll-panel');
 		var show_panel = 'options-panel';
-	// ]]>
 	</script>
 	<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>
 </div>

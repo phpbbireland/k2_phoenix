@@ -1,13 +1,12 @@
 <?php
 /**
 *
-* @package acp Kiss Portal Engine
-* @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @package acp Stargate Portal
+* @version $Id: acp_k_config.php Edited: 08 May 2012
+* @copyright (c) 2007 Michael O'Toole aka michaelo
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
-
 
 /**
 * @ignore
@@ -20,6 +19,7 @@ if (!defined('IN_PHPBB'))
 /**
 * @package acp
 */
+
 class acp_k_config
 {
 	var $u_action;
@@ -28,9 +28,6 @@ class acp_k_config
 	{
 		global $db, $user, $auth, $template, $cache;
 		global $config, $SID, $phpbb_root_path, $phpbb_admin_path, $phpEx;
-
-		$var = array();
-		$current_version = '0.0.0';
 
 		$user->add_lang('acp/k_config');
 		$this->tpl_name = 'acp_k_config';
@@ -42,10 +39,6 @@ class acp_k_config
 		$action = request_var('action', '');
 		$mode	= request_var('mode', '');
 		$generate = request_var('generate', '');
-
-		include($phpbb_root_path . 'includes/sgp_functions_admin.'. $phpEx );
-
-		$data = check_version();
 
 		$submit = (isset($_POST['submit'])) ? true : false;
 
@@ -62,28 +55,15 @@ class acp_k_config
 		$portal_version	= $config['portal_version'];
 		$portal_build	= $config['portal_build'];
 
-		if ($data['version'])
-		{
-			$template->assign_vars(array(
-				'MOD_ANNOUNCEMENT'     => $data['announcement'][0],
-				'MOD_CURRENT_VERSION'  => $config['portal_version'],
-				'MOD_DOWNLOAD'         => $data['download'][0],
-				'MOD_LATEST_VERSION'   => $data['version'],
-				'MOD_TITLE'            => $data['title'][0],
-				'S_UP_TO_DATE'         => ($data['version'] > $config['portal_version']) ? false : true,
-			));
-
-		}
-
 		$template->assign_vars(array(
 			'S_BLOCKS_WIDTH'    => $blocks_width,
 			'S_BLOCKS_ENABLED'  => $blocks_enabled,
 			'S_PORTAL_VERSION'  => $portal_version,
 			'S_PORTAL_BUILD'    => $portal_build,
 			'U_BACK'            => $this->u_action,
-			'S_OPT'             => 'configure',
-			'S_MOD_DATA'        => ($data['version']) ? true : false,
 		));
+
+		$template->assign_vars(array('S_OPT' => 'configure')); // S_OPT is not a language variabe //
 
 		if ($submit)
 		{
@@ -101,10 +81,12 @@ class acp_k_config
 
 				$blocks_width    = request_var('blocks_width', '');
 				$blocks_enabled  = request_var('blocks_enabled', '');
+				//$portal_version  = request_var('portal_version', '');
 				$portal_build    = request_var('portal_build', '');
 
 				set_config('blocks_width', $blocks_width);
 				set_config('blocks_enabled', $blocks_enabled);
+				//set_config('portal_version', $portal_version);
 				set_config('portal_build', $portal_build);
 
 				$mode='reset';

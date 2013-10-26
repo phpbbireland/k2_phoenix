@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* acp_kiss_styles [English]
+* styles [English]
 *
-* @package language (Kiss Portal Engine / Stargate Portal)
+* @package language
 * @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -36,6 +36,7 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 
 $lang = array_merge($lang, array(
+
 	'IMG_NEWS_READ'					=> 'News',
 	'IMG_NEWS_READ_MINE'			=> 'News posted to',
 	'IMG_NEWS_READ_LOCKED'			=> 'News locked',
@@ -44,6 +45,7 @@ $lang = array_merge($lang, array(
 	'IMG_NEWS_UNREAD_MINE'			=> 'News posted to new',
 	'IMG_NEWS_UNREAD_LOCKED'		=> 'News locked new post',
 	'IMG_NEWS_UNREAD_LOCKED_MINE'	=> 'News locked posted to new',
+
 ));
 
 ?>

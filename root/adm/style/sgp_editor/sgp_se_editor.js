@@ -28,8 +28,8 @@ function helpline(help)
 /**
 * Fix a bug involving the TextRange object. From
 * http://www.frostjedi.com/terra/scripts/demo/caretBug.html
-*/
-function initInsertions()
+*/ 
+function initInsertions() 
 {
 	var doc;
 
@@ -37,7 +37,7 @@ function initInsertions()
 	{
 		doc = document;
 	}
-	else
+	else 
 	{
 		doc = opener.document;
 	}
@@ -107,7 +107,7 @@ function bbfontstyle(bbopen, bbclose)
 	
 	//The new position for the cursor after adding the bbcode
 	var caret_pos = getCaretPosition(textarea).start;
-	var new_pos = caret_pos + bbopen.length;
+	var new_pos = caret_pos + bbopen.length;		
 
 	// Open tag
 	insert_text(bbopen + bbclose);
@@ -151,15 +151,13 @@ function insert_text(text, spaces, popup)
 	{
 		text = ' ' + text + ' ';
 	}
-
-	// Since IE9, IE also has textarea.selectionStart, but it still needs to be treated the old way.
-	// Therefore we simply add a !is_ie here until IE fixes the text-selection completely.
-	if (!isNaN(textarea.selectionStart) && !is_ie)
+	
+	if (!isNaN(textarea.selectionStart))
 	{
 		var sel_start = textarea.selectionStart;
 		var sel_end = textarea.selectionEnd;
 
-		mozWrap(textarea, text, '');
+		mozWrap(textarea, text, '')
 		textarea.selectionStart = sel_start + text.length;
 		textarea.selectionEnd = sel_end + text.length;
 	}
@@ -196,17 +194,11 @@ function attach_inline(index, filename)
 /**
 * Add quote text to message
 */
-function addquote(post_id, username, l_wrote)
+function addquote(post_id, username)
 {
 	var message_name = 'message_' + post_id;
 	var theSelection = '';
 	var divarea = false;
-
-	if (l_wrote === undefined)
-	{
-		// Backwards compatibility
-		l_wrote = 'wrote';
-	}
 
 	if (document.all)
 	{
@@ -218,12 +210,11 @@ function addquote(post_id, username, l_wrote)
 	}
 
 	// Get text selection - not only the post content :(
-	// IE9 must use the document.selection method but has the *.getSelection so we just force no IE
-	if (window.getSelection && !is_ie && !window.opera)
+	if (window.getSelection)
 	{
 		theSelection = window.getSelection().toString();
 	}
-	else if (document.getSelection && !is_ie)
+	else if (document.getSelection)
 	{
 		theSelection = document.getSelection();
 	}
@@ -265,11 +256,10 @@ function addquote(post_id, username, l_wrote)
 		}
 		else
 		{
-			insert_text(username + ' ' + l_wrote + ':' + '\n');
 			var lines = split_lines(theSelection);
 			for (i = 0; i < lines.length; i++)
 			{
-				insert_text('> ' + lines[i] + '\n');
+				insert_text('> ' + lines[i] + '\n')
 			}
 		}
 	}
@@ -299,7 +289,7 @@ function split_lines(text)
 				if (splitAt == -1)
 				{
 					splitLines[j] = line;
-					j++;
+					j++
 				}
 				else
 				{
@@ -308,7 +298,7 @@ function split_lines(text)
 					j++;
 				}
 			}
-			while(splitAt != -1);
+			while(splitAt != -1)
 		}
 	}
 	return splitLines;
@@ -329,7 +319,7 @@ function mozWrap(txtarea, open, close)
 	}
 
 	var s1 = (txtarea.value).substring(0,selStart);
-	var s2 = (txtarea.value).substring(selStart, selEnd);
+	var s2 = (txtarea.value).substring(selStart, selEnd)
 	var s3 = (txtarea.value).substring(selEnd, selLength);
 
 	txtarea.value = s1 + open + s2 + close + s3;
@@ -433,7 +423,7 @@ function getCaretPosition(txtarea)
 	// dirty and slow IE way
 	else if(document.selection)
 	{
-
+	
 		// get current selection
 		var range = document.selection.createRange();
 
@@ -444,7 +434,7 @@ function getCaretPosition(txtarea)
 		// calculate selection start point by moving beginning of range_all to beginning of range
 		var sel_start;
 		for (sel_start = 0; range_all.compareEndPoints('StartToStart', range) < 0; sel_start++)
-		{		
+		{
 			range_all.moveStart('character', 1);
 		}
 	
@@ -452,7 +442,7 @@ function getCaretPosition(txtarea)
 	
 		// we ignore the end value for IE, this is already dirty enough and we don't need it
 		caretPos.start = txtarea.sel_start;
-		caretPos.end = txtarea.sel_start;
+		caretPos.end = txtarea.sel_start;			
 	}
 
 	return caretPos;

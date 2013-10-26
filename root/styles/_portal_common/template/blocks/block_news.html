@@ -3,7 +3,7 @@
 <div class="news">
 	<a id="bstart" name="bstart" accesskey="t"></a>
 	<!-- IF S_NEWS_COUNT_RETURNED == 0 -->
-		<div class="genmed" style="text-align: center;"><strong>{L_NO_NEWS}</strong></div>
+		<div class="genmed" style="text-align:center;"><strong>{L_NO_NEWS}</strong></div>
 	<!-- ELSE -->
 	<!-- BEGIN news_row -->
 		<!-- IF news_row.S_TOPIC_TYPE != 3 -->
@@ -11,7 +11,7 @@
 			<!-- ELSE -->
 			<div class="news bg3a sgp-corners">
 			<!-- ENDIF -->
-				<div class="inner" style="min-height: 50px; width: 100%;">
+				<div class="inner" style="min-height:50px; width:100%;">
 					<div class="news_header">
 						<span class="news_title">
 						<!-- IF news_row.CAT -->
@@ -25,7 +25,7 @@
 						<span class="news_time">{news_row.TIME}</span>
 					</div>
 					<div class="news_body">
-						<div class="news" style="width: 100%;">
+						<div class="news" style="width:100%;">
 							<div class="news_box">
 								<!-- IF news_row.S_TOPIC_TYPE == 4 -->
 									<img src="{T_IMAGESET_LANG_PATH}/news/generalnews2.png" alt="" />
@@ -47,15 +47,15 @@
 							<!-- IF news_row.S_DISPLAY_NOTICE --><div class="rules">{L_DOWNLOAD_NOTICE}</div><!-- ENDIF -->
 						</div>
 					</div>
-					<div class="news_footer" style="width: 100%;">
-						<span class="news_poster" style="width: 50%;"> {L_POSTED_BY}: {news_row.U_POSTER}</span>
-						<span class="news_reply" style="width: 50%;">
-							<a href="{news_row.U_VIEW}"><img src="{news_row.VIEW_IMG}" alt="{L_VIEW_FULL_ARTICLE}" title="{L_VIEW_FULL_ARTICLE}" /></a>
-							<a href="{news_row.U_PRINT}"><img src="{news_row.PRINT_IMG}" alt="{L_PRINT_IT}" title="{L_PRINT_IT}" /></a>
-							<!-- IF news_row.ALLOW_POST -->
-								<a href="{news_row.U_REPLY}"><img src="{news_row.REPLY_IMG}" alt="{L_POST_COMMENTS}" title="{L_POST_COMMENTS}" /></a>
+					<div class="news_footer" style="width:100%;">
+						<span class="news_poster" style="width:50%;"> {L_POSTED_BY}: {news_row.U_POSTER}</span>
+						<span class="news_reply" style="width:50%;">
+							<a href="{news_row.U_VIEW}"> <img src="{news_row.VIEW_IMG}" alt="{L_VIEW_FULL_ARTICLE}" title="{L_VIEW_FULL_ARTICLE}" /></a>
+							<a href="{news_row.U_PRINT}"> <img src="{news_row.PRINT_IMG}" alt="{L_PRINT_IT}" title="{L_PRINT_IT}" /></a>
+							<!-- IF news_row.ALLOW_REPLY -->
+								<a href="{news_row.U_REPLY}"> <img src="{news_row.REPLY_IMG}" alt="{L_POST_COMMENTS}" title="{L_POST_COMMENTS}" /></a>
 							<!-- ENDIF -->
-							<a href="#bstart"><img src="{T_IMAGESET_PATH}/portal/icon_back_top.png" width="14" height="14" alt="{L_BACK_TO_TOP}" title="{L_BACK_TO_TOP}" /></a>
+							<a href="#bstart" title="Top"><img src="{T_IMAGESET_PATH}/portal/icon_back_top.png" width="14" height="14" alt="Top" /></a>
 						</span>
 					</div>
 

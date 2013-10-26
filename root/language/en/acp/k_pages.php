@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* acp_k_pages [English]
+* @package Kiss Portal Engine (acp_k_pages) (English)
 *
-* @package language (Kiss Portal Engine / Stargate Portal)
-* @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @package language
+* @version $Id:$ 1.0.20
+* @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -53,7 +53,7 @@ $lang = array_merge($lang, array(
 	'ERROR_PORTAL_PAGES'		=> 'Error! deleting this page from database list',
 	'FOLDER_ADDED'              => 'Mod directories list updated...',
 	'ID'						=> 'ID',
-	'LAND'                      => 'Set the default page to load on logout.<br />Please note, when you login, you will be<br />returned to the page you logged in from.',
+	'LAND'                      => 'Set the default page to load after login.',
 	'LANDING_PAGE'				=> 'Landing page',
 	'LANDING_PAGE_EXPLAIN'		=> 'Return to this page after successful login.',
 	'LANDING_PAGE_SET'			=> 'Landing page set',

@@ -28,14 +28,14 @@ function init_scrollers()
 
 	allDivs = document.getElementsByTagName("DIV");
 
-	for (var i = 0; i < allDivs.length; i++)
+	for(var i = 0; i < allDivs.length; i++)
 	{
 	    thisDiv = allDivs[i];
-	    if (thisDiv.className == "scroll_inner")
+	    if(thisDiv.className == "scroll_inner")
 	    {
 		    scroll_controllers[scroll_div_count] = new scroller_obj(default_speed, default_dir, thisDiv.id);
 
-			if (parseInt(thisDiv.style.height) < box_height)
+			if(parseInt(thisDiv.style.height) < box_height)
 			{
                 thisDiv.parentNode.style.height = parseInt(thisDiv.offsetHeight) + "px";
 			}
@@ -45,7 +45,7 @@ function init_scrollers()
 			}
             scroll_div_count += 1;
 
-            if (thisDiv.parentNode.parentNode.className == "box")
+            if(thisDiv.parentNode.parentNode.className == "box")
             {
                thisDiv.parentNode.parentNode.style.paddingTop = "0px";
                thisDiv.parentNode.parentNode.style.paddingBottom = "0px";
@@ -67,7 +67,7 @@ function scroll()
 {
 	var allDivs, thisDiv;
 
-	for (var i = 0; i < scroll_controllers.length; i++)
+	for(var i = 0; i < scroll_controllers.length; i++)
 	{
 		thisDiv = document.getElementById(scroll_controllers[i].scroll_id);
 	    									
@@ -76,14 +76,14 @@ function scroll()
 		var inner_bottom = inner_top + inner_height;
 		var outer_height = parseInt(thisDiv.parentNode.offsetHeight);
 		
-		if (isNaN(inner_top))
+		if(isNaN(inner_top))
 		{
 			inner_top = 0;
 		}
 							
-		if (scroll_controllers[i].scroll_dir == "down")
+		if(scroll_controllers[i].scroll_dir == "down")
 		{						
-			if (inner_top < inner_height * -1)
+			if(inner_top < inner_height * -1)
 			{
 				thisDiv.style.top = outer_height + "px";
 			}
@@ -94,7 +94,7 @@ function scroll()
 		}
 		else
 		{
-			if (inner_top > outer_height)
+			if(inner_top > outer_height)
 			{
 				thisDiv.style.top = outer_height - inner_bottom -1 + "px";	
 			}
@@ -120,9 +120,9 @@ function do_speed(obj, event)
     
    	mid = (obj.offsetHeight / 2) + obj.offsetTop;    
     
-    if (cursor_y > mid)
+    if(cursor_y > mid)
     {
-	    if (cursor_y < mid + dead_band)
+	    if(cursor_y < mid + dead_band)
 		{
 	    	speed = 0;
 		}
@@ -134,7 +134,7 @@ function do_speed(obj, event)
     }
     else
     {
-        if (cursor_y > mid - dead_band)
+        if(cursor_y > mid - dead_band)
 		{
         	speed = 0;
 		}
@@ -149,9 +149,9 @@ function do_speed(obj, event)
     speed = parseInt(14 * (speed / obj.offsetHeight) * 2);
     step_size = speed;
 
-	for (i = 0; i < scroll_controllers.length; i++)
+	for(i = 0; i < scroll_controllers.length; i++)
 	{
-		if (scroll_controllers[i].scroll_id == obj.firstChild.id)
+		if(scroll_controllers[i].scroll_id == obj.firstChild.id)
 		{
 			scroll_controllers[i].step_size = step_size;
 			scroll_controllers[i].scroll_dir = scroll_direction;
@@ -162,9 +162,9 @@ function do_speed(obj, event)
 
 function set_defaults(obj, event)
 {
-	for (i = 0; i < scroll_controllers.length; i++)
+	for(i = 0; i < scroll_controllers.length; i++)
 	{
-		if (scroll_controllers[i].scroll_id == obj.firstChild.id)
+		if(scroll_controllers[i].scroll_id == obj.firstChild.id)
 		{
 			scroll_controllers[i].step_size = default_speed;
 			scroll_controllers[i].scroll_dir = default_dir;

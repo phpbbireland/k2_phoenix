@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* info_ucp_kiss [English]
+* ucp [English]
 *
-* @package Kiss Portal Engine / Stargate Portal
+* @package language
 * @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -36,6 +36,7 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 
 $lang = array_merge($lang, array(
+
 	'ARRANGE_BLOCKS'		=> '',
 	'ARRANGE_NOW'			=> ' &bull; Arrange Blocks &bull; Tools.',
 	'ARRANGE_ICO'			=> 'Arrange Icon',
@@ -68,6 +69,7 @@ $lang = array_merge($lang, array(
 	'UCP_K_NOT_SAVED'		=> 'Block data could not be saved!',
 	'UCP_K_RESET'			=> 'Blocks reset to default positions... refreshing page... <br />',
 	'UCP_K_SAVED'			=> 'Your layout has been updated... <br />',
+
 ));
 
 ?>

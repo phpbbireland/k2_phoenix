@@ -1,13 +1,14 @@
 <?php
 /**
 *
-* @package acp (Kiss Portal Engine)
-* @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @author Michael O'Toole (michaelo) http://phpbbireland.com
+*
+* @package acp (Stargate Portal)
+* @version $Id: acp_k_blocks.php 305 2009-01-01 16:03:23Z Michealo $
+* @copyright (c) 2005-2009 phpbbireland.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
-
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -16,6 +17,7 @@ if (!defined('IN_PHPBB'))
 /**
 * @package module_install
 */
+
 class acp_k_blocks_info
 {
 	function module()
@@ -23,7 +25,7 @@ class acp_k_blocks_info
 		return array(
 			'filename'  => 'acp_k_blocks',
 			'title'     => 'ACP_K_BLOCKS',
-			'version'   => '1.0.22',
+			'version'   => '1.0.20',
 			'modes'     => array(
 				'add'      => array('title' => 'ACP_K_BLOCKS_ADD',         'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_BLOCKS')),
 				'edit'     => array('title' => 'ACP_K_BLOCKS_EDIT',        'auth' => 'acl_a_k_portal', 'cat' => array('ACP_K_BLOCKS'), 'display' => false),
@@ -39,11 +41,9 @@ class acp_k_blocks_info
 			),
 		);
 	}
-
 	function install()
 	{
 	}
-
 	function uninstall()
 	{
 	}

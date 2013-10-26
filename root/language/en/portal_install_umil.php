@@ -1,11 +1,10 @@
 <?php
 /**
 *
-* install [English] (umil)
-*
-* @package language (Kiss Portal Engine)
-* @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @package install
+* @version $Id: portal_install.php 1.0.20
+* @copyright (c) 2005 phpbBB Group
+* @copyright (c) 2005 phpbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -37,6 +36,7 @@ if (empty($lang) || !is_array($lang))
 
 
 $lang = array_merge($lang, array(
+
 	'KISS_PORTAL_ENGINE' 		=> 'Kiss Portal Engine',
 	'STARGATE_PORTAL_EXPLAIN' 	=> 'Simplified version of Stargate Portal for phpBB3 with a basic features all of which are configurable via the ACP.',
 
@@ -50,12 +50,14 @@ $lang = array_merge($lang, array(
 	'REPORT_INSTALLED'	=> 'The portal in already installed',
 	'INSTALL_INTRO'		=> 'Welcome to the Stargate Portal Installation <img src="./../portal/portal_install.png" alt="" border="none">',
 
+
 	'VERSION_NOT_UP_TO_DATE'	=> 'Your version of the portal is not up to date. Please continue the update process.',
 	'VERSION_NOT_UP_TO_DATE'	=> 'Cannot retrieve version info... code not yet written.',
 	'VERSION_CHECK'				=> 'Version check',
 	'VERSION_CHECK_EXPLAIN'		=> 'Checks to see if the portal version you are currently running is up to date.',
 	'CURRENT_VERSION'			=> 'Current version',
 	'LATEST_VERSION'			=> 'Latest version',
+
 ));
 
 ?>

@@ -1,29 +1,23 @@
 <script type="text/javascript">
 // <![CDATA[
-	function set_ids(data, view)
+function set_ids(data, view)
+{
+	var mydata;
+
+	mydata = document.getElementById(view).value;
+
+	if (data == '0')
 	{
-		var mydata;
-
-		mydata = document.getElementById(view).value;
-
-		if (data == '0')
-		{
-			mydata = '';
-			data = '';
-		}
-		else if(mydata)
-		{
-			mydata = mydata + ',';
-		}
-
-		document.getElementById(view).value = mydata + data;
+		mydata = '';
+		data = '';
+	}
+	else if(mydata)
+	{
+		mydata = mydata + ',';
 	}
 
-	function set_list_item(data)
-	{
-	alert(data);
-		document.getElementById('teams_sort').value=data;
-	}
+    document.getElementById(view).value = mydata + data;
+}
 // ]]>
 </script>
 
@@ -44,24 +38,12 @@
 			</label>
 		</dd>
 	</dl>
-
 	<dl>
 		<dt><label for="k_teampage_memberships">{L_TEAMPAGE_MEMBERSHIPS}:</label></dt>
 		<dd>
 			<label><input type="radio" name="k_teampage_memberships" class="radio" value="0"<!-- IF S_K_TEAMPAGE_MEMBERSHIPS == 0 --> checked="checked" id="k_teampage_memberships"<!-- ENDIF --> /> {L_TEAMPAGE_DISP_DEFAULT}</label><br />
 			<label><input type="radio" name="k_teampage_memberships" class="radio" value="1"<!-- IF S_K_TEAMPAGE_MEMBERSHIPS == 1 --> checked="checked" id="k_teampage_memberships"<!-- ENDIF --> /> {L_TEAMPAGE_DISP_ALL}</label>
-		</dd>
-	</dl>
-
-	<dl>
-		<dt><label for="k_teams_sort">{L_K_BLOCK_TEAMS_SORT}:</label><br /><span>{L_K_BLOCK_TEAMS_SORT_EXPLAIN}</span></dt>
-		<dd><label><br />
-			<select name="k_teams_sort" id="k_teams_sort" class="post" onchange="set_list_item(this.options[this.selectedIndex].value, 'k_teams_sort';)">{S_TEAMS_SORT}
-			<!-- BEGIN teams_sort -->
-				<option value="{teams_sort.SORT_OPTION}"<!-- IF teams_sort.SORT_OPTION == S_K_TEAMS_SORT --> selected="selected"<!-- ENDIF -->>{teams_sort.SORT_OPTION}</option>
-			<!-- END teams_sort -->
-			</select>
-			</label>
+			<!--<label><input type="radio" name="k_teampage_memberships" class="radio" value="2"<!-- IF S_K_TEAMPAGE_MEMBERSHIPS == 2 --> checked="checked" id="k_teampage_memberships"<!-- ENDIF --> /> {L_TEAMPAGE_DISP_FIRST}</label><br />-->
 		</dd>
 	</dl>
 

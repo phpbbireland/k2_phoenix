@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* info_acp_Kiss [English]
+* acp Kiss Engine [English]
 *
-* @package Kiss Portal Engine / Stargate Portal
+* @package language
 * @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @copyright (c) 2005-2011 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -34,6 +34,7 @@ if (empty($lang) || !is_array($lang))
 // You do not need this where single placeholders are used, e.g. 'Message %d' is fine
 // equally where a string contains only two placeholders which are used to wrap text
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
+
 
 $lang = array_merge($lang, array(
 	'NO_EDIT'				=> 'Can’t Edit',
@@ -257,12 +258,5 @@ $lang = array_merge($lang, array(
 	'TEAMPAGE_DISP_ALL'     => 'Show users in all groups where they are a member.',
 	'TEAMPAGE_DISP_DEFAULT' => 'Show users in their default group only.',
 	'TEAMPAGE_MEMBERSHIPS'  => 'Group membership display options',
-
-// donations block
-	'ACP_K_DONATIONS'          => 'Donations Mod',
-	'ACP_K_DONATIONS_EXPLAIN'  => 'Here you can manage (add/edit/delete) individual entries for the donations block.',
-	'ACP_K_DONATIONS_ADD'      => 'Add a donation',
-	'ACP_K_DONATIONS_BROWSE'   => 'Browse all donations',
-	'DONATIONS_CREATED'        => 'Donation added',
 ));
 ?>

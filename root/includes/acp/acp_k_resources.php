@@ -1,9 +1,9 @@
 <?php
 /**
 *
-* @package acp Kiss Portal Engine
-* @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @package acp Stargate Portal
+* @version $Id: acp_k_resources.php 312 2009-01-02 02:51:12Z Michealo $
+* @copyright (c) 2008 Michael O'Toole - aka michaelo
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -19,6 +19,7 @@ if (!defined('IN_PHPBB'))
 /**
 * @package acp
 */
+
 class acp_k_resources
 {
 	var $u_action;

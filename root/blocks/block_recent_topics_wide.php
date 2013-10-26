@@ -1,19 +1,23 @@
 <?php
 /**
 *
-* @package Kiss Portal Engine
-* @version $Id$
-* @author  Michael O'Toole - aka michaelo
-* @begin   Saturday, Jan 22, 2005
-* @copyright (c) 2005-2013 phpbbireland
+* @package Stargate Portal
+* @author  Michael O'Toole - aka Michaelo
+* @begin   Sunday, 20th May, 2007
+* @copyright (c) 2005-2011 phpbbireland
 * @home    http://www.phpbbireland.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @note: Do not remove this copyright. Just append yours if you have modified it,
+*        this is part of the Stargate Portal copyright agreement...
 *
+* @version $Id$
+* 17 September 2012
 */
 
 /**
 * @ignore
 */
+
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -32,7 +36,6 @@ foreach ($k_blocks as $blk)
 	if ($blk['html_file_name'] == 'block_recent_topics_wide.html')
 	{
 		$block_cache_time = $blk['block_cache_time'];
-		break;
 	}
 }
 $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k_block_cache_time_default']);
@@ -69,12 +72,10 @@ if (!defined('POST_GROUPS_URL'))
 ***/
 
 // set up variables used //
-
-$forum_count = $row_count = 0;
-$valid_forum_ids = array();
-
 $display_this_many = $k_config['k_recent_topics_to_display'];
+$forum_count = $row_count = 0;
 $except_forum_id = $k_config['k_recent_topics_search_exclude'];
+$valid_forum_ids = array();
 $k_recent_search_days = $k_config['k_recent_search_days'];
 $k_post_types = $k_config['k_post_types'];
 $k_recent_topics_per_forum = $k_config['k_recent_topics_per_forum'];
@@ -172,21 +173,10 @@ $sql_array = array(
 		AND t.topic_approved = 1
 		AND p.post_approved = 1
 		' . $types_sql . '
-		AND p.post_id = t.topic_last_post_id
-		AND (p.post_time >= ' . $post_time_days . ' OR p.post_edit_time >= ' . $post_time_days . ')
-			ORDER BY t.forum_id, p.post_time DESC'
-/*
-	'WHERE'	=> $where_sql . '
-		AND t.topic_approved = 1
-		AND p.post_approved = 1
-		' . $types_sql . '
 		AND p.post_id = t.topic_first_post_id
-		AND (t.topic_last_post_time >= ' . $post_time_days . '
-			OR p.post_edit_time >= ' . $post_time_days . ')
+		AND t.topic_last_post_time >= ' . $post_time_days . '
+			OR p.post_edit_time >= ' . $post_time_days . '
 			ORDER BY t.forum_id, t.topic_last_post_time DESC'
-*/
-
-
 );
 
 $sql = $db->sql_build_query('SELECT', $sql_array);
@@ -234,10 +224,6 @@ else
 	$next_img = '<img src="' . $phpbb_root_path . 'images/next_line.gif" height="9" width="11" alt="" />';
 }
 
-$tn = time();
-$od = 86400;
-$td = 172800;
-
 for ($i = 0; $i < $display_this_many; $i++)
 {
 	$unique = ($row[$i]['forum_id'] == $last_forum) ? false : true;
@@ -245,21 +231,6 @@ for ($i = 0; $i < $display_this_many; $i++)
 	if ($i >= $k_recent_topics_per_forum && $row[$i]['forum_id'] == $row[$i - $k_recent_topics_per_forum]['forum_id'])
 	{
 		continue;
-	}
-
-	$pd = $row[$i]['post_time'];
-
-	if (($tn - $pd) < $od)
-	{
-		$thisd = 1;
-	}
-	else if ($tn - $pd < $td)
-	{
-		$thisd = 2;
-	}
-	else
-	{
-		$thisd = 0;
 	}
 
 	$my_title = $row[$i]['topic_title'];
@@ -278,13 +249,13 @@ for ($i = 0; $i < $display_this_many; $i++)
 
 	$view_topic_url = append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $row[$i]['forum_id']);
 
-	if ($row[$i]['post_edit_time'] > $row[$i]['post_time'])
+	if ($row[$i]['post_edit_time'] > $row[$i]['topic_last_post_time'])
 	{
 		$this_post_time = '*<span style="font-style:italic">' . $user->format_date($row[$i]['post_edit_time']) . '</span>';
 	}
 	else
 	{
-		$this_post_time = $user->format_date($row[$i]['post_time']);
+		$this_post_time = $user->format_date($row[$i]['topic_last_post_time']);
 	}
 
 	$template->assign_block_vars($style_row . 'recent_topic_row', array(
@@ -303,8 +274,6 @@ for ($i = 0; $i < $display_this_many; $i++)
 		'TITLE_W'			=> censor_text($my_title),
 		'TOOLTIP_W'			=> bbcode_strip($row[$i]['post_text']),
 		'TOOLTIP2_W'		=> bbcode_strip($row[$i]['forum_desc']),
-		'S_PC'              => $thisd,
-		'SS' => $tn - $pd,
 	));
 
 	$last_forum = $row[$i]['forum_id'];
@@ -320,10 +289,10 @@ else
 }
 
 $template->assign_vars(array(
-	'S_COUNT_RECENT'		=> ($i > 0) ? true : false,
-	'RECENT_SEARCH_TYPE'	=> (!$k_recent_search_days) ? $user->lang['FULL_SEARCH'] : $user->lang['K_RECENT_SEARCH_DAYS'] . $k_recent_search_days,
-	'RECENT_SEARCH_LIMIT'			=> $user->lang['T_LIMITS'] . $k_recent_topics_per_forum . $user->lang['TOPICS_PER_FORUM_DISPLAY'] . $display_this_many . ' ' . $post_or_posts,
-	'S_FULL_LEGEND'			=> ($k_post_types) ? true : false,
+	'S_COUNT_RECENT'	=> ($i > 0) ? true : false,
+	'SEARCH_TYPE'		=> (!$k_recent_search_days) ? $user->lang['FULL_SEARCH'] : $user->lang['K_RECENT_SEARCH_DAYS'] . $k_recent_search_days,
+	'SEARCH_LIMIT'		=> $user->lang['T_LIMITS'] . $k_recent_topics_per_forum . $user->lang['TOPICS_PER_FORUM_DISPLAY'] . $display_this_many . ' ' . $post_or_posts,
+	'S_FULL_LEGEND'		=> ($k_post_types) ? true : false,
 	'RECENT_TOPICS_WIDE_DEBUG'	=> sprintf($user->lang['PORTAL_DEBUG_QUERIES'], ($queries) ? $queries : '0', ($cached_queries) ? $cached_queries : '0', ($total_queries) ? $total_queries : '0'),
 ));
 

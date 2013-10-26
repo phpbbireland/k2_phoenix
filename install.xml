@@ -35,7 +35,7 @@
 		</author>
 	</author-group>
 
-	<mod-version>1.0.22</mod-version>
+	<mod-version>1.0.20</mod-version>
 
 	<installation>
 		<level>intermediate</level>
@@ -45,27 +45,10 @@
 
 	<history>
 		<entry>
-			<date>2013-06-13</date>
-			<rev-version>1.0.22</rev-version>
-			<changelog lang="en">
-				<change>Updated menu code.</change>
-				<change>Slight speedup to block code.</change>
-				<change>Reducetion to queries (2).</change>
-			</changelog>
-		</entry>
-		<entry>
-			<date>2013-05-01</date>
-			<rev-version>1.0.21</rev-version>
-			<changelog lang="en">
-				<change>Updated truncate code.</change>
-				<change>Updated search.php (truncate).</change>
-			</changelog>
-		</entry>
-		<entry>
-			<date>2013-05-01</date>
+			<date>2013-04-29</date>
 			<rev-version>1.0.20</rev-version>
 			<changelog lang="en">
-				<change>Remove tabs and spaces form portal.js</change>
+				<change>1 bug fixed</change>
 			</changelog>
 		</entry>
 		<entry>
@@ -346,15 +329,15 @@
 <action type="after-add"><![CDATA[
 /* Added by Stargate Portal
 ---------------------------------------- */
-.imageline {
-	height: 190px;
-	overflow-y: scroll;
-	border: none;
+.imageline { 
+	height:190px;
+	overflow-y:scroll;
+	border:none; 
 	margin-top: 5px;
 	padding: 5px;
 }
 .block_img {
-	height: 100px;
+	height:100px;
 }
 .row5 { background-color: #F9EDBD; }
 .row6 { background-color: #E8DFC0; }
@@ -362,187 +345,207 @@
 
 /* Additional reply bbcode for sgp simple editor ...
 -------------------------------------------------- */
-.bbb-bold, .bbb-bold a {
-	background: transparent;
-	border: none;
-	background-image: url("./../../images/bbcode/bbb-icon-bold.gif");
-	width: 22px;
-	height: 22px;
+.bbb-bold, .bbb-bold a{ 
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-bold.gif"); 
+	width:22px; height:22px; 
 }
-.bbb-bold:hover { background-position: 0px -23px; }
-.bbb-quote, .bbb-italic, .bbb-italic a {
-	background: transparent;
-	border: none;
+.bbb-bold:hover{ 
+	background-position: 0px -23px;}
+.bbb-quote, .bbb-italic, .bbb-italic a{ 
+	background: transparent; 
+	border:none; 
 	background-image: url("./../../images/bbcode/bbb-icon-italic.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-italic:hover { background-position: 0px -23px; }
-.bbb-quote, .bbb-quote a {
-	background: transparent;
-	border: none;
-	background-image: url("./../../images/bbcode/bbb-icon-quote.gif");
-	width: 22px;
-	height: 22px;
+.bbb-italic:hover{ 
+	background-position: 0px -23px;
 }
-.bbb-quote:hover { background-position: 0px -23px; }
-.bbb-code, .bbb-code a {
-	background: transparent;
-	border: none;
+.bbb-quote, .bbb-quote a{ 
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-quote.gif"); 
+	width:22px; height:22px;
+}
+.bbb-quote:hover{ 
+	background-position: 0px -23px;
+}
+.bbb-code, .bbb-code a{ 
+	background: transparent; 
+	border:none; 
 	background-image: url("./../../images/bbcode/bbb-icon-code.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-code:hover { background-position: 0px -23px; }
-.bbb-list, .bbb-list a {
-	background: transparent;
-	border: none;
+.bbb-code:hover{ 
+	background-position: 0px -23px;
+}
+.bbb-list, .bbb-list a{ 
+	background: transparent; 
+	border:none; 
 	background-image: url("./../../images/bbcode/bbb-icon-list.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-list:hover { background-position: 0px -23px; }
-.bbb-flash, .bbb-flash a {
-	background: transparent;
-	border: none;
-	background-image: url("./../../images/bbcode/bbb-icon-flash.gif");
-	width: 22px;
-	height: 22px;
+.bbb-list:hover{ 
+	background-position: 0px -23px;
 }
-.bbb-flash:hover { background-position: 0px -23px; }
-.bbb-image, .bbb-image a {
-	background: transparent;
-	border: none;
-	background-image: url("./../../images/bbcode/bbb-icon-image.gif");
-	width: 22px;
-	height: 22px;
+.bbb-flash, .bbb-flash a{ 
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-flash.gif"); 
+	width:22px; height:22px;
 }
-.bbb-image:hover { background-position: 0px -23px; }
-.bbb-url, .bbb-url a {
-	background: transparent;
-	border: none;
+.bbb-flash:hover{ 
+	background-position: 0px -23px;
+}
+.bbb-image, .bbb-image a{ 
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-image.gif"); 
+	width:22px; height:22px;
+}
+.bbb-image:hover{ 
+	background-position: 0px -23px;
+}
+.bbb-url, .bbb-url a{ 
+	background: transparent; 
+	border:none; 
 	background-image: url("./../../images/bbcode/bbb-icon-url.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-url:hover { background-position: 0px -23px; }
-.bbb-under_line, .bbb-under_line a {
-	background: transparent;
-	border: none;
+.bbb-url:hover{ 
+	background-position: 0px -23px;
+}
+.bbb-under_line, .bbb-under_line a { 
+	background:transparent; 
+	border:none; 
 	background-image: url("./../../images/bbcode/bbb-icon-under_line.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-under_line:hover { background-position: 0px -23px; }
-.bbb-align_center, .bbb-align_center a {
+.bbb-under_line:hover{ 
+	background-position: 0px -23px;
+}
+.bbb-align_center, .bbb-align_center a { 
 	background: transparent;
-	border: none;
+	border:none;
 	background-image: url("./../../images/bbcode/bbb-icon-align_center.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-align_center:hover { background-position: 0px -23px; }
-.bbb-align_left, .bbb-align_left a {
-	background: transparent;
-	border: none;
+.bbb-align_center:hover{
+	background-position: 0px -23px;
+}
+.bbb-align_left, .bbb-align_left a { 
+	background: transparent; 
+	border:none; 
 	background-image: url("./../../images/bbcode/bbb-icon-align_left.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-align_left:hover { background-position: 0px -23px; }
+.bbb-align_left:hover{
+	background-position: 0px -23px;
+}
 .bbb-align_right, .bbb-align_right a {
-	background: transparent;
-	border: none;
+	background: transparent; 
+	border:none; 
 	background-image: url("./../../images/bbcode/bbb-icon-align_right.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-align_right:hover { background-position: 0px -23px; }
+.bbb-align_right:hover {
+	background-position: 0px -23px;
+}
 .bbb-ordered_list, .bbb-ordered_list a {
-	background: transparent;
-	border: none;
+	background: transparent; 
+	border:none; 
 	background-image: url("./../../images/bbcode/bbb-icon-ordered_list.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-ordered_list:hover { background-position: 0px -23px; }
+.bbb-ordered_list:hover{
+	background-position: 0px -23px;
+}
 .bbb-add_list_item, .bbb-add_list_item a {
-	background: transparent;
-	border: none;
-	background-image: url("./../../images/bbcode/bbb-icon-add_list_item.gif");
-	width: 22px;
-	height: 22px;
+	background: transparent; 
+	border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-add_list_item.gif"); 
+	width:22px; height:22px;
 }
-.bbb-add_list_item:hover { background-position: 0px -23px; }
-.bbb-note, .bbb-note a {
-	background: transparent;
-	border: none;
+.bbb-add_list_item:hover {
+	background-position: 0px -23px;
+}
+.bbb-note, .bbb-note a{
+	background: transparent; 
+	border:none; 
 	background-image: url("./../../images/bbcode/bbb-icon-note.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-note:hover { background-position: 0px -23px; }
-.bbb-spoiler, .bbb-spoiler a {
-	background: transparent;
-	border: none;
+.bbb-note:hover {
+	background-position: 0px -23px;
+}
+.bbb-spoiler, .bbb-spoiler a{
+	background: transparent; 
+	border:none; 
 	background-image: url("./../../images/bbcode/bbb-icon-spoiler.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-spoiler:hover { background-position: 0px -23px; }
-.bbb-tab, .bbb-tab a {
-	background: transparent;
-	border: none;
+.bbb-spoiler:hover{
+	background-position: 0px -23px;
+}
+.bbb-tab, .bbb-tab a{
+	background: transparent; 
+	border:none; 
 	background-image: url("./../../images/bbcode/bbb-icon-tab.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-tab:hover { background-position: 0px -23px; }
-.bbb-sup, .bbb-sup a {
-	background: transparent;
-	border: none;
+.bbb-tab:hover{
+	background-position: 0px -23px;
+}
+.bbb-sup, .bbb-sup a{
+	background: transparent; 
+	border:none; 
 	background-image: url("./../../images/bbcode/bbb-icon-sup.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-sup:hover { background-position: 0px -23px; }
-.bbb-sub, .bbb-sub a {
-	background: transparent;
-	border: none;
+.bbb-sup:hover{
+	background-position: 0px -23px;
+}
+.bbb-sub, .bbb-sub a{
+	background: transparent; 
+	border:none; 
 	background-image: url("./../../images/bbcode/bbb-icon-sub.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-sub:hover { background-position: 0px -23px; }
-.bbb-strike, .bbb-strike a {
-	background: transparent;
-	border: none;
+.bbb-sub:hover{
+	background-position: 0px -23px;
+}
+.bbb-strike, .bbb-strike a{
+	background: transparent; 
+	border:none; 
 	background-image: url("./../../images/bbcode/bbb-icon-strike.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-strike:hover { background-position: 0px -23px; }
-.bbb-link, .bbb-link a {
-	background: transparent;
-	border: none;
+.bbb-strike:hover {
+	background-position: 0px -23px;
+}
+.bbb-link, .bbb-link a{
+	background: transparent; 
+	border:none; 
 	background-image: url("./../../images/bbcode/bbb-icon-link.gif");
-	width: 22px;
-	height: 22px;
+	width:22px; height:22px;
 }
-.bbb-link:hover { background-position: 0px -23px; }
+.bbb-link:hover {
+	background-position: 0px -23px;
+}
 .rollover, .rollover a {
-	display: inline;
-	float: left;
+	display: inline; 
+	float:left;
 }
-.rollover a:hover { background-position: 0 -23px; }
+.rollover a:hover {
+	background-position: 0 -23px;
+}
 .bbb-icon-spacer {
-	background: transparent;
-	border: none;
-	background-image: url("./../../images/bbcode/bbb-icon-spacer.gif");
-	width: 3px;
-	height: 22px;
+	background: transparent; border:none; 
+	background-image: url("./../../images/bbcode/bbb-icon-spacer.gif"); 
+	width:3px; height:22px;
 }
-button { border: solid 3px; }
+button {border: solid 3px;}
 ]]></action>
 	
 	</edit></open>
@@ -566,14 +569,13 @@ $config = $cache->obtain_config();
 if (STARGATE)
 {
 	@define('DEBUG_QUERIES', false);
-
 	$k_config		= $cache->obtain_k_config();    // 1 query
 	$k_resources	= $cache->obtain_k_resources(); // 1 query
+	$k_groups		= $cache->obtain_k_groups();    // 1 query
 	$k_blocks		= $cache->obtain_block_data();  // 1 query
 	$k_pages		= $cache->obtain_k_pages();     // 1 query
-	$k_groups		= $cache->obtain_k_groups();    // 1 query
-	$k_menus		= $cache->obtain_k_menus();     // 1 query
 }
+
 ]]></action>
 </edit>
 </open>
@@ -656,9 +658,8 @@ if (STARGATE)
 <action type="after-add"><![CDATA[
 				if (STARGATE)
 				{
-					$tool_tips = $row['topic_title'] . ' : ' . truncate_post(bbcode_strip($row[ ('last_message_tooltip') ? 'last_message_tooltip': 'first_message_tooltip']), 400, "") . ' ... ';
-				}
-]]></action>
+					$tool_tips = $row['topic_title'] . ' : ' . sgp_truncate_message(bbcode_strip($row[ ('last_message_tooltip') ? 'last_message_tooltip': 'first_message_tooltip']), 400) . ' ... ';
+				}]]></action>
 </edit>
 <edit>
 <find><![CDATA[				$tpl_ary = array(]]></find>
@@ -669,14 +670,8 @@ if (STARGATE)
 
 <open src="ucp.php">
 <edit>
-<find><![CDATA[		meta_refresh(3, append_sid("{$phpbb_root_path}index.$phpEx"));
-
-		$message = $message . '<br /><br />' . sprintf($user->lang['RETURN_INDEX'], '<a href="' . append_sid("{$phpbb_root_path}index.$phpEx") . '">', '</a> ');]]></find>
-<action type="replace-with"><![CDATA[		//meta_refresh(3, append_sid("{$phpbb_root_path}index.$phpEx"));
-
-		// redirect to portal on log out? //
-		global $k_config;
-		if (STARGATE && isset($k_config['k_landing_page']) && $k_config['k_landing_page'] == 'portal')
+<find><![CDATA[		$message = $message . '<br /><br />' . sprintf($user->lang['RETURN_INDEX'], '<a href="' . append_sid("{$phpbb_root_path}index.$phpEx") . '">', '</a> ');]]></find>
+<action type="replace-with"><![CDATA[		if (STARGATE)
 		{
 			meta_refresh(3, append_sid("{$phpbb_root_path}portal.$phpEx"));
 			$message = $message . '<br /><br />' . sprintf($user->lang['RETURN_PORTAL'], '<a href="' . append_sid("{$phpbb_root_path}portal.$phpEx") . '">', '</a> ');
@@ -938,68 +933,6 @@ if (STARGATE)
 		return $k_config;
 	}
 
-
-	function obtain_k_menus()
-	{
-		global $db;
-
-		if (($k_menus = $this->get('k_menus')) !== false)
-		{
-			$sql = "SELECT * FROM ". K_MENUS_TABLE . "
-				ORDER BY ndx ASC ";
-			$result = $db->sql_query($sql);
-
-			while ($row = $db->sql_fetchrow($result))
-			{
-				$k_menus[$row['m_id']]['m_id'] = $row['m_id'];
-				$k_menus[$row['m_id']]['ndx'] = $row['ndx'];
-				$k_menus[$row['m_id']]['menu_type'] = $row['menu_type'];
-				$k_menus[$row['m_id']]['name'] = $row['name'];
-				$k_menus[$row['m_id']]['link_to'] = $row['link_to'];
-				$k_menus[$row['m_id']]['extern'] = $row['extern'];
-				$k_menus[$row['m_id']]['menu_icon'] = $row['menu_icon'];
-				$k_menus[$row['m_id']]['append_sid'] = $row['append_sid'];
-				$k_menus[$row['m_id']]['append_uid'] = $row['append_uid'];
-				$k_menus[$row['m_id']]['view_all'] = $row['view_all'];
-				$k_menus[$row['m_id']]['view_groups'] = $row['view_groups'];
-				$k_menus[$row['m_id']]['soft_hr'] = $row['soft_hr'];
-				$k_menus[$row['m_id']]['sub_heading'] = $row['sub_heading'];
-			}
-			$db->sql_freeresult($result);
-		}
-		else
-		{
-			//$k_menus = $k_cached_menus = array();
-			$k_menus = array();
-
-			$sql = "SELECT * FROM ". K_MENUS_TABLE . "
-				ORDER BY ndx ASC ";
-			$result = $db->sql_query($sql);
-
-			while ($row = $db->sql_fetchrow($result))
-			{
-				$k_menus[$row['m_id']]['m_id'] = $row['m_id'];
-				$k_menus[$row['m_id']]['ndx'] = $row['ndx'];
-				$k_menus[$row['m_id']]['menu_type'] = $row['menu_type'];
-				$k_menus[$row['m_id']]['name'] = $row['name'];
-				$k_menus[$row['m_id']]['link_to'] = $row['link_to'];
-				$k_menus[$row['m_id']]['extern'] = $row['extern'];
-				$k_menus[$row['m_id']]['menu_icon'] = $row['menu_icon'];
-				$k_menus[$row['m_id']]['append_sid'] = $row['append_sid'];
-				$k_menus[$row['m_id']]['append_uid'] = $row['append_uid'];
-				$k_menus[$row['m_id']]['view_all'] = $row['view_all'];
-				$k_menus[$row['m_id']]['view_groups'] = $row['view_groups'];
-				$k_menus[$row['m_id']]['soft_hr'] = $row['soft_hr'];
-				$k_menus[$row['m_id']]['sub_heading'] = $row['sub_heading'];
-			}
-			$db->sql_freeresult($result);
-
-			$this->put('k_menus', $k_menus);
-		}
-
-		return $k_menus;
-	}
-
 	function obtain_block_data()
 	{
 		global $db;
@@ -1050,7 +983,7 @@ if (STARGATE)
 					$k_cached_blocks[$row['id']]['position']		= $row['position'];
 					$k_cached_blocks[$row['id']]['active']			= $row['active'];
 					$k_cached_blocks[$row['id']]['type']			= $row['type'];
-					$k_cached_blocks[$row['id']]['view_groups']		= $row['view_groups'];
+					$k_cached_blocks[$row['id']]['view_groups']			= $row['view_groups'];
 					$k_cached_blocks[$row['id']]['scroll']			= $row['scroll'];
 					$k_cached_blocks[$row['id']]['block_height']	= $row['block_height'];
 					$k_cached_blocks[$row['id']]['html_file_name']	= $row['html_file_name'];
@@ -1062,7 +995,7 @@ if (STARGATE)
 				$k_blocks[$row['id']]['title']			= $row['title'];
 				$k_blocks[$row['id']]['position']		= $row['position'];
 				$k_blocks[$row['id']]['type']			= $row['type'];
-				$k_blocks[$row['id']]['view_groups']	= $row['view_groups'];
+				$k_blocks[$row['id']]['view_groups']		= $row['view_groups'];
 				$k_blocks[$row['id']]['scroll']			= $row['scroll'];
 				$k_blocks[$row['id']]['block_height']	= $row['block_height'];
 				$k_blocks[$row['id']]['html_file_name']	= $row['html_file_name'];
@@ -1112,7 +1045,7 @@ if (STARGATE)
 			}
 			$db->sql_freeresult($result);
 
-			$this->put('k_pages', $k_pages);
+			$this->put('k_pages', $k_pages_cache);
 		}
 		return $k_pages;
 	}
@@ -1152,12 +1085,12 @@ if (STARGATE)
 
 			while ($row = $db->sql_fetchrow($result))
 			{
-				$k_groups[$row['group_id']]['group_id'] = $row['group_id'];
-				$k_groups[$row['group_id']]['group_name'] = $row['group_name'];
+				$k_cached_groups[$row['group_id']]['group_id'] = $row['group_id'];
+				$k_cached_groups[$row['group_id']]['group_name'] = $row['group_name'];
 			}
 			$db->sql_freeresult($result);
 
-			$this->put('k_groups', $k_groups);
+			$this->put('k_groups', $k_cached_groups);
 		}
 		return $k_groups;
 	}
@@ -1175,6 +1108,11 @@ if (STARGATE)
 
 			while ($row = $db->sql_fetchrow($result))
 			{
+				/*
+				$k_resources['id'] = $row['id'];
+				$k_resources['word'] = $row['word'];
+				$k_resources['type'] = $row['type'];
+				*/
 				$k_resources[] = $row['word'];
 
 			}
@@ -1191,6 +1129,11 @@ if (STARGATE)
 
 			while ($row = $db->sql_fetchrow($result))
 			{
+				/*
+				$k_resources['id'] = $row['id'];
+				$k_resources['word'] = $row['word'];
+				$k_resources['type'] = $row['type'];
+				*/
 				$k_resources[] = $row['word'];
 			}
 			$db->sql_freeresult($result);
@@ -1244,6 +1187,42 @@ define('K_ACRONYMS_TABLE',			$table_prefix . 'k_acronyms');]]></action>
 </open>
 
 <open src="includes/functions.php">
+
+<edit>
+<find><![CDATA[				$l_redirect = ($admin) ? $user->lang['PROCEED_TO_ACP'] : (($redirect === "{$phpbb_root_path}index.$phpEx" || $redirect === "index.$phpEx") ? $user->lang['RETURN_INDEX'] : $user->lang['RETURN_PAGE']);]]></find>
+<action type="replace-with"><![CDATA[			if (STARGATE)
+			{
+				/* Code will redirect to portal if the user logs in on the portal page,
+				   if the user logs on on the index page they will be returned to the index...
+				   To return to the portal page form all logins, remove the comments below...
+				*/
+
+				if ($redirect === "index.$phpEx")
+				{
+					$redirect = "portal.$phpEx";
+				}
+				/*
+				else if ($redirect === "index.$phpEx?")
+				{
+					$redirect = "portal.$phpEx?";
+				}
+				else if ($redirect === "{$phpbb_root_path}index.$phpEx?")
+				{
+					$redirect = "{$phpbb_root_path}portal.$phpEx?";
+				}
+				*/
+				else if ($redirect === "{$phpbb_root_path}index.$phpEx")
+				{
+					$redirect = "{$phpbb_root_path}portal.$phpEx";
+				}
+
+				$l_redirect = ($admin) ? $user->lang['PROCEED_TO_ACP'] : (($redirect === "{$phpbb_root_path}portal.$phpEx" || $redirect === "portal.$phpEx") ? $user->lang['RETURN_PORTAL'] : $user->lang['RETURN_PAGE']);
+			}
+			else
+			{
+				$l_redirect = ($admin) ? $user->lang['PROCEED_TO_ACP'] : (($redirect === "{$phpbb_root_path}index.$phpEx" || $redirect === "index.$phpEx") ? $user->lang['RETURN_INDEX'] : $user->lang['RETURN_PAGE']);
+			}]]></action>
+</edit>
 
 <edit>
 <find><![CDATA[	global $db, $config, $template, $SID, $_SID, $_EXTRA_URL, $user, $auth, $phpEx, $phpbb_root_path;]]></find>
@@ -1601,9 +1580,8 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 </edit>
 <edit>
 <find><![CDATA[		'global'	=> array('const' => POST_GLOBAL, 'lang' => 'POST_GLOBAL')]]></find>
-<action type="replace-with"><![CDATA[		'global'	=> array('const' => POST_GLOBAL, 'lang' => 'POST_GLOBAL'),
-		'news'		=> array('const' => POST_NEWS, 'lang' => 'POST_NEWS'),
-		'news_global'	=> array('const' => POST_NEWS_GLOBAL, 'lang' => 'POST_NEWS_GLOBAL')]]></action>
+<action type="before-add"><![CDATA[		'news'		=> array('const' => POST_NEWS, 'lang' => 'POST_NEWS'),
+		'news_global'	=> array('const' => POST_NEWS_GLOBAL, 'lang' => 'POST_NEWS_GLOBAL'),]]></action>
 </edit>
 
 <edit>
@@ -1873,6 +1851,13 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 </edit>
 </open>
 
+<open src="styles/prosilver/template/memberlist_search.html">
+<edit>
+<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
+<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>]]></action>
+</edit>
+</open>
+
 <open src="styles/prosilver/template/overall_footer.html">
 <edit>
 <find><![CDATA[	</div>
@@ -1909,6 +1894,14 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <find><![CDATA[<title>{SITENAME} &bull; <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->{PAGE_TITLE}</title>]]></find>
 <action type="after-add"><![CDATA[<link rel="stylesheet" type="text/css" href="{T_THEME_PATH}/style_wide.css" />
 <link rel="alternate stylesheet" type="text/css" media="screen" title="fixed" href="{T_THEME_PATH}/style_fixed.css" />]]></action>
+</edit>
+
+<edit>
+<comment lang="en">Line ~88</comment>
+<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/styleswitcher.js"></script>
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
+<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/styleswitcher.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>]]></action>
 </edit>
 
 <edit>
@@ -1987,6 +1980,22 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 </edit>
 </open>
 
+<open src="styles/prosilver/template/posting_buttons.html">
+<edit>
+<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></find>
+<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>
+]]></action>
+</edit>
+</open>
+
+<open src="styles/prosilver/template/posting_smilies.html">
+<edit>
+<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></find>
+<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>
+]]></action>
+</edit>
+</open>
+
 <open src="styles/prosilver/template/search_results.html">
 <edit>
 <comment lang="en"></comment>
@@ -1995,6 +2004,15 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <inline-find><![CDATA[{searchresults.U_VIEW_TOPIC}"]]></inline-find>
 <inline-action type="after-add"><![CDATA[ title="{searchresults.TOOLTIP}"]]></inline-action>
 </inline-edit>
+</edit>
+</open>
+
+<open src="styles/prosilver/template/simple_header.html">
+<edit>
+<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/styleswitcher.js"></script>
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
+<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/styleswitcher.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>]]></action>
 </edit>
 </open>
 
@@ -2059,15 +2077,24 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 
 <open src="styles/prosilver/imageset/imageset.cfg">
 <edit>
+<find>img_poll_left =
+img_poll_center =
+img_poll_right = </find>
+<action type="replace-with">img_poll_left = poll_left.gif*12*4
+img_poll_center = poll_center.gif*12*
+img_poll_right = poll_right.gif*12*4</action>
+</edit>
+
+<edit>
 <find>img_icon_user_warn = icon_user_warn.gif*20*20</find>
-<action type="after-add">img_news_read = news_read.gif*27*27
-img_news_read_mine = news_read_mine.gif*27*27
-img_news_read_locked = news_read_locked.gif*27*27
-img_news_read_locked_mine = news_read_locked_mine.gif*27*27
-img_news_unread = news_unread.gif*27*27
-img_news_unread_mine = news_unread_mine.gif*27*27
-img_news_unread_locked = news_unread_locked.gif*27*27
-img_news_unread_locked_mine = news_unread_locked_mine.gif*27*27</action>
+<action type="after-add">img_news_read				= news_read.gif*27*27
+img_news_read_mine			= news_read_mine.gif*27*27
+img_news_read_locked		= news_read_locked.gif*27*27
+img_news_read_locked_mine	= news_read_locked_mine.gif*27*27
+img_news_unread				= news_unread.gif*27*27
+img_news_unread_mine		= news_unread_mine.gif*27*27
+img_news_unread_locked		= news_unread_locked.gif*27*27
+img_news_unread_locked_mine	= news_unread_locked_mine.gif*27*27</action>
 </edit>
 </open>
 
@@ -2087,26 +2114,22 @@ img_news_unread_locked_mine = news_unread_locked_mine.gif*27*27</action>
 /* quick reply 
 ----------------- */
 .qreply-icon { 
-	float: left;
-	display: block;
-	width: 96px;
-	height: 26px;
+	float: left; display: block; width: 96px; height: 26px;
 	background: url("{T_IMAGESET_LANG_PATH}/button_topic_qreply.gif") 0 0 no-repeat;
 	margin-right: 10px;
 }
 .qreply-icon-no	{ 
-	float: left;
-	display: block;
-	width: 96px;
-	height: 26px;
+	float: left; display: block; width: 96px; height: 26px;
 	background: url("{T_IMAGESET_LANG_PATH}/button_topic_qreply_no.gif") 0 0 no-repeat;
 	margin-right: 10px;
 }
 .qreply-icon span, .qreply-icon-no span {
-	display: none;
-	text-indent: -5000px;
+	display: none; text-indent: -5000px;
 }
-.qreply-icon:hover, .qreply-icon-no:hover { background-position: 0 -26px; }
+
+.qreply-icon:hover, .qreply-icon-no:hover {
+	background-position: 0 -26px;
+}
 ]]></action>
 </edit>
 </open>

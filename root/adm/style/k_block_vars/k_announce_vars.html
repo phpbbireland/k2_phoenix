@@ -11,16 +11,16 @@
 	<dl>
 		<dt><label for="k_announce_type">{L_K_ANNOUNCE_TYPE}:</label><br /><span>{L_K_ANNOUNCE_TYPE_EXPLAIN}</span></dt>
 		<dd>
-			<label><input type="radio" class="radio" name="k_announce_type" value="2"<!-- IF S_K_ANNOUNCE_TYPE == 2 --> checked="checked" id="k_announce_type"<!-- ENDIF --> /> {L_LOCAL_ANNOUNCE}</label>
-			<label><input type="radio" class="radio" name="k_announce_type" value="3"<!-- IF S_K_ANNOUNCE_TYPE == 3 --> checked="checked" id="k_announce_type"<!-- ENDIF --> /> {L_GLOBAL_ANNOUNCE}</label>
-			<label><input type="radio" class="radio" name="k_announce_type" value="0"<!-- IF S_K_ANNOUNCE_TYPE == 0 --> checked="checked" id="k_announce_type"<!-- ENDIF --> /> {L_BOTH}</label>
+			<label><input type="radio" class="radio" name="k_announce_type" value="2" <!-- IF S_K_ANNOUNCE_TYPE == 2 --> checked="checked" id="k_announce_type"<!-- ELSE --><!-- ENDIF --> /> {L_LOCAL_ANNOUNCE}</label>
+			<label><input type="radio" class="radio" name="k_announce_type" value="3" <!-- IF S_K_ANNOUNCE_TYPE == 3 --> checked="checked" id="k_announce_type"<!-- ELSE --><!-- ENDIF --> /> {L_GLOBAL_ANNOUNCE}</label>
+			<label><input type="radio" class="radio" name="k_announce_type" value="0" <!-- IF S_K_ANNOUNCE_TYPE == 0 --> checked="checked" id="k_announce_type"<!-- ELSE --><!-- ENDIF --> /> {L_BOTH}</label>
 		</dd>
 	</dl>
 	<dl>
 		<dt><label for="k_announce_allow">{L_K_ANNOUNCE_ALLOW}:</label><br /><span>{L_K_ANNOUNCE_ALLOW_EXPLAIN}</span></dt>
 		<dd>
-			<label><input type="radio" class="radio" name="k_announce_allow" value="1"<!-- IF S_K_ANNOUNCE_ALLOW --> checked="checked" id="k_announce_allow"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" class="radio" name="k_announce_allow" value="0"<!-- IF not S_K_ANNOUNCE_ALLOW --> checked="checked" id="k_announce_allow"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="k_announce_allow" value="1" <!-- IF S_K_ANNOUNCE_ALLOW --> checked="checked" id="k_announce_allow"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="k_announce_allow" value="0" <!-- IF not S_K_ANNOUNCE_ALLOW --> checked="checked" id="k_announce_allow"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 </fieldset>

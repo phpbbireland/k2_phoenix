@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* portal_kiss_search [English]
+* common [English]
 *
-* @package language (Kiss Portal Engine / Stargate Portal)
+* @package language
 * @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */

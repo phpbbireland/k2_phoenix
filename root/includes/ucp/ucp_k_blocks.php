@@ -1,9 +1,9 @@
 <?php
 /**
 *
-* @package ucp (Kiss Portal Engine)
+* @package SGP Portal
 * @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @copyright (c) 2005 2008 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -27,7 +27,7 @@ if (!defined('IN_PHPBB'))
 * released or distributed in any way under a licence other
 * than the GPL. We will be watching ... ;)
 *
-* @package ucp
+* @package SGP Portal
 */
 class ucp_k_blocks
 {
@@ -206,10 +206,10 @@ function get_default_block_layout($id)
 
 	$existing = get_current_block_layout($id);
 
-	$sql = "SELECT id, position, html_file_name, view_pages, view_all
-		FROM " . K_BLOCKS_TABLE . "
+	$sql = 'SELECT id, position, html_file_name, view_pages, view_all
+		FROM ' . K_BLOCKS_TABLE . '
 		WHERE active = 1
-			AND view_pages <> '0'";
+			AND view_pages <> 0';
 
 	if ($result = $db->sql_query($sql))
 	{
