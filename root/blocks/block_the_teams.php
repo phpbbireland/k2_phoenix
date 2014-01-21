@@ -52,9 +52,8 @@ $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k
 
 $sort_by = isset($k_config['k_teams_sort']) ? $k_config['k_teams_sort'] : 'g.group_name';
 
-if ($sort_by == 'default')
+if ($sort_by == '' || $sort_by == 'default')
 {
-	$set =
 	$sort_by = 'g.group_name';
 }
 

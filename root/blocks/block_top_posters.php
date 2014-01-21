@@ -40,6 +40,8 @@ $k_top_posters_to_display = (!empty($k_config['k_top_posters_to_display'])) ? $k
 $sql = 'SELECT user_id, username, user_posts, user_colour, user_type, group_id, user_avatar, user_avatar_type, user_avatar_width , user_avatar_height, user_website
 	FROM ' . USERS_TABLE . '
 	WHERE user_type <> ' . USER_IGNORE . '
+		AND user_type = ' . USER_NORMAL . '
+		AND user_type <> ' . USER_INACTIVE . '
 		AND user_posts <> 0
 	ORDER BY user_posts DESC';
 

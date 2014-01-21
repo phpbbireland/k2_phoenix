@@ -95,10 +95,11 @@ if ($except_forum_id == '')
 	$except_forum_id = '0';
 }
 
-$sql = "SELECT t.topic_id, t.topic_title, t.topic_last_post_id, t.forum_id, p.post_id, p.poster_id, p.post_time, u.user_id, u.username, u.user_colour
+$sql = "SELECT t.topic_id, t.topic_title, t.topic_last_post_id, t.forum_id, t.topic_approved, p.post_id, p.poster_id, p.post_time, u.user_id, u.username, u.user_colour
 	FROM " . TOPICS_TABLE . " AS t, " . POSTS_TABLE . " AS p, " . USERS_TABLE . " AS u
 	WHERE t.forum_id NOT IN (" . $except_forum_id . ")
 		AND t.topic_status <> 2
+		AND t.topic_approved = 1
 		AND p.post_id = t.topic_last_post_id
 		AND p.poster_id = u.user_id
 			ORDER BY p.post_id DESC

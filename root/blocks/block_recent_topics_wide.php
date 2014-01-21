@@ -175,16 +175,7 @@ $sql_array = array(
 		AND p.post_id = t.topic_last_post_id
 		AND (p.post_time >= ' . $post_time_days . ' OR p.post_edit_time >= ' . $post_time_days . ')
 			ORDER BY t.forum_id, p.post_time DESC'
-/*
-	'WHERE'	=> $where_sql . '
-		AND t.topic_approved = 1
-		AND p.post_approved = 1
-		' . $types_sql . '
-		AND p.post_id = t.topic_first_post_id
-		AND (t.topic_last_post_time >= ' . $post_time_days . '
-			OR p.post_edit_time >= ' . $post_time_days . ')
-			ORDER BY t.forum_id, t.topic_last_post_time DESC'
-*/
+
 
 
 );

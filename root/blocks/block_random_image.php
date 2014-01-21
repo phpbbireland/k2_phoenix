@@ -26,8 +26,6 @@ $phpEx = substr(strrchr(__FILE__, '.'), 1);
 
 $randomimage = '';
 $imglist = "";
-//$ilist = static array();
-
 $rand_folder = $phpbb_root_path . 'images/random_images';
 
 foreach ($k_blocks as $blk)

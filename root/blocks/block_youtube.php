@@ -39,7 +39,7 @@ foreach ($k_blocks as $blk)
 }
 $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k_block_cache_time_default']);
 
-$sql = "SELECT * FROM ". K_YOUTUBE_TABLE . " ORDER BY video_category, video_who ASC";
+$sql = "SELECT * FROM ". K_YOUTUBE_TABLE . " ORDER BY video_rating DESC";
 
 if (!$result = $db->sql_query($sql))
 {
@@ -71,7 +71,7 @@ while ($row = $db->sql_fetchrow($result))
 		break;
 		case 5: $rating = '*****';
 		break;
-		default: $rating = '';
+		default: $rating = '*****';
 		break;
 	}
 
