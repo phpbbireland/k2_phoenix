@@ -22,8 +22,6 @@ include($phpbb_root_path . 'common.' . $phpEx);
 include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 
 include_once($phpbb_root_path . 'includes/tools_functions.'. $phpEx);
-//echo tools_gd_version_check();
-
 
 // Start session management
 $user->session_begin();

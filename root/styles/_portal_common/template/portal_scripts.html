@@ -46,7 +46,7 @@
 <script type="text/javascript" src="{ROOT_PATH}js/portal.js"></script>
 
 <!-- IF S_HIGHSLIDE -->
-<script type="text/javascript" src="{ROOT_PATH}js/highslide/highslide-full.packed.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/highslide/highslide-with-gallery.js"></script>
 <link rel="stylesheet" type="text/css" href="{ROOT_PATH}js/highslide/highslide.css" />
 
 <script type="text/javascript">
@@ -54,8 +54,7 @@
 	hs.graphicsDir = '{ROOT_PATH}js/highslide/graphics/';
 	hs.align = 'center';
 	hs.transitions = ['expand', 'crossfade'];
-	hs.outlineType = 'glossy-dark';
-	hs.wrapperClassName = 'dark';
+	hs.wrapperClassName = 'dark borderless hsshadow floating-caption';
 	hs.fadeInOut = true;
 	//hs.dimmingOpacity = 0.75;
 
@@ -84,7 +83,6 @@
 <script type="text/javascript" src="{ROOT_PATH}js/jquery/jquery.hoverIntent.js"></script>
 <script type="text/javascript" src="{ROOT_PATH}js/jquery/imgbubbles.js"></script>
 <script type="text/javascript" src="{ROOT_PATH}js/jquery/youtube/jquery.youtubepopup.js"></script>
-
 
 
 <script type="text/javascript">
@@ -223,7 +221,6 @@
 
 <!-- IF RESIZE -->
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
@@ -263,7 +260,6 @@ jQuery(document).ready(function(){
 		   jQuery("#slider").css("display", 'none');
 	   }
 	});
-
 });
 //]]>
 </script>
