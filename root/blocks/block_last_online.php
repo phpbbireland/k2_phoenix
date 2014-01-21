@@ -49,11 +49,12 @@ if ($auth->acl_gets('u_viewprofile'))
 	));
 
 	//Fetch all the block data
-	$sql = 'SELECT u.user_id, u.username, u.user_colour, u.user_type, u.user_avatar, u.user_avatar_type, u.user_lastvisit, s.session_user_id, MAX(s.session_time) AS session_time
+	$sql = 'SELECT u.user_id, u.username, u.user_allow_viewonline, u.user_colour, u.user_type, u.user_avatar, u.user_avatar_type, u.user_lastvisit, s.session_user_id, MAX(s.session_time) AS session_time
 		FROM ' . USERS_TABLE . ' u
 		LEFT JOIN ' . SESSIONS_TABLE . ' s ON (u.user_id = s.session_user_id AND session_time >= ' . (time() - $config['session_length']) . ')
 		WHERE u.user_type <> ' . USER_IGNORE . '
 			AND u.user_lastvisit <> 0
+			AND u.user_allow_viewonline <> 0
 		GROUP BY s.session_user_id, u.user_id
 		ORDER BY session_time DESC, u.user_lastvisit DESC' ;
 
