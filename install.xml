@@ -379,7 +379,7 @@
 	width: 22px;
 	height: 22px;
 }
-.bbb-italic:hover {
+.bbb-italic: hover {
 	background-position: 0px -23px;
 }
 .bbb-quote, .bbb-quote a {
@@ -1797,7 +1797,6 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 			add_log('critical', 'STYLE_MISSING', request_var('style', 0), $user->data['user_id']);
 			redirect(build_url('style') .'?style='. $config['default_style']);
 
-			//trigger_error('NO_STYLE_DATA', E_USER_ERROR);
 		}]]></action>
 </edit>
 </open>
