@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* portal_kiss_viewtopic [English]
+* viewtopic [English]
 *
-* @package language (Kiss Portal Engine / Stargate Portal)
+* @package language
 * @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -36,6 +36,7 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 
 $lang = array_merge($lang, array(
+
 	'ADD_ATTACHMENT'			=> 'Upload attachment',
 	'ADD_ATTACHMENT_EXPLAIN'	=> 'If you wish to attach one or more files enter the details below.',
 	'ADD_FILE'					=> 'Add the file',
@@ -66,4 +67,5 @@ $lang = array_merge($lang, array(
 
 	'MAKE_NEWS'					=> 'Change to “News”',
 	'MAKE_NEWS_GLOBAL'			=> 'Change to “Global News”',
+
 ));

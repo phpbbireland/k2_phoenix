@@ -1,16 +1,15 @@
 <?php
 /**
 *
-* @package Kiss Portal Engine / Stargate Portal
-* @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @package phpBB3
+* @version $Id: sgp_admin_functions.php 336 2009-01-23 02:06:37Z Michealo $
+* @copyright (c) Michael O'Toole 2005 phpBBireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
-*
+* Last updated: 03 August 2010 by Mike
+* Do not remove copyright from any file.
 */
 
-/**
-* @ignore
-*/
+
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -62,7 +61,8 @@ if (!function_exists('get_all_groups'))
 		$template->assign_block_vars('groups', array(
 			'GROUP_NAME' => $user->lang['NONE'],
 			'GROUP_ID'   => 0,
-		));
+			)
+		);
 
 		while ($row = $db->sql_fetchrow($result))
 		{
@@ -74,31 +74,8 @@ if (!function_exists('get_all_groups'))
 			$template->assign_block_vars('groups', array(
 				'GROUP_NAME' => $group_name,
 				'GROUP_ID'   => $group_id,
-			));
-		}
-		$db->sql_freeresult($result);
-	}
-}
-
-if (!function_exists('get_teams_sort'))
-{
-	function get_teams_sort()
-	{
-		global $db, $template, $user;
-
-		// Get us all the groups
-		$sql = 'SELECT group_id, group_name
-			FROM ' . GROUPS_TABLE . '
-			ORDER BY group_id ASC, group_name';
-		$result = $db->sql_query($sql);
-
-		$team_sort_array = array('default', 'g.group_id', 'g.group_name', 'g.group_type', 'u.username');
-
-		foreach ($team_sort_array as $item)
-		{
-			$template->assign_block_vars('teams_sort', array(
-				'SORT_OPTION' => $item
-			));
+				)
+			);
 		}
 		$db->sql_freeresult($result);
 	}
@@ -117,47 +94,4 @@ if (!function_exists('phpbb_preg_quote'))
 		return $text;
 	}
 }
-
-
-if (!function_exists('check_version'))
-{
-	function check_version()
-	{
-		global $db, $template;
-
-		$url = 'phpbbireland.com';
-		$sub = 'kiss2/updates';
-		$file = 'kiss.xml';
-
-		$errstr = '';
-		$errno = 0;
-
-		$data = array();
-
-		$data_read = get_remote_file($url, '/' . $sub, $file, $errstr, $errno);
-
-		$mod = @simplexml_load_string(str_replace('&', '&amp;', $data_read));
-
-		if (isset($mod->version_check))
-		{
-			$row = $mod->version_check;
-
-
-			$version = $row->version->major[0] . '.' . $row->version->minor[0] . '.' . $row->version->revision[0];
-
-			$data = array(
-				'title'			=> $row->title[0],
-				'description'	=> $row->description[0],
-				'download'		=> $row->download,
-				'announcement'	=> $row->announcement,
-				'version'       => $version,
-			);
-			return($data);
-		}
-		return(null);
-	}
-}
-
-
-
 ?>

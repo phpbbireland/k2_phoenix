@@ -1,13 +1,17 @@
 <?php
 /**
 *
-* @package Kiss Portal Engine
-* @version $Id$
-* @author  Michael O'Toole - aka michaelo
+* @package Stargate Portal
+* @author  Michael O'Toole - aka Michaelo
 * @begin   Saturday, Jan 22, 2005
-* @copyright (c) 2005-2013 phpbbireland
+* @copyright (c) 2005-2008 phpbbireland
 * @home    http://www.phpbbireland.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @note: Do not remove this copyright. Just append yours if you have modified it,
+*        this is part of the Stargate Portal copyright agreement...
+*
+* @version $Id: block_announcements.php 336 2009-01-23 02:06:37Z Michealo $
+* Updated: 28 July 2011 00:03
 *
 */
 
@@ -32,7 +36,6 @@ foreach ($k_blocks as $blk)
 	if ($blk['html_file_name'] == 'block_announcements.html')
 	{
 		$block_cache_time = $blk['block_cache_time'];
-		break;
 	}
 }
 $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k_block_cache_time_default']);
@@ -107,7 +110,7 @@ $sql = 'SELECT
 	WHERE
 		' . $a_type . ' AND
 		t.topic_poster = u.user_id AND
-		p.post_time = t.topic_time
+           p.post_time = t.topic_time
 	ORDER BY
 		t.topic_type DESC, t.topic_time DESC';
 
@@ -190,7 +193,7 @@ if (sizeof($attach_list))
 			ORDER BY filetime DESC';
 		$result = $db->sql_query($sql, $block_cache_time);
 
-		while ($row = $db->sql_fetchrow($result))
+		while($row = $db->sql_fetchrow($result))
 		{
 			$attachments[$row['post_msg_id']][] = $row;
 		}
@@ -219,20 +222,11 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 
 	$row =& $rowset[$post_list[$i]];
 
+	// Size the message to max length
 	if (($k_announce_item_max_length != 0) && (strlen($row['post_text']) > $k_announce_item_max_length))
 	{
-		$len = strlen($row['post_text']);
-
-		$row['post_text'] = truncate_post($row['post_text'], $k_announce_item_max_length, $row['bbcode_uid']);
-
-		if (strlen($row['post_text']) < $len)
-		{
-			$row['post_text'] .= ' <a href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '"><strong>[' . $user->lang['VIEW_FULL_ARTICLE']  . ']</strong></a>';
-		}
-		else
-		{
-			$row['post_text'] .= ' <a href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '"></a>';
-		}
+		$row['post_text'] = sgp_truncate_message($row['post_text'], $k_announce_item_max_length);
+		$row['post_text'] .= ' <a href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '"><strong>[' . $user->lang['VIEW_FULL_ARTICLE']  . ']</strong></a>';
 	}
 
 	$message = generate_text_for_display($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield'], $row['bbcode_options']);
@@ -293,6 +287,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 unset($rowset, $user_cache);
 
 $message = '';
+//$u_group = append_sid("{$phpbb_root_path}memberlist.$phpEx", 'mode=group&amp;g=' . $row['group_id']);
 
 $template->assign_vars(array(
 	'S_ANNOUNCEMENTS_COUNT_ASKED'		=> sizeof($posts),

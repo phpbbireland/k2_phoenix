@@ -5,7 +5,7 @@
 *
 * @package language
 * @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @copyright (c) 2005 phpBB Group
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -29,7 +29,6 @@ $lang = array_merge($lang, array(
 	'acl_u_k_tools'		=> array('lang' => 'Can use portal tools', 'cat' => 'portal'),
 	'acl_a_k_portal'	=> array('lang' => 'Can manage portal settings', 'cat' => 'portal'),
 	'acl_a_k_tools'		=> array('lang' => 'Can manage portal tools', 'cat' => 'portal'),
-	'acl_a_k_youtube'	=> array('lang' => 'Can manage youtube settings', 'cat' => 'portal'),
 ));
 
 ?>

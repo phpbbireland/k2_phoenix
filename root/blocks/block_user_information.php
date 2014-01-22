@@ -1,19 +1,25 @@
 <?php
 /**
 *
-* @package Kiss Portal Engine
-* @version $Id$
-* @author  Michael O'Toole - aka michaelo
+* @package Stargate Portal
+* @author  Michael O'Toole - aka Michaelo
 * @begin   Saturday, Jan 22, 2005
-* @copyright (c) 2005-2013 phpbbireland
+* @copyright (c) 2005-2008 phpbbireland
 * @home    http://www.phpbbireland.com
+* Code segments from various phpBB core copyright phpBB team.
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @note: Do not remove this copyright. Just append yours if you have modified it,
+*        this is part of the Stargate Portal copyright agreement...
+*
+* @version $Id: block_user_information.php 297 2008-12-30 18:40:30Z JohnnyTheOne $
+* Updated: 17 January 2008 03:39
 *
 */
 
 /**
 * @ignore
 */
+
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -30,7 +36,6 @@ foreach ($k_blocks as $blk)
 	if ($blk['html_file_name'] == 'block_user_information.html')
 	{
 		$block_cache_time = $blk['block_cache_time'];
-		break;
 	}
 }
 $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k_block_cache_time_default']);

@@ -5,7 +5,7 @@
 
 var PreloadFlag = false;
 var expDays = 90;
-var exp = new Date();
+var exp = new Date(); 
 var tmp = '';
 var tmp_counter = 0;
 var tmp_open = 0;
@@ -62,11 +62,14 @@ function GetCookie(name)
 		{
 			break;
 		}
-	}
+	} 
 	return null;
 }
 
+
+
 // Show/Hide element with cookie option
+
 
 /*** 
 *  takes three possible elements...
@@ -91,8 +94,8 @@ function Show(id)
 		element = document.layers[id];
 	}
 	if (element.style.display == "none")
-	{
-		element.style.display = "inline";
+	{ 
+		element.style.display = "inline"; 
 	}
 	else
 	{
@@ -115,8 +118,8 @@ function Hide(id)
 		element = document.layers[id];
 	}
 	if (element.style.display == "inline")
-	{
-		element.style.display = "none";
+	{ 
+		element.style.display = "none"; 
 	}
 	else
 	{
@@ -184,79 +187,6 @@ function switch_visibility(id)
 }
 
 
-function is_hidden(id) 
-{
-	var element = null;
-
-	if (document.getElementById) 
-	{
-		element = document.getElementById(id);
-	}
-	else if (document.all)
-	{
-		element = document.all[id];
-	} 
-	else if (document.layers)
-	{
-		element = document.layers[id];
-	}
-
-	if (!element) 
-	{
-		// do nothing
-		//alert('NOT AN ELEMENT');
-	}
-	else if (element.style) 
-	{
-		if (element.style.display == "none")
-		{ 
-			return(1);
-		}
-		else
-		{
-			return(0);
-		}
-	}
-}
-
-function toggle_validation_form_mod(main_form, secondary_form)
-{
-	// toggle validation based on secondary form visibility //
-
-	var $_hidden = 0;
-
-	$_hidden = is_hidden(secondary_form);
-
-	if ($_hidden == 0)
-	{
-		document.getElementById(main_form).noValidate=true;
-		alert('Turned off validation');
-	}
-	else
-	{
-		document.getElementById(main_form).noValidate=false;
-		alert('Turned on validation');
-	}
-}
-
-function toggle_validation_form(thisform)
-{
-	// toggle validation on a given form //
-
-	if (document.getElementById(thisform).noValidate=false)
-	{
-		document.getElementById(thisform).noValidate=true;
-		//alert('Turned off validation');
-	}
-	else
-	{
-		document.getElementById(form).noValidate=false;
-		//alert('Turned on validation');
-	}
-
-}
-
-
 /***
 * load a known css file form the users style path
 * takes a path and an int to prevent any injection
@@ -268,7 +198,14 @@ function Load_css_file(path, option)
 
 	var newURL = window.location.protocol + "://" + window.location.host + "" + window.location.pathname;
 
+	//	var current;//	current = GetCookie(mystyle);//	alert(current);
+
+	//alert(newURL);
+
 	var pathArray = window.location.pathname.split( '/' );
+
+	//	var script_path = pathArray[1];//	alert(pathArray[0]);//	alert(pathArray[1]);//	alert(pathArray[2]);
+
 
 	var fileref = document.createElement("link");
 
@@ -297,6 +234,7 @@ function load_js_file(filename)
 	}
 }
 */
+
 
 /*** new code ***/
 function Set_Cookie( name, value, expires, path, domain, secure )
@@ -357,6 +295,7 @@ function Delete_Cookie( name, path, domain )
 	}
 }
 
+//Set_Cookie('mystyle','default','','/','','');ShowHideSwap('alt',default');Load_css_file('{T_THEME_PATH}','default');
 function StyleSwitchCookie(cookie_name, cookie_value, path, alt, def)
 {
 	Set_Cookie(cookie_name, cookie_value, '', '/', '', '');
@@ -364,3 +303,30 @@ function StyleSwitchCookie(cookie_name, cookie_value, path, alt, def)
 	Load_css_file(path, def);
 }
 
+
+
+
+
+/*
+function width_set()
+{
+	var w = 100;
+
+	current_width = Get_Cookie('stylewidth');
+
+	if(current_width)
+	{
+		w = current_width;
+	}
+
+	jQuery("#slider").css("display", 'inline');
+	jQuery("#slider").slider({
+		orientation: "horizontal",
+		range: "min",
+		max: 100,
+		value: w,
+		slide: jQuery.refreshWidth,
+		change: jQuery.refreshWidth
+	});
+}
+*/

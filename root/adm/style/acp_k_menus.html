@@ -23,7 +23,7 @@
 			mydata = '';
 			data = '';
 		}
-		else if (mydata)
+		else if(mydata)
 		{
 			mydata = mydata + ',';
 		}
@@ -46,7 +46,7 @@
 <table cellspacing="1" border="0">
 	<thead>
 		<tr>
-			<th colspan="11" style="text-align: center; color: #FFFF33;">
+			<th colspan="11" style="text-align:center; color:#FFFF33;">
 			<!-- IF S_OPTIONS == 'nav' -->{L_NAV_MENU}<!-- ENDIF -->
 			<!-- IF S_OPTIONS == 'sub' -->{L_SUB_MENU}<!-- ENDIF -->
 			<!-- IF S_OPTIONS == 'link' -->{L_LINKS_MENU}<!-- ENDIF -->
@@ -65,7 +65,7 @@
 			<th>{L_MENU_LINK}</th>
 			<th>{L_MENU_EXTERN_SHORT}</th>
 			<th>{L_MENU_VIEW_BY_SHORT}</th>
-			<th style="text-align: center;">{L_OPTIONS}</th>
+			<th style="text-align:center;">{L_OPTIONS}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -88,8 +88,8 @@
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"><!-- IF mdata.S_SUB_HEADING == '1' -->{L_SUB_HEADING}<!-- ELSE -->{mdata.S_MENU_LINK}<!-- ENDIF --></td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"><!-- IF not mdata.S_SUB_HEADING --><!-- IF mdata.S_MENU_EXTERN == '0' -->{L_NO}<!-- ELSEIF mdata.S_MENU_EXTERN == '1' -->{L_YES}<!-- ELSEIF mdata.S_MENU_EXTERN == '2' -->{L_YES}<!-- ENDIF --><!-- ENDIF --></td>
 		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"><!-- IF mdata.S_VIEW_ALL -->{L_ALL_GROUPS}<!-- ELSEIF mdata.S_VIEW_GROUPS -->{mdata.S_VIEW_GROUPS}<!-- ELSE -->{L_DISABLED}<!-- ENDIF --></td>
-		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->" align="center">
-			<div style="text-align: center;">
+		<td class="<!-- IF mdata.S_SUB_HEADING -->row2<!-- ELSE -->row1<!-- ENDIF -->"  align="center">
+			<div style="text-align:center;">
 			<!-- IF mdata.S_FIRST_ROW && not mdata.S_LAST_ROW -->
 				{ICON_MOVE_UP_DISABLED}
 				<a href="{mdata.U_DOWN}"><img src="images/icon_down.gif" alt="" /></a>
@@ -121,10 +121,10 @@
 	<dl>
 		<dt><label>{L_MENU_TYPE}:</label><br /><span>{L_MENU_TYPE_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" name="menu_type" value="1"<!-- IF S_MENU_TYPE == 'nav' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_NAV}</label>
-			<label><input type="radio" class="radio" name="menu_type" value="2"<!-- IF S_MENU_TYPE == 'sub' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_SUB}</label>
-			<label><input type="radio" class="radio" name="menu_type" value="5"<!-- IF S_MENU_TYPE == 'link' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_LINKS}</label>
-			<label><input type="radio" class="radio" name="menu_type" value="99"<!-- IF S_MENU_TYPE == 'unalloc' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_UNALLOC}</label>
+			<label><input type="radio" class="radio" name="menu_type" value="1" <!-- IF S_MENU_TYPE == 'nav' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_NAV} </label>
+			<label><input type="radio" class="radio" name="menu_type" value="2" <!-- IF S_MENU_TYPE == 'sub' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_SUB}</label>
+			<label><input type="radio" class="radio" name="menu_type" value="5" <!-- IF S_MENU_TYPE == 'link' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_LINKS}</label>
+			<label><input type="radio" class="radio" name="menu_type" value="99" <!-- IF S_MENU_TYPE == 'unalloc' --> checked="checked" id="menu_type"<!-- ENDIF --> /> {L_MENU_TYPE_UNALLOC}</label>
 		</dd>
 	</dl>
 	<dl>
@@ -152,7 +152,7 @@
 	<dl>
 		<dt><strong>{L_MENU_ICONS}:</strong><br />{L_MENU_ICONS_L}</dt>
 		<dd>
-			<div class="imageline block_img" style="padding: 5px; border: solid 1px #D7D7D7;">
+			<div class="imageline block_img" style="padding:5px; border: solid 1px #D7D7D7;">
 			<!-- BEGIN menuicons -->
 				<!-- IF menuicons.S_MENU_ICONS -->
 					<a href="#" onclick="set_image('{menuicons.S_MENU_ICONS}', true, true); return false;">
@@ -196,8 +196,7 @@
 		<dt><label for="soft_hr">{L_SOFT_HR}:</label><br /><span>{L_SOFT_HR_EXPLAIN}</span></dt>
 		<dd><br />
 			<label><input type="radio" class="radio" name="soft_hr" value="1"<!-- IF S_SOFT_HR --> checked="checked" id="soft_hr"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" class="radio" name="soft_hr" value="0"<!-- IF not S_SOFT_HR --> checked="checked" id="soft_hr"<!-- ENDIF --> /> {L_NO}</label>
-		</dd>
+			<label><input type="radio" class="radio" name="soft_hr" value="0"<!-- IF not S_SOFT_HR --> checked="checked" id="soft_hr"<!-- ENDIF --> /> {L_NO}</label></dd>
 	</dl>
 	<hr />
 	<dl>
@@ -263,7 +262,7 @@
 	<dl>
 		<dt><strong>{L_MENU_ICONS}:</strong><br />{L_MENU_ICONS_L}</dt>
 		<dd>
-			<div class="imageline block_img" style="padding: 5px; border: solid 1px #D7D7D7;">
+			<div class="imageline block_img" style="padding:5px; border: solid 1px #D7D7D7;">
 			<!-- BEGIN menuicons -->
 				<!-- IF menuicons.S_MENU_ICONS -->
 					<a href="#" onclick="set_image('{menuicons.S_MENU_ICONS}', true, true); return false;">
@@ -289,8 +288,8 @@
 	<dl>
 		<dt><label for="append_uid">{L_MENU_APPEND_UID_BIG}:</label><br /><span>{L_MENU_APPEND_UID_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" name="append_uid" value="1" <!-- IF S_MENU_APPEND_UID -->checked="checked" id="append_uid"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" class="radio" name="append_uid" value="0" <!-- IF not S_MENU_APPEND_UID -->checked="checked" id="append_uid"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="append_uid" <!-- IF S_MENU_APPEND_UID -->id="append_uid"<!-- ENDIF --> value="1"<!-- IF S_MENU_APPEND_UID --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="append_uid" <!-- IF not S_MENU_APPEND_UID -->id="append_uid"<!-- ENDIF --> value="0"<!-- IF not S_MENU_APPEND_UID --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<dl>
@@ -311,8 +310,8 @@
 	<dl>
 		<dt><label for="sub_heading">{L_SUB_HEADING}:</label><br /><span>{L_SUB_HEADING_EXPLAIN}</span></dt>
 		<dd><br />
-			<label><input type="radio" class="radio" name="sub_heading" value="1" <!-- IF S_SUB_HEADING -->checked="checked" id="sub_heading"<!-- ENDIF --> /> {L_YES}</label>
-			<label><input type="radio" class="radio" name="sub_heading" value="0" <!-- IF not S_SUB_HEADING -->checked="checked" id="sub_heading"<!-- ENDIF --> /> {L_NO}</label>
+			<label><input type="radio" class="radio" name="sub_heading" value="1" <!-- IF S_SUB_HEADING --> checked="checked" id="sub_heading"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="sub_heading" value="0"<!-- IF not S_SUB_HEADING --> checked="checked" id="sub_heading"<!-- ENDIF --> /> {L_NO}</label>
 		</dd>
 	</dl>
 	<hr />
@@ -350,10 +349,10 @@
 	<tbody>
 	<!-- BEGIN menuicons -->
 	<tr>
-		<td align="right" class="row3" style="width: 30px;">{L_ICON}</td>
-		<td align="left" class="row4" style="width: 20px;"><img src="./../images/block_images/menu/{menuicons.S_MENU_ICONS}" alt="" /></td>
-		<td align="center" class="row2" style="width: auto;">{menuicons.S_MENU_ICONS}</td>
-		<td align="center" class="row4" style="width: 100px;">
+		<td align="right" class="row3" style="width:30px;">{L_ICON}</td>
+		<td align="left" class="row4" style="width:20px;"><img src="./../images/block_images/menu/{menuicons.S_MENU_ICONS}" alt="" /></td>
+		<td align="center" class="row2" style="width:auto;">{menuicons.S_MENU_ICONS}</td>
+		<td align="center" class="row4" style="width:100px;">
 			 &nbsp; <a href="#{mdata.S_MENUID}"><img src="images/icon_delete.gif" alt="" /></a>
 			 &nbsp; <a href="#{mdata.S_MENUID}"><img src="images/file_up_to_date.gif" alt="" /></a>
 			 &nbsp; <a href="#{mdata.S_MENUID}"><img src="images/file_new.gif" alt="" /></a>
@@ -382,7 +381,7 @@
 <!-- ENDIF -->
 
 <!-- IF S_OPTIONS == 'nav' || S_OPTIONS == 'sub' || S_OPTIONS == 'link' || S_OPTIONS == 'all' -->
-<p class="quick" style="text-align: center;">
+<p class="quick" style="text-align:center;">
 	<input class="button2" name="add_menu_option" type="submit" value="{L_MENU_ADD_NEW}" />
 	<input type="hidden" name="mode" value="add" />
 	<input type="hidden" name="menutype" value="{S_OPTIONS}" />

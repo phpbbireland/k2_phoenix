@@ -1,15 +1,19 @@
 <?php
 /**
 *
-* @package Kiss Portal Engine
-* @version $Id$
+* @package Stargate Portal
 * @author  Martin Larsson - aka NeXur
 * @co-author Michaelo - Michael O'Toole
 * @begin   Wed, Oct 14, 2008
 * @copyright (c) 2008 Martin Larsson - aka NeXur
 * @home    http://www.phpbbireland.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @note: Do not remove this copyright. Just append yours if you have modified it,
+*        this is part of the Stargate Portal copyright agreement...
 *
+* @version $Id$
+*
+* Updated: 17th October 2008 NeXu
 * UPDATE INFO (these comments can be removed when we reach final draft)
 * fixed problem with multiple sessions by checking code in memberlist.php
 * changed block html layout - thanks nGAGE!
@@ -32,7 +36,6 @@ foreach ($k_blocks as $blk)
 	if ($blk['html_file_name'] == 'block_last_online.html')
 	{
 		$block_cache_time = $blk['block_cache_time'];
-		break;
 	}
 }
 $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k_block_cache_time_default']);
@@ -75,8 +78,7 @@ if ($auth->acl_gets('u_viewprofile'))
 
 		$template->assign_block_vars('last_online', array(
 			'USERNAME_FULL'		=> get_username_string('full', $row['user_id'], sgp_checksize($row['username'],15), $row['user_colour']),
-			//'ONLINE_TIME'		=> (empty($last_visit)) ? ' - ' : $user->format_date($last_visit),
-			'ONLINE_TIME'      => (empty($last_visit)) ? ' - ' : $user->format_date($last_visit, '|d M Y|, H:i'),
+			'ONLINE_TIME'		=> (empty($last_visit)) ? ' - ' : $user->format_date($last_visit),
 			'USER_AVATAR_IMG'	=> get_user_avatar($row['user_avatar'], $row['user_avatar_type'], '16', '16'),
 			'U_REGISTER'		=> 'append_sid("{$phpbb_root_path}ucp.$phpEx", mode=register)',
 		));

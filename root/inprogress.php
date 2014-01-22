@@ -1,14 +1,17 @@
 <?php
 /**
 *
-* @package Kiss Portal Engine / Stargate Portal
-* @version $Id$
-* @author  Michael O'Toole - aka michaelo
-* @begin   Saturday, Jan 22, 2005
-* @copyright (c) 2005-2013 phpbbireland
+* @package Stargate Portal
+* @author  Michael O'Toole - aka Michaelo
+* @begin   21 November 2008
+* @copyright (c) 2008 phpbbireland
 * @home    http://www.phpbbireland.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* @note: Do not remove this copyright. Just append yours if you have modified it,
+*        this is part of the Stargate Portal copyright agreement...
 *
+* @version $Id: inprogress.php 336 2009-01-23 02:06:37Z Michealo $
+* Updated:
 *
 */
 
@@ -45,7 +48,8 @@ $template->assign_block_vars('mypage', array(
 	'MY_PAGE_NAME'	=> $user->lang['IN_PROGRESS'],
 	'MY_DATE'		=> $user->format_date(time(), false, true),
 	'MY_DATA'		=> $some_info,
-));
+	)
+);
 
 // Output page
 page_header($user->lang['INPROGRESS']);

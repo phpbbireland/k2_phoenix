@@ -1,13 +1,14 @@
 <?php
 /**
 *
-* @package acp (Kiss Portal Engine)
-* @version $Id$
-* @copyright (c) 2005-2013 phpbbireland
+* @author Michael O'Toole (michaelo) http://phpbbireland.com
+*
+* @package acp (Stargate Portal)
+* @version $Id: acp_k_config.php 305 2009-01-01 16:03:23Z Michealo $
+* @copyright (c) 2005-2009 phpbbireland.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
-
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -16,6 +17,7 @@ if (!defined('IN_PHPBB'))
 /**
 * @package module_install
 */
+
 class acp_k_config_info
 {
 	function module()
