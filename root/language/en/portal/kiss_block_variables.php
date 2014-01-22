@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* common [English]
+* portal_kiss_block_variables [English]
 *
 * @package language (Kiss Portal Engine / Stargate Portal)
 * @version $Id$
@@ -53,7 +53,6 @@ $lang = array_merge($lang, array(
 	'UNRESOLVED/BUGS'  => 'Unresolved/Bugs',
 	'UPLOAD_IMAGES'    => 'Upload Images',
 	'USER_INFORMATION' => 'User Information',
-
 ));
 
 // Portal Block Names + add your block name language variables here! //
@@ -84,7 +83,6 @@ $lang = array_merge($lang, array(
 	'TOP_TOPICS_DAYS'   => 'in the last %d days',
 	'WELCOME_SITE'      => 'Welcome to<br /><strong>%s</strong>',
 	'YOUR_PROFILE'      => 'User profile',
-
 ));
 
 // Block Names

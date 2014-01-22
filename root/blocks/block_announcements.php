@@ -233,7 +233,6 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		{
 			$row['post_text'] .= ' <a href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '"></a>';
 		}
-
 	}
 
 	$message = generate_text_for_display($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield'], $row['bbcode_options']);
