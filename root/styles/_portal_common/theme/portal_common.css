@@ -246,7 +246,6 @@ button {border: solid 3px;}
 
 abbr, acronym, local_acronym {
   font-weight: bold;
-/*  text-decoration: overline;*/
   cursor: help;
 }
 
@@ -349,7 +348,6 @@ local_acronym{
   padding:4px; 
   padding-bottom: 0px; 
   padding-top: 0px; 
-  /*background-color: #fff; */
 }
 
 
