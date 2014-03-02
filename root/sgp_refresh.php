@@ -1,29 +1,24 @@
 <?php
 /**
 *
-* @package Stargate Portal
-* @author  Martin - aka NeXur
-* @begin   24 November 2008
-* @copyright (c) 2008 NeXur
+* @package Kiss Portal Engine / Stargate Portal
+* @version $Id$
+* @author  Michael O'Toole - aka michaelo
+* @begin   Saturday, Jan 22, 2005
+* @copyright (c) 2005-2013 phpbbireland
 * @home    http://www.phpbbireland.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* @note: Do not remove this copyright. Just append yours if you have modified it,
-*        this is part of the Stargate Portal copyright agreement...
 *
-* @version $Id: sgp_refresh.php 315 2009-01-10 05:43:06Z nexur $
-* Updated: SGP Refresh ALL
-* A rework of Stu's remove calendar mod by Martin (NeXur)
-* Last modified: 25 November 2008 by NeXur
+*
 */
 
 /**
 * @ignore
 */
 define('IN_PHPBB', true);
-
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
-include($phpbb_root_path . 'common.'.$phpEx);
+include($phpbb_root_path . 'common.' . $phpEx);
 include($phpbb_root_path . 'includes/acp/acp_modules.' . $phpEx);
 include($phpbb_root_path . "includes/functions_admin.$phpEx");
 include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
