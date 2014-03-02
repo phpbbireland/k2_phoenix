@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* @package Kiss Portal Engine (acp_k_blocks) (English)
+* acp_k_blocks [English]
 *
-* @package language
-* @version $Id:$ 1.0.20
-* @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
+* @package language (Kiss Portal Engine / Stargate Portal)
+* @version $Id$
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -38,9 +38,8 @@ if (empty($lang) || !is_array($lang))
 // Some characters you may want to copy&paste:
 // ’ » “ ” …
 //
-// phpbbportal profile fields
-$lang = array_merge($lang, array(
 
+$lang = array_merge($lang, array(
 	'ACP_BLOCKS'                  => 'Blocks',
 	'ACP_BLOCK_TOOLS'             => 'Blocks Tools',
 	'BLOCK_ACTIVE'                => 'Block is Active',
@@ -85,11 +84,15 @@ $lang = array_merge($lang, array(
 	'BLOCK_UPDATING'              => 'Block positions updated...<br />',
 	'BLOCK_VAR_FILE'              => 'Select the config file used to display/edit variables',
 	'BLOCK_VAR_FILE_EXPLAIN'      => '(located in adm/style/k_block_vars folder).',
+
 	'BLOCKS_ADD_HEADER'           => 'Add a new block',
+	'BLOCKS_AUTO_REINDEXED'       => 'The block index has been corrected...',
 	'BLOCKS_HEADER_ADMIN'         => 'Block Management',
 	'BLOCKS_REINDEX'              => 'Re-index blocks',
-	'BLOCKS_AUTO_REINDEXED'       => 'The block index has been corrected...',
 	'BLOCKS_REINDEXED'            => 'All blocks have been Re-Indexed',
+	'BLOCKS_TITLE'                   => 'Block Administration/Management',
+	'BLOCKS_TITLE_EXPLAIN'           => '&bull; Block titles will be replaced with user language variables, if none exits, the values show below will be used.<br />&bull; The last edited block is highlighted (bold).',
+	'BLOCKS_TITLE_EXPLAIN_EXPAND'    => '&bull; The NDX indicates position relative to other blocks in the same column.<br />&bull; Block html files are located in: styles/_portal_common/template/blocks folder.',
 
 	'CONFIRM_OPERATION_BLOCKS'            => 'Do you wish to delete this block?',
 	'CONFIRM_OPERATION_BLOCKS_REINDEX'    => 'Do you wish to re-index the blocks?',
@@ -98,7 +101,7 @@ $lang = array_merge($lang, array(
 	'EDIT_BLOCK'                          => 'Edit block',
 	'HAS_VARS'                            => 'Block contains configurable data',
 	'HAS_VARS_EXPLAIN'                    => '(config info is stored in the database).',
-	'LEFT_OF_CENTRE'                 => 'Left (centre 2x)',
+
 	'MANAGE_PAGES'                   => 'Manage pages',
 	'MINIMOD_BASED'                  => 'Is this block based on a SGP minimod?',
 	'MINIMOD_BASED_EXPLAIN'          => 'Select Yes, if Block is based on a portal minmod? (adjusted elsewhere)',
@@ -110,16 +113,9 @@ $lang = array_merge($lang, array(
 	'MUST_SELECT_VALID_BLOCK_DATA'   => 'Invalid block ID',
 	'PAGE_ARRAY'                     => 'Array of page',
 	'PAGE_ARRAY_EXPLAIN'             => 'List of all block where block is visible',
-	'PAGE_CENTRE'                    => 'Page Centre',
-	'PAGE_LEFT'                      => 'Page Left',
-	'PAGE_RIGHT'                     => 'Page right',
 	'PORTAL_BLOCKS_ENABLED'          => 'Portal blocks enabled',
-	'RIGHT_OF_CENTRE'                => 'Right (centre 2x)',
-	'SET_VARIABLES_IN_MINI-MODULES'  => 'Set variables in Mini-Modules',
 
-	'BLOCKS_TITLE'                   => 'Block Administration/Management',
-	'BLOCKS_TITLE_EXPLAIN'           => '&bull; Block titles will be replaced with user language variables, if none exits, the values show below will be used.<br />&bull; The last edited block is highlighted (bold).',
-	'BLOCKS_TITLE_EXPLAIN_EXPAND'    => '&bull; The NDX indicates position relative to other blocks in the same column.<br />&bull; Block html files are located in: styles/_portal_common/template/blocks folder.',
+	'SET_VARIABLES_IN_MINI-MODULES'  => 'Set variables in Mini-Modules',
 
 	'UNKNOWN_ERROR'                  => 'Error not processing saved data<br />',
 	'VARS_HAS_EDIT'                  => 'Set block variables',
@@ -131,6 +127,12 @@ $lang = array_merge($lang, array(
 	'VIEW_PAGE_EXPLAIN'         => 'Select from this list (reusable) to add, selecting <strong>None</strong> will empty the list.',
 	'VIEW_PAGE_EXPLAIN2'        => 'Select the pages where this block will be visible.<br /><br /><strong>Notes:</strong><br />Blocks will only be visible on pages that support blocks.<br />We do not process blocks if the information they contain is already process by the page they are displayed on.',
 	'VIEW_PAGES_EXPLAIN'        => 'The list will be updated automatically.',
+
+	'PAGE_CENTRE'                    => 'Page Centre',
+	'PAGE_LEFT'                      => 'Page Left',
+	'PAGE_RIGHT'                     => 'Page right',
+	'RIGHT_OF_CENTRE'                => 'Right (centre 2x)',
+	'LEFT_OF_CENTRE'                 => 'Left (centre 2x)',
 
 ));
 

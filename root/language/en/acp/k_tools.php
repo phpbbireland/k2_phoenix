@@ -1,11 +1,11 @@
 <?php
 /**
 *
-* @package Kiss Portal Engine (acp_k_tools) (English)
+* acp_k_tools [English]
 *
-* @package language
-* @version $Id:$ 1.0.20
-* @copyright (c) 2005-2011 Michael O'Toole (mike@phpbbireland.com)
+* @package language (Kiss Portal Engine / Stargate Portal)
+* @version $Id$
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
@@ -40,7 +40,6 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-
 	'ALL_USERS_RESET'	=> 'Reset login attempts for all users',
 	'REPORT'			=> 'Resetting login attempt for all users...',
 	'REPORT_ONE'		=> 'Resetting login attempt for: %s',
