@@ -1,18 +1,13 @@
 <?php
 /**
 *
-* @package Stargate Portal
-* @author  Michael O'Toole - aka Michaelo
+* @package Kiss Portal Engine
+* @version $Id$
+* @author  Michael O'Toole - aka michaelo
 * @begin   Saturday, Jan 22, 2005
-* @copyright (c) 2005-2008 phpbbireland
+* @copyright (c) 2005-2013 phpbbireland
 * @home    http://www.phpbbireland.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* @note: Do not remove this copyright. Just append yours if you have modified it,
-*        this is part of the Stargate Portal copyright agreement...
-*
-* @version $Id: block_var_display.php 336 2009-01-23 02:06:37Z Michealo $
-* Generate a random image used with the books block...
-* Updated: 28 January 2008
 *
 */
 

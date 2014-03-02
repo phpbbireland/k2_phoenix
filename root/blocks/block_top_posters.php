@@ -1,29 +1,25 @@
 <?php
 /**
 *
-* @package Stargate Portal
-* @author  Michael O'Toole - aka Michaelo
-* @begin   24 September 2007
-* @copyright (c) 2005-2008 phpbbireland
+* @package Kiss Portal Engine
+* @version $Id$
+* @author  Michael O'Toole - aka michaelo
+* @begin   Saturday, Jan 22, 2005
+* @copyright (c) 2005-2013 phpbbireland
 * @home    http://www.phpbbireland.com
-* additional code taken from various core files
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* @note: Do not remove this copyright. Just append yours if you have modified it,
-*        this is part of the Stargate Portal copyright agreement...
 *
-* @version $Id: block_top_posters.php 297 2008-12-30 18:40:30Z JohnnyTheOne $
-* Updated:
-*
+* 2008-12-30 18:40:30Z JohnnyTheOne edits
 */
 
 /**
 * @ignore
 */
-
 if (!defined('IN_PHPBB'))
 {
 	exit;
 }
+
 global $k_config, $k_blocks;
 $queries = $cached_queries = 0;
 
@@ -32,6 +28,7 @@ foreach ($k_blocks as $blk)
 	if ($blk['html_file_name'] == 'block_top_posters.html')
 	{
 		$block_cache_time = $blk['block_cache_time'];
+		break;
 	}
 }
 $block_cache_time = (isset($block_cache_time) ? $block_cache_time : $k_config['k_block_cache_time_default']);
