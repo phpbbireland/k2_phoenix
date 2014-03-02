@@ -596,6 +596,12 @@ $k_blocks_config_vars_array[] = array(
 	'is_dynamic'	=> '0',
 );
 
+$k_blocks_config_vars_array[] = array(
+	'config_name'	=> 'k_landing_page',
+	'config_value'	=> 'portal',
+	'is_dynamic'	=> '0',
+);
+
 $k_menus_table = 'phpbb_k_menus';
 $k_menus_array = array();
 $k_menus_array[] = array(
