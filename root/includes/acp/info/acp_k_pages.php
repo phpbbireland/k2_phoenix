@@ -1,14 +1,13 @@
 <?php
 /**
 *
-* @author Michael O'Toole (michaelo) http://phpbbireland.com
-*
-* @package acp (Stargate Portal)
-* @version $Id: acp_k_pages.php 305 10 August 2010 18:23:23Z Michealo $
-* @copyright (c) 2005-2009 phpbbireland.com
+* @package acp (Kiss Portal Engine)
+* @version $Id$
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 */
+
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -17,7 +16,6 @@ if (!defined('IN_PHPBB'))
 /**
 * @package module_install
 */
-
 class acp_k_pages_info
 {
 	function module()
@@ -34,9 +32,11 @@ class acp_k_pages_info
 			),
 		);
 	}
+
 	function install()
 	{
 	}
+
 	function uninstall()
 	{
 	}

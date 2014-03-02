@@ -1,12 +1,11 @@
 <?php
 /**
 *
-* @package phpBB3
-* @version $Id: sgp_functions_content.php 336 2009-01-23 02:06:37Z Michealo $
-* @copyright (c) Michael O'Toole 2005 phpBBireland
+* @package Kiss Portal Engine / Stargate Portal
+* @version $Id$
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* Last updated: 28 October 2010 Mike
-* Do not remove copyright from any file.
+*
 */
 
 /**
@@ -16,6 +15,15 @@ if (!defined('IN_PHPBB'))
 {
 	exit;
 }
+
+/**
+* sgp_local_acronyms()
+* phpbb_preg_quote()
+* truncate_post()
+* add_smilies_count()
+* word_replace()
+*/
+
 
 /***
 * stargate hardcoded acronyms function, replaces acronyms. Started: 14 February 2007
@@ -55,186 +63,246 @@ if (!function_exists('phpbb_preg_quote'))
 
 
 /**
-* Truncates post while retaining special characters
-* Length set in ACP for Announcements or News items
-* @param string $txt, $length (truncate to length).
+* @param: $post_text, $text_limit, $bbcode_uid
 *
-* If $options var true, return entire message if it contains attachments.
-* Last updated: 28 September 2010 Mike
+* Truncates and return post text while retaining special characters
+*
+* $show_info: optional hard coded variable to include some information
+*
+* If the text limit falls within a standard bbcode, return text to end of bbcode...
+* If the text limit falls within a list bbcode, return the full list...
+*
+* Updated: 19 June 2013 Mike
 */
 
-if (!function_exists('sgp_truncate_message'))
+if (!function_exists('truncate_post'))
 {
-	function sgp_truncate_message($txt, $length = 0)
+	function truncate_post($post_text, $text_limit, $bbcode_uid = '')
 	{
-		global $phpbb_root_path, $config;
-		$buffer = $div_append = '';
-		$len = $extend = 0;
+		global $user;
 
-		$len = strlen($txt);
+		$show_info = true;
+		$text_limitn = $post_length = $position = $offset = $tmp = $m = $count = $pos = $in_list = 0;
+		$bbcodes_start_count = $bbcodes_end_count = 0;
 
-		if ($len > $length)
+		$bbcodes_start = $bbcodes_end = array();
+		$bbocde_start_array = $bbocde_end_array = array();
+
+		$buffer = '';
+		$post_length = strlen($post_text);
+		$bbcode_uid_length = strlen($bbcode_uid);
+
+		if ($text_limit > $post_length)
 		{
-			$extend = correct_truncate_length($txt, $length);
+			return($post_text);
 		}
 
-		if (stripos($txt, '</div>'))
+		// grab and store starting bbcodes in $bbocde_start_array[] and position in position $bbcodes_start[] //
+		if ($bbcode_uid)
 		{
-			$div_append = '</div>';
-		}
-
-		if (strlen($txt) > $length)
-		{
-			for ($i = 0; $i <= $extend; $i++)
+			while ($position = strpos($post_text, $bbcode_uid, $offset))
 			{
-				$buffer .= $txt[$i];
+				$k = $j = $position;
+
+				while ($post_text[$j] != '[' && $j > 0)
+				{
+					$j--;
+				}
+
+				if ($post_text[++$j] === '/')
+				{
+					;
+				}
+				else
+				{
+					// back to start //
+					while ($post_text[$k] != '[' && $k > 0)
+					{
+						$k--;
+						$m++;
+
+						if ($post_text[$k] === '[')
+						{
+							// store bbcode found position //
+							$bbcodes_start[] = ($position - $m);
+							$m = 0;
+						}
+					}
+
+					while ($post_text[$k] != ']' && $k < $post_length)
+					{
+						$buffer .= $post_text[$k];
+						$k++;
+					}
+					$buffer .= $post_text[$k];
+
+					$bbocde_start_array[] = $buffer;
+					$buffer = '';
+				}
+				$offset = $position + $bbcode_uid_length;
 			}
 		}
 
-		$buffer .= '... &nbsp;&nbsp;&nbsp;';
+		$bbcodes_start_count = count($bbcodes_start);
 
-		return($buffer . $div_append);
+		// no bbcodes, so truncate normally and return //
+		if ($text_limit < $post_length && $bbcodes_start_count == 0)
+		{
+			for ($i = 0; $i < $text_limit; $i++)
+			{
+				$buffer .= $post_text[$i];
+			}
+
+			if ($show_info)
+			{
+				if (strlen($buffer) < $post_length)
+				{
+					$buffer .=  sprintf($user->lang['POST_LIMITED_TO'], $i);
+				}
+			}
+			return($buffer);
+		}
+
+		// generate bbcodes end arrays (deal with all bbcodes including user added bbcodes) //
+		foreach ($bbocde_start_array as $item)
+		{
+
+			if ($item[0] == '[' && $item[1] == 'u' && $item[2] == 'r' && $item[3] == 'l') //url
+			{
+				$bbocde_end_array[$count++] = '[/url:' . $bbcode_uid . ']';
+			}
+
+			else if ($item[0] == '[' && $item[1] == 'l' && $item[2] == 'i' && $item[3] == 's' && $item[4] == 't' && $item[5] == ':') //list end
+			{
+				$bbocde_end_array[$count++] = '[/list:u:' . $bbcode_uid . ']';
+			}
+			else if ($item[0] == '[' && $item[1] == '*' && $item[2] == ':') //list item
+			{
+				$bbocde_end_array[$count++] = '[/*:m:' . $bbcode_uid . ']';
+			}
+
+			else if ($item[0] == '[' && $item[1] == 'l' && $item[2] == 'i' && $item[3] == 's' && $item[4] == 't' && $item[5] == '=') //list end
+			{
+				$bbocde_end_array[$count++] = '[/list:o:' . $bbcode_uid . ']';
+			}
+
+			else if ($item[0] == '[' && $item[1] == 'q' && $item[2] == 'u' && $item[3] == 'o' && $item[4] == 't' && $item[5] == 'e' &&  $item[6] == ':') //quote
+			{
+				$bbocde_end_array[$count++] = '[/quote:' . $bbcode_uid . ']';
+			}
+			else if ($item[0] == '[' && $item[1] == 'c' && $item[2] == 'o' && $item[3] == 'd' && $item[4] == 'e' && $item[5] == ':') //code
+			{
+				$bbocde_end_array[$count++] = '[/code:' . $bbcode_uid . ']';
+			}
+			else if ($item[0] == '[' && $item[1] == 's' && $item[2] == 'i' && $item[3] == 'z' && $item[4] == 'e' && $item[5] == '=') //size
+			{
+				$bbocde_end_array[$count++] = '[/size:' . $bbcode_uid . ']';
+			}
+			else
+			{
+				$t = str_replace(':' . $bbcode_uid . ']', '', $item);
+				$t = str_replace('[', '', $t);
+				$bbocde_end_array[$count] = '[/' . $t . ':' . $bbcode_uid . ']';
+				$count++;
+			}
+		}
+
+		// reset some vars //
+		$i = $position = $bb = 0;
+
+		// get bbcode end position in to $bbocde_end_array //
+		foreach ($bbocde_end_array as $item)
+		{
+			if ($position <= $post_length)
+			{
+				$position = strpos($post_text, $item, $position);
+
+				if ($position !== 0)
+				{
+					if ($bbocde_end_array[$i] == '[/*:m:' . $bbcode_uid . ']')
+					{
+						if ($in_list == 0)
+						{
+							$in_list_end = $i - 1;
+							$in_list++;
+						}
+
+						$bbcodes_end[$i] = $bbcodes_end[$in_list_end];
+					}
+					else
+					{
+						$in_list = 0;
+						$bbcodes_end[$i] = $position + strlen($item);
+					}
+					$position += strlen($item);
+				}
+
+			}
+			$i++;
+		}
+		$bbcodes_end_count = count($bbcodes_end);
+
+		// get $bbcodes_end to use //
+		for ($i = 0; $i < $bbcodes_start_count; $i++)
+		{
+			if ($text_limit >= $bbcodes_start[$i])
+			{
+				$tmp = $i;
+				//echo '[' . $tmp . ']<br />';
+			}
+		}
+
+
+		// process up to end bbcode //
+		for ($i = 0; $i < $bbcodes_end[$tmp]; $i++)
+		{
+			$buffer .= $post_text[$i];
+		}
+
+		// if $text_limit is more than claculated $bbcodes_end and less than next $bbcodes_start //
+		if (isset($bbcodes_start[$tmp + 1]) && $i < $text_limit && $i < $bbcodes_start[$tmp + 1])
+		{
+			while ($i < $text_limit)
+			{
+				$buffer .= $post_text[$i++];
+			}
+		}
+
+		if ($show_info)
+		{
+			if (strlen($buffer) < $post_length)
+			{
+				$buffer .=  sprintf($user->lang['POST_LIMITED_TO'], $i);
+			}
+		}
+
+		return($buffer);
 	}
 }
 
-/*
-* When truncating text or post message ensure we do not truncate in the middle
-* of special text such as bbcode, smilies, attachments etc...
-*
-* The function is passed the text to truncate and the required lenth of the
-* truncated text...
-*
-* It returns the length of the truncated string altered to avoid splitting
-* special code...
-*
-* 28 September 2010 Mike.... requires testing as usual...
-*/
-if (!function_exists('correct_truncate_length'))
+
+if (!function_exists('add_smilies_count'))
 {
-	function correct_truncate_length($txt, $truncate)
+	function add_smilies_count($pos, $txt)
 	{
-		$smile_start = $smile_end = $uid_start = $uid_end = $j = $k = $m = 0;
-		$ts = $te = $td = 0;
-		$tag_count = 0;
+		$post_length = strlen($txt);
 
-		$tag_start = $tag_end = $tag_data = array();
-
-		$opening_tag_string = $closing_tag_string = '';
-		$return_val = $truncate;
-
-		$len = strlen($txt);
-
-		for ($i = 0; $i < $len; $i++)
+		if ($txt[$pos] == '<' && $txt[$pos + 5] == 's' && $txt[$pos + 6] == ':')
 		{
-			// not nestled?
-			if ($txt[$i] == '<' && $txt[$i + 5] == 's' && $txt[$i + 6] == ':')
+			while ($txt[$pos] != '>' && $pos < $post_length)
 			{
-				$smile_start = $i;
-				while ($txt[$i] != '>' && $i < $len)
-				{
-					$i++;
-				}
-				$smile_end = $i;
-
-				if ($smile_start < $truncate && $smile_end < $truncate) // || $smile_start > $truncate)
-				{
-					$return_val = $truncate;
-
-				}
-				if ($smile_start < $truncate && $smile_end > $truncate)
-				{
-					$return_val = $smile_end;
-				}
+				$pos++;
 			}
-
-			// find bbcodes & make sure we have enought characters left to check after tag //
-			if ($i + 9 < $len)
+			while ($txt[$pos] != '>' && $pos < $post_length)
 			{
-				if ($txt[$i] == ':' && $txt[$i + 9] == ']')
-				{
-					$opening_tag_string = '';
-
-					while ($txt[$i] != '[')
-					{
-						$i--;
-
-						// belt and braces //
-						if ($i == 1)
-						{
-							break;
-						}
-					}
-
-					$tag_start[$ts++] = $i;
-					$uid_start = $i;
-
-					while ($txt[$i] != ']')
-					{
-						if ($txt[$i] == '=')
-						{
-							while ($txt[$i] != ':')
-							{
-								$i++;
-							}
-						}
-						$opening_tag_string .= $txt[$i++];
-					}
-					$opening_tag_string .= $txt[$i++];
-
-					$tag_data[$td] = $opening_tag_string;
-					$td++;
-
-					while ($i < $len)
-					{
-						if ($txt[$i] == '[' && $txt[$i+1] == '/')
-						{
-							$closing_tag_string = '';
-							while ($txt[$i] != ']' && $i < $len)
-							{
-								$i++;
-							}
-							$uid_end = $i;
-							$tag_end[$te] = $i;
-
-							// grab end tag
-							// loop back to get the actual start [ //
-							while ($txt[$i] != '[')
-							{
-								$i--;
-							}
-							// grab closing tag
-							while ($txt[$i] != ']')
-							{
-								if ($txt[$i] == '/')
-								{
-									$i++;
-								}
-								$closing_tag_string .= $txt[$i++];
-							}
-							$closing_tag_string .= $txt[$i++];
-
-							if (strpos($tag_data[$ts-1], $closing_tag_string) !== false)
-							{
-								break;
-							}
-						}
-						$i++;
-					}
-					$i++;
-
-					if ($uid_start < $truncate && $uid_end < $truncate)
-					{
-						$return_val = $truncate;
-					}
-
-					if ($uid_start < $truncate && $uid_end > $truncate)
-					{
-						$return_val = $uid_end;
-					}
-				}
+				$pos++;
 			}
+			return($pos);
 		}
-		return($return_val);
+		else
+		{
+			return($pos);
+		}
 	}
 }
 

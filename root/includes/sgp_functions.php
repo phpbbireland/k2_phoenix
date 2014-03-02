@@ -1,12 +1,11 @@
 <?php
 /**
 *
-* @package phpBB3
-* @version $Id: sgp_functions.php 336 2009-01-23 02:06:37Z Michealo $
-* @copyright (c) Michael O'Toole 2005 phpBBireland
+* @package Kiss Portal Engine / Stargate Portal
+* @version $Id$
+* @copyright (c) 2005-2013 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* Last updated: 28 September 2010 by Mike
-* Do not remove copyright from any file.
+*
 */
 
 /*
@@ -15,7 +14,10 @@
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 */
 
-if ( !defined('IN_PHPBB') )
+/**
+* @ignore
+*/
+if (!defined('IN_PHPBB'))
 {
 	exit;
 }
@@ -247,8 +249,7 @@ if (!function_exists('search_block_func'))
 			"L_SEARCH_ADV"     => $lang['SEARCH_ADV'],
 			"L_SEARCH_OPTION"  => (!empty($portal_config['search_option_text'])) ? $portal_config['search_option_text'] : $board_config ['sitename'],
 			'U_SEARCH'         => append_sid("{$phpbb_root_path}search.$phpEx", 'keywords=' . urlencode($keywords)),
-			)
-		);
+		));
 	}
 }
 
@@ -517,4 +518,208 @@ if (!function_exists('get_link_from_image_name'))
 		return($lnk);
 	}
 }
+
+/***
+*	build and handles menus //
+*
+**/
+if (!function_exists('generate_menus'))
+{
+	function generate_menus()
+	{
+		global $k_groups, $k_blocks, $k_menus, $template, $phpbb_root_path, $auth, $user, $phpEx;
+		$queries = $cached_queries = $total_queries = 0;
+		static $process = 0;
+
+		// process all menus at once //
+		if ($process)
+		{
+			return;
+		}
+
+		$user->add_lang('portal/kiss_block_variables');
+
+		$p_count = count($k_menus);
+
+		$hash = request_var('hash', '');
+
+		if (!function_exists('group_memberships'))
+		{
+			include($phpbb_root_path . 'includes/functions_user.'. $phpEx);
+		}
+		$memberships = array();
+		$memberships = group_memberships(false, $user->data['user_id'], false);
+
+		for ($i = 1; $i < $p_count + 1; $i++)
+		{
+			if (isset($k_menus[$i]['menu_type']))
+			{
+				$u_id = '';
+				$isamp = '';
+
+				$menu_view_groups = $k_menus[$i]['view_groups'];
+				$menu_item_view_all = $k_menus[$i]['view_all'];
+
+				// skip process if everyone can view this menus //
+				if ($menu_item_view_all == 1)
+				{
+					$process_menu_item = true;
+				}
+				else
+				{
+					$process_menu_item = false;
+				}
+
+				if (!$process_menu_item)
+				{
+					$grps = explode(",", $menu_view_groups);
+
+					if ($memberships)
+					{
+						foreach ($memberships as $member)
+						{
+							for ($j = 0; $j < count($grps); $j++)
+							{
+								if ($grps[$j] == $member['group_id'])
+								{
+									$process_menu_item = true;
+								}
+							}
+						}
+					}
+				}
+
+				if ($k_menus[$i]['append_uid'] == 1)
+				{
+					$isamp = '&amp';
+					$u_id = $user->data['user_id'];
+				}
+				else
+				{
+					$u_id = '';
+					$isamp = '';
+				}
+
+				if ($process_menu_item)
+				{
+					$name = strtoupper($k_menus[$i]['name']);														// convert to uppercase //
+					$tmp_name = str_replace(' ','_', $name);														// replace spaces with underscore //
+					$name = (!empty($user->lang[$tmp_name])) ? $user->lang[$tmp_name] : $k_menus[$i]['name'];		// get language equivalent //
+
+					if (strstr($k_menus[$i]['link_to'], 'http'))
+					{
+						$link = ($k_menus[$i]['link_to']) ? $k_menus[$i]['link_to'] : '';
+					}
+					else
+					{
+						if ($k_menus[$i]['append_sid'])
+						{
+							if (strpos($k_menus[$i]['link_to'], 'hash')) // allow Mark forums read //
+							{
+								$link = ($user->data['is_registered'] || $config['load_anon_lastread']) ? append_sid("{$phpbb_root_path}index.$phpEx", 'hash=' . generate_link_hash('global') . '&amp;mark=forums') : '';
+							}
+							else
+							{
+								$link = ($auth->acl_get('a_') && !empty($user->data['is_registered'])) ? append_sid("{$phpbb_root_path}{$k_menus[$i]['link_to']}", false, true, $user->session_id) : '';
+							}
+						}
+						else
+						{
+							$link = ($k_menus[$i]['link_to']) ? append_sid("{$phpbb_root_path}" . $k_menus[$i]['link_to'] . $u_id) : '';
+						}
+					}
+
+					$is_sub_heading = ($k_menus[$i]['sub_heading']) ? true : false;
+
+					// we use js to manage open ibn tab //
+					switch ($k_menus[$i]['extern'])
+					{
+						case 1:
+							$link_option = 'rel="external"';
+						break;
+
+						case 2:
+							$link_option = ' onclick="window.open(this.href); return false;"';
+						break;
+
+						default:
+							 $link_option = '';
+						break;
+					}
+
+					// can be reduce later...
+					if ($k_menus[$i]['menu_type'] == NAV_MENUS)
+					{
+						$template->assign_block_vars('portal_nav_menus_row', array(
+							'PORTAL_LINK_OPTION'	=> $link_option,
+							'PORTAL_MENU_HEAD_NAME'	=> ($is_sub_heading) ? $name : '',
+							'PORTAL_MENU_NAME' 		=> $name,
+							'PORTAL_MENU_ICON'		=> ($k_menus[$i]['menu_icon']) ? '<img src="' . $phpbb_root_path . 'images/block_images/menu/' . $k_menus[$i]['menu_icon'] . '" height="16" width="16" alt="" />' : '<img src="' . $phpbb_root_path . 'images/block_images/menu/spacer.gif" height="15px" width="15px" alt="" />',
+							'U_PORTAL_MENU_LINK' 	=> ($k_menus[$i]['sub_heading']) ? '' : $link,
+							'S_SOFT_HR'				=> $k_menus[$i]['soft_hr'],
+							'S_SUB_HEADING' 		=> ($k_menus[$i]['sub_heading']) ? true : false,
+						));
+					}
+					else if ($k_menus[$i]['menu_type'] == SUB_MENUS)
+					{
+						$template->assign_block_vars('portal_sub_menus_row', array(
+							'PORTAL_LINK_OPTION'	=> $link_option,
+							'PORTAL_MENU_HEAD_NAME'	=> ($is_sub_heading) ? $name : '',
+							'PORTAL_MENU_NAME' 		=> $name,
+							'PORTAL_MENU_ICON'		=> ($k_menus[$i]['menu_icon']) ? '<img src="' . $phpbb_root_path . 'images/block_images/menu/' . $k_menus[$i]['menu_icon'] . '" height="16" width="16" alt="" />' : '<img src="' . $phpbb_root_path . 'images/block_images/menu/spacer.gif" height="15px" width="15px" alt="" />',
+							'U_PORTAL_MENU_LINK' 	=> ($k_menus[$i]['sub_heading']) ? '' : $link,
+							'S_SOFT_HR'				=> $k_menus[$i]['soft_hr'],
+							'S_SUB_HEADING' 		=> ($k_menus[$i]['sub_heading']) ? true : false,
+						));
+					}
+					else if ($k_menus[$i]['menu_type'] == LINKS_MENUS)
+					{
+						$template->assign_block_vars('portal_link_menus_row', array(
+							'LINK_OPTION'					=> $link_option,
+							'PORTAL_LINK_MENU_HEAD_NAME'	=> ($is_sub_heading) ? $name : '',
+							'PORTAL_LINK_MENU_NAME'			=> ($is_sub_heading) ? '' : $name,
+							'U_PORTAL_LINK_MENU_LINK'		=> ($is_sub_heading) ? '' : $link,
+							'PORTAL_LINK_MENU_ICON'			=> ($k_menus[$i]['menu_icon'] == 'NONE') ? '' : '<img src="' . $phpbb_root_path . 'images/block_images/menu/' . $k_menus[$i]['menu_icon'] . '" alt="" />',
+							'S_SOFT_HR'						=> $k_menus[$i]['soft_hr'],
+							'S_SUB_HEADING'					=> ($k_menus[$i]['sub_heading']) ? true : false,
+						));
+					}
+				}
+			}
+		}
+		$process = 1;
+
+		$template->assign_vars(array(
+			'S_USER_LOGGED_IN'	=> ($user->data['user_id'] != ANONYMOUS) ? true : false,
+			'U_INDEX'			=> append_sid("{$phpbb_root_path}index.$phpEx"),
+			'U_PORTAL'			=> append_sid("{$phpbb_root_path}portal.$phpEx"),
+			'MENUS_DEBUG'		=> sprintf($user->lang['PORTAL_DEBUG_QUERIES'], ($queries) ? $queries : '0', ($cached_queries) ? $cached_queries : '0', ($total_queries) ? $total_queries : '0'),
+		));
+	}
+}
+
+
+/* generic/tools functions */
+
+/**
+* Check if any image either uploaded or remote needs processing phpBB Garage
+*
+* @return boolean
+*
+*/
+if (!function_exists('tools_image_attached'))
+{
+	function tools_image_attached()
+	{
+		global $_FILES, $_POST;
+
+		//Look for image to handle from either upload or remotely linked
+		if (((isset($_FILES['FILE_UPLOAD'])) && ($_FILES['FILE_UPLOAD']['name'])) || ((!preg_match("/^http:\/\/$/i", $_POST['url_image'])) && (!empty($_POST['url_image']))))
+		{
+			return true;
+		}
+		return false;
+	}
+}
+
 ?>
