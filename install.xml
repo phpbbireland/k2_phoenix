@@ -35,7 +35,7 @@
 		</author>
 	</author-group>
 
-	<mod-version>1.0.20</mod-version>
+	<mod-version>1.0.21</mod-version>
 
 	<installation>
 		<level>intermediate</level>
@@ -45,10 +45,18 @@
 
 	<history>
 		<entry>
-			<date>2013-04-29</date>
+			<date>2013-05-01</date>
+			<rev-version>1.0.21</rev-version>
+			<changelog lang="en">
+				<change>Updated truncate code.</change>
+				<change>Updated search.php (truncate).</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2013-05-01</date>
 			<rev-version>1.0.20</rev-version>
 			<changelog lang="en">
-				<change>1 bug fixed</change>
+				<change>Remove tabs and spaces form portal.js</change>
 			</changelog>
 		</entry>
 		<entry>
@@ -596,11 +604,11 @@ if (STARGATE)
 
 	$k_config		= $cache->obtain_k_config();    // 1 query
 	$k_resources	= $cache->obtain_k_resources(); // 1 query
-	$k_groups		= $cache->obtain_k_groups();    // 1 query
 	$k_blocks		= $cache->obtain_block_data();  // 1 query
 	$k_pages		= $cache->obtain_k_pages();     // 1 query
+	$k_groups		= $cache->obtain_k_groups();    // 1 query
+	$k_menus		= $cache->obtain_k_menus();     // 1 query
 }
-
 ]]></action>
 </edit>
 </open>
@@ -965,6 +973,68 @@ if (STARGATE)
 		return $k_config;
 	}
 
+
+	function obtain_k_menus()
+	{
+		global $db;
+
+		if (($k_menus = $this->get('k_menus')) !== false)
+		{
+			$sql = "SELECT * FROM ". K_MENUS_TABLE . "
+				ORDER BY ndx ASC ";
+			$result = $db->sql_query($sql);
+
+			while ($row = $db->sql_fetchrow($result))
+			{
+				$k_menus[$row['m_id']]['m_id'] = $row['m_id'];
+				$k_menus[$row['m_id']]['ndx'] = $row['ndx'];
+				$k_menus[$row['m_id']]['menu_type'] = $row['menu_type'];
+				$k_menus[$row['m_id']]['name'] = $row['name'];
+				$k_menus[$row['m_id']]['link_to'] = $row['link_to'];
+				$k_menus[$row['m_id']]['extern'] = $row['extern'];
+				$k_menus[$row['m_id']]['menu_icon'] = $row['menu_icon'];
+				$k_menus[$row['m_id']]['append_sid'] = $row['append_sid'];
+				$k_menus[$row['m_id']]['append_uid'] = $row['append_uid'];
+				$k_menus[$row['m_id']]['view_all'] = $row['view_all'];
+				$k_menus[$row['m_id']]['view_groups'] = $row['view_groups'];
+				$k_menus[$row['m_id']]['soft_hr'] = $row['soft_hr'];
+				$k_menus[$row['m_id']]['sub_heading'] = $row['sub_heading'];
+			}
+			$db->sql_freeresult($result);
+		}
+		else
+		{
+			//$k_menus = $k_cached_menus = array();
+			$k_menus = array();
+
+			$sql = "SELECT * FROM ". K_MENUS_TABLE . "
+				ORDER BY ndx ASC ";
+			$result = $db->sql_query($sql);
+
+			while ($row = $db->sql_fetchrow($result))
+			{
+				$k_menus[$row['m_id']]['m_id'] = $row['m_id'];
+				$k_menus[$row['m_id']]['ndx'] = $row['ndx'];
+				$k_menus[$row['m_id']]['menu_type'] = $row['menu_type'];
+				$k_menus[$row['m_id']]['name'] = $row['name'];
+				$k_menus[$row['m_id']]['link_to'] = $row['link_to'];
+				$k_menus[$row['m_id']]['extern'] = $row['extern'];
+				$k_menus[$row['m_id']]['menu_icon'] = $row['menu_icon'];
+				$k_menus[$row['m_id']]['append_sid'] = $row['append_sid'];
+				$k_menus[$row['m_id']]['append_uid'] = $row['append_uid'];
+				$k_menus[$row['m_id']]['view_all'] = $row['view_all'];
+				$k_menus[$row['m_id']]['view_groups'] = $row['view_groups'];
+				$k_menus[$row['m_id']]['soft_hr'] = $row['soft_hr'];
+				$k_menus[$row['m_id']]['sub_heading'] = $row['sub_heading'];
+			}
+			$db->sql_freeresult($result);
+
+			$this->put('k_menus', $k_menus);
+		}
+
+		return $k_menus;
+	}
+
 	function obtain_block_data()
 	{
 		global $db;
@@ -1015,7 +1085,7 @@ if (STARGATE)
 					$k_cached_blocks[$row['id']]['position']		= $row['position'];
 					$k_cached_blocks[$row['id']]['active']			= $row['active'];
 					$k_cached_blocks[$row['id']]['type']			= $row['type'];
-					$k_cached_blocks[$row['id']]['view_groups']			= $row['view_groups'];
+					$k_cached_blocks[$row['id']]['view_groups']		= $row['view_groups'];
 					$k_cached_blocks[$row['id']]['scroll']			= $row['scroll'];
 					$k_cached_blocks[$row['id']]['block_height']	= $row['block_height'];
 					$k_cached_blocks[$row['id']]['html_file_name']	= $row['html_file_name'];
@@ -1027,7 +1097,7 @@ if (STARGATE)
 				$k_blocks[$row['id']]['title']			= $row['title'];
 				$k_blocks[$row['id']]['position']		= $row['position'];
 				$k_blocks[$row['id']]['type']			= $row['type'];
-				$k_blocks[$row['id']]['view_groups']		= $row['view_groups'];
+				$k_blocks[$row['id']]['view_groups']	= $row['view_groups'];
 				$k_blocks[$row['id']]['scroll']			= $row['scroll'];
 				$k_blocks[$row['id']]['block_height']	= $row['block_height'];
 				$k_blocks[$row['id']]['html_file_name']	= $row['html_file_name'];
