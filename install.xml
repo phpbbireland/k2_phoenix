@@ -1636,8 +1636,9 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 </edit>
 <edit>
 <find><![CDATA[		'global'	=> array('const' => POST_GLOBAL, 'lang' => 'POST_GLOBAL')]]></find>
-<action type="before-add"><![CDATA[		'news'		=> array('const' => POST_NEWS, 'lang' => 'POST_NEWS'),
-		'news_global'	=> array('const' => POST_NEWS_GLOBAL, 'lang' => 'POST_NEWS_GLOBAL'),]]></action>
+<action type="replace-with"><![CDATA[		'global'	=> array('const' => POST_GLOBAL, 'lang' => 'POST_GLOBAL'),
+		'news'		=> array('const' => POST_NEWS, 'lang' => 'POST_NEWS'),
+		'news_global'	=> array('const' => POST_NEWS_GLOBAL, 'lang' => 'POST_NEWS_GLOBAL')]]></action>
 </edit>
 
 <edit>
@@ -1787,7 +1788,6 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 
 			add_log('critical', 'STYLE_MISSING', request_var('style', 0), $user->data['user_id']);
 			redirect(build_url('style') .'?style='. $config['default_style']);
-
 		}]]></action>
 </edit>
 </open>
