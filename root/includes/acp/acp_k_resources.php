@@ -155,10 +155,7 @@ class acp_k_resources
 			));
 		}
 		$db->sql_freeresult($result);
-
 	}
-
-
 }
 
 ?>

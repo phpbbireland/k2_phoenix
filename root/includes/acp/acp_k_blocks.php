@@ -103,7 +103,7 @@ class acp_k_blocks
 		{
 			case 'up':
 			case 'down':
-			{
+
 				$ids = $ndxs = array();
 				$out_of_wack = false;
 
@@ -317,11 +317,10 @@ class acp_k_blocks
 
 				meta_refresh(1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_blocks&amp;mode='. $mode));
 
-				break;
-			}
+			break;
 
 			case 'add':
-			{
+
 				if ($submit)
 				{
 					if (request_var('html_file_name','') == "" || request_var('title', '') == "")
@@ -493,11 +492,10 @@ class acp_k_blocks
 						'S_OPTIONS' => strtolower($mode),
 					));
 				}
-				break;
-			}
+			break;
 
 			case 'edit':
-			{
+
 				if ($submit)
 				{
 					$id                = request_var('id', 0);
@@ -695,7 +693,6 @@ class acp_k_blocks
 					$row['img_file_name'] = 'default.gif';
 				}
 
-
 				$template->assign_vars(array(
 					'S_ID'             => $row['id'],
 					'S_NDX'            => $row['ndx'],
@@ -725,11 +722,10 @@ class acp_k_blocks
 
 				$template->assign_var('S_OPTIONS', strtolower($mode));
 
-				break;
-			}
+			break;
 
 			case 'delete':
-			{
+
 				if (!$block)
 				{
 					trigger_error($user->lang['MUST_SELECT_VALID_BLOCK_DATA'] . adm_back_link($this->u_action), E_USER_WARNING);
@@ -782,11 +778,10 @@ class acp_k_blocks
 
 				meta_refresh(1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_blocks&amp;mode=manage'));
 
-				break;
-			}
+			break;
 
 			case 'reindex':
-			{
+
 				$index_no = 1;
 
 				if (confirm_box(true))
@@ -851,8 +846,7 @@ class acp_k_blocks
 
 				meta_refresh(1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_blocks&amp;mode=manage'));
 
-				break;
-			}
+			break;
 
 			case 'tools':
 						$template->assign_var('S_OPTIONS', 'tools'); // not  language var //
@@ -869,7 +863,7 @@ class acp_k_blocks
 			case '3':	$template->assign_var('S_TYPE', $mode);
 
 			case 'manage':
-			{
+
 				if ($mode != 'manage')
 				{
 					$sql = "SELECT * FROM " . K_BLOCKS_TABLE . " WHERE position = '" . $db->sql_escape($mode) . "' ORDER by ndx, type";
@@ -943,10 +937,9 @@ class acp_k_blocks
 				));
 
 			break;
-			}
 
 			case 'reset':
-			{
+
 				$sql = "UPDATE " . USERS_TABLE . " SET user_left_blocks = '', user_center_blocks = '', user_right_blocks = '';";
 
 				if (!$result = $db->sql_query($sql))
@@ -957,7 +950,8 @@ class acp_k_blocks
 				$template->assign_var('BLOCK_REPORT', $user->lang['BLOCK_LAYOUT_RESET']);
 				meta_refresh(2, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_blocks&amp;mode=manage'));
 
-			}
+			break;
+
 			case 'default':
 			break;
 		}
@@ -1146,7 +1140,6 @@ function delete_all_block_cached_files()
 	}
 	closedir($dirs->handle);
 }
-
 
 function reindex_column($position, $idx)
 {

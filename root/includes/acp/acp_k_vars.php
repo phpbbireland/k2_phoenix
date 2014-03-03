@@ -117,7 +117,7 @@ class acp_k_vars
 		switch ($mode)
 		{
 			case 'save':
-			{
+
 				$k_announce_type                 = request_var('k_announce_type', '');
 				$k_news_type                     = request_var('k_news_type', '');
 				$k_links_forum_id                = request_var('k_links_forum_id', '');
@@ -304,8 +304,11 @@ class acp_k_vars
 					meta_refresh (0, append_sid("{$phpbb_admin_path}index.$phpEx", "i=k_vars&amp;mode=config&amp;switch=" . $switch));
 				}
 				return;
-			}
-			case 'default': break;
+
+			break;
+
+			case 'default': 
+			break;
 		}
 
 		switch ($action)

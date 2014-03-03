@@ -97,7 +97,6 @@ class acp_k_config
 		switch ($mode)
 		{
 			case 'save':
-			{
 
 				$blocks_width    = request_var('blocks_width', '');
 				$blocks_enabled  = request_var('blocks_enabled', '');
@@ -114,8 +113,7 @@ class acp_k_config
 				$url = $this->u_action . "&amp;i=k_config&amp;action=config";
 
 				meta_refresh(0, $url);
-				return;
-			}
+			return;
 
 			case 'default':
 			break;

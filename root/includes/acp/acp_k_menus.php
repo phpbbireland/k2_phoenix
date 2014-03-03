@@ -89,7 +89,7 @@ class acp_k_menus
 			case 'unalloc':  get_menu(UNALLOC_MENUS); $template->assign_var('S_OPTIONS', 'unalloc'); break;
 
 			case 'edit':
-			{
+
 				if ($submit)
 				{
 					$m_id           = request_var('m_id', 0);
@@ -187,11 +187,10 @@ class acp_k_menus
 				$template->assign_var('S_OPTIONS', 'edit');
 				get_menu_icons();
 
-				break;
-			}
+			break;
 
 			case 'delete':
-			{
+
 				if (!$menu)
 				{
 					trigger_error($user->lang['MUST_SELECT_VALID_MENU_DATA'] . adm_back_link($this->u_action), E_USER_WARNING);
@@ -235,12 +234,11 @@ class acp_k_menus
 
 				meta_refresh (1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_menus&amp;mode=all'));
 
-				break;
-			}
+			break;
 
 			case 'up':
 			case 'down':
-			{
+
 				$current_ndx = $current_id = $first_id = $last_id = $first_ndx = $last_ndx = $prev_ndx = $next_ndx = $col_count = $current_count = $error = 0;
 
 				$id_array = array();
@@ -379,11 +377,10 @@ class acp_k_menus
 
 				meta_refresh (1, append_sid("{$phpbb_admin_path}index.$phpEx", 'i=k_menus&amp;mode=' . $current_menu_type));
 
-				break;
-			}
+			break;
 
 			case 'add':
-			{
+
 				if ($submit)
 				{
 					//$m_id     = request_var('m_id', '');
@@ -447,7 +444,7 @@ class acp_k_menus
 
 					$template->assign_var('L_MENU_REPORT', $user->lang['MENU_CREATED']);
 
-					break;//return;
+					return;
 				}
 				else
 				{
@@ -463,11 +460,12 @@ class acp_k_menus
 						'S_MENU_TYPE' => $menutype,
 					));
 
-					break;
+					return;
 				}
-			}
+			break;
+
 			case 'icons':
-			{
+
 				$dirslist='';
 
 				$i = get_menu_icons();
@@ -479,13 +477,11 @@ class acp_k_menus
 					'S_MENU_ICONS_LIST'  => $dirslist,
 					)
 				);
-				break;
-			}
+			break;
 
 			case 'manage':
 				$template->assign_var('L_MENU_REPORT', $user->lang['FUTURE_DEVELOPMENT'] . '<br />');
 				$template->assign_var('S_OPTIONS', 'manage');
-
 			break;
 
 			case 'sync':
