@@ -24,7 +24,7 @@ if (!STARGATE)
 }
 
 global $phpbb_root_path, $config, $k_config, $phpEx, $SID, $user;
-global $db, $k_blocks, $user_id, $avatar_img, $template, $auth;
+global $db, $k_blocks, $user_id, $avatar_img, $template, $auth, $cache;
 global $k_groups;
 
 // Grab some portal cached data //
@@ -147,16 +147,25 @@ else
 	$sql = "SELECT *
 		FROM " . K_BLOCKS_TABLE . "
 		WHERE active = 1
-				AND (view_pages <> '0')
-				ORDER BY ndx ASC";
+			AND (view_pages <> '0')
+			ORDER BY ndx ASC";
 }
 
 $result = $db->sql_query($sql, $block_cache_time);
 
 while ($row = $db->sql_fetchrow($result))
 {
-	$active_blocks[] = $row;
-	$arr[$row['id']] = explode(','  , $row['view_pages']);
+	/**
+	    Added 27 February 2014. Only process blocks if the html file exists.
+		In the event of admin adding a mod containing additional blocks we
+        need to prevent them from loading if the mod is subsequently removed.
+	**/
+
+	if (file_exists($phpbb_root_path . 'styles/_portal_common/template/blocks/' . $row['html_file_name']))
+	{
+		$active_blocks[] = $row;
+		$arr[$row['id']] = explode(','  , $row['view_pages']);
+	}
 }
 
 // process phpbb common data //
