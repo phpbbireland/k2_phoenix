@@ -116,22 +116,6 @@
 </edit>
 </open>
 
-<open src="styles/subsilver2/template/posting_buttons.html">
-<edit>
-<find><![CDATA[		<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></find>
-<action type="replace-with"><![CDATA[		<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>]]></action>
-<comment lang="en"></comment>
-</edit>
-</open>
-
-<open src="styles/subsilver2/template/posting_smilies.html">
-<edit>
-<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></find>
-<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>]]></action>
-<comment lang="en"></comment>
-</edit>
-</open>
-
 <open src="styles/subsilver2/template/search_results.html">
 <edit>
 <find><![CDATA[				{searchresults.ATTACH_ICON_IMG} <a href="{searchresults.U_VIEW_TOPIC}" class="topictitle">{searchresults.TOPIC_TITLE}</a>]]></find>
