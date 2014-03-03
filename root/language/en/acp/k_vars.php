@@ -302,8 +302,12 @@ $lang = array_merge($lang, array(
 	'YOUR_PROFILE'             => 'User profile',
 	'YOUTUBE_LINK'             => 'Actual YouTube link (URL)',
 	'YOUTUBE_LINK_EXPLAIN'     => 'Just in case YouTube ever change we best provide an alternate',
-	'YOUTUBE_AUTO'				=> 'Autoplay video',
-	'YOUTUBE_AUTO_EXPLAIN'		=> 'When a video is selected, it will play automatically.',
+	'YOUTUBE_AUTO'             => 'Autoplay video',
+	'YOUTUBE_AUTO_EXPLAIN'     => 'When a video is selected, it will play automatically.',
+
+	'YOUTUBE_LIST'              => 'Selected videos by id',
+	'YOUTUBE_LIST_EXPLAIN'      => 'Comma separated list of ID’s',
+
 	'UNKNOWN_ERROR'            => 'Error not processing saved data<br />',
 	'USER_MAX_AVATAR_SETTINGS' => 'Restrict the size of a user avatar in user information block.',
 	'WELCOME_SITE'             => 'Welcome to<br /><strong>%s</strong>',
