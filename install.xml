@@ -1906,13 +1906,6 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 </edit>
 </open>
 
-<open src="styles/prosilver/template/memberlist_search.html">
-<edit>
-<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
-<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>]]></action>
-</edit>
-</open>
-
 <open src="styles/prosilver/template/overall_footer.html">
 <edit>
 <find><![CDATA[	</div>
@@ -2059,15 +2052,6 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <inline-find><![CDATA[{searchresults.U_VIEW_TOPIC}"]]></inline-find>
 <inline-action type="after-add"><![CDATA[ title="{searchresults.TOOLTIP}"]]></inline-action>
 </inline-edit>
-</edit>
-</open>
-
-<open src="styles/prosilver/template/simple_header.html">
-<edit>
-<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/styleswitcher.js"></script>
-<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
-<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/styleswitcher.js"></script>
-<script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>]]></action>
 </edit>
 </open>
 
