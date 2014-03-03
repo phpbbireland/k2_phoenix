@@ -138,4 +138,9 @@ $lang = array_merge($lang, array(
 	'CHECK_VERSION'  => 'Check for updates',
 ));
 
+// Translate Mod
+$lang = array_merge($lang, array(
+	'TRANSLATION'  => 'More languages',
+));
+
 ?>
