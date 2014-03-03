@@ -1196,6 +1196,52 @@ button { border: solid 3px; }]]></action>
 		}]]></action>
 			</edit>
 		</open>
+		<open src="styles/prosilver/template/memberlist_search.html">
+			<edit>
+				<find><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>]]></find>
+				<action type="replace-with"><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/overall_header.html">
+			<edit>
+				<find><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/styleswitcher.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>]]></find>
+				<action type="replace-with"><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/styleswitcher.js"></script>
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/posting_buttons.html">
+			<edit>
+				<find><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>]]></find>
+				<action type="replace-with"><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/posting_smilies.html">
+			<edit>
+				<find><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>]]></find>
+				<action type="replace-with"><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/simple_header.html">
+			<edit>
+				<find><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/styleswitcher.js"></script>
+<script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>]]></find>
+				<action type="replace-with"><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/styleswitcher.js"></script>
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>]]></action>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/posting_buttons.html">
+			<edit>
+				<find><![CDATA[		<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>]]></find>
+				<action type="replace-with"><![CDATA[		<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></action>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/posting_smilies.html">
+			<edit>
+				<find><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>]]></find>
+				<action type="replace-with"><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></action>
+			</edit>
+		</open>
 		<php-installer><![CDATA[portal_install/index.php]]></php-installer>
 		<diy-instructions lang="en"><![CDATA[Don't forget to make a backup before updating.]]></diy-instructions>
 	</action-group>
