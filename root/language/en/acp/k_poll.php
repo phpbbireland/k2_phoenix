@@ -36,7 +36,7 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 //
 // Some characters you may want to copy&paste:
-// ’ » “ ” …
+// â€™ Â» â€œ â€ â€¦
 //
 
 $lang = array_merge($lang, array(
@@ -44,7 +44,7 @@ $lang = array_merge($lang, array(
 	'BLOCK_POLL_SETTINGS'      => 'General poll settings',
 	'DETAILED'                 => 'Detailed',
 	'NOT_SET'                  => 'Not set',
-	'POLL'                     => 'Poll’s in database',
+	'POLL'                     => 'Pollâ€™s in database',
 	'POLL_CENTRE'              => 'Centre Block',
 	'POLL_DETAILED'            => 'Detailed Display',
 	'POLL_EDIT'                => 'Edit Poll',
