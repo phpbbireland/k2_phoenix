@@ -77,6 +77,10 @@ $lang = array_merge($lang, array(
 	'BLOCK_VIEW_ALL_EXPLAIN'      => 'Ignore these setting and set this Block visibility to <strong>all</strong> groups.',
 	'BLOCK_VIEW_BY'               => 'Groups',
 	'BLOCK_VIEW_BY_EXPLAIN'       => 'Select a group to add to the current list.<br />Selecting <b>(None)</b> will empty the list.',
+
+	'BLOCK_VIEW_FORUMS'           => 'Block Forum Visibility',
+	'BLOCK_VIEW_FORUMS_EXPLAIN'   => 'Enter Forum ID’s (comma separated) where blocks will be shown.',
+
 	'BLOCK_VIEW_GROUPS'           => 'Block Group Visibility',
 	'BLOCK_VIEW_GROUPS_EXPLAIN'   => 'Enter group ID(s) manually (comma separated) or use the dropdown below to automatically add to the list.',
 	'BLOCK_SCROLL_BIG'            => 'Allow Scrolling',
@@ -109,6 +113,9 @@ $lang = array_merge($lang, array(
 	'MINIMOD_OPTIONS_EXPLAIN'        => 'Ignore if block is not based on a minimod.',
 	'MINIMOD_DETAILS_SHOW'           => 'This block is based on a minimod, this is a link to it!',
 	'MINIMOD_DETAILS_NO_EDIT'        => 'Block is not a minimod',
+
+	'MISSING_BLOCK'                  => 'Notice: %s cannot be found in common folder and has been disabled!',
+	'MISSING_BLOCKS'                 => 'Notice: %s cannot be found in common folder and have been disabled!',
 
 	'MUST_SELECT_VALID_BLOCK_DATA'   => 'Invalid block ID',
 	'PAGE_ARRAY'                     => 'Array of page',
