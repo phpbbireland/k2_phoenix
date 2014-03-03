@@ -389,12 +389,21 @@ if (!function_exists('process_for_admin_bbcodes'))
 /*
 * Takes the page name
 * Returns the pages id
+* Now supports portal pages too ;)
 */
 if (!function_exists('get_page_id'))
 {
 	function get_page_id($this_page_name)
 	{
 		global $db, $user, $k_pages;
+
+		$portal_page = request_var('page', '');
+
+		if ($this_page_name == 'portal' && $portal_page)
+		{
+			$this_page_name = 'portal&page=' . $portal_page;
+			$this_page_name = htmlentities($this_page_name);
+		}
 
 		foreach ($k_pages as $page)
 		{
@@ -719,6 +728,24 @@ if (!function_exists('tools_image_attached'))
 			return true;
 		}
 		return false;
+	}
+}
+
+if (!function_exists('Readthisfile'))
+{
+	function Readthisfile($file)
+	{
+		if (file_exists($file))
+		{
+			$handle = fopen($file, "r");
+			$output = fread($handle, filesize($file));
+			fclose($handle);
+			return $output;
+		}
+		else
+		{
+			return 'The file [' . $file . "] was not found";
+		}
 	}
 }
 
