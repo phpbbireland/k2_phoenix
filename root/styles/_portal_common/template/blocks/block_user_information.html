@@ -5,30 +5,30 @@
 
 	<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
 
-		<div style="text-align:center;"><img src="{T_THEME_PATH}/images/no_avatar.gif" alt="" /></div>
-		<div label for="username">{L_USERNAME}:</label></div>
-		<div style="text-align:center;"><input type="text" tabindex="1" name="username" id="username" size="20" maxlength="40" value="{USERNAME}" class="inputbox autowidth" /></div>
-		<div label for="password">{L_PASSWORD}:</label></div>
-		<div style="text-align:center;"><input type="password" tabindex="2" id="password" name="password" size="20" maxlength="25" class="inputbox autowidth" /></div>
+		<div style="text-align: center;"><img src="{T_THEME_PATH}/images/no_avatar.gif" alt="" /></div>
+		<div><label for="username">{L_USERNAME}:</label></div>
+		<div style="text-align: center;"><input type="text" tabindex="1" name="username" id="username" size="20" maxlength="40" value="{USERNAME}" class="inputbox autowidth" /></div>
+		<div><label for="password">{L_PASSWORD}:</label></div>
+		<div style="text-align: center;"><input type="password" tabindex="2" id="password" name="password" size="20" maxlength="25" class="inputbox autowidth" /></div>
 
 		<!-- IF S_DISPLAY_FULL_LOGIN and (U_SEND_PASSWORD or U_RESEND_ACTIVATION) -->
-			<!-- IF U_SEND_PASSWORD --><div style="text-align:center;"><a href="{U_SEND_PASSWORD}">{L_FORGOT_PASS}</a></div><!-- ENDIF -->
-			<!-- IF U_RESEND_ACTIVATION --><div style="text-align:center;"><a href="{U_RESEND_ACTIVATION}">{L_RESEND_ACTIVATION}</a></div><!-- ENDIF -->
+			<!-- IF U_SEND_PASSWORD --><div style="text-align: center;"><a href="{U_SEND_PASSWORD}">{L_FORGOT_PASS}</a></div><!-- ENDIF -->
+			<!-- IF U_RESEND_ACTIVATION --><div style="text-align: center;"><a href="{U_RESEND_ACTIVATION}">{L_RESEND_ACTIVATION}</a></div><!-- ENDIF -->
 		<!-- ENDIF -->
 
 		<!-- IF S_AUTOLOGIN_ENABLED -->
-		<div style="text-align:center;">
+		<div style="text-align: center;">
 			<label for="autologin">{L_LOG_ME_IN_SHORT}</label>
 			<input type="checkbox" name="autologin" id="autologin" tabindex="4" class="checkbox" />
 		</div>
 		<!-- ENDIF -->
-		<div style="text-align:center;">{S_HIDDEN_FIELDS}<input type="submit" class="button2" name="login" value="{L_LOGIN}" /></div>
-		<div style="text-align:center;" class="gensmall">{L_DONT_HAVE_ACCOUNT}<a href="ucp.php?cid=&amp;mode=register">{L_CLICK_REGISTRATION}</a><br /></div>
+		<div style="text-align: center;">{S_HIDDEN_FIELDS}<input type="submit" class="button2" name="login" value="{L_LOGIN}" /></div>
+		<div style="text-align: center;" class="gensmall">{L_DONT_HAVE_ACCOUNT}<a href="ucp.php?cid=&amp;mode=register">{L_CLICK_REGISTRATION}</a><br /></div>
 
 	<!-- ENDIF -->
 
 	<!-- IF S_USER_LOGGED_IN -->
-		<div style="text-align:center;">
+		<div style="text-align: center;">
 			<!-- IF AVATAR -->{AVATAR}<!-- ELSE --><img src="{T_THEME_PATH}/images/no_avatar.gif" alt="" /><!-- ENDIF -->
 		</div>
 
@@ -39,9 +39,9 @@
 			{P_USERNAME_FULL}
 			</span>
 		</div>
-		<div style="text-align:center; padding:3px;"><!-- IF S_USER_LOGGED_IN -->{LAST_VISIT_DATE}<!-- ELSE -->{CURRENT_TIME}<!-- ENDIF --></div>
-		<div style="text-align:center; padding:3px;"><a href="{U_SEARCH_SELF}">{L_SEARCH_SELF}</a></div>
-		<div style="text-align:center; padding:3px;"><a href="{U_LOGIN_LOGOUT}"><img src="{T_THEME_PATH}/images/portal/icon_mini_login.gif" width="12" height="13" alt="{L_LOGIN_LOGOUT}" /> {L_LOGIN_LOGOUT}</a></div>
+		<div style="text-align: center; padding: 3px;"><!-- IF S_USER_LOGGED_IN -->{LAST_VISIT_DATE}<!-- ELSE -->{CURRENT_TIME}<!-- ENDIF --></div>
+		<div style="text-align: center; padding: 3px;"><a href="{U_SEARCH_SELF}">{L_SEARCH_SELF}</a></div>
+		<div style="text-align: center; padding: 3px;"><a href="{U_LOGIN_LOGOUT}"><img src="{T_THEME_PATH}/images/portal/icon_mini_login.gif" width="12" height="13" alt="{L_LOGIN_LOGOUT}" /> {L_LOGIN_LOGOUT}</a></div>
 	<!-- ENDIF -->
 	{S_LOGIN_REDIRECT}
 	</form>

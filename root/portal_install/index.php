@@ -290,7 +290,7 @@ $versions = array(
 	// Version 1.0.20
 	'1.0.20' => array(
 		'config_update' => array(
-			array('portal_build', '312-020'),
+			array('portal_build', '311-020'),
 		),
 	),
 	// Version 1.0.21
@@ -299,6 +299,7 @@ $versions = array(
 			array('portal_build', '312-021'),
 		),
 	),
+
 );//versions
 
 
