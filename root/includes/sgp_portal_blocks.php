@@ -24,7 +24,7 @@ if (!STARGATE)
 }
 
 global $phpbb_root_path, $config, $k_config, $phpEx, $SID, $user;
-global $db, $k_blocks, $user_id, $avatar_img, $template, $auth, $cache;
+global $db, $k_blocks, $user_id, $avatar_img, $template, $auth;
 global $k_groups;
 
 // Grab some portal cached data //

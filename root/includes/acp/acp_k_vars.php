@@ -121,7 +121,6 @@ class acp_k_vars
 				$k_announce_type                 = request_var('k_announce_type', '');
 				$k_news_type                     = request_var('k_news_type', '');
 				$k_links_forum_id                = request_var('k_links_forum_id', '');
-
 				$k_recent_topics_search_exclude  = request_var('k_recent_topics_search_exclude', '');
 				$k_post_types                    = request_var('k_post_types', '');
 				$k_announce_allow                = request_var('k_announce_allow', 1);
@@ -145,11 +144,9 @@ class acp_k_vars
 				$k_links_to_display              = request_var('k_links_to_display', 5);
 				$k_quick_reply                   = request_var('k_quick_reply', 1);
 				$k_smilies_show                  = request_var('k_smilies_show', 1);
-
 				$k_teams                         = request_var('k_teams', '');
 				$k_teams_display_this_many       = request_var('k_teams_display_this_many', 1);
 				$k_teams_sort                    = request_var('k_teams_sort', '');
-
 				$k_top_topics_days               = request_var('k_top_topics_days', 7);
 				$k_top_topics_max                = request_var('k_top_topics_max', 5);
 				$k_top_posters_to_display        = request_var('k_top_posters_to_display', 5);
@@ -166,16 +163,13 @@ class acp_k_vars
 				$k_tooltips_active               = request_var('k_tooltips_active', 1);
 				$k_tooltips_which                = request_var('k_tooltips_which', 0);
 				$k_allow_rand_avatar             = request_var('k_allow_rand_avatar', 0);
-
 				$k_donations_years               = request_var('k_donations_years', '2000');
 				$k_donations_max                 = request_var('k_donations_max', '100');
-
 				$k_top_downloads_to_display      = request_var('k_top_downloads_to_display', 5);
 				$k_top_downloads_search_exclude  = request_var('k_top_downloads_search_exclude', '');
 				$k_top_downloads_search_days     = request_var('k_top_downloads_search_days', 0);
 				$k_top_downloads_per_forum       = request_var('k_top_downloads_per_forum', 0);
 				$k_top_downloads_types           = request_var('k_top_downloads_types', '');
-
 				$k_ma_max_avatars                = request_var('k_ma_max_avatars', '0');
 				$k_ma_columns                    = request_var('k_ma_columns', '5');
 				$k_ma_rows                       = request_var('k_ma_rows', '1');
@@ -248,7 +242,6 @@ class acp_k_vars
 				sgp_acp_set_config('k_teams', $k_teams);
 				sgp_acp_set_config('k_teams_display_this_many', $k_teams_display_this_many);
 				sgp_acp_set_config('k_teams_sort', $k_teams_sort);
-
 				sgp_acp_set_config('k_top_posters_to_display', $k_top_posters_to_display);
 				sgp_acp_set_config('k_top_topics_max', $k_top_topics_max);
 				sgp_acp_set_config('k_top_topics_days', $k_top_topics_days);
@@ -275,8 +268,6 @@ class acp_k_vars
 				sgp_acp_set_config('k_top_downloads_search_days', $k_top_downloads_search_days);
 				sgp_acp_set_config('k_top_downloads_per_forum', $k_top_downloads_per_forum);
 				sgp_acp_set_config('k_top_downloads_types', $k_top_downloads_types);
-
-
 				sgp_acp_set_config('k_ma_max_avatars', $k_ma_max_avatars);
 				sgp_acp_set_config('k_ma_columns', $k_ma_columns);
 				sgp_acp_set_config('k_ma_rows', $k_ma_rows);
@@ -307,7 +298,7 @@ class acp_k_vars
 
 			break;
 
-			case 'default': 
+			case 'default':
 			break;
 		}
 

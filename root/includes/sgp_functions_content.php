@@ -62,248 +62,243 @@ if (!function_exists('phpbb_preg_quote'))
 }
 
 
+/* 23 May 2014 */
+/* testing this code for truncating posts */
+
+
 /**
-* @param: $post_text, $text_limit, $bbcode_uid
-*
-* Truncates and return post text while retaining special characters
-*
-* $show_info: optional hard coded variable to include some information
-*
-* If the text limit falls within a standard bbcode, return text to end of bbcode...
-* If the text limit falls within a list bbcode, return the full list...
-*
-* Updated: 19 June 2013 Mike
-*/
+ * BBCode-safe truncating of text
+ *
+ * Originally from {@link http://www.phpbb.com/community/viewtopic.php?f=71&t=670335}
+ * slightly modified to trim at either the first found end line or space by EXreaction.
+ *
+ * Modified by Chris Smith to trim to a specified number of paragraphs and/or a maximum
+ * number of characters, and provide configurable stopping positions. Made some performance
+ * improvements as well.
+ *
+ * Just like phpBB3 this function doesn't support embedding BBCodes in BBCode parameters
+ * either except for [quote].
+ *
+ * @author fberci (http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=158767)
+ * @author EXreaction (http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=202401)
+ * @author Chris Smith <toonarmy@phpbb.com> (http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=108642)
+ * @param string     $text               Text containing BBCode tags to be truncated
+ * @param string     $uid                BBCode uid
+ * @param int        $max_length         Text length limit
+ * @param int        $max_paragraphs     Maximum number of paragraphs permitted
+ * @param array      $stops              Characters to stop max length search at
+ * @param string     $replacement        Replacment suffix for the removed text
+ * @param string     $bitfield           BBCode bitfield (optional)
+ * @param bool       $enable_bbcode      Whether BBCode is enabled (true by default)
+ * @return string Resulting trimmed text
 
-if (!function_exists('truncate_post'))
+   As we are testing this code and it may change, I have renamed function to truncate_post to avoid potenial conflict in other mods...
+ */
+
+function truncate_post($text, $uid, $max_length, $max_paragraphs = 0, $stops = array(' ', "\n"), $replacement = '…', $bitfield = '', $enable_bbcode = true)
 {
-	function truncate_post($post_text, $text_limit, $bbcode_uid = '')
+	global $user;
+
+	$orig_text = $text;
+
+	if ($enable_bbcode)
 	{
-		global $user;
+		static $custom_bbcodes = array();
 
-		$show_info = true;
-		$text_limitn = $post_length = $position = $offset = $tmp = $m = $count = $pos = $in_list = 0;
-		$bbcodes_start_count = $bbcodes_end_count = 0;
-
-		$bbcodes_start = $bbcodes_end = array();
-		$bbocde_start_array = $bbocde_end_array = array();
-
-		$buffer = '';
-		$post_length = strlen($post_text);
-		$bbcode_uid_length = strlen($bbcode_uid);
-
-		if ($text_limit > $post_length)
+		// Get all custom bbcodes
+		if (empty($custom_bbcodes))
 		{
-			return($post_text);
+			global $db;
+
+			$sql = 'SELECT bbcode_id, bbcode_tag, second_pass_match
+						FROM ' . BBCODES_TABLE;
+			$result = $db->sql_query($sql, 3600);
+
+			while ($row = $db->sql_fetchrow($result))
+			{
+				// There can be problems only with tags having an argument
+				if (substr($row['bbcode_tag'], -1, 1) == '=')
+				{
+					$custom_bbcodes[$row['bbcode_id']] = array('[' . $row['bbcode_tag'], ':' . $uid . ']', str_replace('$uid', $uid, $row['second_pass_match']));
+				}
+			}
+			$db->sql_freeresult($result);
+		}
+	}
+
+	$trimmed = false;
+
+	// Paragraph trimming
+	if ($max_paragraphs && $max_paragraphs < preg_match_all('#\n\s*\n#m', $text, $matches))
+	{
+		$find = $matches[0][$max_paragraphs - 1];
+		// Grab all the matches preceeding the paragraph to trim at, finds
+		// those that match the trim marker, sum them to skip over them.
+		$skip = sizeof(array_intersect(array_slice($matches[0], 0, $max_paragraphs - 1), array($find)));
+		$pos = 0;
+
+		do
+		{
+			$pos = utf8_strpos($text, $find, $pos + 1);
+			$skip--;
+		} while ($skip >= 0);
+
+		$text = utf8_substr($text, 0, $pos);
+
+		$trimmed = true;
+	}
+
+	// First truncate the text
+	if ($max_length && utf8_strlen($text) > $max_length)
+	{
+		$pos = 0;
+		$length = 0;
+
+		if (!is_array($stops[0]))
+		{
+			$stops = array($stops);
 		}
 
-		// grab and store starting bbcodes in $bbocde_start_array[] and position in position $bbcodes_start[] //
-		if ($bbcode_uid)
+		foreach ($stops as $stop_group)
 		{
-			while ($position = strpos($post_text, $bbcode_uid, $offset))
+			if (!is_array($stop_group))
 			{
-				$k = $j = $position;
+				continue;
+			}
 
-				while ($post_text[$j] != '[' && $j > 0)
-				{
-					$j--;
-				}
+			foreach ($stop_group as $k => $v)
+			{
+				$find = (is_string($v)) ? $v : $k;
+				$include = is_bool($v) && $v;
 
-				if ($post_text[++$j] === '/')
+				if (($_pos = utf8_strpos(utf8_substr($text, $max_length), $find)) !== false)
 				{
-					;
-				}
-				else
-				{
-					// back to start //
-					while ($post_text[$k] != '[' && $k > 0)
+					if ($_pos < $pos || !$pos)
 					{
-						$k--;
-						$m++;
-
-						if ($post_text[$k] === '[')
-						{
-							// store bbcode found position //
-							$bbcodes_start[] = ($position - $m);
-							$m = 0;
-						}
+						// This is a better find, it cuts the text shorter
+						$pos = $_pos;
+						$length = $include ? utf8_strlen($find) : 0;
 					}
-
-					while ($post_text[$k] != ']' && $k < $post_length)
-					{
-						$buffer .= $post_text[$k];
-						$k++;
-					}
-					$buffer .= $post_text[$k];
-
-					$bbocde_start_array[] = $buffer;
-					$buffer = '';
 				}
-				$offset = $position + $bbcode_uid_length;
+			}
+
+			if ($pos)
+			{
+				// Include the length of the search string if requested
+				$max_length += $pos + $length;
+				break;
 			}
 		}
 
-		$bbcodes_start_count = count($bbcodes_start);
+		// Trim off spaces, this will miss UTF8 spacers :(
+		$text = rtrim(utf8_substr($text, 0, $max_length));
 
-		// no bbcodes, so truncate normally and return //
-		if ($text_limit < $post_length && $bbcodes_start_count == 0)
+		$trimmed = true;
+	}
+
+	// No BBCode or no trimming return
+	if (!$enable_bbcode || !$trimmed)
+	{
+		return $text . ($trimmed ? $replacement : '');
+	}
+
+	// Some tags may contain spaces inside the tags themselves.
+	// If there is any tag that had been started but not ended
+	// cut the string off before it begins.
+	$unsafe_tags = array(
+		array('<', '>'),
+		array('[quote=&quot;', "&quot;:$uid]"), // 3rd parameter true here too for now
+	);
+
+	// If bitfield is given only check for those tags that are surely existing in the text
+	if (!empty($bitfield))
+	{
+		// Get all used tags
+		$bitfield = new bitfield($bitfield);
+
+		// isset() provides better performance
+		$bbcodes_set = array_flip($bitfield->get_all_set());
+
+		// Add custom BBCodes having a parameter and being used
+		// to the array of potential tags that can be cut apart.
+		foreach ($custom_bbcodes as $bbcode_id => $bbcode_tag)
 		{
-			for ($i = 0; $i < $text_limit; $i++)
+			if (isset($bbcodes_set[$bbcode_id]))
 			{
-				$buffer .= $post_text[$i];
+				$unsafe_tags[] = $bbcode_tag;
 			}
-
-			if ($show_info)
-			{
-				if (strlen($buffer) < $post_length)
-				{
-					$buffer .=  sprintf($user->lang['POST_LIMITED_TO'], $i);
-				}
-			}
-			return($buffer);
 		}
+	}
+	// Else do the check for all possible tags
+	else
+	{
+		$unsafe_tags = array_merge($unsafe_tags, $custom_bbcodes);
+	}
 
-		// generate bbcodes end arrays (deal with all bbcodes including user added bbcodes) //
-		foreach ($bbocde_start_array as $item)
+	foreach ($unsafe_tags as $tag)
+	{
+		// Ooops, we are in the middle of an opening BBCode or HTML tag,
+		// truncate the string before the opening tag
+		if (($start_pos = strrpos($text, $tag[0])) > strrpos($text, $tag[1]))
 		{
+			// Wait, is this really an opening tag or does it just look like one?
+			$match = array();
+			if (isset($tag[2]) && preg_match($tag[2], substr($orig_text, $start_pos), $match, PREG_OFFSET_CAPTURE) != 0 && $match[0][1] === 0)
+			{
+				$text = rtrim(substr($text, 0, $start_pos));
+			}
+		}
+	}
 
-			if ($item[0] == '[' && $item[1] == 'u' && $item[2] == 'r' && $item[3] == 'l') //url
-			{
-				$bbocde_end_array[$count++] = '[/url:' . $bbcode_uid . ']';
-			}
+	$text = $text . $replacement;
 
-			else if ($item[0] == '[' && $item[1] == 'l' && $item[2] == 'i' && $item[3] == 's' && $item[4] == 't' && $item[5] == ':') //list end
-			{
-				$bbocde_end_array[$count++] = '[/list:u:' . $bbcode_uid . ']';
-			}
-			else if ($item[0] == '[' && $item[1] == '*' && $item[2] == ':') //list item
-			{
-				$bbocde_end_array[$count++] = '[/*:m:' . $bbcode_uid . ']';
-			}
+	// Get all of the BBCodes the text contains.
+	// If it does not contain any than just skip this step.
+	// Preg expression is borrowed from strip_bbcode()
+	if (preg_match_all("#\[(\/?)([a-z0-9_\*\+\-]+)(?:=(&quot;.*&quot;|[^\]]*))?(?::[a-z])?(?:\:$uid)\]#", $text, $matches, PREG_PATTERN_ORDER) != 0)
+	{
+		$open_tags = array();
 
-			else if ($item[0] == '[' && $item[1] == 'l' && $item[2] == 'i' && $item[3] == 's' && $item[4] == 't' && $item[5] == '=') //list end
-			{
-				$bbocde_end_array[$count++] = '[/list:o:' . $bbcode_uid . ']';
-			}
+		for ($i = 0, $size = sizeof($matches[0]); $i < $size; ++$i)
+		{
+			$bbcode_name =& $matches[2][$i];
+			$opening = ($matches[1][$i] == '/') ? false : true;
 
-			else if ($item[0] == '[' && $item[1] == 'q' && $item[2] == 'u' && $item[3] == 'o' && $item[4] == 't' && $item[5] == 'e' &&  $item[6] == ':') //quote
+			// If a new BBCode is opened add it to the array of open BBCodes
+			if ($opening)
 			{
-				$bbocde_end_array[$count++] = '[/quote:' . $bbcode_uid . ']';
+				$open_tags[] = array(
+					'name'	 => $bbcode_name,
+					'plus'	 => ($opening && $bbcode_name == 'list' && !empty($matches[3][$i])) ? ':o' : '',
+				);
 			}
-			else if ($item[0] == '[' && $item[1] == 'c' && $item[2] == 'o' && $item[3] == 'd' && $item[4] == 'e' && $item[5] == ':') //code
-			{
-				$bbocde_end_array[$count++] = '[/code:' . $bbcode_uid . ']';
-			}
-			else if ($item[0] == '[' && $item[1] == 's' && $item[2] == 'i' && $item[3] == 'z' && $item[4] == 'e' && $item[5] == '=') //size
-			{
-				$bbocde_end_array[$count++] = '[/size:' . $bbcode_uid . ']';
-			}
+			// If a BBCode is closed remove it from the array of open BBCodes.
+			// As always only the last opened open tag can be closed,
+			// so we only need to remove the last element of the array.
 			else
 			{
-				$t = str_replace(':' . $bbcode_uid . ']', '', $item);
-				$t = str_replace('[', '', $t);
-				$bbocde_end_array[$count] = '[/' . $t . ':' . $bbcode_uid . ']';
-				$count++;
+				array_pop($open_tags);
 			}
 		}
 
-		// reset some vars //
-		$i = $position = $bb = 0;
+		// Sort open BBCode tags so the most recently opened will be the first (because it has to be closed first)
+		krsort($open_tags);
 
-		// get bbcode end position in to $bbocde_end_array //
-		foreach ($bbocde_end_array as $item)
+		// Close remaining open BBCode tags
+		foreach ($open_tags as $tag)
 		{
-			if ($position <= $post_length)
-			{
-				$position = strpos($post_text, $item, $position);
-
-				if ($position !== 0)
-				{
-					if ($bbocde_end_array[$i] == '[/*:m:' . $bbcode_uid . ']')
-					{
-						if ($in_list == 0)
-						{
-							$in_list_end = $i - 1;
-							$in_list++;
-						}
-
-						$bbcodes_end[$i] = $bbcodes_end[$in_list_end];
-					}
-					else
-					{
-						$in_list = 0;
-						$bbcodes_end[$i] = $position + strlen($item);
-					}
-					$position += strlen($item);
-				}
-
-			}
-			$i++;
-		}
-		$bbcodes_end_count = count($bbcodes_end);
-
-		// get $bbcodes_end to use //
-		for ($i = 0; $i < $bbcodes_start_count; $i++)
-		{
-			if ($text_limit >= $bbcodes_start[$i])
-			{
-				$tmp = $i;
-				//echo '[' . $tmp . ']<br />';
-			}
+			$text .= '[/' . $tag['name'] . $tag['plus'] . ':' . $uid . ']';
 		}
 
-
-		// process up to end bbcode //
-		for ($i = 0; $i < $bbcodes_end[$tmp]; $i++)
+		/*
+		if (strlen($text) < strlen($orig_text))
 		{
-			$buffer .= $post_text[$i];
+			$text .=  sprintf($user->lang['VIEW_FULL_ARTICLE'], strlen($text));
 		}
+		*/
 
-		// if $text_limit is more than claculated $bbcodes_end and less than next $bbcodes_start //
-		if (isset($bbcodes_start[$tmp + 1]) && $i < $text_limit && $i < $bbcodes_start[$tmp + 1])
-		{
-			while ($i < $text_limit)
-			{
-				$buffer .= $post_text[$i++];
-			}
-		}
-
-		if ($show_info)
-		{
-			if (strlen($buffer) < $post_length)
-			{
-				$buffer .=  sprintf($user->lang['POST_LIMITED_TO'], $i);
-			}
-		}
-
-		return($buffer);
 	}
-}
-
-
-if (!function_exists('add_smilies_count'))
-{
-	function add_smilies_count($pos, $txt)
-	{
-		$post_length = strlen($txt);
-
-		if ($txt[$pos] == '<' && $txt[$pos + 5] == 's' && $txt[$pos + 6] == ':')
-		{
-			while ($txt[$pos] != '>' && $pos < $post_length)
-			{
-				$pos++;
-			}
-			while ($txt[$pos] != '>' && $pos < $post_length)
-			{
-				$pos++;
-			}
-			return($pos);
-		}
-		else
-		{
-			return($pos);
-		}
-	}
+	return $text;
 }
 
 

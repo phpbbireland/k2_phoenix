@@ -1,13 +1,23 @@
-<div class="wrapper">
-<div style="text-align:center" ><img src="images/youtubevideopageimage.png" alt="" /></div>
+<!-- INCLUDE overall_header.html -->
 
-	<div class="tcontainer">
-		<div class="mini-panel sections" style="width: 640px; text-align:center; margin: 0 auto; padding-top:8px;">
-			<iframe width="640" height="390" src="//www.youtube.com/embed/nhtJAp8K21s" frameborder="0" allowfullscreen></iframe>
+	<div class="wrapper">
+	<div style="text-align:center" ><img src="images/youtubevideopageimage.png" alt="" /></div>
+		<div class="tcontainer">
+			<div class="mini-panel sections" style="width: 640px; text-align:center; margin: 0 auto; padding-top:8px;">
+				<iframe width="640" height="390" src="//www.youtube.com/embed/nhtJAp8K21s" frameborder="0" allowfullscreen></iframe>
+			</div>
 		</div>
+		<div style="text-align:center;"><!-- IF S_AUTOPLAY -->{L_AUTOPLAY_ON}<!-- ELSE -->{L_AUTOPLAY_OFF}<!-- ENDIF --> {video_loop_row.L_YOUTUBE_LIMIT}</div>
 	</div>
 
-	<div style="text-align:center;"><!-- IF S_AUTOPLAY -->{L_AUTOPLAY_ON}<!-- ELSE -->{L_AUTOPLAY_OFF}<!-- ENDIF --> {video_loop_row.L_YOUTUBE_LIMIT}</div>
+	<!-- IF S_DISPLAY_ONLINE_LIST -->
+		<!-- INCLUDE blocks/block_whos_on_line.html -->
+	<!-- ENDIF -->
+	<!-- IF S_DISPLAY_BIRTHDAY_LIST -->
+		<!-- INCLUDE blocks/block_birthday.html -->
+	<!-- ENDIF -->
+	<!-- IF NEWEST_USER -->
+		<!-- INCLUDE blocks/block_stats.html -->
+	<!-- ENDIF -->
 
-</div>
-<!-- IDTAG block_web_utube ends 11 November 2009 -->
+<!-- INCLUDE overall_footer.html -->

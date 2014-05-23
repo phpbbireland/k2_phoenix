@@ -4,7 +4,7 @@
 * @author michaelo phpbbireland@gmail.com - http://www.phpbbireland.com
 *
 * @package sgp
-* @version 1.0.21
+* @version 1.0.23
 * @copyright (c) 2005-2011 Michael O'Toole (phpbbireland.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -297,6 +297,18 @@ $versions = array(
 	'1.0.21' => array(
 		'config_update' => array(
 			array('portal_build', '312-021'),
+		),
+	),
+	// Version 1.0.22
+	'1.0.22' => array(
+		'config_update' => array(
+			array('portal_build', '312-022'),
+		),
+	),
+	// Version 1.0.23
+	'1.0.23' => array(
+		'config_update' => array(
+			array('portal_build', '312-023'),
 		),
 	),
 );//versions

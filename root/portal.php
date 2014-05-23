@@ -1,12 +1,9 @@
 <?php
 /**
 *
-* @package Kiss Portal Engine / Stargate Portal
+* @package Kiss Portal Engine
 * @version $Id$
-* @author  Michael O'Toole - aka michaelo
-* @begin   Saturday, Jan 22, 2005
-* @copyright (c) 2005-2013 phpbbireland
-* @home    http://www.phpbbireland.com
+* @copyright (c) 2005 phpbbireland
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
 *
@@ -66,17 +63,17 @@ if ($page)
 		break;
 		case 'index';
 			$no_wrap = true;
-			$wrapper = 'pages/index.html';
+			$page = 'pages/index';
 		break;
 		default:
 			$no_wrap = false;
-			$wrapper = 'wrapper.html';
+			//$wrapper = $page;
 		break;
 	}
 }
 else
 {
-	$wrapper = 'portal.html';
+	$page = 'portal';
 }
 
 // Do we want to arrange the blocks ? //
@@ -191,11 +188,27 @@ $template->assign_vars(array(
 ));
 
 // Output page
-page_header($user->lang['PORTAL']);
+if ($page == 'portal')
+{
+	page_header($user->lang['PORTAL']);
 
-$template->set_filenames(array(
-	'body' => $wrapper,
-));
+	$template->set_filenames(array(
+		'body' => 'portal.html',
+	));
+}
+else
+{
+	@page_header($user->lang[strtoupper($page)]);
+
+	if (!file_exists($phpbb_root_path . 'styles/_portal_common/template/wrappers/' . $page . '.html'))
+	{
+		$page = 'error';
+	}
+
+	$template->set_filenames(array(
+		'body' => 'wrappers/' . $page . '.html',
+	));
+}
 
 page_footer();
 

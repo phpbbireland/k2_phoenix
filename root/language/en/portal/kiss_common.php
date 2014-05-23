@@ -512,6 +512,7 @@ $lang = array_merge($lang, array(
 	'PM'               => 'PM',    //'message',
 	'PMS'              => 'PM’s',  //'messages',
 	'PORTAL'           => 'Portal',
+	'PERCENT'          => 'Percent',
 	'POSTER'           => 'Poster',
 	'PROGRESS'         => 'Progress',
 	'PROGRESS_BAR'     => 'progress bar',

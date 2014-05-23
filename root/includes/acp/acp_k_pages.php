@@ -160,6 +160,7 @@ class acp_k_pages
 			break;
 
 			case 'add':
+
 				if ($submit)
 				{
 					// drop extension
@@ -348,10 +349,29 @@ function get_all_available_files()
 			}
 			$dirslist .= $store;
 		}
-
 	}
-
 	closedir($dirs->handle);
+
+	// grab portal files making sure the wrapper folder exists first //
+	$search_folder = $phpbb_root_path . 'styles/_portal_common/template/wrappers';
+
+	if (file_exists($search_folder))
+	{
+		$dirs = dir($search_folder);
+		while ($file = $dirs->read())
+		{
+			if ($file != '.' && $file != '..' && stripos($file, ".html") && !stripos($file, ".bak") && !in_array($file, $arr, true))
+			{
+				if (!in_array($file, $illegal_files))
+				{
+					$file = str_replace('.html', '', $file);
+					$temp = 'portal.php&page=' . $file;
+					$dirslist .= "$temp ";
+				}
+			}
+		}
+		closedir($dirs->handle);
+	}
 
 	$dirslist = explode(" ", $dirslist);
 	//sort($dirslist);
