@@ -401,7 +401,7 @@ if (!function_exists('get_page_id'))
 
 		if ($this_page_name == 'portal' && $portal_page)
 		{
-			$this_page_name = 'portal&page=' . $portal_page;
+			$this_page_name = 'portal?page=' . $portal_page;
 			$this_page_name = htmlentities($this_page_name);
 		}
 
