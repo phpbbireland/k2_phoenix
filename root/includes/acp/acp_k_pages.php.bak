@@ -365,7 +365,7 @@ function get_all_available_files()
 				if (!in_array($file, $illegal_files))
 				{
 					$file = str_replace('.html', '', $file);
-					$temp = 'portal.php?page=' . $file;
+					$temp = 'portal.php&page=' . $file;
 					$dirslist .= "$temp ";
 				}
 			}
