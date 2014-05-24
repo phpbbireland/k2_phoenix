@@ -45,7 +45,7 @@
 
 	<history>
 		<entry>
-			<date>2014-05-13</date>
+			<date>2014-06-13</date>
 			<rev-version>1.0.23</rev-version>
 			<changelog lang="en">
 				<change>Changed truncate code.</change>
@@ -53,7 +53,7 @@
 			</changelog>
 		</entry>
 		<entry>
-			<date>2013-06-13</date>
+			<date>2013-05-13</date>
 			<rev-version>1.0.22</rev-version>
 			<changelog lang="en">
 				<change>Updated menu code.</change>
@@ -1653,8 +1653,9 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 </edit>
 <edit>
 <find><![CDATA[		'global'	=> array('const' => POST_GLOBAL, 'lang' => 'POST_GLOBAL')]]></find>
-<action type="before-add"><![CDATA[		'news'		=> array('const' => POST_NEWS, 'lang' => 'POST_NEWS'),
-		'news_global'	=> array('const' => POST_NEWS_GLOBAL, 'lang' => 'POST_NEWS_GLOBAL'),]]></action>
+<action type="replace-with"><![CDATA[		'global'	=> array('const' => POST_GLOBAL, 'lang' => 'POST_GLOBAL'),
+		'news'		=> array('const' => POST_NEWS, 'lang' => 'POST_NEWS'),
+		'news_global'	=> array('const' => POST_NEWS_GLOBAL, 'lang' => 'POST_NEWS_GLOBAL')]]></action>
 </edit>
 
 <edit>
@@ -1804,7 +1805,6 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 
 			add_log('critical', 'STYLE_MISSING', request_var('style', 0), $user->data['user_id']);
 			redirect(build_url('style') .'?style='. $config['default_style']);
-
 		}]]></action>
 </edit>
 </open>
@@ -1923,13 +1923,6 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 </edit>
 </open>
 
-<open src="styles/prosilver/template/memberlist_search.html">
-<edit>
-<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
-<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>]]></action>
-</edit>
-</open>
-
 <open src="styles/prosilver/template/overall_footer.html">
 <edit>
 <find><![CDATA[	</div>
@@ -1966,14 +1959,6 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <find><![CDATA[<title>{SITENAME} &bull; <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->{PAGE_TITLE}</title>]]></find>
 <action type="after-add"><![CDATA[<link rel="stylesheet" type="text/css" href="{T_THEME_PATH}/style_wide.css" />
 <link rel="alternate stylesheet" type="text/css" media="screen" title="fixed" href="{T_THEME_PATH}/style_fixed.css" />]]></action>
-</edit>
-
-<edit>
-<comment lang="en">Line ~88</comment>
-<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/styleswitcher.js"></script>
-<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
-<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/styleswitcher.js"></script>
-<script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>]]></action>
 </edit>
 
 <edit>
@@ -2052,22 +2037,6 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 </edit>
 </open>
 
-<open src="styles/prosilver/template/posting_buttons.html">
-<edit>
-<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></find>
-<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>
-]]></action>
-</edit>
-</open>
-
-<open src="styles/prosilver/template/posting_smilies.html">
-<edit>
-<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/editor.js"></script>]]></find>
-<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/editor.js"></script>
-]]></action>
-</edit>
-</open>
-
 <open src="styles/prosilver/template/search_results.html">
 <edit>
 <comment lang="en"></comment>
@@ -2076,15 +2045,6 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 <inline-find><![CDATA[{searchresults.U_VIEW_TOPIC}"]]></inline-find>
 <inline-action type="after-add"><![CDATA[ title="{searchresults.TOOLTIP}"]]></inline-action>
 </inline-edit>
-</edit>
-</open>
-
-<open src="styles/prosilver/template/simple_header.html">
-<edit>
-<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/styleswitcher.js"></script>
-<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
-<action type="replace-with"><![CDATA[<script type="text/javascript" src="{ROOT_PATH}js/styleswitcher.js"></script>
-<script type="text/javascript" src="{ROOT_PATH}js/forum_fn.js"></script>]]></action>
 </edit>
 </open>
 

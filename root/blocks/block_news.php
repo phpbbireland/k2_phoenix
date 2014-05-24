@@ -232,7 +232,6 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 
 		$row['post_text'] = truncate_post($row['post_text'], $row['bbcode_uid'], $k_news_item_max_length);
 
-
 		if (strlen($row['post_text']) < $len)
 		{
 			$row['post_text'] .= '<a title="' . $user->lang['VIEW_FULL_ARTICLE'] . '" href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '"><img src="./images/read_full_news.png" /></a>';
