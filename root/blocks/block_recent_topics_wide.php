@@ -128,7 +128,7 @@ for ($i = 0; $i < $forum_count; $i++)
 	}
 }
 
-// do we at least one valid forum for this user, if not, don't continue //
+// do we have at least one valid forum for this user, if not, don't continue //
 if (count($valid_forum_ids) < 1)
 {
 	return;
@@ -175,8 +175,6 @@ $sql_array = array(
 		AND p.post_id = t.topic_last_post_id
 		AND (p.post_time >= ' . $post_time_days . ' OR p.post_edit_time >= ' . $post_time_days . ')
 			ORDER BY t.forum_id, p.post_time DESC'
-
-
 
 );
 
@@ -311,11 +309,11 @@ else
 }
 
 $template->assign_vars(array(
-	'S_COUNT_RECENT'		=> ($i > 0) ? true : false,
-	'RECENT_SEARCH_TYPE'	=> (!$k_recent_search_days) ? $user->lang['FULL_SEARCH'] : $user->lang['K_RECENT_SEARCH_DAYS'] . $k_recent_search_days,
-	'RECENT_SEARCH_LIMIT'			=> $user->lang['T_LIMITS'] . $k_recent_topics_per_forum . $user->lang['TOPICS_PER_FORUM_DISPLAY'] . $display_this_many . ' ' . $post_or_posts,
-	'S_FULL_LEGEND'			=> ($k_post_types) ? true : false,
-	'RECENT_TOPICS_WIDE_DEBUG'	=> sprintf($user->lang['PORTAL_DEBUG_QUERIES'], ($queries) ? $queries : '0', ($cached_queries) ? $cached_queries : '0', ($total_queries) ? $total_queries : '0'),
+	'S_COUNT_RECENT'      => ($i > 0) ? true : false,
+	'RECENT_SEARCH_TYPE'  => (!$k_recent_search_days) ? $user->lang['FULL_SEARCH'] : $user->lang['K_RECENT_SEARCH_DAYS'] . $k_recent_search_days,
+	'RECENT_SEARCH_LIMIT' => $user->lang['T_LIMITS'] . $k_recent_topics_per_forum . $user->lang['TOPICS_PER_FORUM_DISPLAY'] . $display_this_many . ' ' . $post_or_posts,
+	'S_FULL_LEGEND'       => ($k_post_types) ? true : false,
+	'RECENT_TOPICS_WIDE_DEBUG' => sprintf($user->lang['PORTAL_DEBUG_QUERIES'], ($queries) ? $queries : '0', ($cached_queries) ? $cached_queries : '0', ($total_queries) ? $total_queries : '0'),
 ));
 
 ?>

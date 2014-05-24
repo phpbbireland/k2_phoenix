@@ -223,15 +223,15 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 	{
 		$len = strlen($row['post_text']);
 
-		$row['post_text'] = truncate_post($row['post_text'], $k_announce_item_max_length, $row['bbcode_uid']);
+		$row['post_text'] = truncate_post($row['post_text'], $row['bbcode_uid'], $k_announce_item_max_length);
 
 		if (strlen($row['post_text']) < $len)
 		{
-			$row['post_text'] .= ' <a href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '"><strong>[' . $user->lang['VIEW_FULL_ARTICLE']  . ']</strong></a>';
+			$row['post_text'] .= '<a title="' . $user->lang['VIEW_FULL_ARTICLE'] . '" href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '"><img src="./images/read_full_artical.png" width="32" height="32" /></a>';
 		}
 		else
 		{
-			$row['post_text'] .= ' <a href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '"></a>';
+			$row['post_text'] .= '<a title="' . $user->lang['VIEW_FULL_ARTICLE'] . '" href="' . append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . (($row['forum_id']) ? $row['forum_id'] : $forum_id) . '&amp;t=' . $row['topic_id']) . '"><img src="./images/read_full_artical.png" width="32" height="32" /></a>';
 		}
 	}
 

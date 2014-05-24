@@ -453,6 +453,13 @@ $lang = array_merge($lang, array(
 	'SGP_QR_EXPLAIN'   => 'Replace the default quick reply with the portal version.',
 ));
 
+// Acronyms
+$lang = array_merge($lang, array(
+	'ACRONYMS'               => 'Acronyms',
+	'ALLOW_ACRONYMS'         => 'Allow acronyms',
+	'ALLOW_ACRONYMS_EXPLAIN' => 'Acronyms will be used where they exist.',
+));
+
 // Random avatars
 $lang = array_merge($lang, array(
 	'RANDOM_AVATARS'         => 'Random avatar mod',

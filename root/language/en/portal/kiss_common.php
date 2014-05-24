@@ -561,6 +561,10 @@ $lang = array_merge($lang, array(
 	'WIDTH'            => 'Width',
 	'YEARS'            => 'years.',
 	'YOUR_TIME'        => '', //'Your Time: ',
+	// pages
+	'ERROR'            => 'error.html',
+	'SAMPLE'           => 'Sample Page',
+	'VIDEO'            => 'Video Page',
 
 	// for version checking //
 	'VERSION_CHECK'          => 'Version check',
