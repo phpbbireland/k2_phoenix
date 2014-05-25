@@ -86,6 +86,7 @@ $template->assign_vars(array(
 	'L_UNREAD_POSTS'  => $user->lang['SEARCH_UNREAD'] . '&nbsp;(' . $unread_posts_count . ')',
 	'U_NEW_POSTS'     => append_sid("{$phpbb_root_path}search.$phpEx", 'search_id=newposts'),
 	'U_SELF_POSTS'    => append_sid("{$phpbb_root_path}search.$phpEx", 'search_id=egosearch'),
+	'U_SELF_TOPICS'   => append_sid("{$phpbb_root_path}search.$phpEx", 'search_id=egosearch&amp;sf=firstpost'),
 	'U_UNREAD_POSTS'  => append_sid("{$phpbb_root_path}search.$phpEx", 'search_id=unreadposts'),
 	'USER_INFORMATION_DEBUG'	=> sprintf($user->lang['PORTAL_DEBUG_QUERIES'], ($queries) ? $queries : '0', ($cached_queries) ? $cached_queries : '0', ($total_queries) ? $total_queries : '0'),
 ));

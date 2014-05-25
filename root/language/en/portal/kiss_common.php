@@ -301,6 +301,7 @@ $lang = array_merge($lang, array(
 
 	'TOTAL_DOWNLOADS_COUNT' => 'Top total downloads',
 	'SEARCH_TYPE'           => 'Attachment types',
+	'SELF_TOPICS'           => 'View your topics',
 
 	'UCF_MOD'					=> 'A valid location is required for this Mod',
 	'UCP_SMALL'					=> 'UCP',
