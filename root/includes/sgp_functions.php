@@ -443,7 +443,7 @@ if (!function_exists('get_menu_lang_name'))
 
 /**
 * Takes a phpBB $page name and position (left/right/centre)...
-* Returns true/false if the block should be displayed on a giveb page...
+* Returns true/false if the block should be displayed on a given page...
 **/
 /***
 if (!function_exists('show_blocks'))
@@ -558,6 +558,17 @@ if (!function_exists('generate_menus'))
 		}
 		$memberships = array();
 		$memberships = group_memberships(false, $user->data['user_id'], false);
+
+		/*	bug fix sort order
+			http://www.phpbbireland.com/kiss2/viewtopic.php?p=7730#p7730
+			reorder by ndx
+			Requires: PHP 5.3
+		*/
+
+		usort($k_menus, function($a, $b)
+		{
+			return $a['ndx'] - $b['ndx'];
+		});
 
 		for ($i = 1; $i < $p_count + 1; $i++)
 		{

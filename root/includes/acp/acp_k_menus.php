@@ -293,7 +293,7 @@ class acp_k_menus
 					/* can't happenas we don't allow moving up
 					   if ndx is first (move icon is disabled)
 					   we could move to last... roll around
-				   */
+					*/
 
 					//$prev_ndx = $ndx_array[$col_count-1];
 					//$prev_id =  $id_array[$col_count-1];
@@ -356,6 +356,7 @@ class acp_k_menus
 				));
 
 				$cache->destroy('sql', K_MENUS_TABLE);
+				$cache->obtain_k_menus(true);
 
 				switch ($type)
 				{
@@ -521,7 +522,7 @@ function get_menu($this_one)
 	}
 	else
 	{
-		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type=' . (int)$this_one;
+		$sql = 'SELECT * FROM ' . K_MENUS_TABLE . ' WHERE menu_type=' . (int)$this_one . 'ORDER BY ndx ASC';
 	}
 
 	if ($result = $db->sql_query($sql))

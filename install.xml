@@ -991,14 +991,15 @@ if (STARGATE)
 	}
 
 
-	function obtain_k_menus()
+	function obtain_k_menus($force_cashing = false)
 	{
 		global $db;
 
-		if (($k_menus = $this->get('k_menus')) !== false)
+		if (($k_menus = $this->get('k_menus')) === false || $force_cashing == true)
 		{
 			$sql = "SELECT * FROM ". K_MENUS_TABLE . "
-				ORDER BY ndx ASC ";
+				ORDER BY menu_type, ndx";
+
 			$result = $db->sql_query($sql);
 
 			while ($row = $db->sql_fetchrow($result))
@@ -1018,37 +1019,8 @@ if (STARGATE)
 				$k_menus[$row['m_id']]['sub_heading'] = $row['sub_heading'];
 			}
 			$db->sql_freeresult($result);
-		}
-		else
-		{
-			//$k_menus = $k_cached_menus = array();
-			$k_menus = array();
-
-			$sql = "SELECT * FROM ". K_MENUS_TABLE . "
-				ORDER BY ndx ASC ";
-			$result = $db->sql_query($sql);
-
-			while ($row = $db->sql_fetchrow($result))
-			{
-				$k_menus[$row['m_id']]['m_id'] = $row['m_id'];
-				$k_menus[$row['m_id']]['ndx'] = $row['ndx'];
-				$k_menus[$row['m_id']]['menu_type'] = $row['menu_type'];
-				$k_menus[$row['m_id']]['name'] = $row['name'];
-				$k_menus[$row['m_id']]['link_to'] = $row['link_to'];
-				$k_menus[$row['m_id']]['extern'] = $row['extern'];
-				$k_menus[$row['m_id']]['menu_icon'] = $row['menu_icon'];
-				$k_menus[$row['m_id']]['append_sid'] = $row['append_sid'];
-				$k_menus[$row['m_id']]['append_uid'] = $row['append_uid'];
-				$k_menus[$row['m_id']]['view_all'] = $row['view_all'];
-				$k_menus[$row['m_id']]['view_groups'] = $row['view_groups'];
-				$k_menus[$row['m_id']]['soft_hr'] = $row['soft_hr'];
-				$k_menus[$row['m_id']]['sub_heading'] = $row['sub_heading'];
-			}
-			$db->sql_freeresult($result);
-
 			$this->put('k_menus', $k_menus);
 		}
-
 		return $k_menus;
 	}
 
@@ -1056,37 +1028,8 @@ if (STARGATE)
 	{
 		global $db;
 
-		if (($k_blocks = $this->get('k_blocks')) !== false)
+		if (($k_blocks = $this->get('k_blocks')) === false)
 		{
-			$sql = 'SELECT *
-				FROM ' . K_BLOCKS_TABLE . '
-				WHERE active = 1 AND is_static = 0 ORDER BY ndx ASC';
-			$result = $db->sql_query($sql);
-
-			while ($row = $db->sql_fetchrow($result))
-			{
-				if (!$row['is_static'])
-				{
-					$k_blocks[$row['id']]['id']				= $row['id'];
-					$k_blocks[$row['id']]['ndx']			= $row['ndx'];
-					$k_blocks[$row['id']]['title']			= $row['title'];
-					$k_blocks[$row['id']]['position']		= $row['position'];
-					$k_blocks[$row['id']]['type']			= $row['type'];
-					$k_blocks[$row['id']]['view_groups']		= $row['view_groups'];
-					$k_blocks[$row['id']]['scroll']			= $row['scroll'];
-					$k_blocks[$row['id']]['block_height']	= $row['block_height'];
-					$k_blocks[$row['id']]['html_file_name']	= $row['html_file_name'];
-					$k_blocks[$row['id']]['html_file_name']	= $row['html_file_name'];
-					$k_blocks[$row['id']]['img_file_name']	= $row['img_file_name'];
-					$k_blocks[$row['id']]['block_cache_time']	= $row['block_cache_time'];
-				}
-			}
-			$db->sql_freeresult($result);
-		}
-		else
-		{
-			$k_blocks = $k_cached_blocks = array();
-
 			$sql = 'SELECT *
 				FROM ' . K_BLOCKS_TABLE . '
 				WHERE active = 1 ORDER BY ndx ASC';
@@ -1094,39 +1037,22 @@ if (STARGATE)
 
 			while ($row = $db->sql_fetchrow($result))
 			{
-				if ($row['is_static'])
-				{
-					$k_cached_blocks[$row['id']]['id']				= $row['id'];
-					$k_cached_blocks[$row['id']]['ndx']				= $row['ndx'];
-					$k_cached_blocks[$row['id']]['title']			= $row['title'];
-					$k_cached_blocks[$row['id']]['position']		= $row['position'];
-					$k_cached_blocks[$row['id']]['active']			= $row['active'];
-					$k_cached_blocks[$row['id']]['type']			= $row['type'];
-					$k_cached_blocks[$row['id']]['view_groups']		= $row['view_groups'];
-					$k_cached_blocks[$row['id']]['scroll']			= $row['scroll'];
-					$k_cached_blocks[$row['id']]['block_height']	= $row['block_height'];
-					$k_cached_blocks[$row['id']]['html_file_name']	= $row['html_file_name'];
-					$k_cached_blocks[$row['id']]['img_file_name']	= $row['img_file_name'];
-					$k_cached_blocks[$row['id']]['block_cache_time']	= $row['block_cache_time'];
-				}
-				$k_blocks[$row['id']]['id']				= $row['id'];
-				$k_blocks[$row['id']]['ndx']			= $row['ndx'];
-				$k_blocks[$row['id']]['title']			= $row['title'];
-				$k_blocks[$row['id']]['position']		= $row['position'];
-				$k_blocks[$row['id']]['type']			= $row['type'];
-				$k_blocks[$row['id']]['view_groups']	= $row['view_groups'];
-				$k_blocks[$row['id']]['scroll']			= $row['scroll'];
-				$k_blocks[$row['id']]['block_height']	= $row['block_height'];
-				$k_blocks[$row['id']]['html_file_name']	= $row['html_file_name'];
-				$k_blocks[$row['id']]['html_file_name']	= $row['html_file_name'];
-				$k_blocks[$row['id']]['img_file_name']	= $row['img_file_name'];
-				$k_blocks[$row['id']]['block_cache_time']	= $row['block_cache_time'];
+				$k_blocks[$row['id']]['id']              = $row['id'];
+				$k_blocks[$row['id']]['ndx']             = $row['ndx'];
+				$k_blocks[$row['id']]['title']            = $row['title'];
+				$k_blocks[$row['id']]['position']         = $row['position'];
+				$k_blocks[$row['id']]['type']             = $row['type'];
+				$k_blocks[$row['id']]['view_groups']      = $row['view_groups'];
+				$k_blocks[$row['id']]['view_all']         = $row['view_all'];
+				$k_blocks[$row['id']]['scroll']           = $row['scroll'];
+				$k_blocks[$row['id']]['block_height']     = $row['block_height'];
+				$k_blocks[$row['id']]['html_file_name']   = $row['html_file_name'];
+				$k_blocks[$row['id']]['img_file_name']    = $row['img_file_name'];
+				$k_blocks[$row['id']]['block_cache_time'] = $row['block_cache_time'];
 			}
 			$db->sql_freeresult($result);
-
-			$this->put('k_blocks', $k_cached_blocks);
+			$this->put('k_blocks', $k_blocks);
 		}
-
 		return $k_blocks;
 	}
 
@@ -1134,7 +1060,7 @@ if (STARGATE)
 	{
 		global $db;
 
-		if (($k_pages = $this->get('k_pages')) !== false)
+		if (($k_pages = $this->get('k_pages')) === false)
 		{
 			$sql = 'SELECT page_id, page_name
 				FROM ' . K_PAGES_TABLE;
@@ -1147,23 +1073,6 @@ if (STARGATE)
 				$k_pages[$row['page_id']]['page_name'] = $row['page_name'];
 			}
 			$db->sql_freeresult($result);
-		}
-		else
-		{
-			$k_pages = $k_pages_cache = array();
-
-			$sql = 'SELECT page_id, page_name
-				FROM ' . K_PAGES_TABLE;
-
-			$result = $db->sql_query($sql);
-
-			while ($row = $db->sql_fetchrow($result))
-			{
-				$k_pages[$row['page_id']]['page_id'] = $row['page_id'];
-				$k_pages[$row['page_id']]['page_name'] = $row['page_name'];
-			}
-			$db->sql_freeresult($result);
-
 			$this->put('k_pages', $k_pages);
 		}
 		return $k_pages;
@@ -1177,7 +1086,7 @@ if (STARGATE)
 	{
 		global $db;
 
-		if (($k_groups = $this->get('k_groups')) !== false)
+		if (($k_groups = $this->get('k_groups')) === false)
 		{
 			// Get us all the groups
 			$sql = 'SELECT group_id, group_name
@@ -1191,24 +1100,6 @@ if (STARGATE)
 				$k_groups[$row['group_id']]['group_name'] = $row['group_name'];
 			}
 			$db->sql_freeresult($result);
-		}
-		else
-		{
-			$k_groups = $k_cached_groups = array();
-
-			// Get us all the groups
-			$sql = 'SELECT group_id, group_name
-				FROM ' . GROUPS_TABLE . '
-				ORDER BY group_id ASC, group_name';
-			$result = $db->sql_query($sql);
-
-			while ($row = $db->sql_fetchrow($result))
-			{
-				$k_groups[$row['group_id']]['group_id'] = $row['group_id'];
-				$k_groups[$row['group_id']]['group_name'] = $row['group_name'];
-			}
-			$db->sql_freeresult($result);
-
 			$this->put('k_groups', $k_groups);
 		}
 		return $k_groups;
@@ -1218,7 +1109,7 @@ if (STARGATE)
 	{
 		global $db;
 
-		if (($k_resources = $this->get('k_resources')) !== false)
+		if (($k_resources = $this->get('k_resources')) === false)
 		{
 			$sql = 'SELECT *
 				FROM ' . K_RESOURCES_TABLE  . '
@@ -1231,23 +1122,7 @@ if (STARGATE)
 
 			}
 			$db->sql_freeresult($result);
-		}
-		else
-		{
-			$k_resources = $k_cached_resources = array();
-
-			$sql = 'SELECT *
-				FROM ' . K_RESOURCES_TABLE  . '
-				ORDER BY word ASC';
-			$result = $db->sql_query($sql);
-
-			while ($row = $db->sql_fetchrow($result))
-			{
-				$k_resources[] = $row['word'];
-			}
-			$db->sql_freeresult($result);
-
-			$this->put('k_resources', $k_cached_resources);
+			$this->put('k_resources', $k_resources);
 		}
 		return $k_resources;
 	}

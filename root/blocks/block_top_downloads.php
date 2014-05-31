@@ -191,8 +191,6 @@ $sql_array = array(
 
 $sql = $db->sql_build_query('SELECT', $sql_array);
 
-//echo '<br />Top Downoads<br />' . $sql . '<br />';
-
 $result = $db->sql_query_limit($sql, $display_this_many, 0, $block_cache_time);
 
 $row = $db->sql_fetchrowset($result);
