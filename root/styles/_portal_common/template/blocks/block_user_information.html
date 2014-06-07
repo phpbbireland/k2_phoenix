@@ -23,28 +23,26 @@
 		</div>
 		<!-- ENDIF -->
 		<div style="text-align:center;">{S_HIDDEN_FIELDS}<input type="submit" class="button2" name="login" value="{L_LOGIN}" /></div>
-		<div style="text-align:center;" class="gensmall">{L_DONT_HAVE_ACCOUNT}<a href="ucp.php?cid=&amp;mode=register">{L_REGISTRATION}</a><br /></div>
+		<div style="text-align:center;" class="gensmall">{L_DONT_HAVE_ACCOUNT}<a href="ucp.php?cid=&amp;mode=register">{L_CLICK_REGISTRATION}</a><br /></div>
 
 	<!-- ENDIF -->
 
 	<!-- IF S_USER_LOGGED_IN -->
-		<div style="text-align:center;">
+		<div class="user_info_avatar">
 			<!-- IF AVATAR -->{AVATAR}<!-- ELSE --><img src="{T_THEME_PATH}/images/no_avatar.gif" alt="" /><!-- ENDIF -->
 		</div>
 
-		<div style="text-align:center;">
-			<span class="welcome">
-			{WELCOME_SITE}<br />
+		<div class="user_info_name">
 			<!-- IF USR_RANK_IMG -->{USR_RANK_TITLE}<br />{USR_RANK_IMG}<br /><!-- ENDIF -->
-			{P_USERNAME_FULL}
-			</span>
+			{P_USERNAME_FULL} @ <strong>{SITE_NAME}</strong>
 		</div>
-		<div style="text-align:center; padding:3px;"><!-- IF S_USER_LOGGED_IN -->{LAST_VISIT_DATE}<!-- ELSE -->{CURRENT_TIME}<!-- ENDIF --></div>
-		<div style="text-align:center; padding:3px;"><a href="{U_NEW_POSTS}">{L_NEW_POSTS}</a></div>
-		<div style="text-align:center; padding:3px;"><a href="{U_UNREAD_POSTS}">{L_UNREAD_POSTS}</a></div>
-		<div style="text-align:center; padding:3px;"><a href="{U_SELF_POSTS}">{L_SELF_POSTS}</a></div>
-		<div style="text-align:center; padding:3px;"><a href="{U_SELF_TOPICS}">{L_SELF_TOPICS} <!-- IF TOTAL_MATCHES -->({TOTAL_MATCHES})<!-- ENDIF --></a></div>
-		<div style="text-align:center; padding:3px;"><a href="{U_LOGIN_LOGOUT}"><img src="{T_THEME_PATH}/images/portal/icon_mini_login.gif" width="12" height="13" alt="{L_LOGIN_LOGOUT}" /> {L_LOGIN_LOGOUT}</a></div>
+		<div class="user_info_date"><!-- IF S_USER_LOGGED_IN -->{LAST_VISIT_DATE}<!-- ELSE -->{CURRENT_TIME}<!-- ENDIF --></div>
+
+		<div class="user_info_line"><a href="{U_NEW_POSTS}">{L_NEW_POSTS}</a></div>
+		<div class="user_info_line"><a href="{U_UNREAD_POSTS}">{L_UNREAD_POSTS}</a></div>
+		<div class="user_info_line"><a href="{U_SELF_POSTS}">{L_SELF_POSTS}</a></div>
+		<div class="user_info_line"><a href="{U_SELF_TOPICS}">{L_SELF_TOPICS} <!-- IF TOTAL_MATCHES -->({TOTAL_MATCHES})<!-- ENDIF --></a></div>
+		<div class="user_info_log"><a href="{U_LOGIN_LOGOUT}"><img src="{T_THEME_PATH}/images/portal/icon_mini_login.gif" width="12" height="13" alt="{L_LOGIN_LOGOUT}" /> {L_LOGIN_LOGOUT}</a></div>
 	<!-- ENDIF -->
 	{S_FORM_TOKEN}
 	</form>
