@@ -682,7 +682,7 @@ table.table1 .flag { text-align: center; width: 30px; }
 .right_blocks_col_show {margin-bottom: 0px; margin-top: 3px;}
 
 /**
-* block arrane/hide css Dec 2011
+* block arrange/hide css Dec 2011
 **/
 
 .bmove {
@@ -703,3 +703,27 @@ table.table1 .flag { text-align: center; width: 30px; }
 
 .l_block_vert_gap { padding-right:15px; }
 .r_block_vert_gap { padding-left:15px; }
+
+.user_info_line { 
+	text-align: center; 
+	padding: 0px;
+}
+
+
+.user_info_name {
+	text-align: center; 
+	padding: 0 0 3px 0;
+}
+.user_info_date
+{
+	text-align: center; 
+	padding: 0 0 4px 0;
+}
+.user_info_log {
+	text-align: center; 
+	padding: 5px 0 3px 0;
+}
+.user_info_avatar {
+	text-align: center; 
+	padding: 0;
+}

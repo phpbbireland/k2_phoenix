@@ -320,8 +320,8 @@ $lang = array_merge($lang, array(
 	'USERS_STYLE'				=> 'Current Style',
 	'RAND_BANNER'			=> 'Portal Random Banner',
 
-	'READ_ARTICLE'			=> 'Read Full Article',
-	'READ_FULL'				=> 'Read full message',
+	'READ_ARTICLE'			=> 'Read Article',
+	'READ_FULL'				=> 'Read Message',
 	'RECENT_TOPICS'			=> 'Recent Topics',
 	'RECENT_REPLY'			=> 'View latest reply...',
 	'CLICK_REGISTRATION'    => '<b>Click here to Register</b>',
