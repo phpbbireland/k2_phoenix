@@ -78,7 +78,7 @@ get_user_rank($user->data['user_rank'], (($user->data['user_id'] == ANONYMOUS) ?
 
 $template->assign_vars(array(
 	'AVATAR'          => get_user_avatar($user->data['user_avatar'], $user->data['user_avatar_type'], $user->data['user_avatar_width'], $user->data['user_avatar_height'], 'USER_AVATAR', true),
-	'WELCOME_SITE'    => sprintf($user->lang['WELCOME_SITE'], $config['sitename']),
+	'SITE_NAME'       => $config['sitename'],
 	'USR_RANK_TITLE'  => $rank_title,
 	'USR_RANK_IMG'    => $rank_img,
 	'L_NEW_POSTS'     => $user->lang['SEARCH_NEW'] . '&nbsp;(' . $new_posts_count . ')',
@@ -88,7 +88,7 @@ $template->assign_vars(array(
 	'U_SELF_POSTS'    => append_sid("{$phpbb_root_path}search.$phpEx", 'search_id=egosearch'),
 	'U_SELF_TOPICS'   => append_sid("{$phpbb_root_path}search.$phpEx", 'search_id=egosearch&amp;sf=firstpost'),
 	'U_UNREAD_POSTS'  => append_sid("{$phpbb_root_path}search.$phpEx", 'search_id=unreadposts'),
-	'USER_INFORMATION_DEBUG'	=> sprintf($user->lang['PORTAL_DEBUG_QUERIES'], ($queries) ? $queries : '0', ($cached_queries) ? $cached_queries : '0', ($total_queries) ? $total_queries : '0'),
+	'USER_INFORMATION_DEBUG'  => sprintf($user->lang['PORTAL_DEBUG_QUERIES'], ($queries) ? $queries : '0', ($cached_queries) ? $cached_queries : '0', ($total_queries) ? $total_queries : '0'),
 ));
 
 ?>
