@@ -35,7 +35,7 @@
 		</author>
 	</author-group>
 
-	<mod-version>1.0.23</mod-version>
+	<mod-version>1.0.21</mod-version>
 
 	<installation>
 		<level>intermediate</level>
@@ -46,27 +46,10 @@
 	<history>
 		<entry>
 			<date>2014-06-13</date>
-			<rev-version>1.0.23</rev-version>
+			<rev-version>1.0.21</rev-version>
 			<changelog lang="en">
 				<change>Changed truncate code.</change>
 				<change>Some minor update to files</change>
-			</changelog>
-		</entry>
-		<entry>
-			<date>2013-05-13</date>
-			<rev-version>1.0.22</rev-version>
-			<changelog lang="en">
-				<change>Updated menu code.</change>
-				<change>Slight speedup to block code.</change>
-				<change>Reducetion to queries (2).</change>
-			</changelog>
-		</entry>
-		<entry>
-			<date>2013-05-01</date>
-			<rev-version>1.0.21</rev-version>
-			<changelog lang="en">
-				<change>Updated truncate code.</change>
-				<change>Updated search.php (truncate).</change>
 			</changelog>
 		</entry>
 		<entry>

@@ -22,7 +22,7 @@ class acp_k_poll_info
 		return array(
 			'filename'	=> 'acp_k_poll',
 			'title'		=> 'ACP_K_POLL',
-			'version'	=> '1.0.1',
+			'version'	=> '1.0.21',
 			'modes'		=> array(
 				'select'		=> array('title' => 'ACP_K_POLL', 'auth' => 'acl_a_k_tools', 'cat' => array('ACP_K_TOOLS')),
 			),
