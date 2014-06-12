@@ -256,6 +256,7 @@
 		<link type="contrib" href="contrib/update_1.0.17_to_1.0.18.xml" lang="en">Update 1.0.17 to 1.0.18</link>
 		<link type="contrib" href="contrib/update_1.0.18_to_1.0.19.xml" lang="en">Update 1.0.18 to 1.0.19</link>
 		<link type="contrib" href="contrib/update_1.0.19_to_1.0.20.xml" lang="en">Update 1.0.19 to 1.0.20</link>
+		<link type="contrib" href="contrib/update_1.0.20_to_1.0.21.xml" lang="en">Update 1.0.20 to 1.0.21</link>
 	</link-group>
 
 	<meta name="generator" content="Phpbb.ModTeam.Tools (c#)" />
