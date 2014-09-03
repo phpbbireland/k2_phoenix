@@ -759,7 +759,7 @@ if (STARGATE)
 </edit>
 
 <edit>
-<comment lang="en">Line ~362</comment>
+<comment lang="en">Line ~399</comment>
 <find><![CDATA[AND t.topic_type IN (' . POST_ANNOUNCE . ', ' . POST_GLOBAL . ')',]]></find>
 <inline-edit>
 <inline-find> ')',</inline-find>
@@ -768,7 +768,7 @@ if (STARGATE)
 </edit>
 
 <edit>
-<find>		$s_type_switch_test = ($row['topic_type'] == POST_ANNOUNCE || $row['topic_type'] == POST_GLOBAL) ? 1 : 0;</find>
+<find><![CDATA[		$s_type_switch_test = ($row['topic_type'] == POST_ANNOUNCE || $row['topic_type'] == POST_GLOBAL) ? 1 : 0;]]></find>
 <inline-edit>
 <inline-find>$row['topic_type'] == POST_GLOBAL</inline-find>
 <inline-action type="after-add"> || $row['topic_type'] == POST_NEWS || $row['topic_type'] == POST_NEWS_GLOBAL </inline-action>
@@ -929,10 +929,10 @@ if (STARGATE)
 
 <open src="includes/cache.php">
 <edit>
-<find>	/**
+<find><![CDATA[	/**
 	* Obtain list of naughty words and build preg style replacement arrays for use by the
 	* calling script
-	*/</find>
+	*/]]></find>
 <action type="before-add"><![CDATA[	function obtain_k_config()
 	{
 		global $db;
@@ -1115,17 +1115,17 @@ if (STARGATE)
 </edit>
 
 <edit>
-<find>				$icons[$row['icons_id']]['display'] = (bool) $row['display_on_posting'];</find>
-<action type="after-add">				$icons[$row['icons_id']]['group'] = (bool) $row['icons_group'];</action>
+<find><![CDATA[				$icons[$row['icons_id']]['display'] = (bool) $row['display_on_posting'];]]></find>
+<action type="after-add"><![CDATA[				$icons[$row['icons_id']]['group'] = (bool) $row['icons_group'];]]></action>
 
 </edit>
 </open>
 
 <open src="includes/constants.php">
 <edit>
-<find>define('POST_GLOBAL', 3);</find>
-<action type="after-add">define('POST_NEWS', 4);
-define('POST_NEWS_GLOBAL', 5);</action>
+<find><![CDATA[define('POST_GLOBAL', 3);]]></find>
+<action type="after-add"><![CDATA[define('POST_NEWS', 4);
+define('POST_NEWS_GLOBAL', 5);]]></action>
 
 </edit>
 
@@ -1518,12 +1518,12 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 </edit>
 
 <edit>
-<find>		$auth_key = ($auth_key == 'global') ? 'announce' : $auth_key;</find>
-<action type="after-add">		if (STARGATE)
+<find><![CDATA[		$auth_key = ($auth_key == 'global') ? 'announce' : $auth_key;]]></find>
+<action type="after-add"><![CDATA[		if (STARGATE)
 		{
 			$auth_key = ($auth_key == 'news') ? 'announce' : $auth_key;
 			$auth_key = ($auth_key == 'news_global') ? 'announce' : $auth_key;
-		}</action>
+		}]]></action>
 
 </edit>
 
@@ -1729,7 +1729,7 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 </edit>
 
 <edit>
-<find>'topic_moved', 'topic_read', 'topic_read_mine', 'topic_read_hot', 'topic_read_hot_mine', 'topic_read_locked', 'topic_read_locked_mine', 'topic_unread', 'topic_unread_mine', 'topic_unread_hot', 'topic_unread_hot_mine', 'topic_unread_locked', 'topic_unread_locked_mine', 'sticky_read', 'sticky_read_mine', 'sticky_read_locked', 'sticky_read_locked_mine', 'sticky_unread', 'sticky_unread_mine', 'sticky_unread_locked', 'sticky_unread_locked_mine', 'announce_read', 'announce_read_mine', 'announce_read_locked', 'announce_read_locked_mine', 'announce_unread', 'announce_unread_mine', 'announce_unread_locked', 'announce_unread_locked_mine', 'global_read', 'global_read_mine', 'global_read_locked', 'global_read_locked_mine', 'global_unread', 'global_unread_mine', 'global_unread_locked', 'global_unread_locked_mine', 'pm_read', 'pm_unread',</find>
+<find><![CDATA['topic_moved', 'topic_read', 'topic_read_mine', 'topic_read_hot', 'topic_read_hot_mine', 'topic_read_locked', 'topic_read_locked_mine', 'topic_unread', 'topic_unread_mine', 'topic_unread_hot', 'topic_unread_hot_mine', 'topic_unread_locked', 'topic_unread_locked_mine', 'sticky_read', 'sticky_read_mine', 'sticky_read_locked', 'sticky_read_locked_mine', 'sticky_unread', 'sticky_unread_mine', 'sticky_unread_locked', 'sticky_unread_locked_mine', 'announce_read', 'announce_read_mine', 'announce_read_locked', 'announce_read_locked_mine', 'announce_unread', 'announce_unread_mine', 'announce_unread_locked', 'announce_unread_locked_mine', 'global_read', 'global_read_mine', 'global_read_locked', 'global_read_locked_mine', 'global_unread', 'global_unread_mine', 'global_unread_locked', 'global_unread_locked_mine', 'pm_read', 'pm_unread',]]></find>
 <inline-edit>
 <inline-find>'pm_unread',</inline-find>
 <inline-action type="after-add"> 'news_read', 'news_read_mine', 'news_read_locked', 'news_read_locked_mine', 'news_unread', 'news_unread_mine', 'news_unread_locked', 'news_unread_locked_mine',</inline-action>
@@ -1968,24 +1968,24 @@ function get_random_image($dir_path, $add_link = false, $token = '', $raw = fals
 
 <open src="styles/prosilver/imageset/imageset.cfg">
 <edit>
-<find>img_poll_left =
+<find><![CDATA[img_poll_left =
 img_poll_center =
-img_poll_right = </find>
-<action type="replace-with">img_poll_left = poll_left.gif*12*4
+img_poll_right = ]]></find>
+<action type="replace-with"><![CDATA[img_poll_left = poll_left.gif*12*4
 img_poll_center = poll_center.gif*12*
-img_poll_right = poll_right.gif*12*4</action>
+img_poll_right = poll_right.gif*12*4]]></action>
 </edit>
 
 <edit>
-<find>img_icon_user_warn = icon_user_warn.gif*20*20</find>
-<action type="after-add">img_news_read				= news_read.gif*27*27
+<find><![CDATA[img_icon_user_warn = icon_user_warn.gif*20*20]]></find>
+<action type="after-add"><![CDATA[img_news_read				= news_read.gif*27*27
 img_news_read_mine			= news_read_mine.gif*27*27
 img_news_read_locked		= news_read_locked.gif*27*27
 img_news_read_locked_mine	= news_read_locked_mine.gif*27*27
 img_news_unread				= news_unread.gif*27*27
 img_news_unread_mine		= news_unread_mine.gif*27*27
 img_news_unread_locked		= news_unread_locked.gif*27*27
-img_news_unread_locked_mine	= news_unread_locked_mine.gif*27*27</action>
+img_news_unread_locked_mine	= news_unread_locked_mine.gif*27*27]]></action>
 </edit>
 </open>
 
